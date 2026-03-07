@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireless 101 — Learn Wireless & Signal Processing</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+/* ══ Landing page styles ══ */
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  padding: 8rem 2rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Subtle dot grid behind hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 70% 60% at 65% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 65% 50%, black 20%, transparent 70%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.hero-text { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--amber);
+  border-radius: 50%;
+  animation: pulse-beacon 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-beacon {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232, 168, 56, 0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(232, 168, 56, 0); }
+}
+
+.hero-text h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.hero-text h1 em {
+  font-style: normal;
+  color: var(--amber);
+  position: relative;
+}
+
+.hero-text h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--amber);
+  opacity: 0.25;
+  border-radius: 2px;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 460px;
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.hero-social-proof {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.hero-avatars { display: flex; }
+
+.hero-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2.5px solid var(--cream);
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+
+.hero-avatar:first-child { margin-left: 0; }
+
+.hero-social-proof span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.hero-social-proof strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ── Hero illustration ── */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 460px;
+  z-index: 1;
+}
+
+.hero-visual-orbit {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 1px dashed var(--border);
+  position: absolute;
+  animation: orbit-spin 60s linear infinite;
+}
+
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+.hero-visual-orbit::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(232, 168, 56, 0.4);
+}
+
+.hero-visual-orbit-2 {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px dashed var(--border-light);
+  position: absolute;
+  animation: orbit-spin 40s linear infinite reverse;
+}
+
+.hero-visual-orbit-2::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 20%;
+  width: 8px;
+  height: 8px;
+  background: var(--sage);
+  border-radius: 50%;
+}
+
+.hero-visual-center {
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  background: var(--ink);
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 48px rgba(15, 27, 45, 0.2);
+}
+
+.hero-visual-center svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.hero-float {
+  position: absolute;
+  border-radius: 14px;
+  z-index: 1;
+}
+
+.hero-float-1 {
+  width: 56px;
+  height: 56px;
+  background: var(--amber);
+  top: 50px;
+  right: 20px;
+  border-radius: 16px;
+  animation: float-a 7s ease-in-out infinite;
+  opacity: 0.9;
+  box-shadow: 0 8px 24px rgba(232, 168, 56, 0.25);
+}
+
+.hero-float-2 {
+  width: 36px;
+  height: 36px;
+  background: var(--sage);
+  bottom: 70px;
+  left: 10px;
+  border-radius: 50%;
+  animation: float-b 8s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+.hero-float-3 {
+  width: 44px;
+  height: 44px;
+  background: var(--amber-pale);
+  border: 1px solid rgba(232, 168, 56, 0.15);
+  bottom: 50px;
+  right: 50px;
+  border-radius: 12px;
+  animation: float-a 9s ease-in-out infinite reverse;
+}
+
+.hero-float-4 {
+  width: 24px;
+  height: 24px;
+  background: var(--ink);
+  top: 100px;
+  left: 40px;
+  border-radius: 8px;
+  animation: float-b 6s ease-in-out infinite;
+  opacity: 0.08;
+}
+
+@keyframes float-a {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(4deg); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(14px) translateX(-10px); }
+}
+
+/* ── Courses ── */
+.courses { background: var(--paper); }
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.course-card {
+  background: var(--white);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-xs);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--border);
+}
+
+.course-header {
+  padding: 1.75rem 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-header::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+
+.course-header.ink { background: var(--ink); color: var(--cream); }
+.course-header.amber { background: linear-gradient(135deg, var(--amber), #d4911a); color: var(--ink); }
+
+.course-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.course-code {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.course-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  background: rgba(255,255,255,0.15);
+  padding: 0.2rem 0.65rem;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.course-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.course-body { padding: 1.75rem 2rem; }
+
+.course-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.course-meta-item {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+.course-meta-item svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-tertiary);
+  fill: none;
+  stroke-width: 2;
+}
+
+.course-topics-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+
+.course-topic {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.course-topic-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.course-footer {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.course-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: gap 0.3s;
+}
+
+.course-cta-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.course-cta-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--ink);
+  fill: none;
+  transition: transform 0.3s;
+}
+
+.course-cta:hover .course-cta-arrow {
+  background: var(--ink);
+}
+
+.course-cta:hover .course-cta-arrow svg {
+  stroke: var(--cream);
+  transform: translateX(2px);
+}
+
+/* ── How It Works ── */
+.how-section { max-width: 1000px; margin: 0 auto; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 56px;
+  right: 56px;
+  height: 1px;
+  border-top: 1.5px dashed var(--border);
+}
+
+.step-item {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 0.75rem;
+}
+
+.step-num {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--amber);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 6px 20px rgba(232, 168, 56, 0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.step-item:hover .step-num {
+  transform: translateY(-4px) rotate(-3deg);
+  box-shadow: 0 10px 28px rgba(232, 168, 56, 0.35);
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.step-desc {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ── Testimonials ── */
+.testimonials { background: var(--paper); }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.35s;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '\201C';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--amber);
+  opacity: 0.15;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  line-height: 1;
+}
+
+.testimonial-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+
+.testimonial-stars svg { width: 14px; height: 14px; fill: var(--amber); }
+
+.testimonial-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--cream);
+  flex-shrink: 0;
+}
+
+.testimonial-avatar.ink-bg { background: var(--ink); }
+.testimonial-avatar.amber-bg { background: var(--amber); color: var(--ink); }
+
+.testimonial-name {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.testimonial-role {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* ── CTA Banner ── */
+.cta-section { padding: 5rem 2rem; text-align: center; }
+
+.cta-box {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--ink);
+  border-radius: var(--r-xl);
+  padding: 4rem 3rem;
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: rgba(232, 168, 56, 0.1);
+  border-radius: 50%;
+}
+
+.cta-box::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+}
+
+.cta-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  position: relative;
+  letter-spacing: -0.02em;
+}
+
+.cta-box p {
+  color: var(--text-on-dark-muted);
+  margin-bottom: 2rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  line-height: 1.7;
+}
+
+/* Lang switch */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 7rem 2rem 3rem;
+    gap: 2rem;
+  }
+  .hero-text p { margin-left: auto; margin-right: auto; }
+  .hero-buttons { justify-content: center; }
+  .hero-social-proof { justify-content: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-visual { height: 300px; }
+}
+
+@media (max-width: 768px) {
+  .courses-grid { grid-template-columns: 1fr; }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: left;
+  }
+
+  .steps-grid::before { display: none; }
+
+  .step-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 1rem;
+    text-align: left;
+    align-items: start;
+    padding: 0;
+  }
+
+  .step-num { margin: 0; }
+
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="index.html" class="active">EN</a>
+        <a href="ar/index.html">عربي</a>
+      </div>
+    </li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#cta" class="nav-cta">Get Started</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow fade-up">Open Curriculum</div>
+    <h1 class="fade-up stagger-1">Learn Wireless &<br><em>Signal Processing</em><br>from Scratch</h1>
+    <p class="fade-up stagger-2">Interactive courses that break down complex wireless and DSP concepts into clear, visual, hands-on lessons. No prerequisites required.</p>
+    <div class="hero-buttons fade-up stagger-3">
+      <a href="#courses" class="btn-primary">Browse Courses &rarr;</a>
+      <a href="#how-it-works" class="btn-secondary">How It Works</a>
+    </div>
+    <div class="hero-social-proof fade-up stagger-4">
+      <div class="hero-avatars">
+        <div class="hero-avatar" style="background:var(--ink)">AK</div>
+        <div class="hero-avatar" style="background:var(--amber);color:var(--ink)">SR</div>
+        <div class="hero-avatar" style="background:var(--ink-muted)">MP</div>
+        <div class="hero-avatar" style="background:#d4911a">JL</div>
+      </div>
+      <span>Trusted by <strong>2,400+</strong> learners worldwide</span>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-up stagger-2">
+    <div class="hero-visual-orbit"></div>
+    <div class="hero-visual-orbit-2"></div>
+    <div class="hero-visual-center">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.55a11 11 0 0114.08 0"/>
+        <path d="M1.42 9a16 16 0 0121.16 0"/>
+        <path d="M8.53 16.11a6 6 0 016.95 0"/>
+        <circle cx="12" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div class="hero-float hero-float-1"></div>
+    <div class="hero-float hero-float-2"></div>
+    <div class="hero-float hero-float-3"></div>
+    <div class="hero-float hero-float-4"></div>
+  </div>
+</section>
+
+<!-- Courses -->
+<section class="courses" id="courses">
+  <div class="section-header fade-up">
+    <div class="section-label">Courses</div>
+    <h2 class="section-title">Two Focused Tracks</h2>
+    <p class="section-subtitle">Each course is self-contained and builds from the fundamentals up, with interactive labs at every step.</p>
+  </div>
+
+  <div class="courses-grid">
+    <!-- WRL-101 -->
+    <div class="course-card fade-up stagger-1">
+      <div class="course-header ink">
+        <div class="course-header-row">
+          <div class="course-code">WRL-101</div>
+          <div class="course-badge">Beginner</div>
+        </div>
+        <h3>Wireless Communications 101</h3>
+      </div>
+      <div class="course-body">
+        <p class="course-desc">Understand how signals travel through the air &mdash; from electromagnetic waves to modern wireless protocols.</p>
+        <div class="course-meta">
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            12 Modules
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            ~18 hrs
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            25 Labs
+          </span>
+        </div>
+        <div class="course-topics-label">Key Topics</div>
+        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>EM Waves & the Spectrum</div>
+        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>Modulation: AM, FM, QAM</div>
+        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>Antenna Fundamentals</div>
+        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>Channel & Propagation</div>
+        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>WiFi, LTE & 5G Overview</div>
+      </div>
+      <div class="course-footer">
+        <a href="courses/wrl101/index.html" class="course-cta">
+          Start Learning
+          <div class="course-cta-arrow"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- DSP-101 -->
+    <div class="course-card fade-up stagger-2">
+      <div class="course-header amber">
+        <div class="course-header-row">
+          <div class="course-code">DSP-101</div>
+          <div class="course-badge">Beginner</div>
+        </div>
+        <h3>Digital Signal Processing 101</h3>
+      </div>
+      <div class="course-body">
+        <p class="course-desc">Build core DSP intuition &mdash; sampling, transforms, filters, and spectral analysis with interactive tools.</p>
+        <div class="course-meta">
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            12 Modules
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            ~20 hrs
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            28 Labs
+          </span>
+        </div>
+        <div class="course-topics-label">Key Topics</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>Sampling & Aliasing</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>Fourier Transform (DFT/FFT)</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>FIR & IIR Filter Design</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>Spectral Analysis</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>Real-time DSP Applications</div>
+      </div>
+      <div class="course-footer">
+        <a href="courses/dsp101/index.html" class="course-cta">
+          Start Learning
+          <div class="course-cta-arrow"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works">
+  <div class="section-header fade-up">
+    <div class="section-label">Learning Path</div>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-subtitle">A structured, four-step approach that builds lasting understanding.</p>
+  </div>
+  <div class="how-section">
+    <div class="steps-grid">
+      <div class="step-item fade-up stagger-1">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Learn the Theory</div>
+          <div class="step-desc">Clear, visual explanations without jargon overload.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up stagger-2">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Interact & Explore</div>
+          <div class="step-desc">Live visualizations build real intuition for signal behavior.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up stagger-3">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Practice with Labs</div>
+          <div class="step-desc">Hands-on exercises with immediate, visual feedback.</div>
+        </div>
+      </div>
+      <div class="step-item fade-up stagger-4">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Build & Apply</div>
+          <div class="step-desc">Capstone projects that connect concepts across modules.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header fade-up">
+    <div class="section-label">Reviews</div>
+    <h2 class="section-title">What Learners Say</h2>
+    <p class="section-subtitle">Join thousands building real wireless and DSP skills.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up stagger-1">
+      <div class="testimonial-stars">
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+      </div>
+      <p class="testimonial-text">"The interactive visualizations finally made Fourier transforms click. I went from zero DSP knowledge to building my own spectrum analyzer in two months."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar ink-bg">AK</div>
+        <div>
+          <div class="testimonial-name">Alex Kim</div>
+          <div class="testimonial-role">EE Student, Georgia Tech</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up stagger-2">
+      <div class="testimonial-stars">
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+      </div>
+      <p class="testimonial-text">"Best wireless fundamentals resource I've found. The modulation labs alone are worth it &mdash; seeing AM/FM/QAM side by side is incredibly powerful."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar amber-bg">SR</div>
+        <div>
+          <div class="testimonial-name">Sarah Reyes</div>
+          <div class="testimonial-role">RF Engineer, Qualcomm</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up stagger-3">
+      <div class="testimonial-stars">
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+      </div>
+      <p class="testimonial-text">"I teach comms at MIT and recommend this to all my students. The pacing is perfect, and the labs complement traditional textbook material beautifully."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar ink-bg">MP</div>
+        <div>
+          <div class="testimonial-name">Dr. Marco Pereira</div>
+          <div class="testimonial-role">Professor, MIT EECS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-box fade-up">
+    <h2>Ready to decode the wireless world?</h2>
+    <p>Start with either track &mdash; no prerequisites, no cost. Just curiosity and a browser.</p>
+    <a href="#courses" class="btn-amber">Start Learning Free &rarr;</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>Open-source curriculum for wireless communications and digital signal processing fundamentals.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Courses</div>
+      <a href="courses/wrl101/index.html">Wireless 101</a>
+      <a href="courses/dsp101/index.html">DSP 101</a>
+      <a href="#">Labs</a>
+      <a href="#">Projects</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="#">Documentation</a>
+      <a href="#">Community</a>
+      <a href="#">Blog</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="#">GitHub</a>
+      <a href="#">Discord</a>
+      <a href="#">Twitter / X</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Wireless 101. Open-source educational project.</div>
+</footer>
+
+<script>
+/* Navbar scroll */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+/* Mobile menu */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+/* Scroll-triggered entrance animations */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

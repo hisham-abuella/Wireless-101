@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide Template — Wireless 101</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Libre+Franklin:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #0f1b2d;
+  --ink-light: #1a2d4a;
+  --amber: #e8a838;
+  --amber-hot: #f5b731;
+  --cream: #faf8f4;
+  --paper: #f4f1eb;
+  --sage: #7c9a8e;
+  --text: #1a1a1a;
+  --text-muted: #52596b;
+  --text-dim: #8b92a5;
+  --font-display: 'Bricolage Grotesque', serif;
+  --font-body: 'Libre Franklin', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #1a1a1a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* ══ Slide frame (9:16 Instagram Story) ══ */
+.slide {
+  width: 360px;
+  height: 640px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 2rem;
+  flex-shrink: 0;
+}
+
+/* ── Variant: Dark Ink ── */
+.slide--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* ── Variant: Cream Light ── */
+.slide--light {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+/* ── Variant: Amber Bold ── */
+.slide--amber {
+  background: linear-gradient(160deg, var(--amber), #d4911a);
+  color: var(--ink);
+}
+
+/* ── Variant: Gradient ── */
+.slide--gradient {
+  background: linear-gradient(160deg, var(--ink) 0%, var(--ink-light) 60%, #1d3a5c 100%);
+  color: var(--cream);
+}
+
+/* ── Grain texture ── */
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ── Top bar (branding + module) ── */
+.slide-top {
+  position: relative;
+  z-index: 1;
+}
+
+.slide-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.slide-brand-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.slide-brand-name {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.slide--amber .slide-brand-dot { background: var(--ink); }
+
+.slide-module-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+
+/* ── Content area ── */
+.slide-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-concept-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+  opacity: 0.5;
+}
+
+.slide-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.slide-title em {
+  font-style: normal;
+  color: var(--amber);
+}
+
+.slide--amber .slide-title em { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.slide--light .slide-title em { color: var(--amber); }
+
+.slide-body {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  max-width: 300px;
+}
+
+.slide-body strong {
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* ── Visual element (formula, diagram placeholder) ── */
+.slide-visual {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.slide--dark .slide-visual { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+.slide--light .slide-visual { background: var(--paper); border: 1px solid #e2dfd8; color: var(--ink); }
+.slide--amber .slide-visual { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.15); }
+.slide--gradient .slide-visual { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+
+.slide-visual-label {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.4;
+  margin-bottom: 0.5rem;
+}
+
+.slide-formula {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* ── Bottom bar ── */
+.slide-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slide-progress {
+  display: flex;
+  gap: 4px;
+}
+
+.slide-progress-dot {
+  width: 20px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.15);
+}
+
+.slide--light .slide-progress-dot { background: rgba(0,0,0,0.1); }
+.slide--amber .slide-progress-dot { background: rgba(0,0,0,0.1); }
+
+.slide-progress-dot.active {
+  background: var(--amber);
+  width: 32px;
+}
+
+.slide--amber .slide-progress-dot.active { background: var(--ink); }
+
+.slide-page {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  opacity: 0.4;
+}
+
+/* ── Decorative elements ── */
+.slide-deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.slide-deco-1 {
+  width: 180px; height: 180px;
+  top: -40px; right: -40px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.slide--light .slide-deco-1 { border-color: rgba(0,0,0,0.04); }
+
+.slide-deco-2 {
+  width: 100px; height: 100px;
+  bottom: 80px; left: -30px;
+  background: rgba(232,168,56,0.06);
+}
+
+/* ── Key-value fact pair ── */
+.slide-fact {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.slide-fact-item {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.slide--dark .slide-fact-item { background: rgba(255,255,255,0.05); }
+.slide--light .slide-fact-item { background: var(--paper); }
+
+.slide-fact-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.45;
+  margin-bottom: 0.35rem;
+}
+
+.slide-fact-value {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ── Bullet list ── */
+.slide-bullets {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.slide-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.slide-bullets li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+.slide--amber .slide-bullets li::before { background: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ═══ SLIDE 1: Title / Intro (Dark) ═══ -->
+<div class="slide slide--dark">
+  <div class="slide-deco-circle slide-deco-1"></div>
+  <div class="slide-deco-circle slide-deco-2"></div>
+
+  <div class="slide-top">
+    <div class="slide-brand">
+      <div class="slide-brand-dot"></div>
+      <div class="slide-brand-name">Wireless 101</div>
+    </div>
+    <div class="slide-module-tag">Module 01 &middot; What is Wireless?</div>
+  </div>
+
+  <div class="slide-content">
+    <div class="slide-concept-num">Concept 01</div>
+    <h2 class="slide-title">What are <em>Electromagnetic Waves</em>?</h2>
+    <p class="slide-body">Oscillating electric and magnetic fields that travel through space at the speed of light. They don't need a medium — they work in a vacuum.</p>
+  </div>
+
+  <div class="slide-bottom">
+    <div class="slide-progress">
+      <div class="slide-progress-dot active"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+    </div>
+    <div class="slide-page">1 / 5</div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 2: Formula / Key fact (Light) ═══ -->
+<div class="slide slide--light">
+  <div class="slide-deco-circle slide-deco-1"></div>
+
+  <div class="slide-top">
+    <div class="slide-brand">
+      <div class="slide-brand-dot"></div>
+      <div class="slide-brand-name">Wireless 101</div>
+    </div>
+    <div class="slide-module-tag">Module 01 &middot; What is Wireless?</div>
+  </div>
+
+  <div class="slide-content">
+    <div class="slide-concept-num">Concept 02</div>
+    <h2 class="slide-title">The <em>Wave Equation</em></h2>
+    <p class="slide-body">Every EM wave follows this fundamental relationship between speed, frequency, and wavelength:</p>
+
+    <div class="slide-visual">
+      <div class="slide-visual-label">Formula</div>
+      <div class="slide-formula">c = f &times; &lambda;</div>
+    </div>
+
+    <div class="slide-fact">
+      <div class="slide-fact-item">
+        <div class="slide-fact-label">c</div>
+        <div class="slide-fact-value">3 &times; 10&sup8; m/s</div>
+      </div>
+      <div class="slide-fact-item">
+        <div class="slide-fact-label">Relationship</div>
+        <div class="slide-fact-value">&uarr; freq = &darr; wavelength</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-bottom">
+    <div class="slide-progress">
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot active"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+    </div>
+    <div class="slide-page">2 / 5</div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 3: Bullet points (Amber) ═══ -->
+<div class="slide slide--amber">
+  <div class="slide-deco-circle slide-deco-1"></div>
+
+  <div class="slide-top">
+    <div class="slide-brand">
+      <div class="slide-brand-dot"></div>
+      <div class="slide-brand-name">Wireless 101</div>
+    </div>
+    <div class="slide-module-tag">Module 01 &middot; What is Wireless?</div>
+  </div>
+
+  <div class="slide-content">
+    <div class="slide-concept-num">Key Takeaways</div>
+    <h2 class="slide-title">The EM <em>Spectrum</em></h2>
+    <p class="slide-body">Different frequency ranges serve different purposes:</p>
+
+    <ul class="slide-bullets">
+      <li><strong>Radio (3 kHz–300 GHz)</strong> — Broadcasting, WiFi, cellular</li>
+      <li><strong>Microwave (1–300 GHz)</strong> — Radar, satellite, 5G</li>
+      <li><strong>Infrared</strong> — Remote controls, thermal imaging</li>
+      <li><strong>Visible light</strong> — What our eyes detect</li>
+      <li><strong>UV, X-ray, Gamma</strong> — Medical, scientific</li>
+    </ul>
+  </div>
+
+  <div class="slide-bottom">
+    <div class="slide-progress">
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot active"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+    </div>
+    <div class="slide-page">3 / 5</div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 4: Deep concept (Gradient) ═══ -->
+<div class="slide slide--gradient">
+  <div class="slide-deco-circle slide-deco-1"></div>
+  <div class="slide-deco-circle slide-deco-2"></div>
+
+  <div class="slide-top">
+    <div class="slide-brand">
+      <div class="slide-brand-dot"></div>
+      <div class="slide-brand-name">Wireless 101</div>
+    </div>
+    <div class="slide-module-tag">Module 01 &middot; What is Wireless?</div>
+  </div>
+
+  <div class="slide-content">
+    <div class="slide-concept-num">Concept 03</div>
+    <h2 class="slide-title">How <em>Information</em> Rides a Wave</h2>
+    <p class="slide-body">A carrier wave alone carries no data. <strong>Modulation</strong> encodes information by varying the wave's amplitude, frequency, or phase.</p>
+
+    <div class="slide-visual">
+      <div class="slide-visual-label">Three ways to modulate</div>
+      <div class="slide-formula" style="font-size:0.85rem; line-height:1.8">
+        AM → vary amplitude<br>
+        FM → vary frequency<br>
+        PM → vary phase
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-bottom">
+    <div class="slide-progress">
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot active"></div>
+      <div class="slide-progress-dot"></div>
+    </div>
+    <div class="slide-page">4 / 5</div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 5: Recap / CTA (Dark) ═══ -->
+<div class="slide slide--dark">
+  <div class="slide-deco-circle slide-deco-1"></div>
+
+  <div class="slide-top">
+    <div class="slide-brand">
+      <div class="slide-brand-dot"></div>
+      <div class="slide-brand-name">Wireless 101</div>
+    </div>
+    <div class="slide-module-tag">Module 01 &middot; Summary</div>
+  </div>
+
+  <div class="slide-content">
+    <div class="slide-concept-num">Recap</div>
+    <h2 class="slide-title">What you learned <em>today</em></h2>
+
+    <ul class="slide-bullets">
+      <li>EM waves are oscillating electric and magnetic fields</li>
+      <li>Speed of light = frequency &times; wavelength</li>
+      <li>The spectrum spans radio to gamma rays</li>
+      <li>Modulation encodes data onto carrier waves</li>
+    </ul>
+
+    <div class="slide-visual" style="margin-top:1.5rem; text-align:center">
+      <div class="slide-visual-label">Next up</div>
+      <div class="slide-formula" style="font-size:0.9rem">Module 02: Signals & Sine Waves &rarr;</div>
+    </div>
+  </div>
+
+  <div class="slide-bottom">
+    <div class="slide-progress">
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot"></div>
+      <div class="slide-progress-dot active"></div>
+    </div>
+    <div class="slide-page">5 / 5</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSP-101: أساسيات معالجة الإشارات الرقمية</title>
+<link rel="stylesheet" href="../../../theme.css">
+<link rel="stylesheet" href="../../../theme-rtl.css">
+<style>
+/* ── Course page hero ── */
+.course-hero {
+  padding: 7rem 2rem 3rem;
+  background: linear-gradient(135deg, var(--amber), #d97706);
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+
+.course-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+
+.course-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.course-hero .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(15, 27, 45, 0.4);
+  margin-bottom: 1.5rem;
+}
+
+.course-hero .breadcrumb a {
+  color: rgba(15, 27, 45, 0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.course-hero .breadcrumb a:hover { color: var(--ink); }
+
+.course-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.course-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+
+.course-hero-desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: rgba(15, 27, 45, 0.7);
+  line-height: 1.8;
+  max-width: 560px;
+  margin-bottom: 1.5rem;
+}
+
+.course-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.course-hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: rgba(15, 27, 45, 0.65);
+}
+
+.course-hero-meta-item svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--ink);
+  fill: none;
+}
+
+.course-hero-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.course-hero-tag {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  background: rgba(15, 27, 45, 0.1);
+  color: rgba(15, 27, 45, 0.7);
+}
+
+/* ── Sidebar card ── */
+.course-sidebar {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  color: var(--text);
+}
+
+.course-sidebar-header {
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.course-sidebar-progress-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+}
+
+.course-sidebar-pct {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.course-sidebar-bar { margin-top: 0.75rem; }
+
+.course-sidebar-body { padding: 1.5rem; }
+
+.course-sidebar-body .btn-primary {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  background: var(--amber);
+  color: var(--ink);
+}
+
+.course-sidebar-body .btn-primary:hover {
+  background: var(--amber-hot);
+}
+
+.course-sidebar-body .btn-secondary {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.5rem;
+}
+
+.sidebar-stats {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-light);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.sidebar-stat-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  margin-bottom: 0.15rem;
+}
+
+.sidebar-stat-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ── Modules section ── */
+.modules-section { background: var(--paper); }
+
+.modules-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.module-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.module-card:hover { box-shadow: var(--shadow-md); }
+
+.module-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.module-num {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--amber);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.module-card.completed .module-num { background: #10b981; color: #fff; }
+
+.module-info { flex: 1; }
+
+.module-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.module-meta {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  display: flex;
+  gap: 1rem;
+}
+
+.module-status { margin-left: auto; flex-shrink: 0; }
+
+.module-chevron {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-tertiary);
+  fill: none;
+  transition: transform 0.3s;
+}
+
+.module-card.open .module-chevron { transform: rotate(180deg); }
+
+.module-body {
+  display: none;
+  padding: 0 1.5rem 1.25rem 4.75rem;
+}
+
+.module-card.open .module-body { display: block; }
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.lesson-item:last-child { border-bottom: none; }
+
+.lesson-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--surface);
+}
+
+.lesson-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-tertiary);
+  fill: none;
+}
+
+.lesson-icon.done { background: rgba(16, 185, 129, 0.08); }
+.lesson-icon.done svg { stroke: #10b981; }
+
+.lesson-item a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  flex: 1;
+  transition: color 0.2s;
+}
+
+.lesson-item a:hover { color: var(--ink); }
+
+.lesson-type {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.lesson-type.lab { color: var(--amber); font-weight: 600; }
+
+/* ── What you'll learn ── */
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.outcome-card { display: flex; gap: 1rem; align-items: flex-start; }
+
+.outcome-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--amber-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.outcome-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.outcome-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.outcome-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Prerequisites ── */
+.prereqs { background: var(--paper); }
+
+.prereq-box {
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+}
+
+.prereq-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.prereq-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.prereq-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prereq-check svg {
+  width: 14px;
+  height: 14px;
+  stroke: #10b981;
+  fill: none;
+}
+
+/* ── CTA Banner ── */
+.cta-banner { padding: 5rem 2rem; text-align: center; }
+
+.cta-box {
+  max-width: 700px; margin: 0 auto;
+  background: var(--ink); border-radius: var(--r-xl);
+  padding: 3.5rem 2.5rem; color: #fff;
+  position: relative; overflow: hidden;
+}
+
+.cta-box::before {
+  content: ''; position: absolute;
+  top: -60px; left: -60px;
+  width: 200px; height: 200px;
+  background: rgba(232, 168, 56, 0.12); border-radius: 50%;
+}
+
+.cta-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 700; margin-bottom: 1rem; position: relative;
+}
+
+.cta-box p {
+  color: var(--text-on-dark-muted); margin-bottom: 2rem;
+  max-width: 440px; margin-left: auto; margin-right: auto; position: relative;
+}
+
+/* Lang switch */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .course-hero-grid { grid-template-columns: 1fr; }
+  .course-sidebar { max-width: 400px; }
+}
+
+@media (max-width: 768px) {
+  .outcomes-grid { grid-template-columns: 1fr; }
+  .module-body { padding-right: 1.5rem; padding-left: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="../../index.html" class="nav-logo">
+    <img src="../../../logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="../../../courses/dsp101/index.html">EN</a>
+        <a href="index.html" class="active">عربي</a>
+      </div>
+    </li>
+    <li><a href="../../index.html">الرئيسية</a></li>
+    <li><a href="../../index.html#courses">الدورات</a></li>
+    <li><a href="../wrl101/index.html">WRL 101</a></li>
+    <li><a href="#modules" class="nav-cta">ابدأ التعلم</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Course Hero -->
+<section class="course-hero">
+  <div class="course-hero-inner">
+    <div class="breadcrumb">
+      <a href="../../index.html">الرئيسية</a>
+      <span>/</span>
+      <a href="../../index.html#courses">الدورات</a>
+      <span>/</span>
+      <span style="color: var(--ink)">DSP-101</span>
+    </div>
+
+    <div class="course-hero-grid">
+      <div>
+        <h1>أساسيات معالجة الإشارات الرقمية</h1>
+        <p class="course-hero-desc">من أخذ العينات إلى التحليل الطيفي &mdash; ابنِ فهمًا حقيقيًا لمعالجة الإشارات الرقمية من خلال محاكاة تفاعلية وتصميم مرشحات وتجارب صوتية حية.</p>
+
+        <div class="course-hero-meta">
+          <span class="course-hero-meta-item">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            ١٢ وحدة
+          </span>
+          <span class="course-hero-meta-item">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            ~٢٠ ساعة
+          </span>
+          <span class="course-hero-meta-item">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            ٢٨ تجربة عملية
+          </span>
+          <span class="course-hero-meta-item">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            مبتدئ
+          </span>
+        </div>
+
+        <div class="course-hero-tags">
+          <span class="course-hero-tag">DSP</span>
+          <span class="course-hero-tag">FFT</span>
+          <span class="course-hero-tag">مرشحات</span>
+          <span class="course-hero-tag">تحليل طيفي</span>
+          <span class="course-hero-tag">صوتيات</span>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="course-sidebar">
+        <div class="course-sidebar-header">
+          <div class="course-sidebar-progress-label">تقدمك</div>
+          <div class="course-sidebar-pct">٠٪</div>
+          <div class="course-sidebar-bar">
+            <div class="progress-bar">
+              <div class="progress-fill amber" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="course-sidebar-body">
+          <a href="#" class="btn-primary">&larr; ابدأ الوحدة ١</a>
+          <a href="#modules" class="btn-secondary">عرض جميع الوحدات</a>
+          <div class="sidebar-stats">
+            <div>
+              <div class="sidebar-stat-label">المكتمل</div>
+              <div class="sidebar-stat-value">٠ / ١٢</div>
+            </div>
+            <div>
+              <div class="sidebar-stat-label">التجارب</div>
+              <div class="sidebar-stat-value">٠ / ٢٨</div>
+            </div>
+            <div>
+              <div class="sidebar-stat-label">الوقت</div>
+              <div class="sidebar-stat-value">٠ ساعة</div>
+            </div>
+            <div>
+              <div class="sidebar-stat-label">الشهادة</div>
+              <div class="sidebar-stat-value">لم تبدأ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What You'll Learn -->
+<section>
+  <div class="section-header fade-up">
+    <div class="section-label">المخرجات</div>
+    <h2 class="section-title">ماذا ستتعلم</h2>
+  </div>
+
+  <div class="outcomes-grid fade-up">
+    <div class="outcome-card">
+      <div class="outcome-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div>
+        <div class="outcome-title">نظرية أخذ العينات</div>
+        <div class="outcome-desc">فهم نايكويست والتشويش والتكميم وكيف يتحول التناظري إلى رقمي.</div>
+      </div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+      <div>
+        <div class="outcome-title">تحليل فورييه</div>
+        <div class="outcome-desc">إتقان DFT و FFT والنوافذ والتسرب الطيفي بأدوات تفاعلية.</div>
+      </div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></div>
+      <div>
+        <div class="outcome-title">تصميم المرشحات</div>
+        <div class="outcome-desc">تصميم مرشحات FIR و IIR لتطبيقات التمرير المنخفض والعالي والنطاقي.</div>
+      </div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+      <div>
+        <div class="outcome-title">التحليل الطيفي</div>
+        <div class="outcome-desc">حساب كثافة الطيف والمخططات الطيفية وتحليل الإشارات في نطاق الزمن-التردد.</div>
+      </div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div>
+        <div class="outcome-title">كشف الإشارات</div>
+        <div class="outcome-desc">استخدام الارتباط والترشيح المتطابق لكشف الإشارات المدفونة في الضوضاء.</div>
+      </div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div>
+        <div class="outcome-title">DSP في الوقت الحقيقي</div>
+        <div class="outcome-desc">بناء مؤثرات صوتية وفهم معالجة الإشارات على الأنظمة المدمجة.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modules -->
+<section class="modules-section" id="modules">
+  <div class="section-header fade-up">
+    <div class="section-label">المنهج</div>
+    <h2 class="section-title">وحدات الدورة</h2>
+    <p class="section-subtitle">١٢ وحدة من أساسيات أخذ العينات إلى تطبيقات DSP العملية.</p>
+  </div>
+
+  <div class="modules-list">
+    <div class="module-card open fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">١</div>
+        <div class="module-info">
+          <div class="module-title">ما هي معالجة الإشارات الرقمية؟</div>
+          <div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div>
+        </div>
+        <div class="module-status"><span class="badge badge-amber">ابدأ هنا</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body">
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">الإشارات من حولنا</a><span class="lesson-type">قراءة</span></div>
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">الإشارات التناظرية مقابل الرقمية</a><span class="lesson-type">قراءة</span></div>
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">لماذا نعالج الإشارات رقميًا؟</a><span class="lesson-type">قراءة</span></div>
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">مقارنة الصوت التناظري والرقمي</a><span class="lesson-type lab">تجربة</span></div>
+      </div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٢</div>
+        <div class="module-info"><div class="module-title">أخذ العينات والتكميم</div><div class="module-meta"><span>٥ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body">
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">نظرية أخذ العينات (نايكويست-شانون)</a><span class="lesson-type">قراءة</span></div>
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">التشويش: تأثيرات نقص أخذ العينات</a><span class="lesson-type">قراءة</span></div>
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">التكميم وعمق البت</a><span class="lesson-type">قراءة</span></div>
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">إعادة البناء والمحول الرقمي-التناظري</a><span class="lesson-type">قراءة</span></div>
+        <div class="lesson-item"><div class="lesson-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg></div><a href="#">اسمع وشاهد التشويش</a><span class="lesson-type lab">تجربة</span></div>
+      </div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٣</div>
+        <div class="module-info"><div class="module-title">الإشارات والأنظمة المنفصلة زمنيًا</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٤</div>
+        <div class="module-info"><div class="module-title">تحويل Z</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٥</div>
+        <div class="module-info"><div class="module-title">تحويل فورييه المنفصل (DFT)</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٦</div>
+        <div class="module-info"><div class="module-title">تحويل فورييه السريع (FFT)</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٧</div>
+        <div class="module-info"><div class="module-title">تصميم مرشحات FIR</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٨</div>
+        <div class="module-info"><div class="module-title">تصميم مرشحات IIR</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">٩</div>
+        <div class="module-info"><div class="module-title">التحليل الطيفي</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">١٠</div>
+        <div class="module-info"><div class="module-title">الارتباط والكشف</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">١١</div>
+        <div class="module-info"><div class="module-title">معالجة الإشارات متعددة المعدلات</div><div class="module-meta"><span>٤ دروس</span><span>١ تجربة</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+
+    <div class="module-card fade-up">
+      <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="module-num">١٢</div>
+        <div class="module-info"><div class="module-title">المشروع الختامي وتطبيقات DSP</div><div class="module-meta"><span>٤ دروس</span><span>١ مشروع</span></div></div>
+        <div class="module-status"><span class="badge badge-navy">قادم</span></div>
+        <svg class="module-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="module-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Prerequisites -->
+<section class="prereqs">
+  <div class="section-header fade-up">
+    <div class="section-label">قبل البدء</div>
+    <h2 class="section-title">المتطلبات الأساسية</h2>
+  </div>
+  <div class="prereq-box fade-up">
+    <ul class="prereq-list">
+      <li>
+        <div class="prereq-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        الجبر الأساسي والقدرة على قراءة الرسوم البيانية
+      </li>
+      <li>
+        <div class="prereq-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        إلمام بدوال الجيب والأعداد المركبة (مفيد وليس مطلوبًا)
+      </li>
+      <li>
+        <div class="prereq-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        لا حاجة لخبرة سابقة في DSP أو البرمجة
+      </li>
+      <li>
+        <div class="prereq-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        متصفح يدعم الصوت (للتجارب التفاعلية)
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="cta-box fade-up">
+    <h2>مستعد لبدء DSP؟</h2>
+    <p>ابدأ بالوحدة ١ واكتشف كيف تشكّل معالجة الإشارات الرقمية العالم من حولك.</p>
+    <a href="#" class="btn-amber">&larr; ابدأ الوحدة ١</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="../../../logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>منهج مفتوح المصدر لأساسيات الاتصالات اللاسلكية ومعالجة الإشارات الرقمية.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الدورات</div>
+      <a href="../wrl101/index.html">Wireless 101</a>
+      <a href="../dsp101/index.html">DSP 101</a>
+      <a href="#">التجارب</a>
+      <a href="#">المشاريع</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الموارد</div>
+      <a href="#">التوثيق</a>
+      <a href="#">المجتمع</a>
+      <a href="#">المدونة</a>
+      <a href="#">الأسئلة الشائعة</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">تواصل</div>
+      <a href="#">GitHub</a>
+      <a href="#">Discord</a>
+      <a href="#">Twitter / X</a>
+      <a href="#">اتصل بنا</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; ٢٠٢٦ Wireless 101. مشروع تعليمي مفتوح المصدر.</div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

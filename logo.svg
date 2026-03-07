@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" fill="#1e3a5f">
+  <!-- Top chevron (smallest) -->
+  <path d="M120 30 L160 50 L120 70 L80 50 Z"/>
+
+  <!-- Middle chevron -->
+  <path d="M120 65 L170 90 L120 115 L70 90 Z"/>
+
+  <!-- Bottom chevron (widest) - with tassel notch on left -->
+  <path d="M120 105 L180 133 L120 161 L60 133 Z"/>
+
+  <!-- Tassel string from left of bottom chevron -->
+  <rect x="56" y="120" width="5" height="40" rx="2.5"/>
+
+  <!-- Tassel knob -->
+  <rect x="49" y="156" width="19" height="14" rx="4"/>
+
+  <!-- U-shaped base -->
+  <path d="M58 148 L58 180 C58 210 88 232 120 232 C152 232 182 210 182 180 L182 148 L172 153 L172 180 C172 204 148 222 120 222 C92 222 68 204 68 180 L68 153 Z"/>
+</svg>

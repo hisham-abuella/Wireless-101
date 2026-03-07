@@ -1,0 +1,236 @@
+/* ══════════════════════════════════════════════
+   Wireless 101 — RTL Overrides (Arabic)
+   Load AFTER theme.css
+   ══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&display=swap');
+
+html[dir="rtl"] {
+  --font-display: 'Noto Kufi Arabic', 'Bricolage Grotesque', serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Libre Franklin', sans-serif;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-body);
+  direction: rtl;
+  text-align: right;
+}
+
+/* ── Navbar ── */
+html[dir="rtl"] .nav-links { flex-direction: row-reverse; }
+
+html[dir="rtl"] .nav-links a:not(.nav-cta)::after {
+  left: auto;
+  right: 0;
+}
+
+/* ── Section labels ── */
+html[dir="rtl"] .section-label {
+  flex-direction: row-reverse;
+}
+
+/* ── Hero ── */
+html[dir="rtl"] .hero {
+  direction: rtl;
+}
+
+html[dir="rtl"] .hero-text {
+  text-align: right;
+}
+
+html[dir="rtl"] .hero-eyebrow {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .hero-text h1 {
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .hero-buttons {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .hero-social-proof {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .hero-avatars {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .hero-avatar {
+  margin-left: 0;
+  margin-right: -10px;
+}
+
+html[dir="rtl"] .hero-avatar:first-child {
+  margin-right: 0;
+}
+
+/* ── Course cards ── */
+html[dir="rtl"] .course-header-row {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .course-meta {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .course-meta-item {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .course-topic {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .course-cta {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .course-cta-arrow svg {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .course-cta:hover .course-cta-arrow svg {
+  transform: scaleX(-1) translateX(2px);
+}
+
+/* ── Steps ── */
+html[dir="rtl"] .steps-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .step-item {
+  text-align: center;
+}
+
+/* ── Testimonials ── */
+html[dir="rtl"] .testimonial-card::before {
+  left: auto;
+  right: 16px;
+}
+
+html[dir="rtl"] .testimonial-author {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+html[dir="rtl"] .testimonial-stars {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* ── Footer ── */
+html[dir="rtl"] .footer-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .footer-brand-name {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* ── Breadcrumb ── */
+html[dir="rtl"] .breadcrumb {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* ── Course hero ── */
+html[dir="rtl"] .course-hero-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .course-hero-meta {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .course-hero-meta-item {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .course-hero-tags {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* ── Sidebar ── */
+html[dir="rtl"] .sidebar-stats {
+  direction: rtl;
+}
+
+/* ── Modules ── */
+html[dir="rtl"] .module-header {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .module-meta {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .module-body {
+  padding: 0 4.75rem 1.25rem 1.5rem;
+}
+
+html[dir="rtl"] .lesson-item {
+  flex-direction: row-reverse;
+}
+
+/* ── Outcomes ── */
+html[dir="rtl"] .outcome-card {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* ── Prerequisites ── */
+html[dir="rtl"] .prereq-list li {
+  flex-direction: row-reverse;
+}
+
+/* ── Buttons with arrows ── */
+html[dir="rtl"] .btn-primary,
+html[dir="rtl"] .btn-secondary,
+html[dir="rtl"] .btn-amber {
+  flex-direction: row-reverse;
+}
+
+/* ── Mobile overrides ── */
+@media (max-width: 900px) {
+  html[dir="rtl"] .hero-text {
+    text-align: center;
+  }
+
+  html[dir="rtl"] .hero-eyebrow {
+    justify-content: center;
+  }
+
+  html[dir="rtl"] .hero-buttons {
+    justify-content: center;
+  }
+
+  html[dir="rtl"] .hero-social-proof {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  html[dir="rtl"] .step-item {
+    grid-template-columns: 1fr 64px;
+    text-align: right;
+  }
+
+  html[dir="rtl"] .step-num {
+    order: 2;
+  }
+
+  html[dir="rtl"] .module-body {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
