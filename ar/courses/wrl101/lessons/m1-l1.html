@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تاريخ موجز للاتصالات اللاسلكية — WRL-101</title>
+<link rel="stylesheet" href="../../../../theme.css">
+<link rel="stylesheet" href="../../../../theme-rtl.css">
+<style>
+/* ── Lesson Hero ── */
+.lesson-hero {
+  padding: 7rem 2rem 3rem;
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 320px;
+  height: 320px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.lesson-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  background: rgba(232, 168, 56, 0.06);
+  border-radius: 50%;
+}
+
+.lesson-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.lesson-hero .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero .breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lesson-hero .breadcrumb a:hover { color: #fff; }
+
+.lesson-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--amber);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.lesson-type-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.lesson-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 1rem;
+  max-width: 700px;
+}
+
+.lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.lesson-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lesson-meta-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+/* ── Article Content ── */
+.lesson-content {
+  padding: 4rem 2rem;
+  background: var(--cream);
+}
+
+.lesson-article {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+.lesson-article h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--amber-pale);
+  line-height: 1.4;
+}
+
+.lesson-article h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-article p {
+  margin-bottom: 1.25rem;
+}
+
+.lesson-article ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.lesson-article ul li {
+  position: relative;
+  padding-right: 1.5rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.8;
+}
+
+.lesson-article ul li::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.6rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+/* ── Callout / Insight Box ── */
+.callout-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.75rem;
+  margin: 1.75rem 0;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+}
+
+.callout-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--amber);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+
+.callout-box-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.callout-box-title svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--amber);
+  fill: none;
+  flex-shrink: 0;
+}
+
+.callout-box p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+/* ── Hint Box ── */
+.hint-box {
+  background: rgba(124, 154, 142, 0.06);
+  border: 1px solid rgba(124, 154, 142, 0.2);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 0;
+  position: relative;
+}
+
+.hint-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--sage);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+
+.hint-box p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.hint-box strong {
+  color: var(--ink);
+  font-style: normal;
+}
+
+/* ── Timeline ── */
+.timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  margin: 2rem 0;
+  padding: 1.5rem 0;
+  position: relative;
+  direction: rtl;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--border);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: 3px solid var(--cream);
+  box-shadow: 0 0 0 2px var(--amber);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.timeline-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  max-width: 90px;
+  line-height: 1.4;
+}
+
+/* ── Generations Visual ── */
+.generations-visual {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 2rem 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  direction: rtl;
+}
+
+.gen-item {
+  flex: 1;
+  text-align: center;
+  padding: 1.25rem 0.5rem;
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.gen-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 1px;
+  height: 60%;
+  background: rgba(255,255,255,0.2);
+}
+
+.gen-item:nth-child(1) { background: #1a2d4a; }
+.gen-item:nth-child(2) { background: #1e3654; }
+.gen-item:nth-child(3) { background: #23405f; }
+.gen-item:nth-child(4) { background: #284a6a; }
+.gen-item:nth-child(5) { background: var(--ink-muted); }
+
+.gen-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 0.25rem;
+}
+
+.gen-label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.4;
+}
+
+.gen-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.15rem;
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  background: var(--surface);
+}
+
+/* ── Key Takeaways ── */
+.key-takeaways {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.takeaways-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.takeaways-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(to left, var(--amber), var(--ink));
+}
+
+.takeaways-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.takeaways-title svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.takeaways-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.takeaways-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-direction: row-reverse;
+  padding: 0.6rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.takeaways-list li:last-child { border-bottom: none; }
+
+.takeaway-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.takeaway-check svg {
+  width: 12px;
+  height: 12px;
+  stroke: #10b981;
+  fill: none;
+}
+
+/* ── Lesson Navigation ── */
+.lesson-nav {
+  background: var(--paper);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+}
+
+.lesson-nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lesson-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-light);
+  background: var(--white);
+  transition: all 0.2s;
+  flex-direction: row-reverse;
+}
+
+.lesson-nav-btn:hover:not(.disabled) {
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.lesson-nav-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+.lesson-nav-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text-tertiary);
+  fill: none;
+  flex-shrink: 0;
+}
+
+.lesson-nav-btn-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-nav-label {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  margin-bottom: 0.1rem;
+}
+
+.lesson-nav-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.lesson-nav-center a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--r-sm);
+  transition: color 0.2s;
+  flex-direction: row-reverse;
+}
+
+.lesson-nav-center a:hover { color: var(--ink); }
+
+.lesson-nav-center svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Lang switch */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .lesson-hero { padding: 6rem 1.5rem 2.5rem; }
+  .lesson-content { padding: 3rem 1.5rem; }
+
+  .timeline {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .timeline::before {
+    top: 0;
+    bottom: 0;
+    right: 16px;
+    left: auto;
+    width: 2px;
+    height: 100%;
+    transform: none;
+  }
+
+  .timeline-item {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+  }
+
+  .timeline-dot { margin-bottom: 0; }
+  .timeline-label { text-align: right; max-width: none; }
+
+  .generations-visual {
+    flex-direction: column;
+  }
+
+  .gen-item:not(:last-child)::after {
+    top: auto;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    width: 60%;
+    height: 1px;
+  }
+
+  .gen-arrow { padding: 0.25rem 0; }
+
+  .lesson-nav-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .lesson-nav-center {
+    grid-column: 1 / -1;
+    text-align: center;
+    order: -1;
+  }
+
+  .key-takeaways { padding: 0 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .lesson-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="../../../index.html" class="nav-logo">
+    <img src="../../../../logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="../../../../courses/wrl101/lessons/m1-l1.html">EN</a>
+        <a href="m1-l1.html" class="active">عربي</a>
+      </div>
+    </li>
+    <li><a href="../../../index.html">الرئيسية</a></li>
+    <li><a href="../../../index.html#courses">الدورات</a></li>
+    <li><a href="../index.html">WRL 101</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Lesson Hero -->
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="breadcrumb fade-up">
+      <a href="../../../index.html">الرئيسية</a>
+      <span>/</span>
+      <a href="../../../index.html#courses">الدورات</a>
+      <span>/</span>
+      <a href="../index.html">WRL-101</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.65)">الوحدة ١</span>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.85)">الدرس ١</span>
+    </div>
+
+    <div class="lesson-type-badge fade-up stagger-1">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      قراءة
+    </div>
+
+    <h1 class="fade-up stagger-2">تاريخ موجز للاتصالات اللاسلكية</h1>
+
+    <div class="lesson-meta fade-up stagger-3">
+      <span class="lesson-meta-item">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        ~٨ دقائق قراءة
+      </span>
+      <span class="lesson-meta-item">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        الدرس ١ من ٤ في الوحدة ١
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Lesson Content -->
+<section class="lesson-content">
+  <article class="lesson-article fade-up">
+
+    <h2>الشرارة التي بدأت كل شيء</h2>
+
+    <p>تبدأ قصة الاتصالات اللاسلكية بسؤال بسيط ولكنه عميق: هل يمكن إرسال المعلومات عبر الهواء، دون أسلاك أو كابلات؟ الإجابة لم تأتِ من التجارب أولًا، بل من الرياضيات.</p>
+
+    <p>في عام <strong>١٨٦٥</strong>، قدّم الفيزيائي الاسكتلندي <strong>جيمس كلارك ماكسويل</strong> مجموعة من المعادلات الرياضية التي تنبأت بوجود الموجات الكهرومغناطيسية. أظهرت هذه المعادلات أن المجالات الكهربائية والمغناطيسية يمكن أن تنتشر عبر الفضاء بسرعة الضوء — وهو ما كان مفهومًا ثوريًا في ذلك الوقت.</p>
+
+    <p>بعد أكثر من عقدين، في عام <strong>١٨٨٧</strong>، نجح الفيزيائي الألماني <strong>هاينريش هيرتز</strong> في إثبات وجود هذه الموجات تجريبيًا. بنى هيرتز جهازًا بسيطًا استطاع من خلاله توليد موجات كهرومغناطيسية والكشف عنها على بُعد أمتار قليلة.</p>
+
+    <div class="callout-box">
+      <div class="callout-box-title">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        رؤية ماكسويل الأساسية
+      </div>
+      <p>المجالات الكهربائية المتغيرة تخلق مجالات مغناطيسية، والعكس صحيح. هذا التفاعل المتبادل يولّد موجات تنتشر ذاتيًا عبر الفضاء — وهي الأساس الذي تقوم عليه كل تقنية لاسلكية نستخدمها اليوم.</p>
+    </div>
+
+    <h2>ماركوني وولادة الراديو</h2>
+
+    <p>بينما أثبت هيرتز وجود الموجات الكهرومغناطيسية، كان المهندس والمخترع الإيطالي <strong>غولييلمو ماركوني</strong> هو من حوّل هذا الاكتشاف العلمي إلى تقنية عملية. في عام <strong>١٨٩٥</strong>، بدأ ماركوني تجاربه في الإرسال اللاسلكي، وسرعان ما حقق نجاحات مبهرة.</p>
+
+    <p>جاءت اللحظة الفارقة في عام <strong>١٩٠١</strong>، عندما نجح ماركوني في إرسال أول إشارة لاسلكية عابرة للمحيط الأطلسي — من كورنوول في إنجلترا إلى نيوفاوندلاند في كندا. هذا الإنجاز أثبت أن الاتصالات اللاسلكية يمكن أن تعمل على مسافات هائلة.</p>
+
+    <p>سرعان ما وجدت هذه التقنية الجديدة تطبيقات حيوية:</p>
+    <ul>
+      <li><strong>الاتصالات البحرية:</strong> أصبح الراديو شريان حياة للسفن في عرض البحر، وكان دوره حاسمًا في إنقاذ الأرواح أثناء كارثة تيتانيك عام ١٩١٢.</li>
+      <li><strong>الاتصالات العسكرية:</strong> أدرك القادة العسكريون بسرعة أهمية الاتصال اللاسلكي في ساحات المعارك.</li>
+    </ul>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">١٨٦٥</div>
+        <div class="timeline-label">معادلات ماكسويل</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">١٨٨٧</div>
+        <div class="timeline-label">تجارب هيرتز</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">١٨٩٥</div>
+        <div class="timeline-label">تجارب ماركوني</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">١٩٠١</div>
+        <div class="timeline-label">عبر الأطلسي</div>
+      </div>
+    </div>
+
+    <h2>من الراديو إلى التلفزيون إلى الهاتف المحمول</h2>
+
+    <p>بعد نجاح ماركوني، تطورت التقنية اللاسلكية بوتيرة متسارعة عبر العقود التالية:</p>
+
+    <ul>
+      <li><strong>العشرينيات:</strong> انطلق بث الراديو بتقنية تعديل السعة (AM) ليصل إلى ملايين المنازل، مما أحدث ثورة في الإعلام والترفيه.</li>
+      <li><strong>الثلاثينيات والأربعينيات:</strong> ظهر راديو تعديل التردد (FM) الذي قدّم جودة صوت أفضل ومقاومة أعلى للتشويش. وفي الوقت نفسه، بدأت التجارب المبكرة في البث التلفزيوني.</li>
+      <li><strong>الأربعينيات:</strong> دفعت الحرب العالمية الثانية تطوير تقنية الرادار (RADAR) إلى الأمام بشكل هائل. استُخدمت الموجات الراديوية للكشف عن الطائرات والسفن المعادية، وأسفرت الأبحاث العسكرية عن اختراقات تقنية عديدة.</li>
+      <li><strong>السبعينيات والثمانينيات:</strong> ظهرت أولى شبكات الهاتف المحمول من الجيل الأول (1G) — وهي شبكات تناظرية تتيح إجراء مكالمات صوتية أثناء التنقل. كانت الأجهزة ضخمة ومكلفة، لكنها فتحت الباب لعصر جديد من الاتصالات.</li>
+    </ul>
+
+    <h2>الثورة الرقمية</h2>
+
+    <p>مع بداية التسعينيات، دخلت الاتصالات اللاسلكية عصرها الرقمي، وبدأت سلسلة من التحولات التي غيّرت العالم:</p>
+
+    <ul>
+      <li><strong>التسعينيات — الجيل الثاني (2G):</strong> انتقلت الشبكات الخلوية من التناظرية إلى الرقمية مع معيار GSM. أصبح بالإمكان إرسال الرسائل النصية القصيرة (SMS) لأول مرة.</li>
+      <li><strong>الألفية الجديدة — الجيل الثالث (3G):</strong> جلب الجيل الثالث بيانات المحمول إلى الهواتف، مما أتاح تصفح الإنترنت وإرسال البريد الإلكتروني أثناء التنقل.</li>
+      <li><strong>العقد الثاني من الألفية — الجيل الرابع (4G LTE):</strong> وفّر سرعات عالية كافية لبث الفيديو والتطبيقات المتقدمة. أصبحت الهواتف الذكية في كل مكان وتحولت إلى أداة أساسية في حياتنا اليومية.</li>
+      <li><strong>العقد الثالث — الجيل الخامس (5G) وما بعدها:</strong> يقدّم الجيل الخامس سرعات فائقة وزمن استجابة شبه معدوم، مما يفتح الباب لتطبيقات مثل إنترنت الأشياء والسيارات ذاتية القيادة والواقع المعزز.</li>
+    </ul>
+
+    <!-- Generations Visual -->
+    <div class="generations-visual">
+      <div class="gen-item">
+        <div class="gen-name">1G</div>
+        <div class="gen-label">صوت</div>
+      </div>
+      <div class="gen-item">
+        <div class="gen-name">2G</div>
+        <div class="gen-label">نص</div>
+      </div>
+      <div class="gen-item">
+        <div class="gen-name">3G</div>
+        <div class="gen-label">بيانات</div>
+      </div>
+      <div class="gen-item">
+        <div class="gen-name">4G</div>
+        <div class="gen-label">فيديو</div>
+      </div>
+      <div class="gen-item">
+        <div class="gen-name">5G</div>
+        <div class="gen-label">كل شيء</div>
+      </div>
+    </div>
+
+    <h2>لماذا هذا مهم</h2>
+
+    <p>التكنولوجيا اللاسلكية هي العمود الفقري للاتصال الحديث. من الهاتف الذي في جيبك إلى شبكة الواي فاي في منزلك، ومن أقمار GPS الصناعية إلى شبكات الجيل الخامس — كل ذلك يعتمد على المبادئ نفسها التي اكتشفها ماكسويل وهيرتز قبل أكثر من قرن.</p>
+
+    <p>فهم تاريخ الاتصالات اللاسلكية لا يُثري معرفتك فحسب، بل يساعدك على رؤية الأنماط والمبادئ الأساسية التي لا تزال سارية حتى اليوم. كل جيل جديد من التقنيات اللاسلكية يبني على ما سبقه، ومعرفة هذا التسلسل تمنحك أساسًا متينًا لفهم ما سيأتي بعد ذلك.</p>
+
+    <div class="hint-box">
+      <p><strong>في الدرس التالي:</strong> سنستكشف الطيف الكهرومغناطيسي — الطريق السريع غير المرئي الذي يجعل كل هذا ممكنًا. ستتعلم كيف يتم تقسيم هذا الطيف واستخدامه في التطبيقات اللاسلكية المختلفة.</p>
+    </div>
+
+  </article>
+</section>
+
+<!-- Key Takeaways -->
+<section style="padding: 0 0 4rem; background: var(--cream);">
+  <div class="key-takeaways fade-up">
+    <div class="takeaways-box">
+      <div class="takeaways-title">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        النقاط الرئيسية
+      </div>
+      <ul class="takeaways-list">
+        <li>
+          <div class="takeaway-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <span>تنبأ ماكسويل بالموجات الكهرومغناطيسية رياضيًا عام ١٨٦٥، وأثبتها هيرتز تجريبيًا عام ١٨٨٧ — مما وضع الأساس النظري لكل التقنيات اللاسلكية.</span>
+        </li>
+        <li>
+          <div class="takeaway-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <span>حوّل ماركوني النظرية إلى تطبيق عملي بأول إرسال لاسلكي عابر للأطلسي عام ١٩٠١، مما أثبت إمكانية الاتصال بعيد المدى.</span>
+        </li>
+        <li>
+          <div class="takeaway-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <span>تطورت التقنيات اللاسلكية من البث الإذاعي AM/FM والرادار إلى الشبكات الخلوية، مع كل مرحلة تبني على المبادئ الأساسية نفسها.</span>
+        </li>
+        <li>
+          <div class="takeaway-check"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <span>مرّت الشبكات الخلوية بخمسة أجيال: من الصوت التناظري (1G) إلى النص الرقمي (2G)، ثم البيانات (3G)، والفيديو (4G)، وصولًا إلى الاتصال الشامل (5G).</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Lesson Navigation -->
+<div class="lesson-nav">
+  <div class="lesson-nav-inner">
+    <div class="lesson-nav-btn disabled">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+      <div class="lesson-nav-btn-text">
+        <span class="lesson-nav-label">الدرس السابق</span>
+        <span class="lesson-nav-title" style="color: var(--text-tertiary);">لا يوجد</span>
+      </div>
+    </div>
+
+    <div class="lesson-nav-center">
+      <a href="../index.html">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        نظرة عامة على الوحدة
+      </a>
+    </div>
+
+    <a href="../../../coming-soon.html" class="lesson-nav-btn">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <div class="lesson-nav-btn-text">
+        <span class="lesson-nav-label">الدرس التالي</span>
+        <span class="lesson-nav-title">الطيف الكهرومغناطيسي</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- Audio Toggle -->
+<div style="position:fixed;bottom:2rem;left:2rem;z-index:999;">
+  <button id="audioToggle" style="width:52px;height:52px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,27,45,0.25);transition:all 0.3s;" title="تشغيل السرد الصوتي">
+    <svg id="audioIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 010 7.07"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14"/>
+    </svg>
+  </button>
+</div>
+<audio id="lessonAudio" preload="none"></audio>
+
+<script>
+/* Audio narration toggle — loads WAV files from /audio/ar/wrl101/ */
+const audioToggle = document.getElementById('audioToggle');
+const audioEl = document.getElementById('lessonAudio');
+let audioEnabled = false;
+
+audioToggle.addEventListener('click', () => {
+  audioEnabled = !audioEnabled;
+  audioToggle.style.background = audioEnabled ? 'var(--amber)' : 'var(--ink)';
+  document.getElementById('audioIcon').setAttribute('stroke', audioEnabled ? 'var(--ink)' : '#e8a838');
+  if (!audioEnabled && !audioEl.paused) audioEl.pause();
+});
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="../../../../logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>منهج مفتوح المصدر لأساسيات الاتصالات اللاسلكية ومعالجة الإشارات الرقمية.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الدورات</div>
+      <a href="../../wrl101/index.html">Wireless 101</a>
+      <a href="../../dsp101/index.html">DSP 101</a>
+      <a href="../../../coming-soon.html">التجارب</a>
+      <a href="../../../coming-soon.html">المشاريع</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الموارد</div>
+      <a href="../../../coming-soon.html">التوثيق</a>
+      <a href="../../../coming-soon.html">المجتمع</a>
+      <a href="../../../coming-soon.html">المدونة</a>
+      <a href="../../../coming-soon.html">الأسئلة الشائعة</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">تواصل</div>
+      <a href="../../../coming-soon.html">GitHub</a>
+      <a href="../../../coming-soon.html">Discord</a>
+      <a href="../../../coming-soon.html">Twitter / X</a>
+      <a href="../../../coming-soon.html">اتصل بنا</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; ٢٠٢٦ Wireless 101. مشروع تعليمي مفتوح المصدر.</div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+    <script data-goatcounter="https://wireless-101.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

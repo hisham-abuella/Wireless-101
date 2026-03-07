@@ -280,14 +280,119 @@
   50% { transform: translateY(14px) translateX(-10px); }
 }
 
+/* ── Why We Started ── */
+.origin-section {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.origin-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+
+.origin-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 360px;
+}
+
+.origin-content {
+  padding: 2.5rem 2.5rem 2.5rem 0;
+}
+
+.origin-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.origin-content h3 em {
+  font-style: normal;
+  color: var(--amber);
+}
+
+.origin-quote {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--amber);
+}
+
+.origin-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.origin-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.origin-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--cream);
+}
+
+.origin-author-name {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.origin-author-role {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+  .origin-card {
+    grid-template-columns: 1fr;
+  }
+  .origin-image {
+    min-height: 220px;
+  }
+  .origin-content {
+    padding: 2rem;
+  }
+}
+
 /* ── Courses ── */
 .courses { background: var(--paper); }
 
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 2rem;
-  max-width: 920px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
@@ -528,18 +633,18 @@
   line-height: 1.55;
 }
 
-/* ── Testimonials ── */
-.testimonials { background: var(--paper); }
+/* ── Vision ── */
+.vision { background: var(--paper); }
 
-.testimonials-grid {
+.vision-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  max-width: 1000px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
-.testimonial-card {
+.vision-card {
   background: var(--white);
   border: 1px solid var(--border-light);
   border-radius: var(--r-lg);
@@ -547,72 +652,83 @@
   box-shadow: var(--shadow-xs);
   transition: all 0.35s;
   position: relative;
+  overflow: hidden;
 }
 
-.testimonial-card::before {
-  content: '\201C';
-  font-family: var(--font-display);
-  font-size: 4rem;
-  color: var(--amber);
-  opacity: 0.15;
+.vision-card::before {
+  content: '';
   position: absolute;
-  top: 8px;
-  left: 16px;
-  line-height: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--amber);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.testimonial-card:hover {
+.vision-card:hover {
   box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
-.testimonial-stars {
-  display: flex;
-  gap: 2px;
-  margin-bottom: 1rem;
+.vision-card:hover::before {
+  opacity: 1;
 }
 
-.testimonial-stars svg { width: 14px; height: 14px; fill: var(--amber); }
-
-.testimonial-text {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin-bottom: 1.5rem;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.testimonial-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+.vision-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: var(--cream);
-  flex-shrink: 0;
+  margin-bottom: 1.25rem;
 }
 
-.testimonial-avatar.ink-bg { background: var(--ink); }
-.testimonial-avatar.amber-bg { background: var(--amber); color: var(--ink); }
+.vision-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.8;
+  fill: none;
+}
 
-.testimonial-name {
+.vision-card h3 {
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
 }
 
-.testimonial-role {
+.vision-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.vision-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 100px;
   font-size: 0.75rem;
-  color: var(--text-tertiary);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+.vision-ai-badge svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 2;
 }
 
 /* ── CTA Banner ── */
@@ -714,7 +830,7 @@
 
   .step-num { margin: 0; }
 
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .vision-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -735,7 +851,7 @@
     </li>
     <li><a href="#courses">Courses</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#vision">Vision</a></li>
     <li><a href="#cta" class="nav-cta">Get Started</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -782,11 +898,37 @@
   </div>
 </section>
 
+<!-- Why We Started -->
+<section id="why-we-started">
+  <div class="section-header fade-up">
+    <div class="section-label">Our Story</div>
+    <h2 class="section-title">Why We Started This</h2>
+    <p class="section-subtitle">A question that every wireless engineer has asked but few textbooks answer honestly.</p>
+  </div>
+  <div class="origin-section">
+    <div class="origin-card fade-up">
+      <img src="Wireless_communcation_system.png" alt="Wireless Communication System" class="origin-image">
+      <div class="origin-content">
+        <h3>What <em>Really</em> Happens Between Transmission and Reception?</h3>
+        <blockquote class="origin-quote">"In textbooks, a signal is transmitted, travels through a channel, and arrives at the receiver. Simple. Clean. But reality is nothing like that. The moment a signal leaves an antenna, it enters a world of chaos."</blockquote>
+        <p class="origin-text">This article by Ahmed Elshafie captures exactly why we built Wireless 101. The gap between classroom theory and engineering reality is enormous. Signals don't just "travel through channels" &mdash; they scatter, reflect, fade, and interfere in ways that textbooks rarely show you. We wanted to build something that bridges that gap with interactive, visual, honest explanations.</p>
+        <div class="origin-author">
+          <div class="origin-author-avatar">AE</div>
+          <div>
+            <div class="origin-author-name">Ahmed Elshafie</div>
+            <div class="origin-author-role">Wireless Communications Engineer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Courses -->
 <section class="courses" id="courses">
   <div class="section-header fade-up">
     <div class="section-label">Courses</div>
-    <h2 class="section-title">Two Focused Tracks</h2>
+    <h2 class="section-title">Five Focused Tracks</h2>
     <p class="section-subtitle">Each course is self-contained and builds from the fundamentals up, with interactive labs at every step.</p>
   </div>
 
@@ -870,6 +1012,125 @@
         </a>
       </div>
     </div>
+    <!-- STAT-101 -->
+    <div class="course-card fade-up stagger-3">
+      <div class="course-header" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+        <div class="course-header-row">
+          <div class="course-code">STAT-101</div>
+          <div class="course-badge">Beginner</div>
+        </div>
+        <h3>Statistics 101</h3>
+      </div>
+      <div class="course-body">
+        <p class="course-desc">From probability to hypothesis testing &mdash; build real statistical intuition with interactive visualizations and real-world datasets.</p>
+        <div class="course-meta">
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            12 Modules
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            ~16 hrs
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            22 Labs
+          </span>
+        </div>
+        <div class="course-topics-label">Key Topics</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Probability & Distributions</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Hypothesis Testing</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Confidence Intervals</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Correlation & Regression</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Real-World Data Analysis</div>
+      </div>
+      <div class="course-footer">
+        <a href="courses/stat101/index.html" class="course-cta">
+          Start Learning
+          <div class="course-cta-arrow"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ML-101 -->
+    <div class="course-card fade-up stagger-4">
+      <div class="course-header" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff;">
+        <div class="course-header-row">
+          <div class="course-code">ML-101</div>
+          <div class="course-badge">Beginner</div>
+        </div>
+        <h3>Machine Learning 101</h3>
+      </div>
+      <div class="course-body">
+        <p class="course-desc">From linear regression to neural networks &mdash; build real ML intuition through interactive model building and coding labs.</p>
+        <div class="course-meta">
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            12 Modules
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            ~22 hrs
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            30 Labs
+          </span>
+        </div>
+        <div class="course-topics-label">Key Topics</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Classification & Regression</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Neural Networks</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Decision Trees & Random Forests</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Clustering & Unsupervised Learning</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Model Evaluation & Validation</div>
+      </div>
+      <div class="course-footer">
+        <a href="courses/ml101/index.html" class="course-cta">
+          Start Learning
+          <div class="course-cta-arrow"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- LA-101 -->
+    <div class="course-card fade-up stagger-5">
+      <div class="course-header" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff;">
+        <div class="course-header-row">
+          <div class="course-code">LA-101</div>
+          <div class="course-badge">Beginner</div>
+        </div>
+        <h3>Linear Algebra 101</h3>
+      </div>
+      <div class="course-body">
+        <p class="course-desc">From vectors to eigenvalues &mdash; build real linear algebra intuition through interactive geometric visualizations and computation labs.</p>
+        <div class="course-meta">
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            12 Modules
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            ~18 hrs
+          </span>
+          <span class="course-meta-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            24 Labs
+          </span>
+        </div>
+        <div class="course-topics-label">Key Topics</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Vectors & Matrix Operations</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Linear Transformations</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Eigenvalues & Eigenvectors</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>SVD & PCA</div>
+        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Applications in ML & Graphics</div>
+      </div>
+      <div class="course-footer">
+        <a href="courses/la101/index.html" class="course-cta">
+          Start Learning
+          <div class="course-cta-arrow"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -914,64 +1175,61 @@
   </div>
 </section>
 
-<!-- Testimonials -->
-<section class="testimonials" id="testimonials">
+<!-- Vision -->
+<section class="vision" id="vision">
   <div class="section-header fade-up">
-    <div class="section-label">Reviews</div>
-    <h2 class="section-title">What Learners Say</h2>
-    <p class="section-subtitle">Join thousands building real wireless and DSP skills.</p>
+    <div class="section-label">Our Vision</div>
+    <h2 class="section-title">Learning Should Be Free & Fun</h2>
+    <p class="section-subtitle">We believe complex engineering concepts can be taught through interactive, bite-sized content &mdash; like scrolling through stories, not textbooks.</p>
   </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card fade-up stagger-1">
-      <div class="testimonial-stars">
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+  <div class="vision-grid">
+    <div class="vision-card fade-up stagger-1">
+      <div class="vision-icon" style="background: rgba(232,168,56,0.1);">
+        <svg viewBox="0 0 24 24" stroke="var(--amber)" stroke-linecap="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
       </div>
-      <p class="testimonial-text">"The interactive visualizations finally made Fourier transforms click. I went from zero DSP knowledge to building my own spectrum analyzer in two months."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar ink-bg">AK</div>
-        <div>
-          <div class="testimonial-name">Alex Kim</div>
-          <div class="testimonial-role">EE Student, Georgia Tech</div>
-        </div>
-      </div>
+      <h3>100% Free, Forever</h3>
+      <p>No paywalls, no subscriptions, no hidden costs. Quality education in wireless communications should be accessible to everyone, everywhere.</p>
     </div>
-    <div class="testimonial-card fade-up stagger-2">
-      <div class="testimonial-stars">
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+    <div class="vision-card fade-up stagger-2">
+      <div class="vision-icon" style="background: rgba(16,185,129,0.1);">
+        <svg viewBox="0 0 24 24" stroke="#10b981" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
       </div>
-      <p class="testimonial-text">"Best wireless fundamentals resource I've found. The modulation labs alone are worth it &mdash; seeing AM/FM/QAM side by side is incredibly powerful."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar amber-bg">SR</div>
-        <div>
-          <div class="testimonial-name">Sarah Reyes</div>
-          <div class="testimonial-role">RF Engineer, Qualcomm</div>
-        </div>
-      </div>
+      <h3>Interactive Stories Style</h3>
+      <p>Lessons are designed like social media stories &mdash; swipeable, visual, and bite-sized. Tap through concepts at your own pace with animations and interactive elements.</p>
     </div>
-    <div class="testimonial-card fade-up stagger-3">
-      <div class="testimonial-stars">
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
-        <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.32L10 13.27l-4.78 2.44.92-5.32L2.27 6.62l5.34-.78z"/></svg>
+    <div class="vision-card fade-up stagger-3">
+      <div class="vision-icon" style="background: rgba(139,92,246,0.1);">
+        <svg viewBox="0 0 24 24" stroke="#8b5cf6" stroke-linecap="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><path d="M12 19v4m-4 0h8"/></svg>
       </div>
-      <p class="testimonial-text">"I teach comms at MIT and recommend this to all my students. The pacing is perfect, and the labs complement traditional textbook material beautifully."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar ink-bg">MP</div>
-        <div>
-          <div class="testimonial-name">Dr. Marco Pereira</div>
-          <div class="testimonial-role">Professor, MIT EECS</div>
-        </div>
+      <h3>Read & Listen</h3>
+      <p>Every lesson comes with audio narration you can toggle on or off. Read at your own speed, or sit back and listen &mdash; learn however suits you best.</p>
+    </div>
+    <div class="vision-card fade-up stagger-4">
+      <div class="vision-icon" style="background: rgba(59,130,246,0.1);">
+        <svg viewBox="0 0 24 24" stroke="#3b82f6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
       </div>
+      <h3>English & Arabic</h3>
+      <p>Full bilingual support with native RTL Arabic. Switch languages anytime &mdash; same quality content, same interactive experience, in the language you think in.</p>
+    </div>
+    <div class="vision-card fade-up stagger-5">
+      <div class="vision-icon" style="background: rgba(15,27,45,0.06);">
+        <svg viewBox="0 0 24 24" stroke="var(--ink)" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Simple Foundations First</h3>
+      <p>We don't assume you know anything. Each concept builds from zero with clear visuals and real-world analogies. No jargon walls, no prerequisites.</p>
+    </div>
+    <div class="vision-card fade-up stagger-6">
+      <div class="vision-icon" style="background: rgba(232,168,56,0.1);">
+        <svg viewBox="0 0 24 24" stroke="var(--amber)" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <h3>AI-Generated, Human-Reviewed</h3>
+      <p>Content created with Claude Opus by Anthropic and carefully reviewed by engineers. Combining AI speed with human expertise for accurate, up-to-date material.</p>
+    </div>
+  </div>
+  <div style="text-align:center;" class="fade-up">
+    <div class="vision-ai-badge">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 110 2h-1.07A7 7 0 0113 22h-2a7 7 0 01-6.93-6H3a1 1 0 110-2h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2z"/></svg>
+      Built with Claude Opus &middot; Reviewed by Humans
     </div>
   </div>
 </section>
@@ -996,22 +1254,23 @@
       <div class="footer-col-title">Courses</div>
       <a href="courses/wrl101/index.html">Wireless 101</a>
       <a href="courses/dsp101/index.html">DSP 101</a>
-      <a href="#">Labs</a>
-      <a href="#">Projects</a>
+      <a href="courses/stat101/index.html">Statistics 101</a>
+      <a href="courses/ml101/index.html">ML 101</a>
+      <a href="courses/la101/index.html">Linear Algebra 101</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Resources</div>
-      <a href="#">Documentation</a>
-      <a href="#">Community</a>
-      <a href="#">Blog</a>
-      <a href="#">FAQ</a>
+      <a href="coming-soon.html">Documentation</a>
+      <a href="coming-soon.html">Community</a>
+      <a href="coming-soon.html">Blog</a>
+      <a href="coming-soon.html">FAQ</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Connect</div>
-      <a href="#">GitHub</a>
-      <a href="#">Discord</a>
-      <a href="#">Twitter / X</a>
-      <a href="#">Contact</a>
+      <a href="coming-soon.html">GitHub</a>
+      <a href="coming-soon.html">Discord</a>
+      <a href="coming-soon.html">Twitter / X</a>
+      <a href="coming-soon.html">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">&copy; 2026 Wireless 101. Open-source educational project.</div>

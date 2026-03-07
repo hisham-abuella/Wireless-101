@@ -1,0 +1,20 @@
+# Environment & secrets
+.env
+.env.*
+*.key
+
+# Generated audio files (large binaries)
+audio/**/*.mp3
+audio/**/*.wav
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Editor
+.vscode/
+*.swp
+*.swo

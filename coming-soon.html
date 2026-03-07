@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon — Wireless 101</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+.coming-soon {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.coming-soon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.coming-soon-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+}
+
+.coming-soon-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 28px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  box-shadow: 0 16px 48px rgba(15, 27, 45, 0.15);
+  animation: float-icon 6s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.coming-soon-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.coming-soon-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.coming-soon-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--amber);
+  border-radius: 50%;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232, 168, 56, 0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(232, 168, 56, 0); }
+}
+
+.coming-soon h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.coming-soon h1 em {
+  font-style: normal;
+  color: var(--amber);
+  position: relative;
+}
+
+.coming-soon p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+
+.coming-soon-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Lang switch */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="coming-soon.html" class="active">EN</a>
+        <a href="ar/coming-soon.html">عربي</a>
+      </div>
+    </li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#courses">Courses</a></li>
+    <li><a href="index.html#courses" class="nav-cta">Get Started</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="coming-soon">
+  <div class="coming-soon-inner">
+    <div class="coming-soon-icon">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+    </div>
+    <div class="coming-soon-badge">Under Construction</div>
+    <h1>Content <em>Coming Soon</em></h1>
+    <p>We're working hard to bring you this lesson. Our team is crafting interactive visualizations, hands-on labs, and clear explanations. Check back soon!</p>
+    <div class="coming-soon-buttons">
+      <a href="javascript:history.back()" class="btn-primary">&larr; Go Back</a>
+      <a href="index.html#courses" class="btn-secondary">Browse Courses</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+</script>
+    <script data-goatcounter="https://wireless-101.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

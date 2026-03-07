@@ -1,0 +1,84 @@
+{
+  "course": "WRL-101",
+  "module": 1,
+  "lesson": 1,
+  "title": "A Brief History of Wireless Communication",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Every time you send a text, stream a video, or make a phone call, you're relying on over 150 years of scientific discovery and engineering innovation. Wireless communication — the ability to transmit information without physical wires — is one of humanity's most transformative technologies. In this lesson, we'll trace the key milestones that brought us from theoretical predictions of electromagnetic waves to the globally connected world we live in today."
+    },
+    {
+      "id": "s2-maxwell",
+      "title": "Maxwell's Prediction (1865)",
+      "transcript": "It all started with mathematics. In 1865, James Clerk Maxwell unified electricity and magnetism into a single framework — his famous set of equations. He predicted that changing electric and magnetic fields could propagate through space as waves, traveling at the speed of light. This was a purely theoretical prediction; no one had ever detected these waves. Maxwell showed that light itself is an electromagnetic wave. This insight unified optics with electromagnetism and opened the door to the entire electromagnetic spectrum."
+    },
+    {
+      "id": "s3-hertz",
+      "title": "Hertz Proves It (1887)",
+      "transcript": "Heinrich Hertz built an apparatus that could both generate and detect electromagnetic waves in his laboratory. He demonstrated that these waves behaved exactly as Maxwell predicted — they could be reflected, refracted, and polarized, just like light. The unit of frequency, the hertz, is named in his honor. This was the experimental proof that Maxwell's theory was correct."
+    },
+    {
+      "id": "s4-marconi",
+      "title": "Marconi's First Transmission (1895)",
+      "transcript": "Guglielmo Marconi successfully transmitted radio signals over a distance of about 2 kilometers in Bologna, Italy. He went on to establish the first transatlantic radio link in 1901, sending a signal from Cornwall, England to Newfoundland, Canada — a distance of over 3,400 kilometers. Many scientists had doubted radio waves could follow the curvature of the Earth, but Marconi proved otherwise, unknowingly aided by the ionosphere which reflects radio waves back to the surface."
+    },
+    {
+      "id": "s5-voice-broadcast",
+      "title": "First Voice Broadcast (1906)",
+      "transcript": "Reginald Fessenden transmitted the first audio radio broadcast, playing music and reading from the Bible to ships at sea. This proved wireless could carry more than just Morse code dots and dashes — it could transmit the full richness of human voice and music."
+    },
+    {
+      "id": "s6-radio-era",
+      "title": "Radio Broadcasting Era (1920s)",
+      "transcript": "Commercial radio broadcasting exploded in the 1920s. Stations like K-D-K-A in Pittsburgh began regular programming, bringing news, music, and entertainment to millions of homes for the first time. This was the first mass wireless medium."
+    },
+    {
+      "id": "s7-cellular-concept",
+      "title": "The Cellular Concept (1947)",
+      "transcript": "Bell Labs engineers proposed the revolutionary idea of dividing geographic areas into cells, each served by a low-power transmitter. Instead of one powerful tower covering an entire city, many smaller cells could reuse the same frequencies in non-adjacent areas. This concept would eventually enable the mobile phone networks we use today."
+    },
+    {
+      "id": "s8-first-mobile",
+      "title": "First Mobile Phone Call (1973)",
+      "transcript": "Martin Cooper of Motorola made the first handheld cellular phone call on a prototype DynaTAC. The phone weighed about 1 kilogram and had just 30 minutes of battery life. Cooper called his rival at Bell Labs to tell him he was calling from a real handheld cellular phone — a moment that changed the course of telecommunications history."
+    },
+    {
+      "id": "s9-2g",
+      "title": "2G — Digital Goes Mobile (1991)",
+      "transcript": "The GSM standard launched in Finland, replacing analog signals with digital encoding. This was a watershed moment. Digital transmission enabled SMS text messaging, better voice quality with encryption, and more efficient use of the radio spectrum. 2G phones were compact, affordable, and reliable enough for mass adoption around the world."
+    },
+    {
+      "id": "s10-wifi",
+      "title": "WiFi is Born (1997)",
+      "transcript": "The I-triple-E 802.11 standard was released, enabling wireless local area networking. What started as a niche technology for connecting laptops in offices would eventually become the ubiquitous WiFi we rely on today in homes, cafes, airports, and everywhere in between."
+    },
+    {
+      "id": "s11-3g",
+      "title": "3G — Mobile Internet (2001)",
+      "transcript": "Third-generation networks brought mobile internet access to phones. For the first time, you could browse the web, check email, and use basic apps from your mobile device. This era laid the groundwork for the smartphone revolution that was about to transform everything."
+    },
+    {
+      "id": "s12-4g",
+      "title": "4G LTE (2009)",
+      "transcript": "Long Term Evolution brought high-speed data to mobile devices. Suddenly, video streaming, real-time gaming, and rich app experiences were possible on the go. 4G enabled the modern app economy — services like Uber, Netflix mobile, Instagram, and countless others became possible because of the speed and reliability of 4G networks."
+    },
+    {
+      "id": "s13-5g",
+      "title": "5G Networks Launch (2019)",
+      "transcript": "Fifth-generation networks promise ultra-low latency, massive device connectivity, and speeds up to 10 gigabits per second. This enables new applications like autonomous vehicles, remote surgery, augmented reality, and the Internet of Things at massive scale. Research is already underway on 6G, expected around 2030."
+    },
+    {
+      "id": "s14-patterns",
+      "title": "Common Threads",
+      "transcript": "Looking across this history, several patterns emerge. First, theory precedes practice — Maxwell's equations came 30 years before practical radio. Understanding the math unlocks the engineering. Second, each generation builds on the last — 5G uses techniques like OFDM and MIMO that were refined over decades. Third, spectrum is the scarce resource — every generation has had to find clever ways to share limited radio frequencies among more users. And fourth, digital beats analog — the shift from 1G to 2G was the single biggest leap in capability and efficiency."
+    },
+    {
+      "id": "s15-summary",
+      "title": "Summary & What's Next",
+      "transcript": "In this lesson, we traced wireless communication from Maxwell's theoretical prediction in 1865 through Hertz's experimental proof, Marconi's practical radio, the broadcast era, and all five generations of cellular networks. The fundamental principles have remained remarkably consistent — the same electromagnetic waves are carrying your data right now. In the next lesson, we'll dive into the physics of electromagnetic waves — how they're generated, how they propagate, and why they behave the way they do."
+    }
+  ]
+}
