@@ -245,15 +245,15 @@
 
 /* ── Why We Started ── */
 .origin-section {
-  max-width: 960px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
 .origin-card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 3fr 2fr;
+  gap: 0;
+  align-items: stretch;
   background: var(--white);
   border: 1px solid var(--border-light);
   border-radius: var(--r-xl);
@@ -269,12 +269,15 @@
 }
 
 .origin-content {
-  padding: 2.5rem 2.5rem 2.5rem 0;
+  padding: 2rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .origin-content h3 {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--ink);
   margin-bottom: 1rem;
@@ -288,7 +291,7 @@
 }
 
 .origin-quote {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 1.5rem;
@@ -296,8 +299,22 @@
   border-left: 3px solid var(--amber);
 }
 
+.origin-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+.origin-read-link:hover { gap: 0.75rem; }
+.origin-read-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
 .origin-text {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: 1.5rem;
@@ -344,7 +361,7 @@
     min-height: 220px;
   }
   .origin-content {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 }
 
@@ -393,6 +410,13 @@
 
 .course-header.ink { background: var(--ink); color: var(--cream); }
 .course-header.amber { background: linear-gradient(135deg, var(--amber), #d4911a); color: var(--ink); }
+.course-header.green { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+.course-header.purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; }
+.course-header.blue { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; }
+
+.green-dot { background: #10b981; }
+.purple-dot { background: #8b5cf6; }
+.blue-dot { background: #3b82f6; }
 
 .course-header-row {
   display: flex;
@@ -407,7 +431,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.6;
+  color: rgba(255,255,255,0.7);
 }
 
 .course-badge {
@@ -863,15 +887,9 @@
       <img src="Wireless_communcation_system.png" alt="Wireless Communication System" class="origin-image">
       <div class="origin-content">
         <h3>What <em>Really</em> Happens Between Transmission and Reception?</h3>
-        <blockquote class="origin-quote">"In textbooks, a signal is transmitted, travels through a channel, and arrives at the receiver. Simple. Clean. But reality is nothing like that. The moment a signal leaves an antenna, it enters a world of chaos."</blockquote>
-        <p class="origin-text">This article by Ahmed Elshafie captures exactly why we built Wireless 101. The gap between classroom theory and engineering reality is enormous. Signals don't just "travel through channels" &mdash; they scatter, reflect, fade, and interfere in ways that textbooks rarely show you. We wanted to build something that bridges that gap with interactive, visual, honest explanations.</p>
-        <div class="origin-author">
-          <div class="origin-author-avatar">AE</div>
-          <div>
-            <div class="origin-author-name">Ahmed Elshafie</div>
-            <div class="origin-author-role">Wireless Communications Engineer</div>
-          </div>
-        </div>
+        <blockquote class="origin-quote">"In textbooks, a signal is transmitted, travels through a channel, and arrives at the receiver. Simple. Clean. But reality is nothing like that."</blockquote>
+        <p class="origin-text">The gap between classroom theory and engineering reality is enormous. Signals scatter, reflect, fade, and interfere in ways textbooks rarely show. We built Wireless 101 to bridge that gap with interactive, visual, honest explanations.</p>
+        <a href="https://ahmedsalahelshafie-ship-it.github.io/Ahmed_Elshafie_Blog/Articles/wireless-transmission-reception.html" target="_blank" class="origin-read-link">Read the full article <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
@@ -967,7 +985,7 @@
     </div>
     <!-- STAT-101 -->
     <div class="course-card fade-up stagger-3">
-      <div class="course-header" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+      <div class="course-header green">
         <div class="course-header-row">
           <div class="course-code">STAT-101</div>
           <div class="course-badge">Beginner</div>
@@ -991,11 +1009,11 @@
           </span>
         </div>
         <div class="course-topics-label">Key Topics</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Probability & Distributions</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Hypothesis Testing</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Confidence Intervals</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Correlation & Regression</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>Real-World Data Analysis</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>Probability & Distributions</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>Hypothesis Testing</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>Confidence Intervals</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>Correlation & Regression</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>Real-World Data Analysis</div>
       </div>
       <div class="course-footer">
         <a href="courses/stat101/index.html" class="course-cta">
@@ -1007,7 +1025,7 @@
 
     <!-- ML-101 -->
     <div class="course-card fade-up stagger-4">
-      <div class="course-header" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff;">
+      <div class="course-header purple">
         <div class="course-header-row">
           <div class="course-code">ML-101</div>
           <div class="course-badge">Beginner</div>
@@ -1031,11 +1049,11 @@
           </span>
         </div>
         <div class="course-topics-label">Key Topics</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Classification & Regression</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Neural Networks</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Decision Trees & Random Forests</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Clustering & Unsupervised Learning</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>Model Evaluation & Validation</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>Classification & Regression</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>Neural Networks</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>Decision Trees & Random Forests</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>Clustering & Unsupervised Learning</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>Model Evaluation & Validation</div>
       </div>
       <div class="course-footer">
         <a href="courses/ml101/index.html" class="course-cta">
@@ -1047,7 +1065,7 @@
 
     <!-- LA-101 -->
     <div class="course-card fade-up stagger-5">
-      <div class="course-header" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff;">
+      <div class="course-header blue">
         <div class="course-header-row">
           <div class="course-code">LA-101</div>
           <div class="course-badge">Beginner</div>
@@ -1071,11 +1089,11 @@
           </span>
         </div>
         <div class="course-topics-label">Key Topics</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Vectors & Matrix Operations</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Linear Transformations</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Eigenvalues & Eigenvectors</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>SVD & PCA</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>Applications in ML & Graphics</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>Vectors & Matrix Operations</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>Linear Transformations</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>Eigenvalues & Eigenvectors</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>SVD & PCA</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>Applications in ML & Graphics</div>
       </div>
       <div class="course-footer">
         <a href="courses/la101/index.html" class="course-cta">
@@ -1220,13 +1238,13 @@
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Connect</div>
-      <a href="coming-soon.html">GitHub</a>
-      <a href="coming-soon.html">Discord</a>
-      <a href="coming-soon.html">Twitter / X</a>
-      <a href="coming-soon.html">Contact</a>
+      <a href="https://github.com/hisham-abuella" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/hisham-abuella-808b91171/" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/hisham.abuella" target="_blank">Instagram</a>
+      <a href="mailto:hisham.abuella1@gmail.com">Contact</a>
     </div>
   </div>
-  <div class="footer-bottom">&copy; 2026 Wireless 101. Open-source educational project.</div>
+  <div class="footer-bottom">&copy; 2026 Wireless 101. Built by <a href="https://github.com/hisham-abuella" target="_blank" style="color: var(--amber); text-decoration: none;">Hisham Abuella</a> &mdash; Cellular Systems Engineer.</div>
 </footer>
 
 <script>

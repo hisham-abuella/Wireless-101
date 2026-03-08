@@ -176,8 +176,14 @@
 .course-header::after { content: ''; position: absolute; top: -40px; left: -40px; width: 120px; height: 120px; background: rgba(255,255,255,0.08); border-radius: 50%; }
 .course-header.ink { background: var(--ink); color: var(--cream); }
 .course-header.amber { background: linear-gradient(135deg, var(--amber), #d4911a); color: var(--ink); }
+.course-header.green { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+.course-header.purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; }
+.course-header.blue { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; }
+.green-dot { background: #10b981; }
+.purple-dot { background: #8b5cf6; }
+.blue-dot { background: #3b82f6; }
 .course-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
-.course-code { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; }
+.course-code { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
 .course-badge { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; background: rgba(255,255,255,0.15); padding: 0.2rem 0.65rem; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; }
 .course-header h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; line-height: 1.35; }
 .course-body { padding: 1.75rem 2rem; }
@@ -423,7 +429,7 @@
 
     <!-- STAT-101 -->
     <div class="course-card fade-up stagger-3">
-      <div class="course-header" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+      <div class="course-header green">
         <div class="course-header-row">
           <div class="course-code">STAT-101</div>
           <div class="course-badge">مبتدئ</div>
@@ -447,11 +453,11 @@
           </span>
         </div>
         <div class="course-topics-label">المواضيع الرئيسية</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>الاحتمالات والتوزيعات</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>اختبار الفرضيات</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>فترات الثقة</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>الارتباط والانحدار</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#10b981"></div>تحليل البيانات الحقيقية</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>الاحتمالات والتوزيعات</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>اختبار الفرضيات</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>فترات الثقة</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>الارتباط والانحدار</div>
+        <div class="course-topic"><div class="course-topic-dot green-dot"></div>تحليل البيانات الحقيقية</div>
       </div>
       <div class="course-footer">
         <a href="courses/stat101/index.html" class="course-cta">
@@ -463,7 +469,7 @@
 
     <!-- ML-101 -->
     <div class="course-card fade-up stagger-4">
-      <div class="course-header" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff;">
+      <div class="course-header purple">
         <div class="course-header-row">
           <div class="course-code">ML-101</div>
           <div class="course-badge">مبتدئ</div>
@@ -487,11 +493,11 @@
           </span>
         </div>
         <div class="course-topics-label">المواضيع الرئيسية</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>التصنيف والانحدار</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>الشبكات العصبية</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>أشجار القرار والغابات العشوائية</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>التجميع والتعلم غير الموجه</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#8b5cf6"></div>تقييم النماذج والتحقق</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>التصنيف والانحدار</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>الشبكات العصبية</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>أشجار القرار والغابات العشوائية</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>التجميع والتعلم غير الموجه</div>
+        <div class="course-topic"><div class="course-topic-dot purple-dot"></div>تقييم النماذج والتحقق</div>
       </div>
       <div class="course-footer">
         <a href="courses/ml101/index.html" class="course-cta">
@@ -503,7 +509,7 @@
 
     <!-- LA-101 -->
     <div class="course-card fade-up stagger-5">
-      <div class="course-header" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff;">
+      <div class="course-header blue">
         <div class="course-header-row">
           <div class="course-code">LA-101</div>
           <div class="course-badge">مبتدئ</div>
@@ -527,11 +533,11 @@
           </span>
         </div>
         <div class="course-topics-label">المواضيع الرئيسية</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>المتجهات وعمليات المصفوفات</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>التحويلات الخطية</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>القيم والمتجهات الذاتية</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>SVD و PCA</div>
-        <div class="course-topic"><div class="course-topic-dot" style="background:#3b82f6"></div>تطبيقات في تعلم الآلة والرسوميات</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>المتجهات وعمليات المصفوفات</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>التحويلات الخطية</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>القيم والمتجهات الذاتية</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>SVD و PCA</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>تطبيقات في تعلم الآلة والرسوميات</div>
       </div>
       <div class="course-footer">
         <a href="courses/la101/index.html" class="course-cta">
@@ -676,13 +682,13 @@
     </div>
     <div class="footer-col">
       <div class="footer-col-title">تواصل</div>
-      <a href="coming-soon.html">GitHub</a>
-      <a href="coming-soon.html">Discord</a>
-      <a href="coming-soon.html">Twitter / X</a>
-      <a href="coming-soon.html">اتصل بنا</a>
+      <a href="https://github.com/hisham-abuella" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/hisham-abuella-808b91171/" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/hisham.abuella" target="_blank">Instagram</a>
+      <a href="mailto:hisham.abuella1@gmail.com">اتصل بنا</a>
     </div>
   </div>
-  <div class="footer-bottom">&copy; 2026 Wireless 101. مشروع تعليمي مفتوح المصدر.</div>
+  <div class="footer-bottom">&copy; 2026 Wireless 101. بناء <a href="https://github.com/hisham-abuella" target="_blank" style="color: var(--amber); text-decoration: none;">هشام أبوالعلا</a> &mdash; مهندس أنظمة خلوية.</div>
 </footer>
 
 <script>

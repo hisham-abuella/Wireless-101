@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Brief History of Wireless Communication | WRL-101 | Wireless 101</title>
 <link rel="stylesheet" href="../../../theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <style>
 /* ── Lesson Hero ── */
 .lesson-hero {
@@ -614,6 +616,88 @@
     transform: translateX(50%) rotate(90deg);
   }
 }
+
+/* ── Equation Block ── */
+.equation-block {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f8f6f1 0%, #f0ece4 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--amber, #d4a24a);
+  border-radius: 3px 0 0 3px;
+}
+
+.equation-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber, #d4a24a);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.equation-block-label svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--amber, #d4a24a);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.equation-block .katex-display {
+  margin: 0;
+}
+
+.equation-block .katex {
+  font-size: 1.2em;
+  color: #1a1a1a;
+}
+
+.equation-block-caption {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.equation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+@media (max-width: 600px) {
+  .equation-pair {
+    grid-template-columns: 1fr;
+  }
+  .equation-block .katex {
+    font-size: 1em;
+  }
+}
+
+.equation-pair .equation-block {
+  margin: 0;
+}
 </style>
 </head>
 <body>
@@ -699,7 +783,44 @@
       <span class="callout-highlight">Changing E-field &rarr; Creates B-field &rarr; Creates E-field &rarr; ... = Electromagnetic Wave</span>
     </div>
 
+    <div class="equation-pair fade-up">
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          Faraday's Law
+        </div>
+        <div id="eq-faraday"></div>
+        <div class="equation-block-caption">A changing magnetic field induces an electric field</div>
+      </div>
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          Amp&egrave;re&ndash;Maxwell Law
+        </div>
+        <div id="eq-ampere"></div>
+        <div class="equation-block-caption">A changing electric field (plus current) creates a magnetic field</div>
+      </div>
+    </div>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        The Speed of Light
+      </div>
+      <div id="eq-speed-of-light"></div>
+      <div class="equation-block-caption">Maxwell showed EM waves travel at the speed of light &mdash; proving light itself is an electromagnetic wave</div>
+    </div>
+
     <p class="fade-up">Two decades later, in <strong>1887</strong>, the German physicist <strong>Heinrich Hertz</strong> built an apparatus that could both generate and detect electromagnetic waves in a laboratory. He proved that Maxwell's prediction was correct &mdash; invisible waves really did travel through space, carrying energy. We now call the unit of frequency the <strong>hertz (Hz)</strong> in his honor.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Wavelength &amp; Frequency
+      </div>
+      <div id="eq-wavelength"></div>
+      <div class="equation-block-caption">The speed of light equals frequency times wavelength &mdash; the fundamental relationship governing all wireless systems</div>
+    </div>
 
     <!-- Section 2 -->
     <h2 class="fade-up">Marconi and the Birth of Radio</h2>
@@ -1029,6 +1150,24 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── KaTeX Equations ──
+function renderEquations() {
+  if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
+
+  var eqs = [
+    ['eq-faraday', '\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t}'],
+    ['eq-ampere', '\\nabla \\times \\mathbf{B} = \\mu_0 \\mathbf{J} + \\mu_0 \\epsilon_0 \\frac{\\partial \\mathbf{E}}{\\partial t}'],
+    ['eq-speed-of-light', 'c = \\frac{1}{\\sqrt{\\mu_0 \\epsilon_0}} \\approx 3 \\times 10^8 \\;\\text{m/s}'],
+    ['eq-wavelength', 'c = f \\cdot \\lambda \\qquad \\Rightarrow \\qquad \\lambda = \\frac{c}{f} = \\frac{3 \\times 10^8}{f}']
+  ];
+
+  eqs.forEach(function(pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) katex.render(pair[1], el, { displayMode: true, throwOnError: false });
+  });
+}
+renderEquations();
 </script>
 <script data-goatcounter="https://wireless-101.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>

@@ -2,857 +2,1359 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>تاريخ موجز للاتصالات اللاسلكية — قصص | Wireless 101</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Libre+Franklin:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap');
-
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --ink: #0f1b2d;
-  --ink-light: #1a2d4a;
-  --amber: #e8a838;
-  --amber-hot: #f5b731;
-  --cream: #faf8f4;
-  --paper: #f4f1eb;
-  --sage: #7c9a8e;
-  --text: #1a1a1a;
-  --text-muted: #52596b;
-  --text-dim: #8b92a5;
-  --font-display: 'Noto Sans Arabic', 'Bricolage Grotesque', serif;
-  --font-body: 'Noto Sans Arabic', 'Libre Franklin', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --ink: #080d14;
+  --ink-mid: #0f1923;
+  --ink-light: #172435;
+  --amber: #d4a24a;
+  --amber-glow: #e8b44e;
+  --cream: #f0ece4;
+  --cream-dim: #d8d3c9;
+  --paper: #e8e3d9;
+  --teal: #3a7d7e;
+  --rose: #c4616a;
+  --display: 'Noto Sans Arabic', 'Instrument Serif', Georgia, serif;
+  --body: 'Noto Sans Arabic', 'DM Sans', system-ui, sans-serif;
+  --mono: 'Space Mono', 'Courier New', monospace;
 }
 
-html, body { height: 100%; overflow: hidden; }
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #050709;
+}
 
 body {
-  font-family: var(--font-body);
-  background: #0a0a0a;
+  font-family: var(--body);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ══ Story container ══ */
-.story-container {
+/* ══ STORY SHELL ══ */
+.story {
   width: 100vw;
   height: 100vh;
-  max-width: 480px;
-  max-height: 100vh;
   position: relative;
   overflow: hidden;
-  background: var(--ink);
 }
 
-@media (min-width: 481px) and (min-height: 700px) {
-  .story-container {
-    max-height: 90vh;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+@media (min-width: 600px) {
+  .story {
+    max-width: min(480px, 90vw);
+    height: min(92vh, 860px);
+    border-radius: 24px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 40px 100px -20px rgba(0,0,0,0.8);
   }
 }
 
-@media (min-width: 768px) {
-  .story-container { max-width: 520px; }
+@media (min-width: 1000px) {
+  .story {
+    max-width: 500px;
+    height: min(90vh, 900px);
+  }
 }
 
-@media (min-width: 1200px) {
-  .story-container { max-width: 560px; }
-}
-
-/* ══ Progress bar ══ */
-.story-progress {
+/* ══ PROGRESS ══ */
+.progress {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 3px;
-  z-index: 10;
+  padding: 14px 16px 0;
+  z-index: 20;
   direction: ltr;
 }
 
-.story-progress-bar {
+.progress-seg {
   flex: 1;
-  height: 3px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 3px;
+  height: 2.5px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
   overflow: hidden;
 }
 
-.story-progress-bar.completed .story-progress-fill { width: 100%; }
-.story-progress-bar.active .story-progress-fill { width: 0; transition: none; }
+.progress-seg.done .progress-fill { width: 100%; }
 
-.story-progress-fill {
+.progress-fill {
   height: 100%;
-  background: var(--amber);
-  border-radius: 3px;
   width: 0;
+  background: var(--amber);
+  border-radius: 4px;
 }
 
-/* ══ Slide frame ══ */
-.slide {
-  width: 100%;
-  height: 100%;
+/* ══ SLIDE ══ */
+.s {
   position: absolute;
-  top: 0; left: 0;
-  display: none;
+  inset: 0;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 3rem 2rem 2rem;
+  padding: 4rem 1.75rem 1.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  overflow: hidden;
 }
 
-.slide.active { display: flex; }
-
-@media (min-width: 481px) {
-  .slide { padding: 3.5rem 2.5rem 2.5rem; }
+.s.on {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-@media (min-width: 768px) {
-  .slide { padding: 3.5rem 3rem 2.5rem; }
+@media (min-width: 400px) {
+  .s { padding: 4.5rem 2.25rem 2rem; }
 }
 
-.slide--dark { background: var(--ink); color: var(--cream); }
-.slide--light { background: var(--cream); color: var(--ink); }
-.slide--amber { background: linear-gradient(160deg, var(--amber), #d4911a); color: var(--ink); }
-.slide--gradient { background: linear-gradient(160deg, var(--ink) 0%, var(--ink-light) 60%, #1d3a5c 100%); color: var(--cream); }
+@media (min-width: 600px) {
+  .s { padding: 4.5rem 2.75rem 2.5rem; }
+}
 
-.slide::after {
+/* ── Variants ── */
+.s--ink {
+  background: radial-gradient(ellipse at 70% 20%, #111d2e 0%, var(--ink) 70%);
+  color: var(--cream);
+}
+
+.s--cream {
+  background: radial-gradient(ellipse at 30% 80%, var(--paper) 0%, var(--cream) 70%);
+  color: var(--ink);
+}
+
+.s--amber {
+  background: linear-gradient(145deg, #c99536 0%, #b5832e 50%, #a07428 100%);
+  color: var(--ink);
+}
+
+.s--deep {
+  background: linear-gradient(160deg, #0a1628 0%, #0e1f38 40%, #132a4a 100%);
+  color: var(--cream);
+}
+
+.s--teal {
+  background: linear-gradient(150deg, #0c2626 0%, #143636 40%, #1a4545 100%);
+  color: var(--cream);
+}
+
+/* ── Grain overlay ── */
+.s::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+  mix-blend-mode: overlay;
 }
 
-.slide-top { position: relative; z-index: 1; margin-top: 1rem; }
+/* ── Glow orbs ── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(60px);
+  opacity: 0.12;
+}
 
-.slide-brand {
+.orb-1 {
+  width: 300px; height: 300px;
+  top: -100px; left: -80px;
+  background: var(--amber);
+}
+
+.orb-2 {
+  width: 200px; height: 200px;
+  bottom: -60px; right: -60px;
+  background: var(--teal);
+}
+
+.s--cream .orb { opacity: 0.06; }
+.s--amber .orb-1 { background: rgba(255,255,255,0.3); opacity: 0.15; }
+.s--amber .orb-2 { background: var(--ink); opacity: 0.06; }
+
+/* ── Top bar ── */
+.s-top {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  justify-content: space-between;
+  margin-bottom: auto;
 }
 
-.slide-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
-.slide--amber .slide-brand-dot { background: var(--ink); }
-
-.slide-brand-name {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.s-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.slide-module-tag {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  opacity: 0.5;
+.s-brand-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.s--amber .s-brand-dot { background: var(--ink); }
+.s--cream .s-brand-dot { background: var(--amber); }
+
+.s-brand-name {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.s-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  opacity: 0.35;
+  letter-spacing: 0.08em;
   direction: ltr;
-  text-align: right;
 }
 
-.slide-content {
+/* ── Content ── */
+.s-body {
   position: relative;
   z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0;
 }
 
-.slide-concept-num {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  opacity: 0.5;
+.s-year {
+  font-family: var(--body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.4;
+  margin-bottom: 0.6rem;
 }
 
-.slide-title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 800;
+.s-title {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
   line-height: 1.4;
   margin-bottom: 1rem;
 }
 
-@media (min-width: 481px) {
-  .slide-title { font-size: 1.8rem; }
-  .slide-body { font-size: 0.92rem; }
-  .slide-bullets li { font-size: 0.88rem; }
-  .slide-concept-num { font-size: 0.75rem; }
-  .slide-fact-value { font-size: 1.05rem; }
-  .slide-formula { font-size: 1.2rem; }
-  .slide-visual { padding: 1.25rem; }
-  .slide-fact-item { padding: 1rem; }
+.s-title i {
+  font-style: normal;
+  color: var(--amber-glow);
 }
 
-.slide-title em { font-style: normal; color: var(--amber); }
-.slide--amber .slide-title em { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
-.slide--light .slide-title em { color: var(--amber); }
+.s--amber .s-title i { color: var(--ink); }
+.s--cream .s-title i { color: var(--amber); }
+.s--teal .s-title i { color: #5ec4c0; }
 
-.slide-body { font-size: 0.82rem; line-height: 1.8; opacity: 0.8; }
-.slide-body strong { opacity: 1; font-weight: 600; }
-
-.slide-visual {
-  margin-top: 1.25rem;
-  padding: 1rem;
-  border-radius: 14px;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-align: center;
-  letter-spacing: 0.02em;
+.s-text {
+  font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+  line-height: 1.8;
+  opacity: 0.75;
+  max-width: 400px;
 }
 
-.slide--dark .slide-visual,
-.slide--gradient .slide-visual { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
-.slide--light .slide-visual { background: var(--paper); border: 1px solid #e2dfd8; color: var(--ink); }
-.slide--amber .slide-visual { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.15); }
-
-.slide-visual-label {
-  font-family: var(--font-body);
-  font-size: 0.6rem;
+.s-text strong {
   font-weight: 600;
+  opacity: 1;
+}
+
+/* ── Card / callout ── */
+.s-card {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.04);
+}
+
+.s--cream .s-card {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.s--amber .s-card {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.s-card-label {
+  font-family: var(--body);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   opacity: 0.4;
   margin-bottom: 0.5rem;
 }
 
-.slide-formula { font-size: 1.1rem; font-weight: 500; }
-
-.slide-fact { display: flex; gap: 0.75rem; margin-top: 1rem; }
-.slide-fact-item { flex: 1; padding: 0.75rem; border-radius: 12px; }
-.slide--dark .slide-fact-item,
-.slide--gradient .slide-fact-item { background: rgba(255,255,255,0.05); }
-.slide--light .slide-fact-item { background: var(--paper); }
-
-.slide-fact-label {
-  font-family: var(--font-body);
-  font-size: 0.6rem;
-  font-weight: 600;
-  opacity: 0.45;
-  margin-bottom: 0.25rem;
+.s-card-value {
+  font-size: clamp(0.82rem, 2vw, 0.95rem);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
-.slide-fact-value {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
+/* ── Stat pair ── */
+.s-stats {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.s-stat {
+  flex: 1;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.s--cream .s-stat {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.s--amber .s-stat {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.s-stat-label {
+  font-family: var(--body);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  opacity: 0.4;
+  margin-bottom: 0.3rem;
+}
+
+.s-stat-val {
+  font-family: var(--display);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
   font-weight: 700;
 }
 
-.slide-bullets { list-style: none; margin-top: 0.75rem; }
-
-.slide-bullets li {
+/* ── List ── */
+.s-list {
+  list-style: none;
+  margin-top: 1rem;
   display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  padding: 0.3rem 0;
-  font-size: 0.8rem;
-  line-height: 1.6;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.s-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  padding: 0.4rem 0;
+  font-size: clamp(0.8rem, 2.1vw, 0.92rem);
+  line-height: 1.65;
   opacity: 0.8;
 }
 
-.slide-bullets li::before {
+.s-list li::before {
   content: '';
-  width: 5px; height: 5px;
+  width: 4px; height: 4px;
   border-radius: 50%;
   background: var(--amber);
   flex-shrink: 0;
-  margin-top: 0.5rem;
+  transform: translateY(-1px);
 }
 
-.slide--amber .slide-bullets li::before { background: var(--ink); }
+.s--amber .s-list li::before { background: var(--ink); }
+.s--teal .s-list li::before { background: #5ec4c0; }
 
-.slide-bottom {
+.s-list strong {
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* ── Bottom ── */
+.s-foot {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
 }
 
-.slide-page {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  opacity: 0.4;
+.s-pg {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  opacity: 0.3;
+  letter-spacing: 0.08em;
   direction: ltr;
 }
 
-.slide-deco-circle { position: absolute; border-radius: 50%; z-index: 0; }
-.slide-deco-1 { width: 180px; height: 180px; top: -40px; left: -40px; border: 1px solid rgba(255,255,255,0.05); }
-.slide--light .slide-deco-1 { border-color: rgba(0,0,0,0.04); }
-.slide-deco-2 { width: 100px; height: 100px; bottom: 80px; right: -30px; background: rgba(232,168,56,0.06); }
-
-.story-nav { position: absolute; top: 0; bottom: 0; width: 30%; z-index: 5; cursor: pointer; }
-.story-nav--prev { right: 0; }
-.story-nav--next { left: 0; }
-
-.audio-indicator {
+/* ══ NAV ARROWS ══ */
+.nav-arrows {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
-  z-index: 10;
-  width: 36px; height: 36px;
+  bottom: 1.25rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 20;
+}
+
+.nav-arrow {
+  width: 48px; height: 48px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-arrow:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  transform: scale(1.08);
+}
+
+.nav-arrow:active { transform: scale(0.95); }
+
+.nav-arrow.disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.nav-arrow svg {
+  width: 18px; height: 18px;
+  stroke: rgba(255,255,255,0.7);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ══ TOP CONTROLS ══ */
+.ctrl {
+  position: absolute;
+  top: 26px;
+  left: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctrl-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
   border: none;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.2s;
 }
 
-.audio-indicator:hover { background: rgba(255,255,255,0.2); }
+.ctrl-btn:hover { background: rgba(255,255,255,0.14); }
 
-.audio-bars { display: flex; gap: 2px; align-items: flex-end; height: 14px; }
+.ctrl-btn svg {
+  width: 14px; height: 14px;
+  stroke: rgba(255,255,255,0.6);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-.audio-bars span { width: 3px; background: var(--amber); border-radius: 2px; transition: height 0.2s; }
+/* ── Audio vis ── */
+.eq {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 12px;
+}
 
-.audio-bars.playing span:nth-child(1) { animation: bar1 0.6s ease-in-out infinite; }
-.audio-bars.playing span:nth-child(2) { animation: bar2 0.5s ease-in-out infinite 0.1s; }
-.audio-bars.playing span:nth-child(3) { animation: bar3 0.7s ease-in-out infinite 0.2s; }
-.audio-bars.playing span:nth-child(4) { animation: bar4 0.55s ease-in-out infinite 0.05s; }
+.eq span {
+  width: 2.5px;
+  background: var(--amber);
+  border-radius: 2px;
+  height: 3px;
+  transition: height 0.15s;
+}
 
-.audio-bars:not(.playing) span { height: 4px; }
+.eq.on span:nth-child(1) { animation: e1 0.55s ease-in-out infinite; }
+.eq.on span:nth-child(2) { animation: e2 0.45s ease-in-out infinite 0.08s; }
+.eq.on span:nth-child(3) { animation: e3 0.6s ease-in-out infinite 0.16s; }
+.eq.on span:nth-child(4) { animation: e4 0.5s ease-in-out infinite 0.04s; }
 
-@keyframes bar1 { 0%,100% { height: 4px; } 50% { height: 14px; } }
-@keyframes bar2 { 0%,100% { height: 6px; } 50% { height: 10px; } }
-@keyframes bar3 { 0%,100% { height: 3px; } 50% { height: 12px; } }
-@keyframes bar4 { 0%,100% { height: 5px; } 50% { height: 8px; } }
+@keyframes e1 { 0%,100% { height: 3px; } 50% { height: 12px; } }
+@keyframes e2 { 0%,100% { height: 5px; } 50% { height: 9px; } }
+@keyframes e3 { 0%,100% { height: 2px; } 50% { height: 11px; } }
+@keyframes e4 { 0%,100% { height: 4px; } 50% { height: 7px; } }
 
-.story-back {
+/* ── Muted icon ── */
+.ctrl-btn .muted-icon { display: none; }
+.ctrl-btn.is-muted .muted-icon { display: block; }
+.ctrl-btn.is-muted .eq { display: none; }
+
+/* ══ ENTRANCE ANIM ══ */
+.s.on .s-year { animation: fadeUp 0.4s ease both 0.05s; }
+.s.on .s-text { animation: fadeUp 0.45s ease both 0.2s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══ TRANSITION FLASH ══ */
+.story::before {
+  content: '';
   position: absolute;
-  top: 28px;
-  left: 16px;
-  z-index: 10;
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-size: 0.65rem;
+  inset: 0;
+  background: var(--amber);
+  opacity: 0;
+  z-index: 15;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.story.flash::before {
+  opacity: 0.06;
+}
+
+/* ══ INTERACTIVE ELEMENTS ══ */
+
+/* Wave canvas */
+.wave-canvas {
+  width: 100%;
+  height: 80px;
+  margin-top: 1rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: block;
+}
+
+.s--cream .wave-canvas {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.06);
+}
+
+/* LaTeX equation block */
+.s-equation {
+  margin-top: 1.25rem;
+  padding: 1.25rem 1rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
+  overflow-x: auto;
+  direction: ltr;
+}
+
+.s--cream .s-equation {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.s-equation .katex { font-size: 1.3em; }
+
+.s-eq-label {
+  font-family: var(--body);
+  font-size: 0.55rem;
   font-weight: 600;
+  letter-spacing: 0.05em;
+  opacity: 0.35;
+  margin-bottom: 0.6rem;
+  direction: rtl;
 }
 
-.story-back:hover { color: var(--amber); }
-
-@media (max-width: 360px) {
-  .slide-title { font-size: 1.3rem; }
-  .slide-body { font-size: 0.78rem; }
-  .slide-bullets li { font-size: 0.76rem; }
-  .slide { padding: 2.5rem 1.5rem 1.5rem; }
+/* Interactive timeline */
+.s-timeline {
+  margin-top: 1.25rem;
+  position: relative;
+  padding-right: 1.5rem;
 }
+
+.s-timeline::before {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+}
+
+.s--cream .s-timeline::before { background: rgba(0,0,0,0.08); }
+
+.s-tl-item {
+  position: relative;
+  padding: 0.4rem 0;
+  font-size: clamp(0.72rem, 1.8vw, 0.82rem);
+  line-height: 1.6;
+  opacity: 0.7;
+  cursor: default;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.s-tl-item:hover {
+  opacity: 1;
+  transform: translateX(-4px);
+}
+
+.s-tl-item::before {
+  content: '';
+  position: absolute;
+  right: -1.5rem;
+  top: 0.65rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  background: var(--ink);
+  transition: background 0.2s;
+}
+
+.s--cream .s-tl-item::before { background: var(--cream); }
+.s-tl-item:hover::before { background: var(--amber); }
+
+.s-tl-item strong {
+  font-weight: 600;
+  opacity: 1;
+  color: var(--amber-glow);
+}
+
+.s--cream .s-tl-item strong { color: var(--amber); }
+
+/* Generation bars */
+.gen-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  margin-top: 1.25rem;
+  height: 100px;
+  padding: 0.75rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  direction: ltr;
+}
+
+.gen-bar {
+  flex: 1;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 0.3rem;
+  transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
+  position: relative;
+}
+
+.gen-bar:hover { filter: brightness(1.2); }
+
+.gen-bar-label {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.gen-bar-sub {
+  font-family: var(--body);
+  font-size: 0.48rem;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+
+/* Pulse dot */
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ══ EXTRA ANIMATIONS ══ */
+
+/* Orb drift */
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(15px, -20px) scale(1.05); }
+  50% { transform: translate(-10px, -35px) scale(0.97); }
+  75% { transform: translate(20px, -10px) scale(1.03); }
+}
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, 15px) scale(1.06); }
+  66% { transform: translate(15px, 25px) scale(0.95); }
+}
+
+.s.on .orb-1 { animation: orbDrift1 8s ease-in-out infinite; }
+.s.on .orb-2 { animation: orbDrift2 10s ease-in-out infinite; }
+
+/* Staggered list items */
+.s.on .s-list li { animation: fadeSlideIn 0.4s ease both; }
+.s.on .s-list li:nth-child(1) { animation-delay: 0.25s; }
+.s.on .s-list li:nth-child(2) { animation-delay: 0.35s; }
+.s.on .s-list li:nth-child(3) { animation-delay: 0.45s; }
+.s.on .s-list li:nth-child(4) { animation-delay: 0.55s; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 0.8; transform: translateX(0); }
+}
+
+/* Timeline items stagger */
+.s.on .s-tl-item { animation: fadeSlideIn 0.4s ease both; }
+.s.on .s-tl-item:nth-child(1) { animation-delay: 0.2s; }
+.s.on .s-tl-item:nth-child(2) { animation-delay: 0.35s; }
+.s.on .s-tl-item:nth-child(3) { animation-delay: 0.5s; }
+.s.on .s-tl-item:nth-child(4) { animation-delay: 0.65s; }
+
+/* Stat cards pop-in */
+.s.on .s-stat { animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+.s.on .s-stat:nth-child(1) { animation-delay: 0.3s; }
+.s.on .s-stat:nth-child(2) { animation-delay: 0.42s; }
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Equation reveal */
+.s.on .s-equation { animation: eqReveal 0.6s ease both 0.3s; }
+
+@keyframes eqReveal {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); clip-path: inset(100% 0 0 0); }
+  to { opacity: 1; transform: translateY(0) scale(1); clip-path: inset(0 0 0 0); }
+}
+
+/* Shimmer on strong text */
+.s.on .s-text strong {
+  animation: shimmer 0.6s ease both 0.5s;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; text-shadow: 0 0 8px rgba(212,162,74,0.3); }
+  100% { opacity: 1; text-shadow: none; }
+}
+
+/* Title scale entrance */
+.s.on .s-title {
+  animation: titleReveal 0.6s cubic-bezier(0.22,1,0.36,1) both 0.1s;
+}
+
+@keyframes titleReveal {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Wave canvas fade-in */
+.s.on .wave-canvas { animation: fadeUp 0.5s ease both 0.4s; }
+
+/* Gen bars container */
+.s.on .gen-bars { animation: fadeUp 0.4s ease both 0.25s; }
+
+/* Card slide-up */
+.s.on .s-card { animation: cardSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) both 0.3s; }
+
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Brand bar fade */
+.s.on .s-top { animation: fadeIn 0.4s ease both 0.02s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Page number slide */
+.s.on .s-foot { animation: fadeUp 0.3s ease both 0.15s; }
 </style>
 </head>
 <body>
 
-<div class="story-container">
+<div class="story" id="story">
 
-  <div class="story-progress" id="progressBar"></div>
+  <div class="progress" id="prog"></div>
 
-  <a href="m1-l1.html" class="story-back">&larr; اقرأ</a>
-
-  <div class="story-nav story-nav--prev" id="navPrev"></div>
-  <div class="story-nav story-nav--next" id="navNext"></div>
-
-  <button class="audio-indicator" id="audioBtn" title="تشغيل/إيقاف الصوت">
-    <div class="audio-bars" id="audioBars">
-      <span></span><span></span><span></span><span></span>
-    </div>
-  </button>
-
-  <!-- SLIDE 1: مقدمة (Dark) -->
-  <div class="slide slide--dark" data-audio="s1-intro">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
-    </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">مقدمة</div>
-      <h2 class="slide-title">تاريخ موجز للاتصالات <em>اللاسلكية</em></h2>
-      <p class="slide-body">هل يمكن إرسال المعلومات عبر الهواء، دون أسلاك؟ الإجابة بدأت من <strong>الرياضيات</strong>. دعنا نتتبع المعالم الرئيسية.</p>
-    </div>
-    <div class="slide-bottom">
-      <div class="slide-page">1 / 14</div>
-    </div>
+  <div class="ctrl">
+    <a href="m1-l1.html" class="ctrl-btn" title="اقرأ المقال" style="text-decoration:none">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+    </a>
+    <button class="ctrl-btn" id="audioBtn" title="تشغيل/إيقاف الصوت (M)">
+      <div class="eq" id="eq"><span></span><span></span><span></span><span></span></div>
+      <svg class="muted-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="rgba(255,255,255,0.5)" stroke="none"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    </button>
   </div>
 
-  <!-- SLIDE 2: ماكسويل (Light) -->
-  <div class="slide slide--light" data-audio="s2-maxwell">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
-    </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">١٨٦٥</div>
-      <h2 class="slide-title">تنبؤ <em>ماكسويل</em></h2>
-      <p class="slide-body">قدّم جيمس كلارك ماكسويل معادلاته التي تنبأت بوجود الموجات الكهرومغناطيسية. أثبت أن <strong>الضوء نفسه</strong> موجة كهرومغناطيسية.</p>
-      <div class="slide-visual">
-        <div class="slide-visual-label">الاكتشاف الرئيسي</div>
-        <div class="slide-formula" style="font-size:0.8rem;line-height:1.8;font-family:var(--font-body)">
-          مجال كهربائي متغير &rarr; مجال مغناطيسي<br>
-          = موجة ذاتية الانتشار
-        </div>
-      </div>
-    </div>
-    <div class="slide-bottom">
-      <div class="slide-page">2 / 14</div>
-    </div>
+  <div class="nav-arrows">
+    <button class="nav-arrow" id="navR" aria-label="الشريحة التالية">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="nav-arrow disabled" id="navL" aria-label="الشريحة السابقة">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
   </div>
 
-  <!-- SLIDE 3: هيرتز (Gradient) -->
-  <div class="slide slide--gradient" data-audio="s3-hertz">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+  <!-- S1: مقدمة -->
+  <div class="s s--ink" data-audio="s1-intro">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">١٨٨٧</div>
-      <h2 class="slide-title">إثبات <em>هيرتز</em></h2>
-      <p class="slide-body">نجح هاينريش هيرتز في توليد الموجات الكهرومغناطيسية والكشف عنها تجريبيًا. أثبت أنها تتصرف تمامًا كما تنبأ ماكسويل.</p>
-      <div class="slide-fact">
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">الإرث</div>
-          <div class="slide-fact-value" style="direction:ltr;text-align:right">Hz</div>
-        </div>
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">أثبت</div>
-          <div class="slide-fact-value">الانعكاس والانكسار والاستقطاب</div>
-        </div>
-      </div>
+    <div class="s-body">
+      <div class="s-year">مقدمة</div>
+      <h2 class="s-title">تاريخ موجز للاتصالات <i>اللاسلكية</i></h2>
+      <p class="s-text">في كل مرة ترسل رسالة أو تشاهد فيديو، تستفيد من <strong>أكثر من ١٥٠ عامًا</strong> من الاكتشافات. من معادلات على ورق إلى عالم متصل &mdash; دعنا نتتبع المعالم.</p>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">3 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">01 / 14</div></div>
   </div>
 
-  <!-- SLIDE 4: ماركوني (Amber) -->
-  <div class="slide slide--amber" data-audio="s4-marconi">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
+  <!-- S2: ماكسويل -->
+  <div class="s s--cream" data-audio="s2-maxwell">
+    <div class="orb orb-1"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">١٨٦٥</div>
+      <h2 class="s-title">تنبؤ <i>ماكسويل</i></h2>
+      <p class="s-text">وحّد جيمس كلارك ماكسويل الكهرباء والمغناطيسية في أربع معادلات. تنبأ بأن الموجات الكهرومغناطيسية تنتشر عبر الفضاء بـ<strong>سرعة الضوء</strong> &mdash; قفزة نظرية لم تُثبت تجريبيًا بعد.</p>
+      <div class="s-equation">
+        <div class="s-eq-label">معادلة ماكسويل الموجية</div>
+        <div id="eq-maxwell"></div>
       </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+      <canvas class="wave-canvas" id="waveCanvas" style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.06)"></canvas>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">١٨٩٥ &ndash; ١٩٠١</div>
-      <h2 class="slide-title">إرسال <em>ماركوني</em> الأول</h2>
-      <p class="slide-body">أول إشارة لاسلكية عابرة للأطلسي &mdash; من كورنوول إلى نيوفاوندلاند، على مسافة <strong>٣,٤٠٠ كم</strong>.</p>
-      <div class="slide-fact">
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">من</div>
-          <div class="slide-fact-value">كورنوول، إنجلترا</div>
-        </div>
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">إلى</div>
-          <div class="slide-fact-value">نيوفاوندلاند، كندا</div>
-        </div>
-      </div>
-    </div>
-    <div class="slide-bottom">
-      <div class="slide-page">4 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">02 / 14</div></div>
   </div>
 
-  <!-- SLIDE 5: البحرية (Dark) -->
-  <div class="slide slide--dark" data-audio="s5-maritime">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+  <!-- S3: هيرتز -->
+  <div class="s s--deep" data-audio="s3-hertz">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">تطبيقات مبكرة</div>
-      <h2 class="slide-title">التطبيقات <em>البحرية</em> والعسكرية</h2>
-      <p class="slide-body">أصبح الراديو شريان حياة للسفن. كان دوره حاسمًا في إنقاذ الأرواح أثناء كارثة <strong>تيتانيك</strong> عام ١٩١٢.</p>
-      <div class="slide-fact">
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">بحري</div>
-          <div class="slide-fact-value">إنقاذ الأرواح</div>
+    <div class="s-body">
+      <div class="s-year">١٨٨٧</div>
+      <h2 class="s-title">إثبات <i>هيرتز</i></h2>
+      <p class="s-text">بنى هاينريش هيرتز جهاز إرسال واستقبال بالشرارة، وولّد موجات كهرومغناطيسية وكشف عنها. أثبت أنها تنعكس وتنكسر وتستقطب &mdash; <strong>تمامًا كالضوء</strong>. كان ماكسويل محقًا.</p>
+      <div class="s-stats">
+        <div class="s-stat">
+          <div class="s-stat-label">الإرث</div>
+          <div class="s-stat-val" style="direction:ltr;text-align:right">Hz</div>
         </div>
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">عسكري</div>
-          <div class="slide-fact-value">اتصالات ساحة المعركة</div>
+        <div class="s-stat">
+          <div class="s-stat-label">أثبت</div>
+          <div class="s-stat-val">وجود الموجات الكهرومغناطيسية</div>
         </div>
       </div>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">5 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">03 / 14</div></div>
   </div>
 
-  <!-- SLIDE 6: البث الإذاعي (Light) -->
-  <div class="slide slide--light" data-audio="s6-radio-era">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+  <!-- S4: ماركوني -->
+  <div class="s s--amber" data-audio="s4-marconi">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">العشرينيات</div>
-      <h2 class="slide-title">عصر <em>البث الإذاعي</em></h2>
-      <p class="slide-body">انطلق بث الراديو ليصل إلى ملايين المنازل. لأول مرة، دخلت الموسيقى والأخبار والترفيه إلى المنازل عبر <strong>موجات الهواء</strong>.</p>
-      <div class="slide-visual">
-        <div class="slide-visual-label">التقنية</div>
-        <div class="slide-formula" style="font-size:0.8rem;line-height:1.8;font-family:var(--font-body)">
-          تعديل السعة (AM)<br>
-          بسيط وفعّال، لكنه عرضة للتشويش
+    <div class="s-body">
+      <div class="s-year">١٨٩٥ &ndash; ١٩٠١</div>
+      <h2 class="s-title">إرسال <i>ماركوني</i> الأول</h2>
+      <p class="s-text">حوّل غولييلمو ماركوني النظرية إلى تطبيق &mdash; من ٢ كم إلى <strong>٣,٤٠٠ كم</strong> عبر الأطلسي، بمساعدة الأيونوسفير.</p>
+      <div class="s-timeline">
+        <div class="s-tl-item"><strong>١٨٩٥</strong> &mdash; أول إشارة، ٢ كم في بولونيا</div>
+        <div class="s-tl-item"><strong>١٨٩٩</strong> &mdash; عبر القناة: إنجلترا إلى فرنسا</div>
+        <div class="s-tl-item"><strong>١٩٠١</strong> &mdash; عبر الأطلسي: كورنوول &larr; نيوفاوندلاند (٣,٤٠٠ كم)</div>
+        <div class="s-tl-item"><strong>١٩٠٩</strong> &mdash; جائزة نوبل في الفيزياء</div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">04 / 14</div></div>
+  </div>
+
+  <!-- S5: البحرية -->
+  <div class="s s--ink" data-audio="s5-maritime">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">تطبيقات مبكرة</div>
+      <h2 class="s-title">التطبيقات <i>البحرية</i> والعسكرية</h2>
+      <p class="s-text">أصبح الراديو شريان حياة للسفن. كان دوره حاسمًا في إنقاذ الأرواح أثناء كارثة <strong>تيتانيك</strong> عام ١٩١٢.</p>
+      <div class="s-stats">
+        <div class="s-stat">
+          <div class="s-stat-label">بحري</div>
+          <div class="s-stat-val">إنقاذ الأرواح</div>
+        </div>
+        <div class="s-stat">
+          <div class="s-stat-label">عسكري</div>
+          <div class="s-stat-val">اتصالات ساحة المعركة</div>
         </div>
       </div>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">6 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">05 / 14</div></div>
   </div>
 
-  <!-- SLIDE 7: FM والرادار (Gradient) -->
-  <div class="slide slide--gradient" data-audio="s7-fm-radar">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
+  <!-- S6: البث الإذاعي -->
+  <div class="s s--cream" data-audio="s6-radio-era">
+    <div class="orb orb-1"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">العشرينيات</div>
+      <h2 class="s-title">عصر <i>البث الإذاعي</i></h2>
+      <p class="s-text">انتشر بث الراديو AM تجاريًا. محطات مثل KDKA في بيتسبرغ نقلت الأخبار والموسيقى مباشرة إلى <strong>ملايين المنازل</strong> &mdash; أول وسيلة لاسلكية جماهيرية.</p>
+      <div class="s-card">
+        <div class="s-card-label">نوع التعديل</div>
+        <div class="s-card-value">تعديل السعة (AM) &mdash; بسيط وفعّال، لكنه عرضة للتشويش</div>
       </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">الثلاثينيات - الأربعينيات</div>
-      <h2 class="slide-title">راديو FM و<em>الرادار</em></h2>
-      <p class="slide-body">تعديل التردد قدّم جودة صوت أفضل. الحرب العالمية الثانية دفعت تطوير <strong>الرادار</strong> للكشف عن الطائرات والسفن.</p>
-    </div>
-    <div class="slide-bottom">
-      <div class="slide-page">7 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">06 / 14</div></div>
   </div>
 
-  <!-- SLIDE 8: الجيل الأول (Dark) -->
-  <div class="slide slide--dark" data-audio="s8-1g">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+  <!-- S7: FM والرادار -->
+  <div class="s s--teal" data-audio="s7-fm-radar">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">السبعينيات - الثمانينيات</div>
-      <h2 class="slide-title">الجيل الأول &mdash; <em>الهاتف المحمول</em></h2>
-      <p class="slide-body">شبكات تناظرية تتيح إجراء مكالمات أثناء التنقل. الأجهزة كانت ضخمة ومكلفة.</p>
-      <div class="slide-fact">
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">الوزن</div>
-          <div class="slide-fact-value">~١ كغ</div>
+    <div class="s-body">
+      <div class="s-year">الثلاثينيات - الأربعينيات</div>
+      <h2 class="s-title">راديو FM و<i>الرادار</i></h2>
+      <p class="s-text">تعديل التردد قدّم جودة صوت أفضل. الحرب العالمية الثانية دفعت تطوير <strong>الرادار</strong> للكشف عن الطائرات والسفن.</p>
+      <div class="s-card">
+        <div class="s-card-label">الأثر</div>
+        <div class="s-card-value">تقنيات الرادار العسكرية أصبحت أساسًا للتطورات اللاسلكية اللاحقة</div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">07 / 14</div></div>
+  </div>
+
+  <!-- S8: الجيل الأول -->
+  <div class="s s--ink" data-audio="s8-1g">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">السبعينيات - الثمانينيات</div>
+      <h2 class="s-title">الجيل الأول &mdash; <i>الهاتف المحمول</i></h2>
+      <p class="s-text">شبكات تناظرية تتيح إجراء مكالمات أثناء التنقل. الأجهزة كانت ضخمة ومكلفة لكنها <strong>بذرة الثورة</strong>.</p>
+      <div class="s-stats">
+        <div class="s-stat">
+          <div class="s-stat-label">الوزن</div>
+          <div class="s-stat-val">~١ كغ</div>
         </div>
-        <div class="slide-fact-item">
-          <div class="slide-fact-label">البطارية</div>
-          <div class="slide-fact-value">٣٠ دقيقة</div>
+        <div class="s-stat">
+          <div class="s-stat-label">البطارية</div>
+          <div class="s-stat-val">٣٠ دقيقة</div>
         </div>
       </div>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">8 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">08 / 14</div></div>
   </div>
 
-  <!-- SLIDE 9: 2G (Amber) -->
-  <div class="slide slide--amber" data-audio="s9-2g">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+  <!-- S9: 2G -->
+  <div class="s s--amber" data-audio="s9-2g">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">التسعينيات</div>
-      <h2 class="slide-title">الجيل الثاني &mdash; <em>الرقمية</em></h2>
-      <p class="slide-body">معيار GSM حوّل الشبكات من تناظرية إلى رقمية. ولادة الرسائل النصية القصيرة.</p>
-      <ul class="slide-bullets">
-        <li>رسائل SMS لأول مرة</li>
-        <li>تشفير المكالمات</li>
-        <li>انتشار عالمي واسع</li>
+    <div class="s-body">
+      <div class="s-year">التسعينيات</div>
+      <h2 class="s-title">الجيل الثاني &mdash; <i>الرقمية</i></h2>
+      <p class="s-text">معيار GSM في فنلندا حوّل الإشارات من تناظرية إلى <strong>رقمية</strong>. أكبر قفزة في تاريخ الاتصالات المحمولة.</p>
+      <ul class="s-list">
+        <li><strong>SMS</strong> &mdash; ولادة الرسائل النصية</li>
+        <li><strong>التشفير</strong> &mdash; المكالمات أصبحت خاصة</li>
+        <li><strong>الكفاءة</strong> &mdash; مستخدمون أكثر لكل برج</li>
+        <li><strong>الانتشار</strong> &mdash; بأسعار معقولة للجميع</li>
       </ul>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">9 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">09 / 14</div></div>
   </div>
 
-  <!-- SLIDE 10: 3G (Light) -->
-  <div class="slide slide--light" data-audio="s10-3g">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+  <!-- S10: 3G -->
+  <div class="s s--deep" data-audio="s10-3g">
+    <div class="orb orb-1"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">الألفية الجديدة</div>
-      <h2 class="slide-title">الجيل الثالث &mdash; <em>الإنترنت المحمول</em></h2>
-      <p class="slide-body">تصفح الإنترنت والبريد الإلكتروني والتطبيقات من هاتفك. الأساس لثورة <strong>الهواتف الذكية</strong>.</p>
-      <ul class="slide-bullets">
-        <li>تصفح الويب من الهاتف</li>
-        <li>البريد الإلكتروني أثناء التنقل</li>
-        <li>تطبيقات وبث بسيط</li>
-        <li>مهّد الطريق للهواتف الذكية</li>
+    <div class="s-body">
+      <div class="s-year">الألفية الجديدة</div>
+      <h2 class="s-title">الجيل الثالث &mdash; <i>الإنترنت المحمول</i></h2>
+      <p class="s-text">الإنترنت في جيبك لأول مرة. تصفح الويب والبريد الإلكتروني والتطبيقات من هاتفك. مهّد الطريق لـ<strong>ثورة الهواتف الذكية</strong>.</p>
+      <div class="s-equation">
+        <div class="s-eq-label">العلاقة الأساسية</div>
+        <div id="eq-wifi"></div>
+      </div>
+      <div class="s-stats">
+        <div class="s-stat">
+          <div class="s-stat-label" style="direction:ltr;text-align:right">2.4 GHz</div>
+          <div class="s-stat-val">مدى طويل</div>
+        </div>
+        <div class="s-stat">
+          <div class="s-stat-label" style="direction:ltr;text-align:right">5 GHz</div>
+          <div class="s-stat-val">سرعة عالية</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">10 / 14</div></div>
+  </div>
+
+  <!-- S11: 4G -->
+  <div class="s s--ink" data-audio="s11-4g">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">العقد الثاني</div>
+      <h2 class="s-title">الجيل الرابع <i>LTE</i></h2>
+      <p class="s-text">LTE وفّر <strong>بيانات عالية السرعة</strong> للهواتف. بث الفيديو والألعاب واقتصاد التطبيقات كلها على شبكات 4G.</p>
+      <div class="gen-bars" id="genBars">
+        <div class="gen-bar" style="height:15%;background:rgba(255,255,255,0.12)"><div class="gen-bar-label">1G</div><div class="gen-bar-sub">صوت</div></div>
+        <div class="gen-bar" style="height:25%;background:rgba(255,255,255,0.16)"><div class="gen-bar-label">2G</div><div class="gen-bar-sub">نص</div></div>
+        <div class="gen-bar" style="height:40%;background:rgba(255,255,255,0.20)"><div class="gen-bar-label">3G</div><div class="gen-bar-sub">ويب</div></div>
+        <div class="gen-bar" style="height:70%;background:var(--amber)"><div class="gen-bar-label" style="color:var(--ink)">4G</div><div class="gen-bar-sub" style="color:var(--ink)">HD</div></div>
+        <div class="gen-bar" style="height:95%;background:rgba(255,255,255,0.10)"><div class="gen-bar-label">5G</div><div class="gen-bar-sub">IoT</div></div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">11 / 14</div></div>
+  </div>
+
+  <!-- S12: 5G -->
+  <div class="s s--amber" data-audio="s12-5g">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">٢٠١٩ &larr;</div>
+      <h2 class="s-title">شبكات <i>الجيل الخامس</i> <span class="pulse-dot"></span></h2>
+      <p class="s-text">زمن استجابة شبه معدوم، اتصال هائل بالأجهزة، وسرعات تصل إلى <strong>10 Gbps</strong>. فئة جديدة كليًا من التطبيقات.</p>
+      <ul class="s-list">
+        <li><strong>سيارات ذاتية القيادة</strong> &mdash; قرارات في أجزاء من الثانية</li>
+        <li><strong>جراحة عن بُعد</strong> &mdash; دقة بدون تأخير</li>
+        <li><strong>إنترنت الأشياء</strong> &mdash; مليارات الأجهزة المتصلة</li>
+        <li><strong>الجيل السادس</strong> قيد البحث (~٢٠٣٠)</li>
       </ul>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">10 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">12 / 14</div></div>
   </div>
 
-  <!-- SLIDE 11: 4G (Gradient) -->
-  <div class="slide slide--gradient" data-audio="s11-4g">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+  <!-- S13: أنماط -->
+  <div class="s s--deep" data-audio="s13-patterns">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">النقاط الرئيسية</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">العقد الثاني</div>
-      <h2 class="slide-title">الجيل الرابع &mdash; <em>عصر الفيديو</em></h2>
-      <p class="slide-body">سرعات عالية لبث الفيديو والتطبيقات المتقدمة. الهواتف الذكية في كل مكان.</p>
-      <ul class="slide-bullets">
-        <li><strong>نتفليكس</strong> أثناء التنقل</li>
-        <li><strong>أوبر</strong> والنقل الذكي</li>
-        <li><strong>إنستغرام</strong> ووسائل التواصل</li>
-      </ul>
-    </div>
-    <div class="slide-bottom">
-      <div class="slide-page">11 / 14</div>
-    </div>
-  </div>
-
-  <!-- SLIDE 12: 5G (Amber) -->
-  <div class="slide slide--amber" data-audio="s12-5g">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
-    </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">اليوم وما بعده</div>
-      <h2 class="slide-title">الجيل <em>الخامس</em> وما بعده</h2>
-      <p class="slide-body">سرعات فائقة وزمن استجابة شبه معدوم.</p>
-      <ul class="slide-bullets">
-        <li>سيارات ذاتية القيادة</li>
-        <li>جراحة عن بُعد</li>
-        <li>إنترنت الأشياء</li>
-        <li>الجيل السادس قادم (~٢٠٣٠)</li>
-      </ul>
-    </div>
-    <div class="slide-bottom">
-      <div class="slide-page">12 / 14</div>
-    </div>
-  </div>
-
-  <!-- SLIDE 13: أنماط (Gradient) -->
-  <div class="slide slide--gradient" data-audio="s13-patterns">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; النقاط الرئيسية</div>
-    </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">أنماط</div>
-      <h2 class="slide-title">الأنماط <em>المشتركة</em></h2>
-      <ul class="slide-bullets">
+    <div class="s-body">
+      <div class="s-year">أنماط</div>
+      <h2 class="s-title">الأنماط <i>المشتركة</i></h2>
+      <p class="s-text">عبر ١٥٠ عامًا، تتكرر أربعة أنماط:</p>
+      <ul class="s-list">
         <li><strong>النظرية تسبق التطبيق</strong> &mdash; ماكسويل جاء قبل ٣٠ عامًا من الراديو</li>
-        <li><strong>كل جيل يبني</strong> على ما سبقه</li>
-        <li><strong>الطيف مورد نادر</strong> &mdash; المشاركة الذكية ضرورية</li>
-        <li><strong>الرقمي يتفوق</strong> &mdash; 1G إلى 2G كانت أكبر قفزة</li>
+        <li><strong>كل جيل يبني</strong> على ما سبقه &mdash; 5G تستخدم تقنيات مصقولة عبر عقود</li>
+        <li><strong>الطيف مورد نادر</strong> &mdash; كل جيل وجد طرقًا ذكية لمشاركة الترددات</li>
+        <li><strong>الرقمي يتفوق</strong> &mdash; من 1G إلى 2G كانت أكبر قفزة</li>
       </ul>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">13 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">13 / 14</div></div>
   </div>
 
-  <!-- SLIDE 14: خلاصة (Dark) -->
-  <div class="slide slide--dark" data-audio="s14-summary">
-    <div class="slide-deco-circle slide-deco-1"></div>
-    <div class="slide-deco-circle slide-deco-2"></div>
-    <div class="slide-top">
-      <div class="slide-brand">
-        <div class="slide-brand-dot"></div>
-        <div class="slide-brand-name">Wireless 101</div>
-      </div>
-      <div class="slide-module-tag">Module 01 &middot; الخلاصة</div>
+  <!-- S14: خلاصة -->
+  <div class="s s--ink" data-audio="s14-summary">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">الخلاصة</div>
     </div>
-    <div class="slide-content">
-      <div class="slide-concept-num">الخلاصة</div>
-      <h2 class="slide-title">ماذا <em>تعلمت</em></h2>
-      <p class="slide-body">من معادلات ماكسويل (١٨٦٥) إلى خمسة أجيال من الشبكات الخلوية &mdash; نفس الموجات الكهرومغناطيسية تنقل بياناتك الآن.</p>
-      <div class="slide-visual" style="margin-top:1.25rem;text-align:center">
-        <div class="slide-visual-label">الدرس التالي</div>
-        <div class="slide-formula" style="font-size:0.85rem;font-family:var(--font-body)">&larr; الطيف الكهرومغناطيسي</div>
+    <div class="s-body">
+      <div class="s-year">ملخص</div>
+      <h2 class="s-title">ماذا <i>تعلمت</i></h2>
+      <p class="s-text">من تنبؤ ماكسويل النظري عام ١٨٦٥ إلى خمسة أجيال من الشبكات الخلوية &mdash; نفس الموجات الكهرومغناطيسية التي كشفها هيرتز في مختبره <strong>تنقل بياناتك الآن</strong>.</p>
+      <div class="s-card" style="margin-top:1.5rem;text-align:center">
+        <div class="s-card-label">الدرس التالي</div>
+        <div class="s-card-value" style="font-family:var(--display);font-size:1.1rem">الطيف الكهرومغناطيسي &larr;</div>
       </div>
     </div>
-    <div class="slide-bottom">
-      <div class="slide-page">14 / 14</div>
-    </div>
+    <div class="s-foot"><div class="s-pg">14 / 14</div></div>
   </div>
 
 </div>
 
-<audio id="lessonAudio" preload="none"></audio>
+<audio id="audio" preload="none"></audio>
 
 <script>
 (function() {
-  var AUDIO_BASE = '../../../../audio/ar/wrl101/m1-l1/';
-  var slides = document.querySelectorAll('.slide');
-  var progressBar = document.getElementById('progressBar');
-  var audioEl = document.getElementById('lessonAudio');
+  var BASE = '../../../../audio/ar/wrl101/m1-l1/';
+  var slides = document.querySelectorAll('.s');
+  var prog = document.getElementById('prog');
+  var audio = document.getElementById('audio');
   var audioBtn = document.getElementById('audioBtn');
-  var audioBars = document.getElementById('audioBars');
-  var current = 0;
-  var audioMuted = false;
-  var progressTimers = [];
+  var eq = document.getElementById('eq');
+  var story = document.getElementById('story');
+  var cur = 0;
+  var muted = false;
 
+  // Build progress
   for (var i = 0; i < slides.length; i++) {
-    var bar = document.createElement('div');
-    bar.className = 'story-progress-bar';
+    var seg = document.createElement('div');
+    seg.className = 'progress-seg';
     var fill = document.createElement('div');
-    fill.className = 'story-progress-fill';
-    bar.appendChild(fill);
-    progressBar.appendChild(bar);
+    fill.className = 'progress-fill';
+    seg.appendChild(fill);
+    prog.appendChild(seg);
   }
 
-  function goTo(index) {
-    if (index < 0 || index >= slides.length) return;
-    progressTimers.forEach(function(t) { clearInterval(t); });
-    progressTimers = [];
-    current = index;
+  var navL = document.getElementById('navL');
+  var navR = document.getElementById('navR');
 
-    for (var i = 0; i < slides.length; i++) {
-      slides[i].classList.toggle('active', i === current);
-    }
+  function updateArrows() {
+    navL.classList.toggle('disabled', cur === 0);
+    navR.classList.toggle('disabled', cur === slides.length - 1);
+  }
 
-    var bars = progressBar.children;
-    for (var i = 0; i < bars.length; i++) {
-      bars[i].classList.remove('active', 'completed');
-      bars[i].querySelector('.story-progress-fill').style.width = '0';
-      if (i < current) {
-        bars[i].classList.add('completed');
-        bars[i].querySelector('.story-progress-fill').style.width = '100%';
+  function go(n) {
+    if (n < 0 || n >= slides.length) return;
+
+    // Flash
+    story.classList.add('flash');
+    setTimeout(function() { story.classList.remove('flash'); }, 200);
+
+    cur = n;
+    updateArrows();
+
+    slides.forEach(function(s, i) { s.classList.toggle('on', i === cur); });
+
+    // Progress
+    var segs = prog.children;
+    for (var i = 0; i < segs.length; i++) {
+      segs[i].classList.remove('done');
+      var f = segs[i].querySelector('.progress-fill');
+      f.style.transition = 'none';
+      f.style.width = '0';
+      if (i < cur) {
+        segs[i].classList.add('done');
+        f.style.width = '100%';
       }
     }
 
-    bars[current].classList.add('active');
+    // Current progress
+    var cf = segs[cur].querySelector('.progress-fill');
+    cf.style.transition = 'none';
+    cf.style.width = '0';
+    cf.offsetWidth; // reflow
 
-    if (!audioMuted) {
-      var trackId = slides[current].getAttribute('data-audio');
-      audioEl.src = AUDIO_BASE + trackId + '.mp3';
-      audioEl.play().then(function() {
-        audioBars.classList.add('playing');
-        startProgress(bars[current], audioEl.duration);
+    if (!muted) {
+      var tid = slides[cur].getAttribute('data-audio');
+      audio.src = BASE + tid + '.mp3';
+      audio.play().then(function() {
+        eq.classList.add('on');
+        cf.style.transition = 'width ' + audio.duration + 's linear';
+        cf.style.width = '100%';
       }).catch(function() {
-        audioBars.classList.remove('playing');
-        startProgress(bars[current], 8);
+        eq.classList.remove('on');
+        cf.style.transition = 'width 8s linear';
+        cf.style.width = '100%';
       });
     } else {
-      startProgress(bars[current], 8);
+      cf.style.transition = 'width 8s linear';
+      cf.style.width = '100%';
     }
   }
 
-  function startProgress(bar, duration) {
-    var fill = bar.querySelector('.story-progress-fill');
-    fill.style.transition = 'none';
-    fill.style.width = '0';
-    fill.offsetWidth;
-    fill.style.transition = 'width ' + duration + 's linear';
-    fill.style.width = '100%';
-  }
-
-  audioEl.addEventListener('ended', function() {
-    audioBars.classList.remove('playing');
-    if (current < slides.length - 1) {
-      setTimeout(function() { goTo(current + 1); }, 300);
-    }
+  audio.addEventListener('ended', function() {
+    eq.classList.remove('on');
+    if (cur < slides.length - 1) setTimeout(function() { go(cur + 1); }, 400);
   });
 
-  audioEl.addEventListener('error', function() {
-    audioBars.classList.remove('playing');
-  });
+  audio.addEventListener('error', function() { eq.classList.remove('on'); });
 
-  document.getElementById('navPrev').addEventListener('click', function() { goTo(current - 1); });
-  document.getElementById('navNext').addEventListener('click', function() { goTo(current + 1); });
+  navL.addEventListener('click', function(e) { e.stopPropagation(); go(cur - 1); });
+  navR.addEventListener('click', function(e) { e.stopPropagation(); go(cur + 1); });
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
-    if (e.key === 'm') {
-      audioMuted = !audioMuted;
-      if (audioMuted) { audioEl.pause(); audioBars.classList.remove('playing'); }
-      else { goTo(current); }
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(cur - 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur + 1); }
+    if (e.key === 'm' || e.key === 'M') {
+      muted = !muted;
+      audioBtn.classList.toggle('is-muted', muted);
+      if (muted) { audio.pause(); eq.classList.remove('on'); }
+      else go(cur);
     }
   });
-
-  var touchStartX = 0;
-  var container = document.querySelector('.story-container');
-  container.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-  container.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 40) {
-      if (dx > 0) goTo(current + 1);
-      else goTo(current - 1);
-    }
-  }, { passive: true });
 
   audioBtn.addEventListener('click', function(e) {
     e.stopPropagation();
-    audioMuted = !audioMuted;
-    if (audioMuted) { audioEl.pause(); audioBars.classList.remove('playing'); }
-    else { goTo(current); }
+    muted = !muted;
+    audioBtn.classList.toggle('is-muted', muted);
+    if (muted) { audio.pause(); eq.classList.remove('on'); }
+    else go(cur);
   });
 
-  goTo(0);
+  go(0);
+
+  // ── KaTeX equations ──
+  function renderEqs() {
+    if (typeof katex === 'undefined') { setTimeout(renderEqs, 200); return; }
+    var eqM = document.getElementById('eq-maxwell');
+    if (eqM) katex.render('\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t} \\quad \\Rightarrow \\quad c = \\frac{1}{\\sqrt{\\mu_0 \\epsilon_0}}', eqM, { displayMode: true, throwOnError: false });
+    var eqW = document.getElementById('eq-wifi');
+    if (eqW) katex.render('c = f \\cdot \\lambda \\qquad \\lambda = \\frac{3 \\times 10^8}{f}', eqW, { displayMode: true, throwOnError: false });
+  }
+  renderEqs();
+
+  // ── Wave animation ──
+  var wc = document.getElementById('waveCanvas');
+  if (wc) {
+    var ctx = wc.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    function sizeCanvas() {
+      var r = wc.getBoundingClientRect();
+      wc.width = r.width * dpr;
+      wc.height = r.height * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+
+    var t = 0;
+    function drawWave() {
+      var w = wc.width / dpr;
+      var h = wc.height / dpr;
+      ctx.clearRect(0, 0, w, h);
+
+      // E-field (amber)
+      ctx.beginPath();
+      ctx.strokeStyle = '#d4a24a';
+      ctx.lineWidth = 2;
+      for (var x = 0; x < w; x++) {
+        var y = h / 2 + Math.sin((x / w) * 4 * Math.PI + t) * (h * 0.35);
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // B-field (teal, phase-shifted)
+      ctx.beginPath();
+      ctx.strokeStyle = '#3a7d7e';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      for (var x = 0; x < w; x++) {
+        var y = h / 2 + Math.cos((x / w) * 4 * Math.PI + t) * (h * 0.25);
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Labels
+      ctx.font = '10px "Space Mono", monospace';
+      ctx.fillStyle = '#d4a24a';
+      ctx.fillText('E', 8, h / 2 - h * 0.35 + 12);
+      ctx.fillStyle = '#3a7d7e';
+      ctx.fillText('B', 8, h / 2 + h * 0.25 + 12);
+
+      t += 0.03;
+      requestAnimationFrame(drawWave);
+    }
+    drawWave();
+  }
+
+  // ── Animate gen bars on enter ──
+  var genObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var bars = e.target.querySelectorAll('.gen-bar');
+        bars.forEach(function(b, i) {
+          var h = b.style.height;
+          b.style.height = '0';
+          setTimeout(function() { b.style.height = h; }, i * 100 + 100);
+        });
+      }
+    });
+  });
+  var gb = document.getElementById('genBars');
+  if (gb) genObs.observe(gb);
 })();
 </script>
 

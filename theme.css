@@ -25,9 +25,9 @@
   /* Text */
   --text: #1a1a1a;
   --text-secondary: #52596b;
-  --text-tertiary: #8b92a5;
+  --text-tertiary: #717a8e;
   --text-on-dark: #e8e6e1;
-  --text-on-dark-muted: rgba(255,255,255,0.55);
+  --text-on-dark-muted: rgba(255,255,255,0.65);
 
   /* Borders & surfaces */
   --border: #e2dfd8;
@@ -78,6 +78,17 @@ body::after {
 
 a { color: inherit; }
 img { max-width: 100%; display: block; }
+
+/* ── Focus ── */
+a:focus-visible,
+button:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-amber:focus-visible,
+.nav-cta:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
 
 /* ── Layout ── */
 .container {

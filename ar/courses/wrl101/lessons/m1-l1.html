@@ -6,6 +6,8 @@
 <title>تاريخ موجز للاتصالات اللاسلكية — WRL-101</title>
 <link rel="stylesheet" href="../../../../theme.css">
 <link rel="stylesheet" href="../../../../theme-rtl.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <style>
 /* ── Lesson Hero ── */
 .lesson-hero {
@@ -626,6 +628,89 @@
 @media (max-width: 480px) {
   .lesson-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
+
+/* ── Equation Block ── */
+.equation-block {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f8f6f1 0%, #f0ece4 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--amber, #d4a24a);
+  border-radius: 0 3px 3px 0;
+}
+
+.equation-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber, #d4a24a);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.equation-block-label svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--amber, #d4a24a);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.equation-block .katex-display {
+  margin: 0;
+  direction: ltr;
+  text-align: center;
+}
+
+.equation-block .katex {
+  font-size: 1.2em;
+  color: #1a1a1a;
+}
+
+.equation-block-caption {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.equation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+@media (max-width: 600px) {
+  .equation-pair {
+    grid-template-columns: 1fr;
+  }
+  .equation-block .katex {
+    font-size: 1em;
+  }
+}
+
+.equation-pair .equation-block {
+  margin: 0;
+}
 </style>
 </head>
 <body>
@@ -701,14 +786,51 @@
 
     <p>في عام <strong>١٨٦٥</strong>، قدّم الفيزيائي الاسكتلندي <strong>جيمس كلارك ماكسويل</strong> مجموعة من المعادلات الرياضية التي تنبأت بوجود الموجات الكهرومغناطيسية. أظهرت هذه المعادلات أن المجالات الكهربائية والمغناطيسية يمكن أن تنتشر عبر الفضاء بسرعة الضوء — وهو ما كان مفهومًا ثوريًا في ذلك الوقت.</p>
 
-    <p>بعد أكثر من عقدين، في عام <strong>١٨٨٧</strong>، نجح الفيزيائي الألماني <strong>هاينريش هيرتز</strong> في إثبات وجود هذه الموجات تجريبيًا. بنى هيرتز جهازًا بسيطًا استطاع من خلاله توليد موجات كهرومغناطيسية والكشف عنها على بُعد أمتار قليلة.</p>
-
     <div class="callout-box">
       <div class="callout-box-title">
         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
         رؤية ماكسويل الأساسية
       </div>
       <p>المجالات الكهربائية المتغيرة تخلق مجالات مغناطيسية، والعكس صحيح. هذا التفاعل المتبادل يولّد موجات تنتشر ذاتيًا عبر الفضاء — وهي الأساس الذي تقوم عليه كل تقنية لاسلكية نستخدمها اليوم.</p>
+    </div>
+
+    <div class="equation-pair fade-up">
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          قانون فاراداي
+        </div>
+        <div id="eq-faraday"></div>
+        <div class="equation-block-caption">المجال المغناطيسي المتغير يولّد مجالًا كهربائيًا</div>
+      </div>
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          قانون أمبير-ماكسويل
+        </div>
+        <div id="eq-ampere"></div>
+        <div class="equation-block-caption">المجال الكهربائي المتغير (بالإضافة إلى التيار) يولّد مجالًا مغناطيسيًا</div>
+      </div>
+    </div>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        سرعة الضوء
+      </div>
+      <div id="eq-speed-of-light"></div>
+      <div class="equation-block-caption">أثبت ماكسويل أن الموجات الكهرومغناطيسية تنتقل بسرعة الضوء — مما يؤكد أن الضوء نفسه موجة كهرومغناطيسية</div>
+    </div>
+
+    <p class="fade-up">بعد أكثر من عقدين، في عام <strong>١٨٨٧</strong>، نجح الفيزيائي الألماني <strong>هاينريش هيرتز</strong> في إثبات وجود هذه الموجات تجريبيًا. بنى هيرتز جهازًا بسيطًا استطاع من خلاله توليد موجات كهرومغناطيسية والكشف عنها على بُعد أمتار قليلة.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        الطول الموجي والتردد
+      </div>
+      <div id="eq-wavelength"></div>
+      <div class="equation-block-caption">سرعة الضوء تساوي التردد مضروبًا في الطول الموجي — العلاقة الأساسية التي تحكم جميع الأنظمة اللاسلكية</div>
     </div>
 
     <h2>ماركوني وولادة الراديو</h2>
@@ -1042,6 +1164,24 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── KaTeX Equations ──
+function renderEquations() {
+  if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
+
+  var eqs = [
+    ['eq-faraday', '\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t}'],
+    ['eq-ampere', '\\nabla \\times \\mathbf{B} = \\mu_0 \\mathbf{J} + \\mu_0 \\epsilon_0 \\frac{\\partial \\mathbf{E}}{\\partial t}'],
+    ['eq-speed-of-light', 'c = \\frac{1}{\\sqrt{\\mu_0 \\epsilon_0}} \\approx 3 \\times 10^8 \\;\\text{m/s}'],
+    ['eq-wavelength', 'c = f \\cdot \\lambda \\qquad \\Rightarrow \\qquad \\lambda = \\frac{c}{f} = \\frac{3 \\times 10^8}{f}']
+  ];
+
+  eqs.forEach(function(pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) katex.render(pair[1], el, { displayMode: true, throwOnError: false });
+  });
+}
+renderEquations();
 </script>
     <script data-goatcounter="https://wireless-101.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
