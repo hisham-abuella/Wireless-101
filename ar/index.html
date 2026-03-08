@@ -222,6 +222,11 @@
 .vision-icon svg { width: 26px; height: 26px; stroke-width: 1.8; fill: none; }
 .vision-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; line-height: 1.4; }
 .vision-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
+.vision-icon.bg-amber { background: var(--amber-pale); }
+.vision-icon.bg-green { background: rgba(16,185,129,0.1); }
+.vision-icon.bg-purple { background: rgba(139,92,246,0.1); }
+.vision-icon.bg-blue { background: rgba(59,130,246,0.1); }
+.vision-icon.bg-ink { background: rgba(15,27,45,0.06); }
 .vision-ai-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; padding: 0.6rem 1.25rem; background: var(--ink); color: var(--cream); border-radius: 100px; font-size: 0.75rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.03em; }
 .vision-ai-badge svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 2; }
 
@@ -260,6 +265,7 @@
 </style>
 </head>
 <body>
+<a href="#hero" class="skip-link">تخطي إلى المحتوى</a>
 
 <!-- Navbar -->
 <nav class="navbar" id="navbar">
@@ -599,43 +605,43 @@
   </div>
   <div class="vision-grid">
     <div class="vision-card fade-up stagger-1">
-      <div class="vision-icon" style="background: rgba(232,168,56,0.1);">
-        <svg viewBox="0 0 24 24" stroke="var(--amber)" stroke-linecap="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+      <div class="vision-icon bg-amber">
+        <svg viewBox="0 0 24 24" stroke="var(--amber)" stroke-linecap="round" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
       </div>
       <h3>مجاني ١٠٠٪ للأبد</h3>
       <p>لا جدران دفع، لا اشتراكات، لا تكاليف خفية. التعليم الجيد في الاتصالات اللاسلكية يجب أن يكون متاحًا للجميع في كل مكان.</p>
     </div>
     <div class="vision-card fade-up stagger-2">
-      <div class="vision-icon" style="background: rgba(16,185,129,0.1);">
-        <svg viewBox="0 0 24 24" stroke="#10b981" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+      <div class="vision-icon bg-green">
+        <svg viewBox="0 0 24 24" stroke="#10b981" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
       </div>
       <h3>على نمط القصص التفاعلية</h3>
       <p>الدروس مصممة كقصص وسائل التواصل الاجتماعي &mdash; قابلة للتمرير، مرئية، ومختصرة. انتقل بين المفاهيم بإيقاعك مع رسوم متحركة وعناصر تفاعلية.</p>
     </div>
     <div class="vision-card fade-up stagger-3">
-      <div class="vision-icon" style="background: rgba(139,92,246,0.1);">
-        <svg viewBox="0 0 24 24" stroke="#8b5cf6" stroke-linecap="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><path d="M12 19v4m-4 0h8"/></svg>
+      <div class="vision-icon bg-purple">
+        <svg viewBox="0 0 24 24" stroke="#8b5cf6" stroke-linecap="round" aria-hidden="true"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><path d="M12 19v4m-4 0h8"/></svg>
       </div>
       <h3>اقرأ واستمع</h3>
       <p>كل درس يأتي مع سرد صوتي يمكنك تشغيله أو إيقافه. اقرأ بسرعتك، أو استرخِ واستمع &mdash; تعلّم بالطريقة التي تناسبك.</p>
     </div>
     <div class="vision-card fade-up stagger-4">
-      <div class="vision-icon" style="background: rgba(59,130,246,0.1);">
-        <svg viewBox="0 0 24 24" stroke="#3b82f6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      <div class="vision-icon bg-blue">
+        <svg viewBox="0 0 24 24" stroke="#3b82f6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
       </div>
       <h3>إنجليزي وعربي</h3>
       <p>دعم ثنائي اللغة كامل مع عربي RTL أصيل. بدّل اللغة في أي وقت &mdash; نفس جودة المحتوى، نفس التجربة التفاعلية، باللغة التي تفكر بها.</p>
     </div>
     <div class="vision-card fade-up stagger-5">
-      <div class="vision-icon" style="background: rgba(15,27,45,0.06);">
-        <svg viewBox="0 0 24 24" stroke="var(--ink)" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <div class="vision-icon bg-ink">
+        <svg viewBox="0 0 24 24" stroke="var(--ink)" stroke-linecap="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
       <h3>الأساسيات البسيطة أولًا</h3>
       <p>لا نفترض أنك تعرف شيئًا. كل مفهوم يُبنى من الصفر بصور واضحة وتشبيهات من الواقع. لا جدران مصطلحات، لا متطلبات مسبقة.</p>
     </div>
     <div class="vision-card fade-up stagger-6">
-      <div class="vision-icon" style="background: rgba(232,168,56,0.1);">
-        <svg viewBox="0 0 24 24" stroke="var(--amber)" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      <div class="vision-icon bg-amber">
+        <svg viewBox="0 0 24 24" stroke="var(--amber)" stroke-linecap="round" aria-hidden="true"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
       </div>
       <h3>مُنشأ بالذكاء الاصطناعي، مُراجَع بشريًا</h3>
       <p>المحتوى مُنشأ بنموذج Claude Opus من Anthropic ومُراجَع بعناية من قبل مهندسين. نجمع بين سرعة الذكاء الاصطناعي وخبرة البشر لمحتوى دقيق ومحدّث.</p>

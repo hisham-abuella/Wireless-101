@@ -79,6 +79,26 @@ body::after {
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 10000;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 /* ── Focus ── */
 a:focus-visible,
 button:focus-visible,
@@ -180,7 +200,7 @@ section { padding: 6rem 2rem; }
 }
 
 .nav-logo img {
-  height: 34px;
+  height: 44px;
   width: auto;
 }
 
@@ -415,7 +435,7 @@ section { padding: 6rem 2rem; }
 }
 
 .footer-brand-name img {
-  height: 28px;
+  height: 36px;
   width: auto;
 }
 
