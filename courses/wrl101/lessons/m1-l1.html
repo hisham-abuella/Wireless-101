@@ -622,7 +622,7 @@
   margin: 1.75rem 0;
   padding: 1.5rem 1.25rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, #f8f6f1 0%, #f0ece4 100%);
+  background: linear-gradient(135deg, var(--surface) 0%, var(--paper) 100%);
   border: 1px solid rgba(0,0,0,0.06);
   position: relative;
   overflow: hidden;
@@ -635,7 +635,7 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background: var(--amber, #d4a24a);
+  background: var(--amber);
   border-radius: 3px 0 0 3px;
 }
 
@@ -645,7 +645,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--amber, #d4a24a);
+  color: var(--amber);
   margin-bottom: 0.85rem;
   display: flex;
   align-items: center;
@@ -655,7 +655,7 @@
 .equation-block-label svg {
   width: 13px;
   height: 13px;
-  stroke: var(--amber, #d4a24a);
+  stroke: var(--amber);
   fill: none;
   stroke-width: 2;
   stroke-linecap: round;
@@ -667,7 +667,7 @@
 
 .equation-block .katex {
   font-size: 1.2em;
-  color: #1a1a1a;
+  color: var(--text);
 }
 
 .equation-block-caption {
