@@ -671,6 +671,10 @@
       <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
       قراءة
     </div>
+    <a href="m1-l1-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+      وضع القصص
+    </a>
 
     <h1 class="fade-up stagger-2">تاريخ موجز للاتصالات اللاسلكية</h1>
 
@@ -860,30 +864,131 @@
   </div>
 </div>
 
-<!-- Audio Toggle -->
-<div style="position:fixed;bottom:2rem;left:2rem;z-index:999;">
-  <button id="audioToggle" style="width:52px;height:52px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,27,45,0.25);transition:all 0.3s;" title="تشغيل السرد الصوتي">
+<!-- Audio Player -->
+<div id="audioPlayer" style="position:fixed;bottom:2rem;left:2rem;z-index:999;display:flex;align-items:center;gap:0.5rem;">
+  <button id="audioToggle" style="width:52px;height:52px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,27,45,0.25);transition:all 0.3s;" title="استمع للسرد الصوتي">
     <svg id="audioIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
       <path d="M15.54 8.46a5 5 0 010 7.07"/>
       <path d="M19.07 4.93a10 10 0 010 14.14"/>
     </svg>
   </button>
+  <div id="audioPanel" style="display:none;background:var(--ink);border-radius:16px;padding:0.5rem 0.75rem;box-shadow:0 4px 20px rgba(15,27,45,0.35);align-items:center;gap:0.5rem;">
+    <button id="closeAudio" style="width:28px;height:28px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="إغلاق">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+    <div style="color:var(--cream);font-family:var(--font-mono);font-size:0.65rem;min-width:60px;text-align:center;">
+      <span id="trackInfo">1 / 14</span>
+    </div>
+    <button id="nextBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="التالي">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M19 20L9 12l10-8v16z"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
+    </button>
+    <button id="playBtn" style="width:36px;height:36px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="تشغيل/إيقاف">
+      <svg id="playSvg" width="16" height="16" viewBox="0 0 24 24" fill="var(--ink)" stroke="none"><polygon id="playShape" points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <button id="prevBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="السابق">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M5 4l10 8-10 8V4z"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
+    </button>
+  </div>
 </div>
 <audio id="lessonAudio" preload="none"></audio>
 
 <script>
-/* Audio narration toggle — loads WAV files from /audio/ar/wrl101/ */
-const audioToggle = document.getElementById('audioToggle');
-const audioEl = document.getElementById('lessonAudio');
-let audioEnabled = false;
+(function() {
+  var AUDIO_BASE = '../../../../audio/ar/wrl101/m1-l1/';
+  var TRACKS = [
+    's1-intro','s2-maxwell','s3-hertz','s4-marconi','s5-maritime',
+    's6-radio-era','s7-fm-radar','s8-1g','s9-2g','s10-3g',
+    's11-4g','s12-5g','s13-patterns','s14-summary'
+  ];
 
-audioToggle.addEventListener('click', () => {
-  audioEnabled = !audioEnabled;
-  audioToggle.style.background = audioEnabled ? 'var(--amber)' : 'var(--ink)';
-  document.getElementById('audioIcon').setAttribute('stroke', audioEnabled ? 'var(--ink)' : '#e8a838');
-  if (!audioEnabled && !audioEl.paused) audioEl.pause();
-});
+  var audioEl = document.getElementById('lessonAudio');
+  var panel = document.getElementById('audioPanel');
+  var toggleBtn = document.getElementById('audioToggle');
+  var playBtn = document.getElementById('playBtn');
+  var playShape = document.getElementById('playShape');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var closeBtn = document.getElementById('closeAudio');
+  var trackInfo = document.getElementById('trackInfo');
+  var audioIcon = document.getElementById('audioIcon');
+
+  var current = 0;
+  var panelOpen = false;
+
+  function loadTrack(i) {
+    current = i;
+    audioEl.src = AUDIO_BASE + TRACKS[i] + '.mp3';
+    trackInfo.textContent = (i + 1) + ' / ' + TRACKS.length;
+  }
+
+  function setPauseIcon() {
+    playShape.setAttribute('points', '6 4 10 4 10 20 6 20');
+    var r2 = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    r2.setAttribute('points', '14 4 18 4 18 20 14 20');
+    r2.setAttribute('fill', 'var(--ink)');
+    r2.id = 'playShape2';
+    playShape.parentNode.appendChild(r2);
+  }
+
+  function setPlayIconShape() {
+    playShape.setAttribute('points', '5 3 19 12 5 21 5 3');
+    var r2 = document.getElementById('playShape2');
+    if (r2) r2.remove();
+  }
+
+  function setPlaying(playing) {
+    if (playing) { setPauseIcon(); } else { setPlayIconShape(); }
+  }
+
+  toggleBtn.addEventListener('click', function() {
+    if (!panelOpen) {
+      panel.style.display = 'flex';
+      panelOpen = true;
+      toggleBtn.style.background = 'var(--amber)';
+      audioIcon.setAttribute('stroke', 'var(--ink)');
+      loadTrack(0);
+      audioEl.play();
+      setPlaying(true);
+    } else {
+      if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+      else { audioEl.pause(); setPlaying(false); }
+    }
+  });
+
+  playBtn.addEventListener('click', function() {
+    if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+    else { audioEl.pause(); setPlaying(false); }
+  });
+
+  prevBtn.addEventListener('click', function() {
+    if (current > 0) { loadTrack(current - 1); audioEl.play(); setPlaying(true); }
+  });
+
+  nextBtn.addEventListener('click', function() {
+    if (current < TRACKS.length - 1) { loadTrack(current + 1); audioEl.play(); setPlaying(true); }
+  });
+
+  closeBtn.addEventListener('click', function() {
+    audioEl.pause();
+    audioEl.removeAttribute('src');
+    panel.style.display = 'none';
+    panelOpen = false;
+    toggleBtn.style.background = 'var(--ink)';
+    audioIcon.setAttribute('stroke', '#e8a838');
+    setPlaying(false);
+    current = 0;
+  });
+
+  audioEl.addEventListener('ended', function() {
+    if (current < TRACKS.length - 1) {
+      loadTrack(current + 1);
+      audioEl.play();
+    } else {
+      setPlaying(false);
+    }
+  });
+})();
 </script>
 
 <!-- Footer -->

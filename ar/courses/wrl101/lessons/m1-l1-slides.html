@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تاريخ موجز للاتصالات اللاسلكية — قصص | Wireless 101</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Libre+Franklin:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #0f1b2d;
+  --ink-light: #1a2d4a;
+  --amber: #e8a838;
+  --amber-hot: #f5b731;
+  --cream: #faf8f4;
+  --paper: #f4f1eb;
+  --sage: #7c9a8e;
+  --text: #1a1a1a;
+  --text-muted: #52596b;
+  --text-dim: #8b92a5;
+  --font-display: 'Noto Sans Arabic', 'Bricolage Grotesque', serif;
+  --font-body: 'Noto Sans Arabic', 'Libre Franklin', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  font-family: var(--font-body);
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══ Story container ══ */
+.story-container {
+  width: 100vw;
+  height: 100vh;
+  max-width: 480px;
+  max-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+@media (min-width: 481px) and (min-height: 700px) {
+  .story-container {
+    max-height: 90vh;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+}
+
+@media (min-width: 768px) {
+  .story-container { max-width: 520px; }
+}
+
+@media (min-width: 1200px) {
+  .story-container { max-width: 560px; }
+}
+
+/* ══ Progress bar ══ */
+.story-progress {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: 3px;
+  z-index: 10;
+  direction: ltr;
+}
+
+.story-progress-bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.story-progress-bar.completed .story-progress-fill { width: 100%; }
+.story-progress-bar.active .story-progress-fill { width: 0; transition: none; }
+
+.story-progress-fill {
+  height: 100%;
+  background: var(--amber);
+  border-radius: 3px;
+  width: 0;
+}
+
+/* ══ Slide frame ══ */
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 2rem 2rem;
+}
+
+.slide.active { display: flex; }
+
+@media (min-width: 481px) {
+  .slide { padding: 3.5rem 2.5rem 2.5rem; }
+}
+
+@media (min-width: 768px) {
+  .slide { padding: 3.5rem 3rem 2.5rem; }
+}
+
+.slide--dark { background: var(--ink); color: var(--cream); }
+.slide--light { background: var(--cream); color: var(--ink); }
+.slide--amber { background: linear-gradient(160deg, var(--amber), #d4911a); color: var(--ink); }
+.slide--gradient { background: linear-gradient(160deg, var(--ink) 0%, var(--ink-light) 60%, #1d3a5c 100%); color: var(--cream); }
+
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+.slide-top { position: relative; z-index: 1; margin-top: 1rem; }
+
+.slide-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.slide-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+.slide--amber .slide-brand-dot { background: var(--ink); }
+
+.slide-brand-name {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.slide-module-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+  direction: ltr;
+  text-align: right;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-concept-num {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  opacity: 0.5;
+}
+
+.slide-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 481px) {
+  .slide-title { font-size: 1.8rem; }
+  .slide-body { font-size: 0.92rem; }
+  .slide-bullets li { font-size: 0.88rem; }
+  .slide-concept-num { font-size: 0.75rem; }
+  .slide-fact-value { font-size: 1.05rem; }
+  .slide-formula { font-size: 1.2rem; }
+  .slide-visual { padding: 1.25rem; }
+  .slide-fact-item { padding: 1rem; }
+}
+
+.slide-title em { font-style: normal; color: var(--amber); }
+.slide--amber .slide-title em { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.slide--light .slide-title em { color: var(--amber); }
+
+.slide-body { font-size: 0.82rem; line-height: 1.8; opacity: 0.8; }
+.slide-body strong { opacity: 1; font-weight: 600; }
+
+.slide-visual {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border-radius: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.slide--dark .slide-visual,
+.slide--gradient .slide-visual { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+.slide--light .slide-visual { background: var(--paper); border: 1px solid #e2dfd8; color: var(--ink); }
+.slide--amber .slide-visual { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.15); }
+
+.slide-visual-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  opacity: 0.4;
+  margin-bottom: 0.5rem;
+}
+
+.slide-formula { font-size: 1.1rem; font-weight: 500; }
+
+.slide-fact { display: flex; gap: 0.75rem; margin-top: 1rem; }
+.slide-fact-item { flex: 1; padding: 0.75rem; border-radius: 12px; }
+.slide--dark .slide-fact-item,
+.slide--gradient .slide-fact-item { background: rgba(255,255,255,0.05); }
+.slide--light .slide-fact-item { background: var(--paper); }
+
+.slide-fact-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  opacity: 0.45;
+  margin-bottom: 0.25rem;
+}
+
+.slide-fact-value {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.slide-bullets { list-style: none; margin-top: 0.75rem; }
+
+.slide-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.slide-bullets li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+.slide--amber .slide-bullets li::before { background: var(--ink); }
+
+.slide-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slide-page {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  opacity: 0.4;
+  direction: ltr;
+}
+
+.slide-deco-circle { position: absolute; border-radius: 50%; z-index: 0; }
+.slide-deco-1 { width: 180px; height: 180px; top: -40px; left: -40px; border: 1px solid rgba(255,255,255,0.05); }
+.slide--light .slide-deco-1 { border-color: rgba(0,0,0,0.04); }
+.slide-deco-2 { width: 100px; height: 100px; bottom: 80px; right: -30px; background: rgba(232,168,56,0.06); }
+
+.story-nav { position: absolute; top: 0; bottom: 0; width: 30%; z-index: 5; cursor: pointer; }
+.story-nav--prev { right: 0; }
+.story-nav--next { left: 0; }
+
+.audio-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 10;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.audio-indicator:hover { background: rgba(255,255,255,0.2); }
+
+.audio-bars { display: flex; gap: 2px; align-items: flex-end; height: 14px; }
+
+.audio-bars span { width: 3px; background: var(--amber); border-radius: 2px; transition: height 0.2s; }
+
+.audio-bars.playing span:nth-child(1) { animation: bar1 0.6s ease-in-out infinite; }
+.audio-bars.playing span:nth-child(2) { animation: bar2 0.5s ease-in-out infinite 0.1s; }
+.audio-bars.playing span:nth-child(3) { animation: bar3 0.7s ease-in-out infinite 0.2s; }
+.audio-bars.playing span:nth-child(4) { animation: bar4 0.55s ease-in-out infinite 0.05s; }
+
+.audio-bars:not(.playing) span { height: 4px; }
+
+@keyframes bar1 { 0%,100% { height: 4px; } 50% { height: 14px; } }
+@keyframes bar2 { 0%,100% { height: 6px; } 50% { height: 10px; } }
+@keyframes bar3 { 0%,100% { height: 3px; } 50% { height: 12px; } }
+@keyframes bar4 { 0%,100% { height: 5px; } 50% { height: 8px; } }
+
+.story-back {
+  position: absolute;
+  top: 28px;
+  left: 16px;
+  z-index: 10;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.story-back:hover { color: var(--amber); }
+
+@media (max-width: 360px) {
+  .slide-title { font-size: 1.3rem; }
+  .slide-body { font-size: 0.78rem; }
+  .slide-bullets li { font-size: 0.76rem; }
+  .slide { padding: 2.5rem 1.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="story-container">
+
+  <div class="story-progress" id="progressBar"></div>
+
+  <a href="m1-l1.html" class="story-back">&larr; اقرأ</a>
+
+  <div class="story-nav story-nav--prev" id="navPrev"></div>
+  <div class="story-nav story-nav--next" id="navNext"></div>
+
+  <button class="audio-indicator" id="audioBtn" title="تشغيل/إيقاف الصوت">
+    <div class="audio-bars" id="audioBars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </button>
+
+  <!-- SLIDE 1: مقدمة (Dark) -->
+  <div class="slide slide--dark" data-audio="s1-intro">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">مقدمة</div>
+      <h2 class="slide-title">تاريخ موجز للاتصالات <em>اللاسلكية</em></h2>
+      <p class="slide-body">هل يمكن إرسال المعلومات عبر الهواء، دون أسلاك؟ الإجابة بدأت من <strong>الرياضيات</strong>. دعنا نتتبع المعالم الرئيسية.</p>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">1 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: ماكسويل (Light) -->
+  <div class="slide slide--light" data-audio="s2-maxwell">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">١٨٦٥</div>
+      <h2 class="slide-title">تنبؤ <em>ماكسويل</em></h2>
+      <p class="slide-body">قدّم جيمس كلارك ماكسويل معادلاته التي تنبأت بوجود الموجات الكهرومغناطيسية. أثبت أن <strong>الضوء نفسه</strong> موجة كهرومغناطيسية.</p>
+      <div class="slide-visual">
+        <div class="slide-visual-label">الاكتشاف الرئيسي</div>
+        <div class="slide-formula" style="font-size:0.8rem;line-height:1.8;font-family:var(--font-body)">
+          مجال كهربائي متغير &rarr; مجال مغناطيسي<br>
+          = موجة ذاتية الانتشار
+        </div>
+      </div>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">2 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: هيرتز (Gradient) -->
+  <div class="slide slide--gradient" data-audio="s3-hertz">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">١٨٨٧</div>
+      <h2 class="slide-title">إثبات <em>هيرتز</em></h2>
+      <p class="slide-body">نجح هاينريش هيرتز في توليد الموجات الكهرومغناطيسية والكشف عنها تجريبيًا. أثبت أنها تتصرف تمامًا كما تنبأ ماكسويل.</p>
+      <div class="slide-fact">
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">الإرث</div>
+          <div class="slide-fact-value" style="direction:ltr;text-align:right">Hz</div>
+        </div>
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">أثبت</div>
+          <div class="slide-fact-value">الانعكاس والانكسار والاستقطاب</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">3 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: ماركوني (Amber) -->
+  <div class="slide slide--amber" data-audio="s4-marconi">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">١٨٩٥ &ndash; ١٩٠١</div>
+      <h2 class="slide-title">إرسال <em>ماركوني</em> الأول</h2>
+      <p class="slide-body">أول إشارة لاسلكية عابرة للأطلسي &mdash; من كورنوول إلى نيوفاوندلاند، على مسافة <strong>٣,٤٠٠ كم</strong>.</p>
+      <div class="slide-fact">
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">من</div>
+          <div class="slide-fact-value">كورنوول، إنجلترا</div>
+        </div>
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">إلى</div>
+          <div class="slide-fact-value">نيوفاوندلاند، كندا</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">4 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: البحرية (Dark) -->
+  <div class="slide slide--dark" data-audio="s5-maritime">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">تطبيقات مبكرة</div>
+      <h2 class="slide-title">التطبيقات <em>البحرية</em> والعسكرية</h2>
+      <p class="slide-body">أصبح الراديو شريان حياة للسفن. كان دوره حاسمًا في إنقاذ الأرواح أثناء كارثة <strong>تيتانيك</strong> عام ١٩١٢.</p>
+      <div class="slide-fact">
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">بحري</div>
+          <div class="slide-fact-value">إنقاذ الأرواح</div>
+        </div>
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">عسكري</div>
+          <div class="slide-fact-value">اتصالات ساحة المعركة</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">5 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: البث الإذاعي (Light) -->
+  <div class="slide slide--light" data-audio="s6-radio-era">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">العشرينيات</div>
+      <h2 class="slide-title">عصر <em>البث الإذاعي</em></h2>
+      <p class="slide-body">انطلق بث الراديو ليصل إلى ملايين المنازل. لأول مرة، دخلت الموسيقى والأخبار والترفيه إلى المنازل عبر <strong>موجات الهواء</strong>.</p>
+      <div class="slide-visual">
+        <div class="slide-visual-label">التقنية</div>
+        <div class="slide-formula" style="font-size:0.8rem;line-height:1.8;font-family:var(--font-body)">
+          تعديل السعة (AM)<br>
+          بسيط وفعّال، لكنه عرضة للتشويش
+        </div>
+      </div>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">6 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: FM والرادار (Gradient) -->
+  <div class="slide slide--gradient" data-audio="s7-fm-radar">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">الثلاثينيات - الأربعينيات</div>
+      <h2 class="slide-title">راديو FM و<em>الرادار</em></h2>
+      <p class="slide-body">تعديل التردد قدّم جودة صوت أفضل. الحرب العالمية الثانية دفعت تطوير <strong>الرادار</strong> للكشف عن الطائرات والسفن.</p>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">7 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: الجيل الأول (Dark) -->
+  <div class="slide slide--dark" data-audio="s8-1g">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">السبعينيات - الثمانينيات</div>
+      <h2 class="slide-title">الجيل الأول &mdash; <em>الهاتف المحمول</em></h2>
+      <p class="slide-body">شبكات تناظرية تتيح إجراء مكالمات أثناء التنقل. الأجهزة كانت ضخمة ومكلفة.</p>
+      <div class="slide-fact">
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">الوزن</div>
+          <div class="slide-fact-value">~١ كغ</div>
+        </div>
+        <div class="slide-fact-item">
+          <div class="slide-fact-label">البطارية</div>
+          <div class="slide-fact-value">٣٠ دقيقة</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">8 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: 2G (Amber) -->
+  <div class="slide slide--amber" data-audio="s9-2g">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">التسعينيات</div>
+      <h2 class="slide-title">الجيل الثاني &mdash; <em>الرقمية</em></h2>
+      <p class="slide-body">معيار GSM حوّل الشبكات من تناظرية إلى رقمية. ولادة الرسائل النصية القصيرة.</p>
+      <ul class="slide-bullets">
+        <li>رسائل SMS لأول مرة</li>
+        <li>تشفير المكالمات</li>
+        <li>انتشار عالمي واسع</li>
+      </ul>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">9 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: 3G (Light) -->
+  <div class="slide slide--light" data-audio="s10-3g">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">الألفية الجديدة</div>
+      <h2 class="slide-title">الجيل الثالث &mdash; <em>الإنترنت المحمول</em></h2>
+      <p class="slide-body">تصفح الإنترنت والبريد الإلكتروني والتطبيقات من هاتفك. الأساس لثورة <strong>الهواتف الذكية</strong>.</p>
+      <ul class="slide-bullets">
+        <li>تصفح الويب من الهاتف</li>
+        <li>البريد الإلكتروني أثناء التنقل</li>
+        <li>تطبيقات وبث بسيط</li>
+        <li>مهّد الطريق للهواتف الذكية</li>
+      </ul>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">10 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: 4G (Gradient) -->
+  <div class="slide slide--gradient" data-audio="s11-4g">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">العقد الثاني</div>
+      <h2 class="slide-title">الجيل الرابع &mdash; <em>عصر الفيديو</em></h2>
+      <p class="slide-body">سرعات عالية لبث الفيديو والتطبيقات المتقدمة. الهواتف الذكية في كل مكان.</p>
+      <ul class="slide-bullets">
+        <li><strong>نتفليكس</strong> أثناء التنقل</li>
+        <li><strong>أوبر</strong> والنقل الذكي</li>
+        <li><strong>إنستغرام</strong> ووسائل التواصل</li>
+      </ul>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">11 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: 5G (Amber) -->
+  <div class="slide slide--amber" data-audio="s12-5g">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; Lesson 01</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">اليوم وما بعده</div>
+      <h2 class="slide-title">الجيل <em>الخامس</em> وما بعده</h2>
+      <p class="slide-body">سرعات فائقة وزمن استجابة شبه معدوم.</p>
+      <ul class="slide-bullets">
+        <li>سيارات ذاتية القيادة</li>
+        <li>جراحة عن بُعد</li>
+        <li>إنترنت الأشياء</li>
+        <li>الجيل السادس قادم (~٢٠٣٠)</li>
+      </ul>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">12 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: أنماط (Gradient) -->
+  <div class="slide slide--gradient" data-audio="s13-patterns">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; النقاط الرئيسية</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">أنماط</div>
+      <h2 class="slide-title">الأنماط <em>المشتركة</em></h2>
+      <ul class="slide-bullets">
+        <li><strong>النظرية تسبق التطبيق</strong> &mdash; ماكسويل جاء قبل ٣٠ عامًا من الراديو</li>
+        <li><strong>كل جيل يبني</strong> على ما سبقه</li>
+        <li><strong>الطيف مورد نادر</strong> &mdash; المشاركة الذكية ضرورية</li>
+        <li><strong>الرقمي يتفوق</strong> &mdash; 1G إلى 2G كانت أكبر قفزة</li>
+      </ul>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">13 / 14</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 14: خلاصة (Dark) -->
+  <div class="slide slide--dark" data-audio="s14-summary">
+    <div class="slide-deco-circle slide-deco-1"></div>
+    <div class="slide-deco-circle slide-deco-2"></div>
+    <div class="slide-top">
+      <div class="slide-brand">
+        <div class="slide-brand-dot"></div>
+        <div class="slide-brand-name">Wireless 101</div>
+      </div>
+      <div class="slide-module-tag">Module 01 &middot; الخلاصة</div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-concept-num">الخلاصة</div>
+      <h2 class="slide-title">ماذا <em>تعلمت</em></h2>
+      <p class="slide-body">من معادلات ماكسويل (١٨٦٥) إلى خمسة أجيال من الشبكات الخلوية &mdash; نفس الموجات الكهرومغناطيسية تنقل بياناتك الآن.</p>
+      <div class="slide-visual" style="margin-top:1.25rem;text-align:center">
+        <div class="slide-visual-label">الدرس التالي</div>
+        <div class="slide-formula" style="font-size:0.85rem;font-family:var(--font-body)">&larr; الطيف الكهرومغناطيسي</div>
+      </div>
+    </div>
+    <div class="slide-bottom">
+      <div class="slide-page">14 / 14</div>
+    </div>
+  </div>
+
+</div>
+
+<audio id="lessonAudio" preload="none"></audio>
+
+<script>
+(function() {
+  var AUDIO_BASE = '../../../../audio/ar/wrl101/m1-l1/';
+  var slides = document.querySelectorAll('.slide');
+  var progressBar = document.getElementById('progressBar');
+  var audioEl = document.getElementById('lessonAudio');
+  var audioBtn = document.getElementById('audioBtn');
+  var audioBars = document.getElementById('audioBars');
+  var current = 0;
+  var audioMuted = false;
+  var progressTimers = [];
+
+  for (var i = 0; i < slides.length; i++) {
+    var bar = document.createElement('div');
+    bar.className = 'story-progress-bar';
+    var fill = document.createElement('div');
+    fill.className = 'story-progress-fill';
+    bar.appendChild(fill);
+    progressBar.appendChild(bar);
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= slides.length) return;
+    progressTimers.forEach(function(t) { clearInterval(t); });
+    progressTimers = [];
+    current = index;
+
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].classList.toggle('active', i === current);
+    }
+
+    var bars = progressBar.children;
+    for (var i = 0; i < bars.length; i++) {
+      bars[i].classList.remove('active', 'completed');
+      bars[i].querySelector('.story-progress-fill').style.width = '0';
+      if (i < current) {
+        bars[i].classList.add('completed');
+        bars[i].querySelector('.story-progress-fill').style.width = '100%';
+      }
+    }
+
+    bars[current].classList.add('active');
+
+    if (!audioMuted) {
+      var trackId = slides[current].getAttribute('data-audio');
+      audioEl.src = AUDIO_BASE + trackId + '.mp3';
+      audioEl.play().then(function() {
+        audioBars.classList.add('playing');
+        startProgress(bars[current], audioEl.duration);
+      }).catch(function() {
+        audioBars.classList.remove('playing');
+        startProgress(bars[current], 8);
+      });
+    } else {
+      startProgress(bars[current], 8);
+    }
+  }
+
+  function startProgress(bar, duration) {
+    var fill = bar.querySelector('.story-progress-fill');
+    fill.style.transition = 'none';
+    fill.style.width = '0';
+    fill.offsetWidth;
+    fill.style.transition = 'width ' + duration + 's linear';
+    fill.style.width = '100%';
+  }
+
+  audioEl.addEventListener('ended', function() {
+    audioBars.classList.remove('playing');
+    if (current < slides.length - 1) {
+      setTimeout(function() { goTo(current + 1); }, 300);
+    }
+  });
+
+  audioEl.addEventListener('error', function() {
+    audioBars.classList.remove('playing');
+  });
+
+  document.getElementById('navPrev').addEventListener('click', function() { goTo(current - 1); });
+  document.getElementById('navNext').addEventListener('click', function() { goTo(current + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'm') {
+      audioMuted = !audioMuted;
+      if (audioMuted) { audioEl.pause(); audioBars.classList.remove('playing'); }
+      else { goTo(current); }
+    }
+  });
+
+  var touchStartX = 0;
+  var container = document.querySelector('.story-container');
+  container.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  container.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) {
+      if (dx > 0) goTo(current + 1);
+      else goTo(current - 1);
+    }
+  }, { passive: true });
+
+  audioBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    audioMuted = !audioMuted;
+    if (audioMuted) { audioEl.pause(); audioBars.classList.remove('playing'); }
+    else { goTo(current); }
+  });
+
+  goTo(0);
+})();
+</script>
+
+<script data-goatcounter="https://wireless-101.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
