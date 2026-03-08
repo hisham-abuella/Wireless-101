@@ -3,9 +3,6 @@
 .env.*
 *.key
 
-# Generated audio files (large binaries)
-audio/**/*.mp3
-audio/**/*.wav
 
 # OS files
 .DS_Store
