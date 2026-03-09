@@ -92,7 +92,11 @@ renderEquations();
 - Style: gradient background, 3px amber left border, rounded corners
 
 ## Arabic / RTL Content
+
+> **⚠️ CRITICAL: EN and AR pages MUST be identical in design. The ONLY difference is translated text. Any design change, CSS fix, or layout update MUST be applied to BOTH English and Arabic versions. Never make a change to one without the other — unless the user explicitly asks for a language-specific change.**
+
 - **File-based i18n** — separate HTML files per language, NOT string interpolation
+- **Design parity** — EN and AR share `landing.css` and `theme.css`. Do NOT add different font sizes, line-heights, max-widths, or layout changes to one language only. Arabic typography adjustments (if any) go in `theme-rtl.css` with `html[dir="rtl"]` prefix
 - Arabic pages: `<html lang="ar" dir="rtl">` + load `theme-rtl.css` after `theme.css`
 - RTL overrides use `html[dir="rtl"]` selector prefix
 - Key reversals: flex-direction, margins, arrow SVGs (`scaleX(-1)`)
@@ -102,7 +106,7 @@ renderEquations();
 
 ## Story Slides
 
-Full-screen, audio-driven, mobile-first story format — each lesson article has a companion `-slides.html` file. Self-contained pages with all CSS/JS inline.
+Full-screen, audio-driven, mobile-first story format — each lesson article has a companion `-slides.html` file. Self-contained pages with all CSS/JS inline. **Story slides are the default entry point** — course overview pages link to `-slides.html`, not article pages.
 
 **Slide anatomy:** `.story` container → `.progress` bar + `.ctrl` controls + `.nav-arrows` + multiple `.s` slides stacked via absolute positioning. Only the `.on` slide is visible.
 
@@ -158,6 +162,7 @@ Every page includes:
 - Don't introduce build tools, bundlers, or frameworks
 - Don't use Tailwind or CSS-in-JS — use the design system in `theme.css`
 - Don't duplicate assets between EN/AR — only text content differs
+- **Don't make design changes to only one language** — every change must apply to both EN and AR unless user explicitly requests otherwise
 - Don't hardcode colors — use CSS custom properties
 - Don't skip the grain overlay or entrance animations
 - Don't use `margin-left`/`margin-right` in shared CSS when `margin-inline` works

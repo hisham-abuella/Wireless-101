@@ -13,7 +13,7 @@
 - [x] **Extract inline course header colors to CSS classes** — `.course-header.green/.purple/.blue`. Location: `index.html` + `ar/index.html`
 - [x] **Extract inline course topic dot colors** — `.green-dot`, `.purple-dot`, `.blue-dot`. Location: `index.html` + `ar/index.html`
 - [x] **Extract vision icon backgrounds** — `.vision-icon.bg-amber/.bg-green/.bg-purple/.bg-blue/.bg-ink`. Location: `index.html` + `ar/index.html`
-- [ ] **Extract shared landing page CSS** — Arabic `ar/index.html` duplicates ~250 lines of CSS. Create `landing.css` shared by both. Location: both landing pages
+- [x] **Extract shared landing page CSS** — Both pages now link to shared `landing.css`. EN has ~12 lines of inline overrides, AR has ~35 lines. Location: both landing pages
 - [x] **Add missing RTL override for lesson timeline** — Added to `theme-rtl.css`
 - [x] **Add RTL override for `.origin-quote`** — Added to `theme-rtl.css`
 - [x] **Fix Arabic module body padding on mobile** — Fixed in `theme-rtl.css`
@@ -29,7 +29,7 @@
 
 ## Priority 4: Accessibility
 
-- [ ] **Add `lang="en"` to English text in Arabic pages** — Course codes like "WRL-101" need `<span lang="en">` for screen readers
+- [x] **Add `lang="en"` to English text in Arabic pages** — Added to course codes, tech terms (GSM, LTE, 5G, FDMA, etc.) across AR pages
 - [x] **Add skip-to-content link** — Added to EN + AR landing pages
 - [x] **Add `aria-hidden="true"` to decorative SVGs** — Added to vision card icons (EN + AR)
 

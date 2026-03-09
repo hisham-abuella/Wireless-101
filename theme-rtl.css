@@ -190,6 +190,22 @@ html[dir="rtl"] .origin-quote {
   padding-right: 1rem;
 }
 
+/* ── Landing page position flips ── */
+html[dir="rtl"] .course-header::after {
+  right: auto;
+  left: -40px;
+}
+
+html[dir="rtl"] .cta-box::before {
+  right: auto;
+  left: -80px;
+}
+
+html[dir="rtl"] .cta-box::after {
+  left: auto;
+  right: -60px;
+}
+
 /* ── Lesson timeline ── */
 html[dir="rtl"] .timeline-track {
   padding-left: 0;
@@ -220,9 +236,6 @@ html[dir="rtl"] .timeline-dot {
     justify-content: center;
   }
 
-  html[dir="rtl"] .hero-social-proof {
-    justify-content: center;
-  }
 }
 
 @media (max-width: 768px) {

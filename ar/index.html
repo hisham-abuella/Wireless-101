@@ -6,261 +6,20 @@
 <title>Wireless 101 — تعلم الاتصالات اللاسلكية ومعالجة الإشارات</title>
 <link rel="stylesheet" href="../theme.css">
 <link rel="stylesheet" href="../theme-rtl.css">
+<link rel="stylesheet" href="../landing.css">
 <style>
-/* ══ Landing page styles (same as EN) ══ */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 4rem;
-  padding: 8rem 2rem 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-}
-
+/* AR-specific: only mirrored positions for RTL hero */
 .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
-  background-size: 32px 32px;
   mask-image: radial-gradient(ellipse 70% 60% at 35% 50%, black 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 35% 50%, black 20%, transparent 70%);
-  opacity: 0.5;
-  pointer-events: none;
 }
-
-.hero-text { position: relative; z-index: 1; }
-
-.hero-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--amber);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: var(--amber);
-  border-radius: 50%;
-  animation: pulse-beacon 2.5s ease-in-out infinite;
-}
-
-@keyframes pulse-beacon {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232, 168, 56, 0.4); }
-  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(232, 168, 56, 0); }
-}
-
-.hero-text h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.25;
-  color: var(--ink);
-  margin-bottom: 1.5rem;
-}
-
-.hero-text h1 em {
-  font-style: normal;
-  color: var(--amber);
-  position: relative;
-}
-
-.hero-text h1 em::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--amber);
-  opacity: 0.25;
-  border-radius: 2px;
-}
-
-.hero-text p {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  max-width: 480px;
-  line-height: 1.85;
-  margin-bottom: 2.25rem;
-}
-
-.hero-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3rem; }
-
-.hero-visual {
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-  height: 460px; z-index: 1;
-}
-
-.hero-visual-orbit {
-  width: 360px; height: 360px; border-radius: 50%;
-  border: 1px dashed var(--border); position: absolute;
-  animation: orbit-spin 60s linear infinite;
-}
-
-@keyframes orbit-spin { to { transform: rotate(360deg); } }
-
-.hero-visual-orbit::before {
-  content: ''; position: absolute; top: -5px; left: 50%;
-  width: 10px; height: 10px; background: var(--amber);
-  border-radius: 50%; box-shadow: 0 0 12px rgba(232, 168, 56, 0.4);
-}
-
-.hero-visual-orbit-2 {
-  width: 260px; height: 260px; border-radius: 50%;
-  border: 1px dashed var(--border-light); position: absolute;
-  animation: orbit-spin 40s linear infinite reverse;
-}
-
-.hero-visual-orbit-2::before {
-  content: ''; position: absolute; bottom: -4px; right: 20%;
-  width: 8px; height: 8px; background: var(--sage); border-radius: 50%;
-}
-
-.hero-visual-center {
-  position: relative; z-index: 2;
-  width: 100px; height: 100px; background: var(--ink);
-  border-radius: 28px; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 16px 48px rgba(15, 27, 45, 0.2);
-}
-
-.hero-visual-center svg { width: 48px; height: 48px; stroke: var(--amber); fill: none; stroke-width: 1.8; }
-
-.hero-float { position: absolute; border-radius: 14px; z-index: 1; }
-.hero-float-1 { width: 56px; height: 56px; background: var(--amber); top: 50px; left: 20px; border-radius: 16px; animation: float-a 7s ease-in-out infinite; opacity: 0.9; box-shadow: 0 8px 24px rgba(232,168,56,0.25); }
-.hero-float-2 { width: 36px; height: 36px; background: var(--sage); bottom: 70px; right: 10px; border-radius: 50%; animation: float-b 8s ease-in-out infinite; opacity: 0.3; }
-.hero-float-3 { width: 44px; height: 44px; background: var(--amber-pale); border: 1px solid rgba(232,168,56,0.15); bottom: 50px; left: 50px; border-radius: 12px; animation: float-a 9s ease-in-out infinite reverse; }
-.hero-float-4 { width: 24px; height: 24px; background: var(--ink); top: 100px; right: 40px; border-radius: 8px; animation: float-b 6s ease-in-out infinite; opacity: 0.08; }
-
-@keyframes float-a { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-18px) rotate(4deg); } }
-@keyframes float-b { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(14px) translateX(10px); } }
-
-/* Why We Started */
-.origin-section { max-width: 960px; margin: 0 auto; }
-.origin-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--white); border: 1px solid var(--border-light); border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-xs); }
-.origin-image { width: 100%; height: 100%; object-fit: cover; min-height: 360px; }
-.origin-content { padding: 2.5rem 0 2.5rem 2.5rem; }
-.origin-content h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--ink); margin-bottom: 1rem; line-height: 1.4; }
-.origin-content h3 em { font-style: normal; color: var(--amber); }
-.origin-quote { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.5rem; padding-right: 1rem; border-right: 3px solid var(--amber); border-left: none; }
-.origin-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.5rem; }
-.origin-author { display: flex; align-items: center; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid var(--border-light); }
-.origin-author-avatar { width: 40px; height: 40px; border-radius: 12px; background: var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; color: var(--cream); }
-.origin-author-name { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; color: var(--ink); }
-.origin-author-role { font-size: 0.75rem; color: var(--text-tertiary); }
-
-@media (max-width: 768px) {
-  .origin-card { grid-template-columns: 1fr; }
-  .origin-image { min-height: 220px; }
-  .origin-content { padding: 2rem; }
-}
-
-/* Courses */
-.courses { background: var(--paper); }
-.courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; max-width: 1140px; margin: 0 auto; }
-.course-card { background: var(--white); border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--border-light); box-shadow: var(--shadow-xs); transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-.course-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: var(--border); }
-.course-header { padding: 1.75rem 2rem 1.5rem; position: relative; overflow: hidden; }
-.course-header::after { content: ''; position: absolute; top: -40px; left: -40px; width: 120px; height: 120px; background: rgba(255,255,255,0.08); border-radius: 50%; }
-.course-header.ink { background: var(--ink); color: var(--cream); }
-.course-header.amber { background: linear-gradient(135deg, var(--amber), #d4911a); color: var(--ink); }
-.course-header.green { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
-.course-header.purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; }
-.course-header.blue { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; }
-.green-dot { background: #10b981; }
-.purple-dot { background: #8b5cf6; }
-.blue-dot { background: #3b82f6; }
-.course-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
-.course-code { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
-.course-badge { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; background: rgba(255,255,255,0.15); padding: 0.2rem 0.65rem; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; }
-.course-header h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; line-height: 1.35; }
-.course-body { padding: 1.75rem 2rem; }
-.course-desc { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.75; }
-.course-meta { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.75rem; }
-.course-meta-item { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 0.4rem; }
-.course-meta-item svg { width: 14px; height: 14px; stroke: var(--text-tertiary); fill: none; stroke-width: 2; }
-.course-topics-label { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
-.course-topic { display: flex; align-items: center; gap: 0.65rem; padding: 0.35rem 0; font-size: 0.85rem; color: var(--text-secondary); }
-.course-topic-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-.course-footer { padding: 1rem 2rem; border-top: 1px solid var(--border-light); }
-.course-cta { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 0.9rem; }
-.course-cta-arrow { width: 32px; height: 32px; border-radius: 50%; background: var(--surface); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-.course-cta-arrow svg { width: 16px; height: 16px; stroke: var(--ink); fill: none; transition: transform 0.3s; }
-.course-cta:hover .course-cta-arrow { background: var(--ink); }
-.course-cta:hover .course-cta-arrow svg { stroke: var(--cream); transform: translateX(-2px); }
-
-/* How It Works */
-.how-section { max-width: 1000px; margin: 0 auto; }
-.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-.steps-grid::before { content: ''; position: absolute; top: 32px; left: 56px; right: 56px; height: 1px; border-top: 1.5px dashed var(--border); }
-.step-item { text-align: center; position: relative; z-index: 1; padding: 0 0.75rem; }
-.step-num { width: 64px; height: 64px; border-radius: 20px; background: var(--amber); color: var(--ink); font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; box-shadow: 0 6px 20px rgba(232,168,56,0.25); transition: transform 0.3s, box-shadow 0.3s; }
-.step-item:hover .step-num { transform: translateY(-4px) rotate(3deg); box-shadow: 0 10px 28px rgba(232,168,56,0.35); }
-.step-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
-.step-desc { font-size: 0.825rem; color: var(--text-secondary); line-height: 1.6; }
-
-/* Vision */
-.vision { background: var(--paper); }
-.vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1060px; margin: 0 auto; }
-.vision-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--r-lg); padding: 2rem; box-shadow: var(--shadow-xs); transition: all 0.35s; position: relative; overflow: hidden; }
-.vision-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--amber); opacity: 0; transition: opacity 0.3s; }
-.vision-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
-.vision-card:hover::before { opacity: 1; }
-.vision-icon { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
-.vision-icon svg { width: 26px; height: 26px; stroke-width: 1.8; fill: none; }
-.vision-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; line-height: 1.4; }
-.vision-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
-.vision-icon.bg-amber { background: var(--amber-pale); }
-.vision-icon.bg-green { background: rgba(16,185,129,0.1); }
-.vision-icon.bg-purple { background: rgba(139,92,246,0.1); }
-.vision-icon.bg-blue { background: rgba(59,130,246,0.1); }
-.vision-icon.bg-ink { background: rgba(15,27,45,0.06); }
-.vision-ai-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; padding: 0.6rem 1.25rem; background: var(--ink); color: var(--cream); border-radius: 100px; font-size: 0.75rem; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.03em; }
-.vision-ai-badge svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 2; }
-
-/* CTA */
-.cta-section { padding: 5rem 2rem; text-align: center; }
-.cta-box { max-width: 720px; margin: 0 auto; background: var(--ink); border-radius: var(--r-xl); padding: 4rem 3rem; color: var(--cream); position: relative; overflow: hidden; }
-.cta-box::before { content: ''; position: absolute; top: -80px; left: -80px; width: 240px; height: 240px; background: rgba(232,168,56,0.1); border-radius: 50%; }
-.cta-box::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 180px; height: 180px; background: rgba(255,255,255,0.03); border-radius: 50%; }
-.cta-box h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.125rem); font-weight: 800; margin-bottom: 1rem; position: relative; }
-.cta-box p { color: var(--text-on-dark-muted); margin-bottom: 2rem; max-width: 420px; margin-left: auto; margin-right: auto; position: relative; line-height: 1.8; }
-
-/* Lang switch */
-.lang-switch { display: flex; align-items: center; gap: 0.25rem; margin-right: 0.5rem; }
-.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
-.lang-switch a:hover { color: var(--ink); }
-.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
-
-/* Responsive */
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; text-align: center; padding: 7rem 2rem 3rem; gap: 2rem; }
-  .hero-text { text-align: center; }
-  .hero-text p { margin-left: auto; margin-right: auto; }
-  .hero-buttons { justify-content: center; }
-  .hero-eyebrow { justify-content: center; }
-  .hero-visual { height: 300px; }
-}
-
-@media (max-width: 768px) {
-  .courses-grid { grid-template-columns: 1fr; }
-  .steps-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .steps-grid::before { display: none; }
-  .step-item { display: grid; grid-template-columns: 1fr 64px; gap: 1rem; text-align: right; align-items: start; padding: 0; }
-  .step-num { margin: 0; order: 2; }
-  .vision-grid { grid-template-columns: 1fr; }
+.hero-float-1 { left: 20px; }
+.hero-float-2 { right: 10px; }
+.hero-float-3 { left: 50px; }
+.hero-float-4 { right: 40px; }
+@keyframes float-b {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(14px) translateX(10px); }
 }
 </style>
 </head>
@@ -332,15 +91,9 @@
       <img src="../Wireless_communcation_system.png" alt="نظام الاتصالات اللاسلكية" class="origin-image">
       <div class="origin-content">
         <h3>ماذا <em>يحدث فعلًا</em> بين الإرسال والاستقبال؟</h3>
-        <blockquote class="origin-quote">"في الكتب الدراسية، تُرسَل الإشارة وتنتقل عبر قناة وتصل إلى المستقبل. بسيط. نظيف. لكن الواقع ليس كذلك أبدًا. لحظة مغادرة الإشارة للهوائي، تدخل عالمًا من الفوضى."</blockquote>
-        <p class="origin-text">هذا المقال لأحمد الشافعي يلخّص بالضبط لماذا بنينا Wireless 101. الفجوة بين النظرية الأكاديمية وواقع الهندسة هائلة. الإشارات لا "تنتقل عبر قنوات" ببساطة &mdash; بل تتشتت وتنعكس وتتلاشى وتتداخل بطرق نادرًا ما تُظهرها الكتب. أردنا بناء شيء يسدّ هذه الفجوة بشروحات تفاعلية ومرئية وصادقة.</p>
-        <div class="origin-author">
-          <div class="origin-author-avatar">أش</div>
-          <div>
-            <div class="origin-author-name">أحمد الشافعي</div>
-            <div class="origin-author-role">مهندس اتصالات لاسلكية</div>
-          </div>
-        </div>
+        <blockquote class="origin-quote">"في الكتب الدراسية، تُرسَل الإشارة وتنتقل عبر قناة وتصل إلى المستقبل. بسيط. نظيف. لكن الواقع ليس كذلك أبدًا."</blockquote>
+        <p class="origin-text">الفجوة بين النظرية الأكاديمية وواقع الهندسة هائلة. الإشارات تتشتت وتنعكس وتتلاشى وتتداخل بطرق نادرًا ما تُظهرها الكتب. بنينا Wireless 101 لسدّ هذه الفجوة بشروحات تفاعلية ومرئية وصادقة.</p>
+        <a href="https://ahmedsalahelshafie-ship-it.github.io/Ahmed_Elshafie_Blog/Articles/wireless-transmission-reception.html" target="_blank" class="origin-read-link">اقرأ المقال كاملًا <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
@@ -358,7 +111,7 @@
     <div class="course-card fade-up stagger-1">
       <div class="course-header ink">
         <div class="course-header-row">
-          <div class="course-code">WRL-101</div>
+          <div class="course-code" lang="en">WRL-101</div>
           <div class="course-badge">مبتدئ</div>
         </div>
         <h3>الاتصالات اللاسلكية 101</h3>
@@ -381,10 +134,10 @@
         </div>
         <div class="course-topics-label">المواضيع الرئيسية</div>
         <div class="course-topic"><div class="course-topic-dot navy-dot"></div>الموجات الكهرومغناطيسية والطيف</div>
-        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>التضمين: AM، FM، QAM</div>
+        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>التضمين: <span lang="en">AM</span>، <span lang="en">FM</span>، <span lang="en">QAM</span></div>
         <div class="course-topic"><div class="course-topic-dot navy-dot"></div>أساسيات الهوائيات</div>
         <div class="course-topic"><div class="course-topic-dot navy-dot"></div>القناة والانتشار</div>
-        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>نظرة عامة على WiFi، LTE و 5G</div>
+        <div class="course-topic"><div class="course-topic-dot navy-dot"></div>نظرة عامة على <span lang="en">WiFi</span>، <span lang="en">LTE</span> و <span lang="en">5G</span></div>
       </div>
       <div class="course-footer">
         <a href="courses/wrl101/index.html" class="course-cta">
@@ -397,7 +150,7 @@
     <div class="course-card fade-up stagger-2">
       <div class="course-header amber">
         <div class="course-header-row">
-          <div class="course-code">DSP-101</div>
+          <div class="course-code" lang="en">DSP-101</div>
           <div class="course-badge">مبتدئ</div>
         </div>
         <h3>معالجة الإشارات الرقمية 101</h3>
@@ -420,10 +173,10 @@
         </div>
         <div class="course-topics-label">المواضيع الرئيسية</div>
         <div class="course-topic"><div class="course-topic-dot amber-dot"></div>أخذ العينات والتشويه الطيفي</div>
-        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>تحويل فورييه (DFT/FFT)</div>
-        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>تصميم مرشحات FIR و IIR</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>تحويل فورييه (<span lang="en">DFT/FFT</span>)</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>تصميم مرشحات <span lang="en">FIR</span> و <span lang="en">IIR</span></div>
         <div class="course-topic"><div class="course-topic-dot amber-dot"></div>التحليل الطيفي</div>
-        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>تطبيقات DSP في الوقت الفعلي</div>
+        <div class="course-topic"><div class="course-topic-dot amber-dot"></div>تطبيقات <span lang="en">DSP</span> في الوقت الفعلي</div>
       </div>
       <div class="course-footer">
         <a href="courses/dsp101/index.html" class="course-cta">
@@ -437,7 +190,7 @@
     <div class="course-card fade-up stagger-3">
       <div class="course-header green">
         <div class="course-header-row">
-          <div class="course-code">STAT-101</div>
+          <div class="course-code" lang="en">STAT-101</div>
           <div class="course-badge">مبتدئ</div>
         </div>
         <h3>الإحصاء 101</h3>
@@ -477,7 +230,7 @@
     <div class="course-card fade-up stagger-4">
       <div class="course-header purple">
         <div class="course-header-row">
-          <div class="course-code">ML-101</div>
+          <div class="course-code" lang="en">ML-101</div>
           <div class="course-badge">مبتدئ</div>
         </div>
         <h3>تعلم الآلة 101</h3>
@@ -517,7 +270,7 @@
     <div class="course-card fade-up stagger-5">
       <div class="course-header blue">
         <div class="course-header-row">
-          <div class="course-code">LA-101</div>
+          <div class="course-code" lang="en">LA-101</div>
           <div class="course-badge">مبتدئ</div>
         </div>
         <h3>الجبر الخطي 101</h3>
@@ -542,7 +295,7 @@
         <div class="course-topic"><div class="course-topic-dot blue-dot"></div>المتجهات وعمليات المصفوفات</div>
         <div class="course-topic"><div class="course-topic-dot blue-dot"></div>التحويلات الخطية</div>
         <div class="course-topic"><div class="course-topic-dot blue-dot"></div>القيم والمتجهات الذاتية</div>
-        <div class="course-topic"><div class="course-topic-dot blue-dot"></div>SVD و PCA</div>
+        <div class="course-topic"><div class="course-topic-dot blue-dot"></div><span lang="en">SVD</span> و <span lang="en">PCA</span></div>
         <div class="course-topic"><div class="course-topic-dot blue-dot"></div>تطبيقات في تعلم الآلة والرسوميات</div>
       </div>
       <div class="course-footer">
