@@ -190,6 +190,15 @@ html[dir="rtl"] .origin-quote {
   padding-right: 1rem;
 }
 
+/* ── Landing page: Arabic small-label readability ── */
+html[dir="rtl"] .course-topics-label,
+html[dir="rtl"] .course-meta-item {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 /* ── Landing page position flips ── */
 html[dir="rtl"] .course-header::after {
   right: auto;
@@ -206,7 +215,7 @@ html[dir="rtl"] .cta-box::after {
   right: -60px;
 }
 
-/* ── Lesson timeline ── */
+/* ── Lesson timeline (course overview) ── */
 html[dir="rtl"] .timeline-track {
   padding-left: 0;
   padding-right: 2rem;
@@ -220,6 +229,38 @@ html[dir="rtl"] .timeline-track::before {
 html[dir="rtl"] .timeline-dot {
   left: auto;
   right: -6px;
+}
+
+/* ── Lesson article timeline ── */
+html[dir="rtl"] .timeline-item::before {
+  left: auto;
+  right: -2rem;
+}
+
+/* ── Lesson article generations arrows ── */
+html[dir="rtl"] .gen-item:not(:last-child)::after {
+  right: auto;
+  left: -1px;
+  border-left: none;
+  border-right: 8px solid var(--border);
+}
+
+/* ── Lesson nav ── */
+html[dir="rtl"] .lesson-nav-btn {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .lesson-nav-prev {
+  justify-self: end;
+}
+
+html[dir="rtl"] .lesson-nav-next {
+  justify-self: start;
+}
+
+html[dir="rtl"] .lesson-nav-next svg,
+html[dir="rtl"] .lesson-nav-prev svg {
+  transform: scaleX(-1);
 }
 
 /* ── Mobile overrides ── */

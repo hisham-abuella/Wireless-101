@@ -239,19 +239,21 @@ body {
 }
 
 .s-year {
-  font-family: var(--body);
-  font-size: 0.65rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   opacity: 0.4;
   margin-bottom: 0.6rem;
 }
 
 .s-title {
   font-family: var(--display);
-  font-size: clamp(1.5rem, 5vw, 2rem);
-  font-weight: 700;
-  line-height: 1.4;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   margin-bottom: 1rem;
 }
 
@@ -266,7 +268,7 @@ body {
 
 .s-text {
   font-size: clamp(0.82rem, 2.2vw, 0.95rem);
-  line-height: 1.8;
+  line-height: 1.7;
   opacity: 0.75;
   max-width: 400px;
 }
@@ -296,18 +298,20 @@ body {
 }
 
 .s-card-label {
-  font-family: var(--body);
-  font-size: 0.55rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   opacity: 0.4;
   margin-bottom: 0.5rem;
 }
 
 .s-card-value {
+  font-family: var(--mono);
   font-size: clamp(0.82rem, 2vw, 0.95rem);
   font-weight: 400;
   line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 /* ── Stat pair ── */
@@ -336,10 +340,10 @@ body {
 }
 
 .s-stat-label {
-  font-family: var(--body);
-  font-size: 0.55rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   opacity: 0.4;
   margin-bottom: 0.3rem;
 }
@@ -347,7 +351,7 @@ body {
 .s-stat-val {
   font-family: var(--display);
   font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* ── List ── */
@@ -365,7 +369,7 @@ body {
   gap: 0.65rem;
   padding: 0.4rem 0;
   font-size: clamp(0.8rem, 2.1vw, 0.92rem);
-  line-height: 1.65;
+  line-height: 1.55;
   opacity: 0.8;
 }
 
@@ -585,10 +589,10 @@ body {
 .s-equation .katex { font-size: 1.3em; }
 
 .s-eq-label {
-  font-family: var(--body);
-  font-size: 0.55rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   opacity: 0.35;
   margin-bottom: 0.6rem;
   direction: rtl;
@@ -618,7 +622,7 @@ body {
   position: relative;
   padding: 0.4rem 0;
   font-size: clamp(0.72rem, 1.8vw, 0.82rem);
-  line-height: 1.6;
+  line-height: 1.5;
   opacity: 0.7;
   cursor: default;
   transition: opacity 0.2s, transform 0.2s;
@@ -861,7 +865,7 @@ body {
       <h2 class="s-title">تاريخ موجز للاتصالات <i>اللاسلكية</i></h2>
       <p class="s-text">في كل مرة ترسل رسالة أو تشاهد فيديو، تستفيد من <strong>أكثر من ١٥٠ عامًا</strong> من الاكتشافات. من معادلات على ورق إلى عالم متصل &mdash; دعنا نتتبع المعالم.</p>
     </div>
-    <div class="s-foot"><div class="s-pg">01 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">01 / 15</div></div>
   </div>
 
   <!-- S2: ماكسويل -->
@@ -881,7 +885,7 @@ body {
       </div>
       <canvas class="wave-canvas" id="waveCanvas" style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.06)"></canvas>
     </div>
-    <div class="s-foot"><div class="s-pg">02 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">02 / 15</div></div>
   </div>
 
   <!-- S3: هيرتز -->
@@ -907,7 +911,7 @@ body {
         </div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">03 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">03 / 15</div></div>
   </div>
 
   <!-- S4: ماركوني -->
@@ -929,7 +933,7 @@ body {
         <div class="s-tl-item"><strong>١٩٠٩</strong> &mdash; جائزة نوبل في الفيزياء</div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">04 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">04 / 15</div></div>
   </div>
 
   <!-- S5: البحرية -->
@@ -955,7 +959,7 @@ body {
         </div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">05 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">05 / 15</div></div>
   </div>
 
   <!-- S6: البث الإذاعي -->
@@ -974,7 +978,7 @@ body {
         <div class="s-card-value">تعديل السعة (AM) &mdash; بسيط وفعّال، لكنه عرضة للتشويش</div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">06 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">06 / 15</div></div>
   </div>
 
   <!-- S7: FM والرادار -->
@@ -994,7 +998,7 @@ body {
         <div class="s-card-value">تقنيات الرادار العسكرية أصبحت أساسًا للتطورات اللاسلكية اللاحقة</div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">07 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">07 / 15</div></div>
   </div>
 
   <!-- S8: الجيل الأول -->
@@ -1020,7 +1024,7 @@ body {
         </div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">08 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">08 / 15</div></div>
   </div>
 
   <!-- S9: 2G -->
@@ -1042,20 +1046,20 @@ body {
         <li><strong>الانتشار</strong> &mdash; بأسعار معقولة للجميع</li>
       </ul>
     </div>
-    <div class="s-foot"><div class="s-pg">09 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">09 / 15</div></div>
   </div>
 
-  <!-- S10: 3G -->
-  <div class="s s--deep" data-audio="s10-3g">
+  <!-- S10: WiFi -->
+  <div class="s s--deep" data-audio="s10-wifi">
     <div class="orb orb-1"></div>
     <div class="s-top">
       <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
       <div class="s-tag">M01 &middot; L01</div>
     </div>
     <div class="s-body">
-      <div class="s-year">الألفية الجديدة</div>
-      <h2 class="s-title">الجيل الثالث &mdash; <i>الإنترنت المحمول</i></h2>
-      <p class="s-text">الإنترنت في جيبك لأول مرة. تصفح الويب والبريد الإلكتروني والتطبيقات من هاتفك. مهّد الطريق لـ<strong>ثورة الهواتف الذكية</strong>.</p>
+      <div class="s-year">1997</div>
+      <h2 class="s-title">ولادة <i>WiFi</i></h2>
+      <p class="s-text">معيار <span lang="en">IEEE 802.11</span> مكّن الشبكات اللاسلكية. من أجهزة الكمبيوتر المحمولة في المكاتب إلى <strong>الاتصال الدائم</strong> الذي نعتمد عليه في كل مكان اليوم.</p>
       <div class="s-equation">
         <div class="s-eq-label">العلاقة الأساسية</div>
         <div id="eq-wifi"></div>
@@ -1071,11 +1075,33 @@ body {
         </div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">10 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">10 / 15</div></div>
   </div>
 
-  <!-- S11: 4G -->
-  <div class="s s--ink" data-audio="s11-4g">
+  <!-- S11: 3G -->
+  <div class="s s--teal" data-audio="s11-3g">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">Wireless 101</div></div>
+      <div class="s-tag">M01 &middot; L01</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">2001</div>
+      <h2 class="s-title">الجيل الثالث &mdash; <i>الإنترنت المحمول</i></h2>
+      <p class="s-text">الإنترنت في جيبك لأول مرة. تصفح الويب والبريد الإلكتروني والتطبيقات من هاتفك. مهّد الطريق لـ<strong>ثورة الهواتف الذكية</strong>.</p>
+      <ul class="s-list">
+        <li><strong>تصفح الويب</strong> على الهاتف</li>
+        <li><strong>البريد الإلكتروني</strong> أينما كنت</li>
+        <li><strong>متاجر التطبيقات</strong> بدأت بالظهور</li>
+        <li>بداية <strong>ثورة الهواتف الذكية</strong></li>
+      </ul>
+    </div>
+    <div class="s-foot"><div class="s-pg">11 / 15</div></div>
+  </div>
+
+  <!-- S12: 4G -->
+  <div class="s s--ink" data-audio="s12-4g">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="s-top">
@@ -1094,11 +1120,11 @@ body {
         <div class="gen-bar" style="height:95%;background:rgba(255,255,255,0.10)"><div class="gen-bar-label">5G</div><div class="gen-bar-sub">IoT</div></div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">11 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">12 / 15</div></div>
   </div>
 
-  <!-- S12: 5G -->
-  <div class="s s--amber" data-audio="s12-5g">
+  <!-- S13: 5G -->
+  <div class="s s--amber" data-audio="s13-5g">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="s-top">
@@ -1116,11 +1142,11 @@ body {
         <li><strong>الجيل السادس</strong> قيد البحث (~٢٠٣٠)</li>
       </ul>
     </div>
-    <div class="s-foot"><div class="s-pg">12 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">13 / 15</div></div>
   </div>
 
-  <!-- S13: أنماط -->
-  <div class="s s--deep" data-audio="s13-patterns">
+  <!-- S14: أنماط -->
+  <div class="s s--deep" data-audio="s14-patterns">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="s-top">
@@ -1138,11 +1164,11 @@ body {
         <li><strong>الرقمي يتفوق</strong> &mdash; من 1G إلى 2G كانت أكبر قفزة</li>
       </ul>
     </div>
-    <div class="s-foot"><div class="s-pg">13 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">14 / 15</div></div>
   </div>
 
-  <!-- S14: خلاصة -->
-  <div class="s s--ink" data-audio="s14-summary">
+  <!-- S15: خلاصة -->
+  <div class="s s--ink" data-audio="s15-summary">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="s-top">
@@ -1158,7 +1184,7 @@ body {
         <div class="s-card-value" style="font-family:var(--display);font-size:1.1rem">الطيف الكهرومغناطيسي &larr;</div>
       </div>
     </div>
-    <div class="s-foot"><div class="s-pg">14 / 14</div></div>
+    <div class="s-foot"><div class="s-pg">15 / 15</div></div>
   </div>
 
 </div>
