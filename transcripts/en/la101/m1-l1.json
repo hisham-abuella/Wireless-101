@@ -1,0 +1,69 @@
+{
+  "course": "LA-101",
+  "module": 1,
+  "lesson": 1,
+  "title": "What is Linear Algebra?",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome to Linear Algebra 101. In this lesson, we're going to answer a deceptively simple question: what is linear algebra? At its core, linear algebra is the mathematics of space and transformation. It gives us a precise language to describe position, direction, and change. You might not realize it, but linear algebra is the hidden engine behind computer graphics, artificial intelligence, and virtually every branch of modern engineering. By the end of this lesson, you'll understand why it matters so much."
+    },
+    {
+      "id": "s2-language-of-space",
+      "title": "The Language of Space",
+      "transcript": "Linear algebra starts with vectors. A vector describes three things: position, direction, and magnitude. Think of a vector as an arrow pointing somewhere in space with a specific length. Vectors are the fundamental building blocks of this entire subject. Every physical quantity you can think of, from force to velocity to electric fields, can be represented as a vector. Once you learn to think in vectors, you start seeing them everywhere."
+    },
+    {
+      "id": "s3-vectors",
+      "title": "Vectors",
+      "transcript": "So what exactly is a vector? Mathematically, it's an ordered list of numbers. These numbers are coordinates that pinpoint a location or describe a direction. In two dimensions, a vector has two components: x and y. We write it as a column, stacked vertically inside brackets. This notation might look simple, but it's incredibly powerful. It lets us do arithmetic with directions and positions, turning geometry into algebra."
+    },
+    {
+      "id": "s4-adding-vectors",
+      "title": "Adding Vectors",
+      "transcript": "One of the first things we can do with vectors is add them together. This is how we combine forces, velocities, and directions. You add vectors component by component: the x-components add together, and the y-components add together. Geometrically, there's a beautiful picture called the tip-to-tail rule. You place the tail of the second vector at the tip of the first, and the resultant vector stretches from the start of the first to the end of the second. It's simple, visual, and deeply intuitive."
+    },
+    {
+      "id": "s5-matrices",
+      "title": "Matrices",
+      "transcript": "Now let's meet the matrix. A matrix is a grid of numbers, arranged in rows and columns. But don't let the simplicity fool you. Matrices are machines that transform space. They take vectors as input and produce new vectors as output. A single matrix can stretch, rotate, or reflect the entire coordinate system. The two-by-two matrix you see here has four entries: a, b, c, and d. Those four numbers completely determine how every point in the plane gets moved."
+    },
+    {
+      "id": "s6-transformations",
+      "title": "Transformations",
+      "transcript": "Matrices encode geometric operations, and these are called linear transformations. What makes them linear? Every transformation preserves the grid lines as parallel and evenly spaced. There are four fundamental types. Rotation spins the entire space around the origin. Scaling stretches or compresses along the axes. Reflection mirrors the space across a line. And shearing slants the space in one direction, like pushing the top of a deck of cards sideways. Every linear transformation can be described by a matrix."
+    },
+    {
+      "id": "s7-central-problem",
+      "title": "The Central Problem",
+      "transcript": "Here's the big question that drives all of linear algebra. Given a matrix A and a result vector b, can we find the vector x that satisfies the equation A times x equals b? This single equation is the beating heart of the subject. It captures the idea of solving systems of equations, which shows up everywhere in science and engineering. If you can solve this equation, you can solve problems in physics, economics, computer science, and beyond. Much of this course will be about understanding when and how this equation has solutions."
+    },
+    {
+      "id": "s8-history",
+      "title": "A Brief History",
+      "transcript": "Linear algebra didn't appear overnight. It evolved over centuries, shaped by brilliant mathematicians tackling practical problems. In 1693, Leibniz introduced determinants as a tool for solving linear systems. In 1750, Cramer published his famous rule for solving equations using determinants. Nearly a century later, in 1844, Grassmann invented the algebra of vector spaces, a truly visionary idea. And in 1855, Arthur Cayley formalized matrix algebra, giving us the notation and operations we still use today."
+    },
+    {
+      "id": "s9-3d-graphics",
+      "title": "3D Graphics",
+      "transcript": "Let's talk about one of the most spectacular applications of linear algebra: 3D computer graphics. Every single frame in every video game uses matrix transformations. When a character rotates on screen, that's a rotation matrix at work. When a 3D scene is projected onto your flat 2D monitor, that's a projection matrix. Lighting, shadows, camera angles: all of it is linear algebra, computed billions of times per second on your GPU. The rendering pipeline goes from model space to world space to camera space to screen space, and each step is a matrix multiplication."
+    },
+    {
+      "id": "s10-pagerank",
+      "title": "Google PageRank",
+      "transcript": "Here's another mind-blowing application. Linear algebra is how Google ranks every webpage on the internet. The PageRank algorithm models the entire web as a giant matrix, where each entry represents a link between pages. It then finds something called the dominant eigenvector, which represents the steady-state importance of every page. The key insight is beautifully recursive: a page is important if important pages link to it. That circular definition is resolved elegantly through linear algebra."
+    },
+    {
+      "id": "s11-la-everywhere",
+      "title": "LA Everywhere",
+      "transcript": "Linear algebra isn't confined to one field. It's the universal language of applied mathematics, appearing wherever data, space, or systems interact. In computer graphics, it powers rendering, animation, and shader programs. In machine learning, neural networks are essentially chains of matrix operations. In physics, quantum mechanics lives entirely in vector spaces. Engineers use it for circuit analysis and structural modeling. And in data science, techniques like PCA, regression, and dimensionality reduction are all built on linear algebra. Once you learn it, you'll find it everywhere."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap what we've covered. Vectors describe space, giving us a way to represent position and direction. Matrices transform that space, encoding geometric operations like rotation and scaling. The equation A x equals b connects them, and solving it is the central problem of linear algebra. From ancient determinants to modern AI, this subject is the mathematics that makes it all work. In the next lesson, we'll dive deeper into vectors and vector spaces. See you there."
+    }
+  ]
+}

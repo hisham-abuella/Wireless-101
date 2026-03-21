@@ -1,0 +1,84 @@
+{
+  "course": "WRL-101",
+  "module": 1,
+  "lesson": 2,
+  "title": "The Electromagnetic Spectrum",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Every wireless signal you've ever sent or received rides on an electromagnetic wave. From the lowest radio frequencies used by submarines to the highest-energy gamma rays emitted by stars, it's all the same fundamental phenomenon — oscillating electric and magnetic fields propagating through space. The only difference is the frequency. In this lesson, we'll explore the full electromagnetic spectrum and understand why wireless engineers care so deeply about where their signals sit within it."
+    },
+    {
+      "id": "s2-maxwell",
+      "title": "Maxwell's Vision (1865)",
+      "transcript": "In 1865, James Clerk Maxwell made one of the most profound predictions in the history of physics. His equations showed that oscillating electric and magnetic fields could sustain each other and travel through space as waves. Even more remarkably, he calculated their speed — and it turned out to be the speed of light. This meant that light itself was an electromagnetic wave. And if light was just one frequency of this phenomenon, then many other frequencies must exist too — an entire spectrum waiting to be discovered."
+    },
+    {
+      "id": "s3-speed",
+      "title": "The Speed of Light",
+      "transcript": "Here's one of the most important relationships in all of physics. All electromagnetic waves travel at the same speed in a vacuum — approximately 300 million meters per second, which we call the speed of light, or c. The equation c equals lambda times f tells us that the speed of light equals the wavelength multiplied by the frequency. This means frequency and wavelength are inversely related — as one goes up, the other must come down. A high-frequency wave has a short wavelength, and a low-frequency wave has a long wavelength."
+    },
+    {
+      "id": "s4-full-spectrum",
+      "title": "The Full Spectrum",
+      "transcript": "The electromagnetic spectrum spans an enormous range, from radio waves with wavelengths of hundreds of kilometers all the way down to gamma rays with wavelengths smaller than an atom. But here's the key insight — they're all the same type of wave. What changes is the frequency and wavelength, not the fundamental nature. Higher frequency means shorter wavelength and more energy packed into each photon. This single continuum governs everything from your WiFi connection to medical X-rays."
+    },
+    {
+      "id": "s5-radio",
+      "title": "Radio Waves",
+      "transcript": "Radio waves span from 3 kilohertz all the way up to 300 gigahertz, with wavelengths ranging from 100 kilometers down to just 1 millimeter. This is the wireless engineer's primary playground. Radio waves can penetrate walls, travel vast distances, and carry everything from old-fashioned AM broadcasts to modern 5G data. The ability of radio waves to propagate over long distances and through obstacles is what makes wireless communication practical."
+    },
+    {
+      "id": "s6-microwaves",
+      "title": "Microwaves",
+      "transcript": "Microwaves are a subset of radio waves at the higher end of the spectrum, roughly from 1 to 300 gigahertz. Despite the name, they're not just for heating food. Microwaves power many of the technologies we depend on every day. WiFi operates at 2.4 and 5 gigahertz. Radar systems use microwaves for weather detection, aviation safety, and military applications. Satellite communications — including GPS, television broadcasts, and data links — all rely on microwave frequencies. And yes, your microwave oven heats food at 2.45 gigahertz by exciting water molecules."
+    },
+    {
+      "id": "s7-infrared-visible",
+      "title": "Infrared & Visible Light",
+      "transcript": "Moving beyond microwaves, we enter the domain of infrared radiation and visible light, spanning from about 300 gigahertz to 750 terahertz. Infrared is the heat you feel from a fire or the signal from your TV remote control. Thermal cameras detect infrared to see heat signatures. Fiber optic cables transmit data using infrared light at incredible speeds. Then there's visible light — the narrow sliver of the spectrum that human eyes can detect. It's a remarkably thin band, yet it's the only part of the spectrum we can see directly. There's even a technology called Li-Fi that uses LED light to transmit wireless data."
+    },
+    {
+      "id": "s8-high-energy",
+      "title": "High Energy Radiation",
+      "transcript": "At the top of the electromagnetic spectrum, we find the high-energy radiation — ultraviolet, X-rays, and gamma rays. These photons carry enough energy to ionize atoms, meaning they can knock electrons right off molecules. Ultraviolet radiation from the sun causes sunburns and is used for sterilization. X-rays penetrate soft tissue but are stopped by bone, making them invaluable for medical imaging and security screening. Gamma rays, the most energetic of all, are produced by nuclear reactions and are used in cancer treatment to destroy tumors."
+    },
+    {
+      "id": "s9-rf-bands",
+      "title": "Radio Frequency Bands",
+      "transcript": "The radio portion of the spectrum is further divided into named frequency bands, each with distinct propagation characteristics. At the bottom, Very Low Frequency or VLF waves between 3 and 30 kilohertz can penetrate seawater, making them useful for submarine communications. High Frequency or HF waves enable shortwave radio that bounces off the ionosphere for long-distance communication. VHF carries FM radio and television. UHF, from 300 megahertz to 3 gigahertz, is where cellular networks and WiFi operate. Super High Frequency handles satellite links and radar. And Extremely High Frequency, from 30 to 300 gigahertz, is where 5G millimeter wave technology lives."
+    },
+    {
+      "id": "s10-tradeoff",
+      "title": "The Great Tradeoff",
+      "transcript": "Every wireless engineer faces the same fundamental tradeoff, and understanding it is crucial. Lower frequencies travel farther and penetrate obstacles better, but they can only carry limited amounts of data. Higher frequencies can carry much more data — that's why 5G millimeter wave is so fast — but they don't travel as far and are easily blocked by walls, trees, and even rain. This tradeoff between range and data capacity is at the heart of every wireless system design decision."
+    },
+    {
+      "id": "s11-wavelength",
+      "title": "Wavelength Comparison",
+      "transcript": "To appreciate the scale of the radio spectrum, consider this comparison. An AM radio station broadcasting at around 1 megahertz has a wavelength of about 300 meters — roughly the length of three football fields. A 5G millimeter wave signal at 60 gigahertz has a wavelength of just 5 millimeters — about the size of a pencil eraser. That's a difference of five orders of magnitude within the radio spectrum alone. This massive range of wavelengths is why different radio technologies behave so differently."
+    },
+    {
+      "id": "s12-allocation",
+      "title": "Spectrum Allocation",
+      "transcript": "The electromagnetic spectrum is a shared natural resource, much like land or water. Without coordination, radio signals from different users would interfere with each other constantly, creating chaos. That's why spectrum allocation exists. National regulators like the FCC in the United States and Ofcom in the United Kingdom manage spectrum within their borders. The International Telecommunication Union, or ITU, coordinates spectrum use globally. Prime spectrum bands are auctioned to telecom companies for billions of dollars — it's one of the most valuable resources in the modern economy."
+    },
+    {
+      "id": "s13-wifi-cellular",
+      "title": "WiFi & Cellular Bands",
+      "transcript": "The technologies you use every day occupy specific slices of the radio spectrum. WiFi at 2.4 gigahertz offers good range but is crowded because so many devices share it. WiFi at 5 gigahertz is faster but doesn't travel as far. The newest WiFi 6E band at 6 gigahertz provides even more bandwidth with less interference from legacy devices. Cellular networks span a wide range — from 700 megahertz for rural coverage to 39 gigahertz for high-speed 5G in dense urban areas. Each band represents a carefully chosen compromise between range and capacity."
+    },
+    {
+      "id": "s14-patterns",
+      "title": "Key Patterns",
+      "transcript": "Let's step back and identify the key patterns that govern the electromagnetic spectrum. First, spectrum is finite — there's only so much to go around, which makes it incredibly valuable. Second, frequency determines behavior — it dictates range, penetration through obstacles, and how much data you can carry. Third, technology helps us share — clever encoding techniques like OFDM and spread spectrum allow more users to coexist in less bandwidth. And fourth, regulation is essential — without agreed-upon rules for who can transmit where, the airwaves would be unusable."
+    },
+    {
+      "id": "s15-summary",
+      "title": "Summary & What's Next",
+      "transcript": "In this lesson, we explored the electromagnetic spectrum — a continuous range of waves from radio frequencies to gamma rays, all traveling at the speed of light. We saw how the radio portion is divided into bands, each with distinct characteristics. We learned about the fundamental tradeoff between frequency, range, and data capacity. And we discovered that spectrum is a regulated, finite resource. Wireless engineering lives in the radio frequency bands — constantly balancing range, speed, and regulatory constraints. In the next lesson, we'll explore how information actually travels through the air — the physics of modulation and signal propagation."
+    }
+  ]
+}

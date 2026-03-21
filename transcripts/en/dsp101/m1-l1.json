@@ -1,0 +1,69 @@
+{
+  "course": "DSP-101",
+  "module": 1,
+  "lesson": 1,
+  "title": "Signals All Around Us",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Everything around you is a signal. Every sound you hear, every image you see, every message you send — it all begins with a quantity that changes over time. In this lesson, we'll explore what signals really are and why they matter. By the end, you'll see the world differently — as a rich landscape of information waiting to be captured, analyzed, and transformed."
+    },
+    {
+      "id": "s2-what-is-signal",
+      "title": "What is a Signal?",
+      "transcript": "So what exactly is a signal? A signal is any quantity that varies over time or space. It carries information — about a voice, a heartbeat, a stock price, or the temperature outside. Think of a microphone picking up your voice: the air pressure at the microphone changes thousands of times per second, and that pattern of change is the signal. Signals are everywhere, and learning to read them is the very first step in digital signal processing."
+    },
+    {
+      "id": "s3-signal-examples",
+      "title": "Signal Examples",
+      "transcript": "Signals show up in every domain of science and daily life. Sound waves are changes in air pressure over time — that's how your ears work. An ECG records the electrical pulses from your heart, letting doctors spot irregularities. Stock prices fluctuate with every trade, forming a financial time series. Even images are signals — brightness varying across a two-dimensional space. Once you start looking, you'll find signals absolutely everywhere."
+    },
+    {
+      "id": "s4-fourier",
+      "title": "Fourier's Discovery",
+      "transcript": "In 1822, the French mathematician Joseph Fourier made a discovery that would change science forever. He proved that any signal — no matter how complex — can be decomposed into a sum of simple sine waves at different frequencies, amplitudes, and phases. This single idea became the most powerful tool in all of signal processing. It means that a complex sound, like an orchestra playing, can be broken down into individual pure tones. This is the foundation that everything else in DSP builds upon."
+    },
+    {
+      "id": "s5-continuous-discrete",
+      "title": "Continuous vs Discrete",
+      "transcript": "The physical world produces analog signals — smooth, continuous curves that flow without interruption. But digital computers can't work with continuous curves. They need numbers — discrete samples taken at fixed intervals. Digital signal processing bridges these two worlds. We take an analog signal, sample it at regular intervals to create a sequence of numbers, process those numbers using algorithms, and then convert the result back to analog if needed. This analog-to-digital bridge is at the heart of DSP."
+    },
+    {
+      "id": "s6-sine-wave",
+      "title": "The Sine Wave",
+      "transcript": "The sine wave is the fundamental building block of all signals. The equation x of t equals A times sine of two pi f t plus phi captures everything you need: A is the amplitude, f is the frequency, and phi is the phase. Every periodic signal — no matter how complicated — can be expressed as a combination of sines and cosines at different frequencies. That's why understanding the sine wave deeply is so important. You can see one animated here, oscillating smoothly back and forth."
+    },
+    {
+      "id": "s7-signal-properties",
+      "title": "Signal Properties",
+      "transcript": "Three parameters define every sine wave, and understanding them is essential. First, amplitude — how tall the wave is. It represents the strength or intensity of the signal. Second, frequency — how fast the wave oscillates, measured in hertz. A higher frequency means more cycles per second. Third, phase — where in the cycle the wave starts. Phase determines the time offset between waves. These three parameters are the building blocks you'll use throughout your study of signal processing."
+    },
+    {
+      "id": "s8-why-process",
+      "title": "Why Process Signals?",
+      "transcript": "Raw signals straight from the real world are noisy, bulky, and hard to interpret. Processing them unlocks their full potential. We can remove noise to clean up audio recordings or sharpen blurry images. We can compress data — that's how MP3, JPEG, and streaming video work, squeezing signals into smaller sizes without losing too much quality. We can extract hidden information, like detecting heartbeat anomalies or recognizing speech. And we can transform signals between the time and frequency domains to reveal patterns that would otherwise be invisible."
+    },
+    {
+      "id": "s9-fft",
+      "title": "The FFT Revolution",
+      "transcript": "In 1965, James Cooley and John Tukey published an algorithm that changed everything. The Fast Fourier Transform — or FFT — reduced the computational cost of the Discrete Fourier Transform from O of N squared to O of N log N. For a signal with a million samples, that's the difference between a trillion operations and just twenty million. This made real-time signal processing possible on digital computers for the very first time. The FFT turned a theoretical tool into a practical one, enabling everything from MP3 players to MRI machines."
+    },
+    {
+      "id": "s10-signals-life",
+      "title": "Signals in Your Life",
+      "transcript": "Digital signal processing is invisible, yet it's everywhere in your daily life. When you stream music on Spotify or listen to a podcast, compression and filtering algorithms are at work. Medical imaging technologies like MRI and CT scans reconstruct detailed images from raw signal data. Every WiFi packet and 5G transmission uses techniques like OFDM and beamforming. Radar and sonar systems detect objects by analyzing patterns in reflected signals. Every time you use technology, signal processing is quietly working behind the scenes."
+    },
+    {
+      "id": "s11-key-patterns",
+      "title": "Key Patterns",
+      "transcript": "Across all these different domains, signals share common patterns that are worth remembering. All signals can be decomposed into simpler components — that's Fourier's fundamental insight. Time and frequency are two complementary ways to view the exact same signal, like two sides of a coin. Noise is universal — every real-world signal contains unwanted components that need to be managed. And sampling bridges the analog and digital worlds, letting us move back and forth between continuous and discrete representations."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap what we've covered. Signals are quantities that change over time or space, and they're everywhere around us. Fourier showed us that any signal can be broken into a sum of sine waves. The FFT algorithm made this practical, turning signal processing from a theoretical exercise into a real-time capability. Today, DSP powers everything from your earbuds to satellite communications. In the next lesson, we'll explore the difference between analog and digital signals in much greater depth."
+    }
+  ]
+}

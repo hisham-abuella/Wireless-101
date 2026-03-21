@@ -1,0 +1,69 @@
+{
+  "course": "STAT-101",
+  "module": 1,
+  "lesson": 1,
+  "title": "What is Statistics?",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome to STAT 101. In this first lesson, we're going to answer a deceptively simple question: what is statistics? At its core, statistics is the science of learning from data. It's the toolkit that helps us make decisions when we don't have complete information — whether that's evaluating a new medical treatment, predicting election outcomes, or running an A/B test on a website. By the end of this lesson, you'll have a clear map of the statistical landscape."
+    },
+    {
+      "id": "s2-uncertainty",
+      "title": "Data & Uncertainty",
+      "transcript": "Here's the fundamental challenge that statistics addresses: we live in a world of incomplete information. We can never measure everything, and every measurement we do take contains some degree of noise or error. Statistics gives us a principled way to deal with this uncertainty. The core principle is beautifully simple — we use the data we have to make inferences about the data we don't have. That's the entire game."
+    },
+    {
+      "id": "s3-population-sample",
+      "title": "Population vs Sample",
+      "transcript": "This is arguably the most important distinction in all of statistics: population versus sample. The population is the entire group you're interested in studying — every single member. The sample is a representative subset that you actually observe and collect data from. We almost never have access to the full population, so we take a carefully chosen sample and use it to draw conclusions about the whole. Getting this relationship right is what makes statistics work."
+    },
+    {
+      "id": "s4-history",
+      "title": "A Brief History",
+      "transcript": "Statistics has a fascinating origin story — it literally began with gambling. In 1654, Pascal and Fermat exchanged letters about games of chance and laid the foundations of probability theory. Over a century later, in 1809, Gauss published his work on the normal distribution, giving us the famous bell curve. In 1900, Karl Pearson introduced the chi-squared test, one of the first formal hypothesis tests. And in 1925, Ronald Fisher published his landmark book on statistical methods, essentially creating modern statistics as we know it."
+    },
+    {
+      "id": "s5-descriptive",
+      "title": "Descriptive Statistics",
+      "transcript": "Before we can make predictions or test theories, we first need to summarize what the data is telling us. That's the job of descriptive statistics. The mean gives us the average — think of it as the center of gravity of your data. The median is the middle value when you sort everything, and it's much more robust to outliers than the mean. The mode is simply the most frequent value. And the range tells us the spread, from the smallest to the largest observation."
+    },
+    {
+      "id": "s6-mean",
+      "title": "The Mean",
+      "transcript": "Let's look more closely at the most fundamental measure: the arithmetic mean. The formula is elegant in its simplicity — you add up all your values and divide by how many you have. That's x-bar equals one over n times the sum of all x-i. Despite being so simple, the mean is incredibly powerful. It's the foundation upon which much of statistics is built, from variance calculations to regression analysis to hypothesis testing."
+    },
+    {
+      "id": "s7-stddev",
+      "title": "Standard Deviation",
+      "transcript": "The mean tells us where the center is, but that's only half the story. We also need to know how spread out the data is around that center — and that's what the standard deviation measures. A small sigma means the data points are tightly clustered around the mean. A large sigma means they're widely scattered. The formula takes each data point's distance from the mean, squares it, averages those squared distances, and then takes the square root to get back to the original units."
+    },
+    {
+      "id": "s8-inferential",
+      "title": "Inferential Statistics",
+      "transcript": "Now we move beyond just describing data to the real power of statistics: making inferences. Inferential statistics lets us draw conclusions about an entire population based on just a sample. Hypothesis testing asks whether an observed effect is real or just due to random chance. Confidence intervals give us a range of plausible values and tell us how certain we can be. Here's what's remarkable — from just a thousand survey responses, we can estimate what three hundred million people think, with quantified uncertainty."
+    },
+    {
+      "id": "s9-probability",
+      "title": "Probability",
+      "transcript": "Probability is the mathematical language of uncertainty, and it's the foundation that all of statistics rests upon. It assigns a number between zero and one to every possible outcome — zero meaning impossible, one meaning certain. The classical definition is straightforward: the probability of event A equals the number of favorable outcomes divided by the total number of outcomes. Without probability theory, there simply is no statistics."
+    },
+    {
+      "id": "s10-normal",
+      "title": "The Normal Distribution",
+      "transcript": "If there's one distribution you need to know, it's the normal distribution — the famous bell curve. An astonishing number of natural phenomena follow this pattern: heights, test scores, measurement errors, and countless others. The 68-95-99.7 rule tells you everything you need to know. About 68 percent of data falls within one standard deviation of the mean. About 95 percent falls within two standard deviations. And a full 99.7 percent falls within three. This rule is one of the most useful tools in all of statistics."
+    },
+    {
+      "id": "s11-everywhere",
+      "title": "Statistics Everywhere",
+      "transcript": "Statistics isn't just an academic subject — it's woven into virtually every industry. In medicine, clinical trials use statistical methods to determine whether new treatments actually work. In technology, companies run thousands of A/B tests to make data-driven product decisions. In sports, the analytics revolution has transformed how teams draft players and develop strategy. And in finance, risk modeling and portfolio optimization are built entirely on statistical foundations."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap what we've covered. Statistics is the science of learning from data under uncertainty. We explored the critical distinction between populations and samples, walked through descriptive statistics like the mean and standard deviation, introduced inferential statistics and hypothesis testing, and saw how probability and the normal distribution tie it all together. These are the tools that turn raw data into knowledge. In the next lesson, we'll dive deeper into descriptive statistics."
+    }
+  ]
+}

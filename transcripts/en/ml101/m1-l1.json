@@ -1,0 +1,69 @@
+{
+  "course": "ML-101",
+  "module": 1,
+  "lesson": 1,
+  "title": "What is Machine Learning?",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome to ML 101. In this lesson, we're going to explore the big question: what is machine learning? At its simplest, machine learning is about teaching computers to learn from data instead of following hard-coded rules. It's the technology behind spam filters, voice assistants, recommendation engines, and self-driving cars. Today, ML is reshaping virtually every industry on the planet, and understanding the basics will give you a real advantage."
+    },
+    {
+      "id": "s2-paradigm-shift",
+      "title": "The Paradigm Shift",
+      "transcript": "Here's the big idea. In traditional programming, a developer writes rules by hand. You tell the computer exactly what to do in every situation. Machine learning flips this entirely. Instead of writing rules, you give the computer data and the correct answers, and you let it figure out the rules on its own. Think about it: the old way is rules plus data gives you answers. The ML way is data plus answers gives you rules. That's a fundamental paradigm shift."
+    },
+    {
+      "id": "s3-traditional-vs-ml",
+      "title": "Traditional vs Machine Learning",
+      "transcript": "Let's compare the two approaches side by side. With traditional programming, you code rules manually, and the program produces answers. This works fine for simple problems with clear logic. But when patterns get complex — like recognizing faces or understanding natural language — hand-coded rules break down fast. Machine learning scales where human rule-writing simply cannot. You feed it data and answers, and it discovers the underlying rules automatically."
+    },
+    {
+      "id": "s4-history",
+      "title": "A Brief History",
+      "transcript": "Machine learning has a rich history stretching back over 80 years. In 1943, McCulloch and Pitts proposed the first mathematical model of an artificial neuron. Then in 1957, Frank Rosenblatt built the Perceptron, the first trainable neural network. Fast forward to 1997, when IBM's Deep Blue defeated world chess champion Garry Kasparov. And in 2012, AlexNet crushed the ImageNet competition, kicking off the deep learning revolution that continues to accelerate today."
+    },
+    {
+      "id": "s5-supervised",
+      "title": "Supervised Learning",
+      "transcript": "The first major type of machine learning is supervised learning. In this approach, you provide the model with labeled examples — pairs of inputs and their correct outputs. The model then learns to map new, unseen inputs to the right answers. For example, show a model 10,000 photos labeled as either cat or dog, and it learns to classify brand-new photos automatically. Supervised learning is the most widely used type of ML in practice."
+    },
+    {
+      "id": "s6-unsupervised",
+      "title": "Unsupervised Learning",
+      "transcript": "The second type is unsupervised learning. Here, there are no labels at all. The algorithm explores the data on its own and finds hidden patterns and structure. Imagine grouping customers by purchasing behavior without telling the model what the groups should be. Common applications include customer segmentation, anomaly detection, data compression, and topic modeling. It's powerful when you don't know in advance what you're looking for."
+    },
+    {
+      "id": "s7-reinforcement",
+      "title": "Reinforcement Learning",
+      "transcript": "The third type is reinforcement learning. Instead of learning from labeled data, an agent learns by trial and error. It takes actions in an environment, receives rewards when it does well and penalties when it doesn't, and gradually learns the best strategy over time. Famous examples include AlphaGo, which beat the world Go champion, robots that learn to walk from scratch, and game AI that masters classic Atari games all on its own."
+    },
+    {
+      "id": "s8-pipeline",
+      "title": "The ML Pipeline",
+      "transcript": "Building a machine learning model isn't just about the algorithm. It's a multi-step process called the ML pipeline, and every step matters. First, you collect raw data. Then you preprocess it — cleaning, normalizing, and splitting it into training and test sets. Next comes training, where you fit your model to the data. Finally, you evaluate the model on unseen data to see how well it generalizes. Skip any step, and your results will suffer."
+    },
+    {
+      "id": "s9-math",
+      "title": "The Math Behind It",
+      "transcript": "Let's peek at the math. At its core, a machine learning model learns a set of weights and a bias that map inputs to predictions. The simplest version is a linear model: y-hat equals w-one times x-one, plus w-two times x-two, and so on, plus a bias term b. During training, the model adjusts these weights to minimize the error between its predictions and the actual answers. This simple equation is the foundation of much more complex architectures."
+    },
+    {
+      "id": "s10-overfitting",
+      "title": "Overfitting vs Underfitting",
+      "transcript": "One of the biggest challenges in machine learning is the bias-variance tradeoff. On one side, you have underfitting — the model is too simple and misses important patterns in the data. On the other side, you have overfitting — the model is too complex and memorizes noise instead of learning real patterns. The sweet spot is a model that generalizes well to new, unseen data. Finding that balance is both the art and the science of machine learning."
+    },
+    {
+      "id": "s11-ml-everywhere",
+      "title": "ML Everywhere",
+      "transcript": "You might not realize it, but you interact with machine learning dozens of times every day. Netflix and YouTube use it to recommend what you should watch next. Hospitals use ML for medical diagnosis, detecting cancer in scans earlier than human doctors alone. Banks rely on it for fraud detection, monitoring transactions in real time. And autonomous vehicles combine computer vision with decision-making algorithms. Machine learning is truly everywhere."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap what we've covered. Machine learning is the art and science of finding patterns in data. We explored three learning paradigms: supervised, unsupervised, and reinforcement learning. We walked through the ML pipeline from data collection to evaluation. And we saw that the constant battle between underfitting and overfitting is at the heart of every ML project. In the next lesson, we'll dive deeper into supervised learning. See you there."
+    }
+  ]
+}
