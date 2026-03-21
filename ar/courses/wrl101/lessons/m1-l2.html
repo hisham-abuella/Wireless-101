@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الطيف الكهرومغناطيسي | WRL-101 | Wireless 101</title>
+<link rel="stylesheet" href="../../../../theme.css">
+<link rel="stylesheet" href="../../../../theme-rtl.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+/* ── Lesson Hero ── */
+.lesson-hero {
+  padding: 6.5rem 2rem 2.5rem;
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.lesson-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: rgba(232, 168, 56, 0.06);
+  border-radius: 50%;
+}
+
+.lesson-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.lesson-hero .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero .breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lesson-hero .breadcrumb a:hover { color: #fff; }
+
+.lesson-hero-content {
+  max-width: 720px;
+}
+
+.lesson-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.lesson-type-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.lesson-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.lesson-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.lesson-hero-meta-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+/* ── Article Content ── */
+.lesson-article {
+  padding: 4rem 2rem 3rem;
+  background: var(--cream);
+}
+
+.lesson-article-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lesson-article h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.lesson-article h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-article p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.lesson-article strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── Callout Box ── */
+.callout-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.callout-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callout-box-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.callout-box p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+.callout-box p:last-child {
+  margin-bottom: 0;
+}
+
+.callout-box .callout-highlight {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--amber-pale);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  display: block;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Timeline ── */
+.timeline {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 2rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.timeline-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.timeline-track {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2.5px solid var(--amber);
+  z-index: 1;
+}
+
+.timeline-item.highlight::before {
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 0 4px var(--amber-pale);
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.timeline-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Generations Visual ── */
+.generations-visual {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 2rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.generations-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.generations-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.gen-track {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.gen-item {
+  flex: 1;
+  min-width: 100px;
+  text-align: center;
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.gen-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 8px solid var(--border);
+  z-index: 1;
+}
+
+.gen-bubble {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--ink);
+  transition: transform 0.2s;
+}
+
+.gen-item:nth-child(2) .gen-bubble { background: var(--ink-muted); }
+.gen-item:nth-child(3) .gen-bubble { background: var(--sage); }
+.gen-item:nth-child(4) .gen-bubble { background: var(--amber); color: var(--ink); }
+.gen-item:nth-child(5) .gen-bubble { background: var(--amber-hot); color: var(--ink); }
+.gen-item:nth-child(6) .gen-bubble { background: #8b5cf6; }
+.gen-item:nth-child(7) .gen-bubble { background: #ef4444; }
+
+.gen-name {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.gen-desc {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+.gen-era {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-tertiary);
+  margin-top: 0.3rem;
+}
+
+/* ── Key Takeaways ── */
+.takeaways {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 2rem 2.25rem;
+  margin: 3rem 0 0;
+  color: #fff;
+}
+
+.takeaways-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.takeaways-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.takeaways ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.takeaways li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-on-dark);
+}
+
+.takeaways li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+/* ── Lesson Nav ── */
+.lesson-nav {
+  padding: 0 2rem;
+  background: var(--cream);
+}
+
+.lesson-nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lesson-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.lesson-nav-prev {
+  color: var(--ink);
+  border: 1.5px solid var(--border-light);
+  justify-self: start;
+}
+
+.lesson-nav-prev:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.1);
+}
+
+.lesson-nav-prev svg,
+.lesson-nav-next svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+}
+
+.lesson-nav-prev svg { stroke: var(--ink); }
+
+.lesson-nav-overview {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.lesson-nav-overview:hover { color: var(--ink); }
+
+.lesson-nav-next {
+  color: var(--cream);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  justify-self: end;
+}
+
+.lesson-nav-next svg { stroke: var(--cream); }
+
+.lesson-nav-next:hover {
+  background: var(--ink-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.15);
+}
+
+.lesson-nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.lesson-nav-title {
+  display: block;
+  line-height: 1.3;
+}
+
+/* ── Teaser paragraph ── */
+.teaser {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--border-light);
+}
+
+.teaser p {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ── Lang switch ── */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .lesson-hero { padding: 5.5rem 1.5rem 2rem; }
+  .lesson-article { padding: 3rem 1.5rem 2rem; }
+
+  .gen-track { gap: 0; }
+  .gen-item { min-width: 80px; padding: 0 0.25rem; }
+  .gen-bubble { width: 40px; height: 40px; font-size: 0.75rem; }
+
+  .lesson-nav-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .lesson-nav-overview {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .lesson-nav-prev { grid-row: 2; justify-self: start; }
+  .lesson-nav-next { grid-row: 2; justify-self: end; }
+}
+
+@media (max-width: 480px) {
+  .lesson-hero h1 { font-size: 1.5rem; }
+  .lesson-hero-meta { gap: 0.75rem; }
+
+  .gen-track {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gen-item { min-width: unset; width: 100%; }
+
+  .gen-item:not(:last-child)::after {
+    right: 50%;
+    top: unset;
+    bottom: -6px;
+    transform: translateX(50%) rotate(90deg);
+  }
+}
+
+/* ── Equation Block ── */
+.equation-block {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--paper) 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--amber);
+  border-radius: 3px 0 0 3px;
+}
+
+.equation-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.equation-block-label svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.equation-block .katex-display {
+  margin: 0;
+}
+
+.equation-block .katex {
+  font-size: 1.2em;
+  color: var(--text);
+}
+
+.equation-block-caption {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.equation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+@media (max-width: 600px) {
+  .equation-pair {
+    grid-template-columns: 1fr;
+  }
+  .equation-block .katex {
+    font-size: 1em;
+  }
+}
+
+.equation-pair .equation-block {
+  margin: 0;
+}
+
+/* ── Spectrum Table ── */
+.spectrum-table {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.25rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+  overflow-x: auto;
+}
+
+.spectrum-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.spectrum-table th {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  text-align: right;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.spectrum-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.spectrum-table tr:last-child td {
+  border-bottom: none;
+}
+
+.spectrum-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="../../../../index.html" class="nav-logo">
+    <img src="../../../../logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="../../../../courses/wrl101/lessons/m1-l2.html">EN</a>
+        <a href="m1-l2.html" class="active">&#1593;&#1585;&#1576;&#1610;</a>
+      </div>
+    </li>
+    <li><a href="../../../index.html">الرئيسية</a></li>
+    <li><a href="../../../index.html#courses">الدورات</a></li>
+    <li><a href="../index.html" class="nav-cta" lang="en">WRL 101</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Lesson Hero -->
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">الرئيسية</a>
+      <span>/</span>
+      <a href="../../../index.html#courses">الدورات</a>
+      <span>/</span>
+      <a href="../index.html" lang="en">WRL-101</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">الوحدة ١</span>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.8)">الدرس ٢</span>
+    </div>
+
+    <div class="lesson-hero-content fade-up">
+      <div class="lesson-type-badge">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        قراءة
+      </div>
+      <a href="m1-l2-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        وضع القصص
+      </a>
+      <h1>الطيف الكهرومغناطيسي</h1>
+      <div class="lesson-hero-meta">
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          ~١٢ دقيقة قراءة
+        </span>
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          الدرس ٢ من ٤ في الوحدة ١
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article Content -->
+<article class="lesson-article">
+  <div class="lesson-article-inner">
+
+    <!-- Introduction -->
+    <h2 class="fade-up">الطريق السريع غير المرئي</h2>
+
+    <p class="fade-up">الموجات الكهرومغناطيسية موجودة في كل مكان. الآن، تمر إشارات الراديو عبر جسمك، والأشعة تحت الحمراء تدفئ بشرتك، والضوء المرئي يصل إلى عينيك. كل هذه الظواهر هي نفس الشيء الأساسي &mdash; الإشعاع الكهرومغناطيسي &mdash; تختلف فقط في <strong>التردد</strong> و<strong>الطول الموجي</strong>.</p>
+
+    <p class="fade-up">في الدرس السابق، رأينا كيف تنبأ ماكسويل بالموجات الكهرومغناطيسية وأثبت هيرتز وجودها. الآن سنرسم خريطة الطيف الكهرومغناطيسي الكامل ونركّز على <strong>الترددات الراديوية</strong> التي تجعل الاتصالات اللاسلكية ممكنة. فهم الطيف أمر أساسي &mdash; فهو الطريق السريع غير المرئي الذي تسير عليه جميع الإشارات اللاسلكية.</p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        الفكرة الأساسية
+      </div>
+      <p>جميع الموجات الكهرومغناطيسية تنتقل بسرعة الضوء. تختلف فقط في التردد والطول الموجي. هذه الحقيقة الوحيدة هي أساس كل هندسة الاتصالات اللاسلكية.</p>
+      <span class="callout-highlight">موجات الراديو، الميكروويف، الضوء المرئي، الأشعة السينية &mdash; كلها نفس الظاهرة، بترددات مختلفة</span>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline fade-up">
+      <div class="timeline-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        الجدول الزمني &mdash; اكتشافات الطيف
+      </div>
+      <div class="timeline-track">
+        <div class="timeline-item highlight">
+          <div class="timeline-year">١٨٦٥</div>
+          <div class="timeline-desc">تنبأ ماكسويل بالموجات الكهرومغناطيسية رياضيًا</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">١٨٨٨</div>
+          <div class="timeline-desc">أثبت هيرتز وجود موجات الراديو في المختبر</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">١٨٩٥</div>
+          <div class="timeline-desc">اكتشف رونتغن الأشعة السينية، كاشفًا جزءًا جديدًا من الطيف</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">١٩٠٠</div>
+          <div class="timeline-desc">نظرية بلانك الكمومية تفسر العلاقة بين التردد والطاقة</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: What is the EM Spectrum -->
+    <h2 class="fade-up">ما هو الطيف الكهرومغناطيسي؟</h2>
+
+    <p class="fade-up">الطيف الكهرومغناطيسي هو النطاق الكامل لكل الإشعاع الكهرومغناطيسي، مرتب حسب التردد (أو ما يعادله، حسب الطول الموجي). يمتد من موجات الراديو منخفضة التردد للغاية بأطوال موجية تبلغ آلاف الكيلومترات، وصولًا إلى أشعة جاما بأطوال موجية أصغر من الذرة.</p>
+
+    <p class="fade-up">كل موجة كهرومغناطيسية، بغض النظر عن ترددها، تنتقل بـ<strong>سرعة الضوء</strong> في الفراغ. هذه السرعة هي واحدة من أهم الثوابت الأساسية في الفيزياء:</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        سرعة الضوء
+      </div>
+      <div id="eq-speed-of-light"></div>
+      <div class="equation-block-caption">جميع الموجات الكهرومغناطيسية تنتقل بهذه السرعة في الفراغ</div>
+    </div>
+
+    <p class="fade-up">العلاقة بين السرعة والتردد والطول الموجي تحكمها معادلة بسيطة واحدة &mdash; ربما أهم معادلة في هندسة الاتصالات اللاسلكية:</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        العلاقة الأساسية
+      </div>
+      <div id="eq-fundamental"></div>
+      <div class="equation-block-caption">سرعة الضوء تساوي التردد مضروبًا في الطول الموجي &mdash; المعادلة التي تحكم جميع الأنظمة اللاسلكية</div>
+    </div>
+
+    <div class="equation-pair fade-up">
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          حساب التردد
+        </div>
+        <div id="eq-freq"></div>
+        <div class="equation-block-caption">بمعرفة الطول الموجي، نجد التردد</div>
+      </div>
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          حساب الطول الموجي
+        </div>
+        <div id="eq-wavelength"></div>
+        <div class="equation-block-caption">بمعرفة التردد، نجد الطول الموجي</div>
+      </div>
+    </div>
+
+    <p class="fade-up">هذا يعني أن التردد والطول الموجي <strong>متناسبان عكسيًا</strong>. كلما زاد التردد، قل الطول الموجي &mdash; والعكس صحيح. محطة راديو بتردد <span lang="en">100 MHz</span> لها طول موجي ٣ أمتار. إشارة <span lang="en">WiFi</span> بتردد <span lang="en">5 GHz</span> لها طول موجي ٦ سنتيمترات فقط.</p>
+
+    <!-- Section: The Full Spectrum -->
+    <h2 class="fade-up">الطيف الكامل</h2>
+
+    <p class="fade-up">يقسم العلماء الطيف الكهرومغناطيسي إلى سبعة نطاقات رئيسية، من أدنى تردد (أطول موجة) إلى أعلى تردد (أقصر موجة):</p>
+
+    <div class="spectrum-table fade-up">
+      <table>
+        <thead>
+          <tr>
+            <th>النطاق</th>
+            <th>نطاق التردد</th>
+            <th>الطول الموجي</th>
+            <th>الاستخدامات الشائعة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>الراديو</td>
+            <td><span lang="en">3 kHz &ndash; 300 GHz</span></td>
+            <td><span lang="en">100 km &ndash; 1 mm</span></td>
+            <td>البث، الخلوي، <span lang="en">WiFi</span>، الرادار</td>
+          </tr>
+          <tr>
+            <td>الميكروويف</td>
+            <td><span lang="en">1 GHz &ndash; 300 GHz</span></td>
+            <td><span lang="en">30 cm &ndash; 1 mm</span></td>
+            <td>الأقمار الصناعية، الرادار، أفران الميكروويف</td>
+          </tr>
+          <tr>
+            <td>تحت الحمراء</td>
+            <td><span lang="en">300 GHz &ndash; 430 THz</span></td>
+            <td><span lang="en">1 mm &ndash; 700 nm</span></td>
+            <td>أجهزة التحكم، التصوير الحراري، الألياف الضوئية</td>
+          </tr>
+          <tr>
+            <td>الضوء المرئي</td>
+            <td><span lang="en">430 THz &ndash; 770 THz</span></td>
+            <td><span lang="en">700 nm &ndash; 390 nm</span></td>
+            <td>الرؤية البشرية، الألياف الضوئية، الشاشات</td>
+          </tr>
+          <tr>
+            <td>فوق البنفسجية</td>
+            <td><span lang="en">770 THz &ndash; 30 PHz</span></td>
+            <td><span lang="en">390 nm &ndash; 10 nm</span></td>
+            <td>التعقيم، الفلورة، الطباعة الحجرية</td>
+          </tr>
+          <tr>
+            <td>الأشعة السينية</td>
+            <td><span lang="en">30 PHz &ndash; 30 EHz</span></td>
+            <td><span lang="en">10 nm &ndash; 0.01 nm</span></td>
+            <td>التصوير الطبي، الفحص الأمني</td>
+          </tr>
+          <tr>
+            <td>جاما</td>
+            <td><span lang="en">&gt; 30 EHz</span></td>
+            <td><span lang="en">&lt; 0.01 nm</span></td>
+            <td>علاج السرطان، الفيزياء النووية</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fade-up">لاحظ أن الحدود بين النطاقات ليست صلبة &mdash; إنها اتفاقيات تطورت عبر الزمن. الميكروويف مثلًا يتداخل مع الجزء العلوي من نطاق الراديو. المهم هو <strong>السلوك الفيزيائي</strong> للموجات عند الترددات المختلفة.</p>
+
+    <!-- Spectrum visual -->
+    <div class="generations-visual fade-up">
+      <div class="generations-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        الطيف الكهرومغناطيسي في لمحة
+      </div>
+      <div class="gen-track">
+        <div class="gen-item">
+          <div class="gen-bubble" lang="en">Radio</div>
+          <div class="gen-name" lang="en">3 kHz&ndash;300 GHz</div>
+          <div class="gen-desc">اتصالات لاسلكية</div>
+          <div class="gen-era">~كم إلى مم</div>
+        </div>
+        <div class="gen-item">
+          <div class="gen-bubble" lang="en">IR</div>
+          <div class="gen-name" lang="en">300 GHz&ndash;430 THz</div>
+          <div class="gen-desc">حرارة، ألياف ضوئية</div>
+          <div class="gen-era">~مم إلى <span lang="en">700 nm</span></div>
+        </div>
+        <div class="gen-item">
+          <div class="gen-bubble" lang="en">Vis</div>
+          <div class="gen-name" lang="en">430&ndash;770 THz</div>
+          <div class="gen-desc">الرؤية البشرية</div>
+          <div class="gen-era"><span lang="en">700&ndash;390 nm</span></div>
+        </div>
+        <div class="gen-item">
+          <div class="gen-bubble" lang="en">UV</div>
+          <div class="gen-name" lang="en">770 THz&ndash;30 PHz</div>
+          <div class="gen-desc">تعقيم</div>
+          <div class="gen-era"><span lang="en">390&ndash;10 nm</span></div>
+        </div>
+        <div class="gen-item">
+          <div class="gen-bubble" lang="en">X/&gamma;</div>
+          <div class="gen-name" lang="en">&gt; 30 PHz</div>
+          <div class="gen-desc">طبي، نووي</div>
+          <div class="gen-era"><span lang="en">&lt; 10 nm</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Radio Frequency Bands -->
+    <h2 class="fade-up">نطاقات الترددات الراديوية</h2>
+
+    <p class="fade-up">الجزء الراديوي من الطيف (<span lang="en">3 kHz</span> إلى <span lang="en">300 GHz</span>) هو ملعب مهندس الاتصالات اللاسلكية. ينقسم إلى نطاقات فرعية، لكل منها خصائص انتشار وتطبيقات مميزة:</p>
+
+    <div class="spectrum-table fade-up">
+      <table>
+        <thead>
+          <tr>
+            <th>النطاق</th>
+            <th>التردد</th>
+            <th>الطول الموجي</th>
+            <th>الاستخدامات النموذجية</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td lang="en">VLF</td>
+            <td><span lang="en">3&ndash;30 kHz</span></td>
+            <td><span lang="en">100&ndash;10 km</span></td>
+            <td>اتصالات الغواصات، الملاحة</td>
+          </tr>
+          <tr>
+            <td lang="en">LF</td>
+            <td><span lang="en">30&ndash;300 kHz</span></td>
+            <td><span lang="en">10&ndash;1 km</span></td>
+            <td>راديو <span lang="en">AM</span> الموجة الطويلة، <span lang="en">RFID</span></td>
+          </tr>
+          <tr>
+            <td lang="en">MF</td>
+            <td><span lang="en">300 kHz&ndash;3 MHz</span></td>
+            <td><span lang="en">1 km&ndash;100 m</span></td>
+            <td>البث الإذاعي <span lang="en">AM</span></td>
+          </tr>
+          <tr>
+            <td lang="en">HF</td>
+            <td><span lang="en">3&ndash;30 MHz</span></td>
+            <td><span lang="en">100&ndash;10 m</span></td>
+            <td>الراديو قصير الموجة، الراديو الهاوي، الطيران</td>
+          </tr>
+          <tr>
+            <td lang="en">VHF</td>
+            <td><span lang="en">30&ndash;300 MHz</span></td>
+            <td><span lang="en">10&ndash;1 m</span></td>
+            <td>راديو <span lang="en">FM</span>، البث التلفزيوني، مراقبة الحركة الجوية</td>
+          </tr>
+          <tr>
+            <td lang="en">UHF</td>
+            <td><span lang="en">300 MHz&ndash;3 GHz</span></td>
+            <td><span lang="en">1 m&ndash;10 cm</span></td>
+            <td>الخلوي، <span lang="en">WiFi</span>، <span lang="en">GPS</span>، <span lang="en">Bluetooth</span></td>
+          </tr>
+          <tr>
+            <td lang="en">SHF</td>
+            <td><span lang="en">3&ndash;30 GHz</span></td>
+            <td><span lang="en">10&ndash;1 cm</span></td>
+            <td><span lang="en">5G</span>، الأقمار الصناعية، الرادار</td>
+          </tr>
+          <tr>
+            <td lang="en">EHF</td>
+            <td><span lang="en">30&ndash;300 GHz</span></td>
+            <td><span lang="en">10&ndash;1 mm</span></td>
+            <td><span lang="en">5G mmWave</span>، علم الفلك الراديوي</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fade-up">معظم التقنيات اللاسلكية التي تستخدمها يوميًا &mdash; الخلوي، <span lang="en">WiFi</span>، <span lang="en">Bluetooth</span>، <span lang="en">GPS</span> &mdash; تعمل في نطاقات <strong lang="en">UHF</strong> و<strong lang="en">SHF</strong>، تقريبًا بين <span lang="en">300 MHz</span> و<span lang="en">30 GHz</span>. هذه هي المنطقة المثالية حيث تكون الهوائيات عملية الحجم، وعرض النطاق كافٍ للبيانات، والانتشار جيد بما يكفي للاستخدام المتنقل.</p>
+
+    <!-- Section: Why Frequency Matters -->
+    <h2 class="fade-up">لماذا يهم التردد</h2>
+
+    <p class="fade-up">تتصرف الترددات المختلفة بشكل مختلف تمامًا في العالم الحقيقي. هذا يخلق مقايضة أساسية تشكّل كل نظام لاسلكي صُمّم على الإطلاق:</p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        المقايضة الأساسية
+      </div>
+      <p><strong>الترددات المنخفضة</strong> تنتقل لمسافات أبعد، تخترق المباني بشكل أفضل، وتحتاج إلى أبراج أقل &mdash; لكنها تحمل بيانات أقل لأن عرض النطاق المتاح محدود.</p>
+      <p><strong>الترددات العالية</strong> تحمل بيانات أكثر بكثير وتتيح سرعات أعلى &mdash; لكنها تتلاشى أسرع، تُحجب بالعوائق، وتحتاج إلى محطات قاعدية أكثر بكثير.</p>
+      <span class="callout-highlight">المدى مقابل السعة &mdash; هذه المقايضة تشكّل كل نظام لاسلكي بُني على الإطلاق</span>
+    </div>
+
+    <p class="fade-up">فكّر في الحالات القصوى: <strong>محطة راديو <span lang="en">AM</span></strong> بتردد <span lang="en">1 MHz</span> لها طول موجي ٣٠٠ متر. إشارتها يمكن أن تنتقل مئات الكيلومترات وتخترق المباني بسهولة، لكنها تحمل فقط عرض نطاق كافٍ لصوت منخفض الجودة. في المقابل، <strong><span lang="en">5G mmWave</span></strong> بتردد <span lang="en">39 GHz</span> لها طول موجي ٧.٧ مليمتر فقط. يمكنها توفير سرعات بعدة جيجابت، لكن الإشارة بالكاد تخترق نافذة وتتلاشى بعد بضع مئات من الأمتار.</p>
+
+    <p class="fade-up">لهذا السبب تستخدم الشبكات الخلوية <strong>نطاقات تردد متعددة في آن واحد</strong>. النطاقات المنخفضة (مثل <span lang="en">700 MHz</span>) توفر التغطية واختراق المباني. النطاقات العالية (مثل <span lang="en">3.5 GHz</span> أو <span lang="en">28 GHz</span>) توفر السعة والسرعة حيث تكون مطلوبة.</p>
+
+    <!-- Section: Spectrum as a Resource -->
+    <h2 class="fade-up">الطيف كمورد</h2>
+
+    <p class="fade-up">الطيف الكهرومغناطيسي هو <strong>مورد محدود ومشترك</strong>. إذا استخدم جهازا إرسال نفس التردد في نفس المنطقة، تتداخل إشاراتهما ولا يعمل أي منهما بشكل صحيح. لهذا السبب تنظم الحكومات الوصول إلى الطيف.</p>
+
+    <p class="fade-up">عالميًا، ينسّق <strong>الاتحاد الدولي للاتصالات (<span lang="en">ITU</span>)</strong> تخصيص الطيف عبر الدول. على المستوى الوطني، تقرر هيئات مثل <strong lang="en">FCC</strong> (الولايات المتحدة) و<strong lang="en">Ofcom</strong> (المملكة المتحدة) وهيئات مماثلة حول العالم من يحق له استخدام أي ترددات.</p>
+
+    <p class="fade-up">تراخيص الطيف ذات قيمة استثنائية. يدفع مشغلو الهاتف المحمول بانتظام <strong>مليارات الدولارات</strong> في مزادات الطيف الحكومية مقابل حق البث على ترددات محددة. في عام ٢٠٢١، جمع مزاد النطاق <span lang="en">C-band</span> الأمريكي (<span lang="en">3.7&ndash;3.98 GHz</span>) أكثر من ٨١ مليار دولار &mdash; انعكاس لمدى أهمية الوصول إلى الطيف لصناعة الاتصالات اللاسلكية.</p>
+
+    <p class="fade-up">بعض الترددات مخصصة <strong>للاستخدام غير المرخص</strong> &mdash; يمكن لأي شخص البث عليها بدون ترخيص، طالما يلتزم بحدود طاقة معينة. نطاقا <span lang="en">2.4 GHz</span> و<span lang="en">5 GHz</span> المستخدمان في <span lang="en">WiFi</span> هما أهم الأمثلة. أطلق هذا النموذج من الطيف غير المرخص ابتكارًا هائلًا.</p>
+
+    <div class="teaser fade-up">
+      <p>في الدرس التالي، سنستكشف كيف يتم تشفير المعلومات فعليًا على الموجات الكهرومغناطيسية &mdash; عملية التعديل. ستتعلم كيف يتم تحويل الصوت والنص والفيديو إلى إشارات راديو تنتقل عبر الهواء.</p>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="takeaways fade-up">
+      <div class="takeaways-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        النقاط الرئيسية
+      </div>
+      <ul>
+        <li>جميع الموجات الكهرومغناطيسية تنتقل بسرعة الضوء وتختلف فقط في التردد والطول الموجي.</li>
+        <li>العلاقة الأساسية <span lang="en">c = &lambda;f</span> تربط السرعة والتردد والطول الموجي &mdash; أهم معادلة في هندسة الاتصالات اللاسلكية.</li>
+        <li>الترددات الراديوية (<span lang="en">3 kHz &ndash; 300 GHz</span>) هي الجزء من الطيف المستخدم للاتصالات اللاسلكية.</li>
+        <li>الترددات المنخفضة تنتقل أبعد لكنها تحمل بيانات أقل؛ الترددات العالية تحمل بيانات أكثر لكنها تتلاشى أسرع &mdash; المقايضة الأساسية في تصميم الأنظمة اللاسلكية.</li>
+      </ul>
+    </div>
+
+  </div>
+</article>
+
+<!-- Lesson Navigation -->
+<div class="lesson-nav">
+  <div class="lesson-nav-inner fade-up">
+    <a href="m1-l1.html" class="lesson-nav-btn lesson-nav-prev">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      <span>
+        <span class="lesson-nav-label">الدرس السابق</span>
+        <span class="lesson-nav-title">تاريخ موجز</span>
+      </span>
+    </a>
+
+    <a href="../index.html" class="lesson-nav-overview">نظرة عامة على الوحدة</a>
+
+    <a href="../../../../ar/coming-soon.html" class="lesson-nav-btn lesson-nav-next">
+      <span>
+        <span class="lesson-nav-label">الدرس التالي</span>
+        <span class="lesson-nav-title">كيف تنتقل المعلومات</span>
+      </span>
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Audio Player -->
+<div id="audioPlayer" style="position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;align-items:center;gap:0.5rem;">
+  <div id="audioPanel" style="display:none;background:var(--ink);border-radius:16px;padding:0.5rem 0.75rem;box-shadow:0 4px 20px rgba(15,27,45,0.35);align-items:center;gap:0.5rem;">
+    <button id="prevBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="السابق">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M19 20L9 12l10-8v16z"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
+    </button>
+    <button id="playBtn" style="width:36px;height:36px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="تشغيل/إيقاف">
+      <svg id="playSvg" width="16" height="16" viewBox="0 0 24 24" fill="var(--ink)" stroke="none"><polygon id="playShape" points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <button id="nextBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="التالي">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M5 4l10 8-10 8V4z"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
+    </button>
+    <div style="color:var(--cream);font-family:var(--font-mono);font-size:0.65rem;min-width:60px;text-align:center;">
+      <span id="trackInfo">1 / 15</span>
+    </div>
+    <button id="closeAudio" style="width:28px;height:28px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="إغلاق">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <button id="audioToggle" style="width:52px;height:52px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,27,45,0.25);transition:all 0.3s;" title="استمع للسرد الصوتي">
+    <svg id="audioIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 010 7.07"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14"/>
+    </svg>
+  </button>
+</div>
+<audio id="lessonAudio" preload="none"></audio>
+
+<script>
+(function() {
+  var AUDIO_BASE = '../../../../audio/ar/wrl101/m1-l2/';
+  var TRACKS = [
+    's1-intro','s2-maxwell','s3-speed-of-light','s4-full-spectrum','s5-radio-waves',
+    's6-microwaves','s7-infrared-visible','s8-uv-xray-gamma','s9-rf-bands','s10-range-tradeoff',
+    's11-wavelength-action','s12-spectrum-allocation','s13-wifi-cellular','s14-key-patterns','s15-summary'
+  ];
+
+  var audioEl = document.getElementById('lessonAudio');
+  var panel = document.getElementById('audioPanel');
+  var toggleBtn = document.getElementById('audioToggle');
+  var playBtn = document.getElementById('playBtn');
+  var playShape = document.getElementById('playShape');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var closeBtn = document.getElementById('closeAudio');
+  var trackInfo = document.getElementById('trackInfo');
+  var audioIcon = document.getElementById('audioIcon');
+
+  var current = 0;
+  var panelOpen = false;
+
+  function loadTrack(i) {
+    current = i;
+    audioEl.src = AUDIO_BASE + TRACKS[i] + '.mp3';
+    trackInfo.textContent = (i + 1) + ' / ' + TRACKS.length;
+  }
+
+  function setPauseIcon() {
+    playShape.setAttribute('points', '6 4 10 4 10 20 6 20');
+    var r2 = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    r2.setAttribute('points', '14 4 18 4 18 20 14 20');
+    r2.setAttribute('fill', 'var(--ink)');
+    r2.id = 'playShape2';
+    playShape.parentNode.appendChild(r2);
+  }
+
+  function setPlayIconShape() {
+    playShape.setAttribute('points', '5 3 19 12 5 21 5 3');
+    var r2 = document.getElementById('playShape2');
+    if (r2) r2.remove();
+  }
+
+  function setPlaying(playing) {
+    if (playing) { setPauseIcon(); } else { setPlayIconShape(); }
+  }
+
+  toggleBtn.addEventListener('click', function() {
+    if (!panelOpen) {
+      panel.style.display = 'flex';
+      panelOpen = true;
+      toggleBtn.style.background = 'var(--amber)';
+      audioIcon.setAttribute('stroke', 'var(--ink)');
+      loadTrack(0);
+      audioEl.play();
+      setPlaying(true);
+    } else {
+      if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+      else { audioEl.pause(); setPlaying(false); }
+    }
+  });
+
+  playBtn.addEventListener('click', function() {
+    if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+    else { audioEl.pause(); setPlaying(false); }
+  });
+
+  prevBtn.addEventListener('click', function() {
+    if (current > 0) { loadTrack(current - 1); audioEl.play(); setPlaying(true); }
+  });
+
+  nextBtn.addEventListener('click', function() {
+    if (current < TRACKS.length - 1) { loadTrack(current + 1); audioEl.play(); setPlaying(true); }
+  });
+
+  closeBtn.addEventListener('click', function() {
+    audioEl.pause();
+    audioEl.removeAttribute('src');
+    panel.style.display = 'none';
+    panelOpen = false;
+    toggleBtn.style.background = 'var(--ink)';
+    audioIcon.setAttribute('stroke', '#e8a838');
+    setPlaying(false);
+    current = 0;
+  });
+
+  audioEl.addEventListener('ended', function() {
+    if (current < TRACKS.length - 1) {
+      loadTrack(current + 1);
+      audioEl.play();
+    } else {
+      setPlaying(false);
+    }
+  });
+})();
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="../../../../logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>منهج مفتوح المصدر لأساسيات الاتصالات اللاسلكية ومعالجة الإشارات الرقمية.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الدورات</div>
+      <a href="../../wrl101/index.html">Wireless 101</a>
+      <a href="../../dsp101/index.html">DSP 101</a>
+      <a href="../../../coming-soon.html">التجارب</a>
+      <a href="../../../coming-soon.html">المشاريع</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الموارد</div>
+      <a href="../../../coming-soon.html">التوثيق</a>
+      <a href="../../../coming-soon.html">المجتمع</a>
+      <a href="../../../coming-soon.html">المدونة</a>
+      <a href="../../../coming-soon.html">الأسئلة الشائعة</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">تواصل</div>
+      <a href="../../../coming-soon.html">GitHub</a>
+      <a href="../../../coming-soon.html">Discord</a>
+      <a href="../../../coming-soon.html">Twitter / X</a>
+      <a href="../../../coming-soon.html">اتصل بنا</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; ٢٠٢٦ Wireless 101. مشروع تعليمي مفتوح المصدر.</div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── KaTeX Equations ──
+function renderEquations() {
+  if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
+
+  var eqs = [
+    ['eq-speed-of-light', 'c \\approx 3 \\times 10^8 \\;\\text{m/s}'],
+    ['eq-fundamental', 'c = f \\cdot \\lambda'],
+    ['eq-freq', 'f = \\frac{c}{\\lambda} = \\frac{3 \\times 10^8}{\\lambda}'],
+    ['eq-wavelength', '\\lambda = \\frac{c}{f} = \\frac{3 \\times 10^8}{f}']
+  ];
+
+  eqs.forEach(function(pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) katex.render(pair[1], el, { displayMode: true, throwOnError: false });
+  });
+}
+renderEquations();
+</script>
+<script data-goatcounter="https://wireless-101.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
