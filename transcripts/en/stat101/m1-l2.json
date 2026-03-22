@@ -1,0 +1,69 @@
+{
+  "course": "STAT-101",
+  "module": 1,
+  "lesson": 2,
+  "title": "Types of Data",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to Statistics 101. In our first lesson, we explored what statistics is and why it matters. Today, we're going to look at the raw material of all statistics: data. Not all data is the same. The type of data you collect determines which statistical methods you can use, which visualizations make sense, and what conclusions you can draw. Understanding data types is essential before any analysis begins."
+    },
+    {
+      "id": "s2-qualitative-quantitative",
+      "title": "Qualitative vs Quantitative",
+      "transcript": "The broadest division in data is between qualitative and quantitative. Qualitative data, also called categorical data, describes qualities or characteristics. What color is the car? What country are you from? What blood type do you have? Quantitative data, on the other hand, represents quantities — things you can measure or count with numbers. How tall are you? How many siblings do you have? How much does this package weigh? This fundamental distinction shapes every statistical choice you'll make."
+    },
+    {
+      "id": "s3-nominal",
+      "title": "Nominal Data",
+      "transcript": "Nominal data is the simplest type of qualitative data. It consists of categories with no natural order or ranking. Examples include blood type — A, B, AB, or O — there's no sense in which one is greater than another. Eye color, country of origin, and marital status are all nominal. You can count how many observations fall in each category and compute proportions, but you cannot meaningfully add, subtract, or average nominal values."
+    },
+    {
+      "id": "s4-ordinal",
+      "title": "Ordinal Data",
+      "transcript": "Ordinal data adds something nominal data lacks: a natural order. Think of a customer satisfaction survey: very dissatisfied, dissatisfied, neutral, satisfied, very satisfied. There's a clear ranking — satisfied is better than dissatisfied. But the gaps between categories aren't necessarily equal. Education levels, military ranks, and star ratings are all ordinal. You can rank ordinal data, but you can't assume equal spacing between the ranks."
+    },
+    {
+      "id": "s5-interval",
+      "title": "Interval Data",
+      "transcript": "Interval data is quantitative with equal spacing between values, but no true zero point. The classic example is temperature in Celsius or Fahrenheit. The difference between 20 and 30 degrees is the same as between 30 and 40. But zero degrees doesn't mean 'no temperature.' Calendar years and IQ scores are also interval data. You can add and subtract interval values, but ratios don't make sense — 40 degrees is not twice as hot as 20 degrees."
+    },
+    {
+      "id": "s6-ratio",
+      "title": "Ratio Data",
+      "transcript": "Ratio data is the most informative type. It has equal intervals and a meaningful zero point, which represents the complete absence of the quantity being measured. Weight, height, distance, income, and age are all ratio data. Zero kilograms means no mass. Because of the true zero, ratios are meaningful: 100 kilograms is genuinely twice as heavy as 50 kilograms. This is the richest data type, supporting the full range of mathematical operations."
+    },
+    {
+      "id": "s7-discrete-continuous",
+      "title": "Discrete vs Continuous",
+      "transcript": "Quantitative data splits further into discrete and continuous. Discrete data takes only specific, separated values — usually whole numbers. How many students are in a class? How many defects on an assembly line? You can count discrete data, but you can't have half a student. Continuous data can take any value within a range. Height can be 170.3 centimeters or 170.31 centimeters or any value in between. This distinction matters because it determines which probability distributions and statistical tests apply."
+    },
+    {
+      "id": "s8-structured-unstructured",
+      "title": "Structured vs Unstructured",
+      "transcript": "In the modern data landscape, there's another critical distinction: structured versus unstructured data. Structured data fits neatly into rows and columns — spreadsheets, databases, sensor readings. It's easy to analyze with traditional statistics. Unstructured data includes text, images, audio, and video. It doesn't fit into tables. Over 80 percent of the world's data is unstructured, and it requires specialized techniques like natural language processing and computer vision to extract meaningful information."
+    },
+    {
+      "id": "s9-collection",
+      "title": "Data Collection Methods",
+      "transcript": "How you collect data matters as much as what you collect. Surveys ask people directly — efficient but prone to response bias. Experiments control conditions and manipulate variables — the gold standard for establishing cause and effect. Observational studies watch and record without intervening — useful when experiments aren't ethical or practical. And sensors capture data automatically, from temperature probes to GPS trackers. Each method has strengths, limitations, and potential biases that affect your conclusions."
+    },
+    {
+      "id": "s10-why-types-matter",
+      "title": "Why Data Types Matter",
+      "transcript": "Why does all this matter? Because the type of data determines everything downstream. For nominal data, you can compute modes and chi-square tests. For ordinal data, you use medians and rank-based tests. For interval and ratio data, you unlock the full power of means, standard deviations, correlations, and regression. Use the wrong method for your data type, and your results will be meaningless — or worse, misleading. Getting the data type right is the foundation of good statistics."
+    },
+    {
+      "id": "s11-hierarchy",
+      "title": "The Data Type Hierarchy",
+      "transcript": "The four measurement scales form a hierarchy. Nominal is the most basic — just categories. Ordinal adds order. Interval adds equal spacing. And ratio adds a true zero. Each level includes all the properties of the levels below it plus something new. Ratio data supports every statistical operation. Nominal data supports the fewest. You can always treat higher-level data as lower-level — you can group ages into categories — but you can never go the other way. Once information is lost, it's gone."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. Data comes in two broad types: qualitative, which describes categories, and quantitative, which measures quantities. The four measurement scales — nominal, ordinal, interval, and ratio — form a hierarchy of increasing information. Quantitative data is further divided into discrete and continuous. And in the modern world, we must also consider structured versus unstructured data. Understanding these types is the foundation of choosing the right statistical methods. In the next lesson, we'll explore populations versus samples. See you there."
+    }
+  ]
+}

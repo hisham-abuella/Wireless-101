@@ -1,0 +1,69 @@
+{
+  "course": "LA-101",
+  "module": 1,
+  "lesson": 2,
+  "title": "Scalars, Vectors & Matrices",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to Linear Algebra 101. In this lesson, we're going to meet the three fundamental objects of the subject: scalars, vectors, and matrices. Every equation, every transformation, every algorithm in linear algebra is built from these three ingredients. They are the atoms of the mathematical universe we're exploring. By the end of this lesson, you'll understand what each one is, how they work, and why they matter so much in science and engineering."
+    },
+    {
+      "id": "s2-scalars",
+      "title": "Scalars",
+      "transcript": "Let's start with the simplest object: the scalar. A scalar is just a single number. It could be an integer like five, a real number like three point one four, or even a complex number. The key property of a scalar is that it has magnitude only. It tells you how much, but not which direction. Temperature, mass, speed, energy: these are all scalar quantities. The name scalar comes from the word scale, because scalars scale other objects. When you multiply a vector by a scalar, you stretch or shrink it. When you multiply a matrix by a scalar, you scale every entry."
+    },
+    {
+      "id": "s3-vectors",
+      "title": "Vectors",
+      "transcript": "Now let's move up to vectors. A vector is an ordered list of numbers. These numbers are called components, and they describe both direction and magnitude. In two dimensions, a vector has two components: how far to go horizontally and how far to go vertically. In three dimensions, you add a third component for depth. And in machine learning, vectors can have thousands or even millions of components. We write vectors as columns, stacked vertically inside brackets. This notation is compact, precise, and incredibly powerful."
+    },
+    {
+      "id": "s4-vector-operations",
+      "title": "Vector Operations",
+      "transcript": "Two fundamental operations define vector algebra. The first is addition. You add two vectors by adding their corresponding components: the first entries add together, the second entries add together, and so on. Geometrically, this is the tip-to-tail rule. The second operation is scalar multiplication. You multiply every component of the vector by the scalar. If the scalar is two, the vector doubles in length. If it's negative one, the vector flips direction. These two operations, addition and scalar multiplication, are the foundation of everything in linear algebra. Every vector in a space can be built from linear combinations of basis vectors using just these two operations."
+    },
+    {
+      "id": "s5-matrices",
+      "title": "Matrices",
+      "transcript": "Now we arrive at the third and most powerful building block: the matrix. A matrix is a rectangular array of numbers arranged in rows and columns. We describe its size using two numbers: m rows and n columns, written as m by n. A two-by-three matrix has two rows and three columns, giving it six entries total. But a matrix is far more than a table of numbers. Matrices represent linear transformations, systems of equations, and datasets. When you multiply a matrix by a vector, you transform that vector into a new one."
+    },
+    {
+      "id": "s6-matrix-elements",
+      "title": "Matrix Elements",
+      "transcript": "To work with matrices, we need a way to refer to individual entries. We use subscript notation: a sub i j refers to the element in row i, column j. So a sub two three means the entry in the second row, third column. The dimensions are always written as rows times columns, never the other way around. This notation might seem like a small detail, but it's essential. When you start multiplying matrices and solving equations, keeping track of rows and columns is everything."
+    },
+    {
+      "id": "s7-identity-matrix",
+      "title": "The Identity Matrix",
+      "transcript": "Some matrices are so important that they get their own names. The most fundamental is the identity matrix, written as a capital I. It's a square matrix with ones on the main diagonal and zeros everywhere else. The three-by-three identity matrix has ones at positions one-one, two-two, and three-three, and zeros everywhere else. What makes the identity matrix special? When you multiply any vector or matrix by the identity, nothing changes. It's the matrix equivalent of multiplying a number by one. The identity matrix is the do-nothing transformation."
+    },
+    {
+      "id": "s8-special-matrices",
+      "title": "Special Matrices",
+      "transcript": "Beyond the identity, several other special matrices appear constantly in science and engineering. The zero matrix has all entries equal to zero. It maps every vector to the zero vector, collapsing all of space to a single point. A diagonal matrix has nonzero entries only on the main diagonal. It scales each axis independently, which makes it very efficient for computation. And a symmetric matrix equals its own transpose. That means the entry in row i, column j equals the entry in row j, column i. Symmetric matrices appear everywhere in physics and statistics, and they have beautiful mathematical properties."
+    },
+    {
+      "id": "s9-matrix-operations",
+      "title": "Matrix Operations",
+      "transcript": "Just like vectors, matrices support addition and scalar multiplication. Matrix addition works element by element: you add the entries in corresponding positions. But there's an important rule: both matrices must have the same dimensions. You can't add a two-by-three matrix to a three-by-two matrix. Scalar multiplication is simpler: you multiply every single entry in the matrix by the scalar. Both operations are straightforward, but they form the basis for more complex operations like matrix multiplication, which we'll explore in a future lesson."
+    },
+    {
+      "id": "s10-transpose",
+      "title": "The Transpose",
+      "transcript": "The transpose is one of the most important operations in linear algebra. Given a matrix A, its transpose, written A superscript T, is obtained by flipping the matrix over its main diagonal. Rows become columns and columns become rows. If A is an m-by-n matrix, then A transpose is n-by-m. For example, if the first row of A is one, two, three, then the first column of A transpose is one, two, three. The transpose is fundamental in statistics, optimization, and machine learning. It shows up in least squares regression, covariance matrices, and the definition of symmetric matrices."
+    },
+    {
+      "id": "s11-why-it-matters",
+      "title": "Why These Matter",
+      "transcript": "You might wonder why we spend so much time on these basic objects. The answer is that everything in linear algebra, and by extension everything in modern engineering and data science, is built from scalars, vectors, and matrices. In signal processing, a signal is a vector. In machine learning, a dataset is a matrix. In physics, forces and velocities are vectors, and coordinate transformations are matrices. The weights in a neural network are scalars organized into matrices. Understanding these building blocks deeply is essential because every advanced topic, from eigenvalues to singular value decomposition, is expressed in their language."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. A scalar is a single number with magnitude only. A vector is an ordered list of numbers encoding direction and magnitude. A matrix is a rectangular array of numbers that represents transformations, systems, and data. Special matrices like the identity, zero, diagonal, and symmetric matrices appear throughout science and engineering. The transpose flips a matrix over its diagonal, turning rows into columns. Together, these objects form the alphabet of linear algebra. Master them, and every future concept will feel natural. In the next lesson, we'll explore vector spaces and linear independence. See you there."
+    }
+  ]
+}

@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Types of Data | STAT-101 | Wireless 101</title>
+<link rel="stylesheet" href="../../../theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+/* ── Lesson Hero ── */
+.lesson-hero {
+  padding: 6.5rem 2rem 2.5rem;
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.lesson-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: rgba(232, 168, 56, 0.06);
+  border-radius: 50%;
+}
+
+.lesson-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.lesson-hero .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero .breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lesson-hero .breadcrumb a:hover { color: #fff; }
+
+.lesson-hero-content {
+  max-width: 720px;
+}
+
+.lesson-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.lesson-type-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.lesson-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.lesson-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.lesson-hero-meta-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+/* ── Article Content ── */
+.lesson-article {
+  padding: 4rem 2rem 3rem;
+  background: var(--cream);
+}
+
+.lesson-article-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lesson-article h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.lesson-article h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-article p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.lesson-article strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── Callout Box ── */
+.callout-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.callout-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callout-box-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.callout-box p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+.callout-box p:last-child {
+  margin-bottom: 0;
+}
+
+.callout-box .callout-highlight {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--amber-pale);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  display: block;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Data type table ── */
+.data-type-table {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+  overflow-x: auto;
+}
+
+.data-type-table-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.data-type-table-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.data-type-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+}
+
+.data-type-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.data-type-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.data-type-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-type-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ── Key Takeaways ── */
+.takeaways {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 2rem 2.25rem;
+  margin: 3rem 0 0;
+  color: #fff;
+}
+
+.takeaways-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.takeaways-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.takeaways ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.takeaways li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-on-dark);
+}
+
+.takeaways li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+/* ── Lesson Nav ── */
+.lesson-nav {
+  padding: 0 2rem;
+  background: var(--cream);
+}
+
+.lesson-nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lesson-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.lesson-nav-prev {
+  color: var(--cream);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  justify-self: start;
+}
+
+.lesson-nav-prev:hover {
+  background: var(--ink-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.15);
+}
+
+.lesson-nav-prev svg,
+.lesson-nav-next svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+}
+
+.lesson-nav-prev svg { stroke: var(--cream); }
+
+.lesson-nav-overview {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.lesson-nav-overview:hover { color: var(--ink); }
+
+.lesson-nav-next {
+  color: var(--text-tertiary);
+  border: 1.5px solid var(--border-light);
+  cursor: default;
+  opacity: 0.5;
+  justify-self: end;
+}
+
+.lesson-nav-next svg { stroke: var(--text-tertiary); }
+
+.lesson-nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.lesson-nav-title {
+  display: block;
+  line-height: 1.3;
+}
+
+/* ── Teaser paragraph ── */
+.teaser {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--border-light);
+}
+
+.teaser p {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ── Lang switch ── */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .lesson-hero { padding: 5.5rem 1.5rem 2rem; }
+  .lesson-article { padding: 3rem 1.5rem 2rem; }
+
+  .lesson-nav-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .lesson-nav-overview {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .lesson-nav-prev { grid-row: 2; justify-self: start; }
+  .lesson-nav-next { grid-row: 2; justify-self: end; }
+}
+
+@media (max-width: 480px) {
+  .lesson-hero h1 { font-size: 1.5rem; }
+  .lesson-hero-meta { gap: 0.75rem; }
+}
+
+/* ── Equation Block ── */
+.equation-block {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--paper) 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--amber);
+  border-radius: 3px 0 0 3px;
+}
+
+.equation-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.equation-block-label svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.equation-block .katex-display {
+  margin: 0;
+}
+
+.equation-block .katex {
+  font-size: 1.2em;
+  color: var(--text);
+}
+
+.equation-block-caption {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.equation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+@media (max-width: 600px) {
+  .equation-pair {
+    grid-template-columns: 1fr;
+  }
+  .equation-block .katex {
+    font-size: 1em;
+  }
+}
+
+.equation-pair .equation-block {
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="../../../index.html" class="nav-logo">
+    <img src="../../../logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="m1-l2.html" class="active">EN</a>
+        <a href="../../../ar/courses/stat101/lessons/m1-l2.html">&#1593;&#1585;&#1576;&#1610;</a>
+      </div>
+    </li>
+    <li><a href="../../../index.html">Home</a></li>
+    <li><a href="../../../index.html#courses">Courses</a></li>
+    <li><a href="../index.html" class="nav-cta">STAT 101</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Lesson Hero -->
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">Home</a>
+      <span>/</span>
+      <a href="../../../index.html#courses">Courses</a>
+      <span>/</span>
+      <a href="../index.html">STAT-101</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">Module 1</span>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.8)">Lesson 2</span>
+    </div>
+
+    <div class="lesson-hero-content fade-up">
+      <div class="lesson-type-badge">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        Reading
+      </div>
+      <a href="m1-l2-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        Stories Mode
+      </a>
+      <h1>Types of Data</h1>
+      <div class="lesson-hero-meta">
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          ~12 min read
+        </span>
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Lesson 2 of 4 in Module 1
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article Content -->
+<article class="lesson-article">
+  <div class="lesson-article-inner">
+
+    <!-- Section 1 -->
+    <h2 class="fade-up">Why Data Types Matter</h2>
+
+    <p class="fade-up">Not all data is created equal. The type of data you collect determines which statistical methods you can use, which visualizations make sense, and what conclusions you can draw. Choosing the wrong method for your data type is one of the most common mistakes in statistics &mdash; and it can lead to completely invalid results.</p>
+
+    <p class="fade-up">Data types form a hierarchy, from the simplest categories to the richest measurements. Understanding this hierarchy is the <strong>essential first step</strong> in any statistical analysis. Before you calculate a single number or draw a single chart, you must ask: <em>What kind of data am I working with?</em></p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        The Golden Rule
+      </div>
+      <p>The type of data dictates the analysis. You cannot compute a meaningful average of blood types. You cannot rank temperatures in Celsius as ratios. Every statistical tool has assumptions about data type &mdash; violating them produces nonsense.</p>
+      <span class="callout-highlight">Data Type &rarr; Valid Operations &rarr; Correct Analysis</span>
+    </div>
+
+    <!-- Section 2 -->
+    <h2 class="fade-up">Qualitative vs Quantitative</h2>
+
+    <p class="fade-up">The broadest division in data is between <strong>qualitative</strong> (categorical) and <strong>quantitative</strong> (numerical) data. Qualitative data describes qualities or categories &mdash; things like colors, names, or labels. Quantitative data represents quantities &mdash; things you can count or measure with numbers.</p>
+
+    <p class="fade-up">Qualitative data answers <em>what kind?</em> or <em>which category?</em> Quantitative data answers <em>how much?</em> or <em>how many?</em> This distinction is fundamental because the entire toolkit of statistical analysis branches based on it. You summarize categorical data with frequencies and proportions; you summarize numerical data with means and standard deviations.</p>
+
+    <!-- Section 3 -->
+    <h2 class="fade-up">Nominal Data</h2>
+
+    <p class="fade-up"><strong>Nominal data</strong> is the simplest type. It consists of categories with <strong>no inherent order</strong>. The word &ldquo;nominal&rdquo; comes from the Latin <em>nomen</em>, meaning &ldquo;name&rdquo; &mdash; and that is exactly what nominal data does: it names or labels things.</p>
+
+    <p class="fade-up">Examples include blood types (A, B, AB, O), eye colors (brown, blue, green), gender, nationality, and marital status. You can count how many items fall into each category and compute proportions, but you cannot rank these categories or compute a meaningful average. Saying &ldquo;the average blood type is B+&rdquo; makes no sense.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+        Nominal Proportion
+      </div>
+      <div id="eq-proportion"></div>
+      <div class="equation-block-caption">The proportion of observations in category k &mdash; the only meaningful numerical summary for nominal data</div>
+    </div>
+
+    <!-- Section 4 -->
+    <h2 class="fade-up">Ordinal Data</h2>
+
+    <p class="fade-up"><strong>Ordinal data</strong> has categories with a <strong>natural, meaningful order</strong>, but the distances between categories are not necessarily equal. Think of customer satisfaction ratings: &ldquo;very dissatisfied,&rdquo; &ldquo;dissatisfied,&rdquo; &ldquo;neutral,&rdquo; &ldquo;satisfied,&rdquo; &ldquo;very satisfied.&rdquo; There is a clear ranking, but the gap between &ldquo;neutral&rdquo; and &ldquo;satisfied&rdquo; may not equal the gap between &ldquo;satisfied&rdquo; and &ldquo;very satisfied.&rdquo;</p>
+
+    <p class="fade-up">Other examples include education levels (high school, bachelor's, master's, PhD), military ranks, pain scales (1&ndash;10), and socioeconomic status (low, middle, high). You can say one category is &ldquo;higher&rdquo; or &ldquo;better&rdquo; than another, but you <strong>cannot say by how much</strong>. Medians and percentiles are appropriate; means are debatable.</p>
+
+    <!-- Section 5 -->
+    <h2 class="fade-up">Interval Data</h2>
+
+    <p class="fade-up"><strong>Interval data</strong> has equal spacing between values, but <strong>no true zero point</strong>. The classic example is temperature in Celsius or Fahrenheit. The difference between 20&deg;C and 30&deg;C is the same as between 30&deg;C and 40&deg;C &mdash; both are 10-degree gaps. But 0&deg;C does not mean &ldquo;no temperature.&rdquo; It is an arbitrary reference point (the freezing point of water).</p>
+
+    <p class="fade-up">Because there is no true zero, <strong>ratios are meaningless</strong> for interval data. You cannot say 40&deg;C is &ldquo;twice as hot&rdquo; as 20&deg;C. Other examples include calendar dates (year 0 is arbitrary), IQ scores, and standardized test scores. You can compute means and standard deviations, but multiplication and division of values lack interpretation.</p>
+
+    <!-- Section 6 -->
+    <h2 class="fade-up">Ratio Data</h2>
+
+    <p class="fade-up"><strong>Ratio data</strong> is the richest measurement scale. It has equal intervals <em>and</em> a <strong>true zero point</strong> that represents the complete absence of the quantity. Examples include weight (0 kg means no weight), height, distance, income, age, and time duration.</p>
+
+    <p class="fade-up">With ratio data, all mathematical operations are valid. You can say that someone earning $80,000 earns twice as much as someone earning $40,000 &mdash; this ratio is meaningful because $0 truly means &ldquo;no income.&rdquo; Temperature in Kelvin (where 0 K is absolute zero) is ratio data, even though Celsius and Fahrenheit are not.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Ratio Property
+      </div>
+      <div id="eq-ratio"></div>
+      <div class="equation-block-caption">Ratios are meaningful only when a true zero exists &mdash; this is what distinguishes ratio from interval data</div>
+    </div>
+
+    <div class="data-type-table fade-up">
+      <div class="data-type-table-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+        Measurement Scales Summary
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Scale</th>
+            <th>Order</th>
+            <th>Equal Spacing</th>
+            <th>True Zero</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nominal</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Blood type, eye color</td>
+          </tr>
+          <tr>
+            <td>Ordinal</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Satisfaction rating</td>
+          </tr>
+          <tr>
+            <td>Interval</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Temperature (&deg;C)</td>
+          </tr>
+          <tr>
+            <td>Ratio</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Weight, income</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 7 -->
+    <h2 class="fade-up">Discrete vs Continuous</h2>
+
+    <p class="fade-up">Within quantitative data, there is another important distinction: <strong>discrete</strong> vs <strong>continuous</strong>. Discrete data can only take on specific, countable values &mdash; the number of students in a class (you can have 25 or 26, but not 25.7), the number of defective items in a batch, or the count of website visits.</p>
+
+    <p class="fade-up">Continuous data can take any value within a range, including fractions and decimals. Height, weight, time, and temperature are all continuous &mdash; someone can be 170.3 cm tall, or a reaction can take 3.847 seconds. This distinction matters because discrete and continuous data require different probability distributions and different visualization techniques.</p>
+
+    <!-- Section 8 -->
+    <h2 class="fade-up">Structured vs Unstructured Data</h2>
+
+    <p class="fade-up">In the modern data landscape, we also distinguish between <strong>structured</strong> and <strong>unstructured</strong> data. Structured data fits neatly into tables with rows and columns &mdash; spreadsheets, databases, and CSV files. Each column has a defined data type, and every row follows the same format.</p>
+
+    <p class="fade-up"><strong>Unstructured data</strong> does not have a predefined format. It includes text documents, images, audio recordings, video, social media posts, and sensor streams. An estimated 80&ndash;90% of the world's data is unstructured. Processing it requires specialized techniques like natural language processing and computer vision before traditional statistical methods can be applied.</p>
+
+    <!-- Section 9 -->
+    <h2 class="fade-up">Data Collection Methods</h2>
+
+    <p class="fade-up">How you collect data is just as important as what type it is. The three primary methods are <strong>surveys</strong>, <strong>experiments</strong>, and <strong>observational studies</strong>.</p>
+
+    <p class="fade-up"><strong>Surveys</strong> collect self-reported data through questionnaires or interviews. They are efficient for gathering large amounts of data but are vulnerable to response bias &mdash; people may not answer truthfully or may interpret questions differently.</p>
+
+    <p class="fade-up"><strong>Experiments</strong> are the gold standard for establishing causation. The researcher actively manipulates one variable (the treatment) and measures its effect on another, while controlling for everything else. Randomized controlled trials in medicine are the classic example.</p>
+
+    <p class="fade-up"><strong>Observational studies</strong> collect data without intervening. The researcher watches and records what happens naturally. They can reveal associations and correlations but <strong>cannot prove causation</strong> &mdash; this is one of the most important principles in statistics.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Correlation vs Causation
+      </div>
+      <div id="eq-correlation"></div>
+      <div class="equation-block-caption">Correlation measures linear association between two variables &mdash; but correlation does not imply causation</div>
+    </div>
+
+    <!-- Section 10 -->
+    <h2 class="fade-up">Choosing the Right Method</h2>
+
+    <p class="fade-up">The type of data you have directly determines which statistical methods are appropriate. For nominal data, use frequency tables, bar charts, and chi-squared tests. For ordinal data, use medians, percentiles, and non-parametric tests like the Mann-Whitney U. For interval and ratio data, you have the full arsenal: means, standard deviations, t-tests, ANOVA, regression, and correlation.</p>
+
+    <p class="fade-up">Mismatching data types and methods leads to meaningless results. Computing the mean of zip codes, running a t-test on satisfaction ratings, or treating discrete counts as continuous measurements &mdash; these are all errors that stem from not understanding your data type. <strong>Always classify your data first, then choose your tools.</strong></p>
+
+    <div class="teaser fade-up">
+      <p>In the next lesson, we will explore how to visualize data effectively &mdash; choosing the right charts and graphs for different data types, and learning to spot patterns, outliers, and distributions at a glance.</p>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="takeaways fade-up">
+      <div class="takeaways-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        Key Takeaways
+      </div>
+      <ul>
+        <li>Data falls into two broad categories: qualitative (categorical) and quantitative (numerical) &mdash; each requires different analytical approaches.</li>
+        <li>The four measurement scales &mdash; nominal, ordinal, interval, and ratio &mdash; form a hierarchy of increasing mathematical richness.</li>
+        <li>Discrete data takes countable values; continuous data can take any value in a range &mdash; this affects which distributions and tests to use.</li>
+        <li>Data collection method (survey, experiment, observational study) determines what conclusions you can draw &mdash; only experiments can establish causation.</li>
+        <li>Always identify your data type before choosing a statistical method &mdash; mismatches produce invalid results.</li>
+      </ul>
+    </div>
+
+  </div>
+</article>
+
+<!-- Lesson Navigation -->
+<div class="lesson-nav">
+  <div class="lesson-nav-inner fade-up">
+    <a href="m1-l1-slides.html" class="lesson-nav-btn lesson-nav-prev">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span>
+        <span class="lesson-nav-label">Previous</span>
+        <span class="lesson-nav-title">What is Statistics?</span>
+      </span>
+    </a>
+
+    <a href="../index.html" class="lesson-nav-overview">Module Overview</a>
+
+    <span class="lesson-nav-btn lesson-nav-next">
+      <span>
+        <span class="lesson-nav-label">Next Lesson</span>
+        <span class="lesson-nav-title">Coming Soon</span>
+      </span>
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </span>
+  </div>
+</div>
+
+<!-- Audio Player -->
+<div id="audioPlayer" style="position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;align-items:center;gap:0.5rem;">
+  <div id="audioPanel" style="display:none;background:var(--ink);border-radius:16px;padding:0.5rem 0.75rem;box-shadow:0 4px 20px rgba(15,27,45,0.35);align-items:center;gap:0.5rem;">
+    <button id="prevBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Previous">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M19 20L9 12l10-8v16z"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
+    </button>
+    <button id="playBtn" style="width:36px;height:36px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Play/Pause">
+      <svg id="playSvg" width="16" height="16" viewBox="0 0 24 24" fill="var(--ink)" stroke="none"><polygon id="playShape" points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <button id="nextBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Next">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M5 4l10 8-10 8V4z"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
+    </button>
+    <div style="color:var(--cream);font-family:var(--font-mono);font-size:0.65rem;min-width:60px;text-align:center;">
+      <span id="trackInfo">1 / 12</span>
+    </div>
+    <button id="closeAudio" style="width:28px;height:28px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Close">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <button id="audioToggle" style="width:52px;height:52px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,27,45,0.25);transition:all 0.3s;" title="Listen to Narration">
+    <svg id="audioIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 010 7.07"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14"/>
+    </svg>
+  </button>
+</div>
+<audio id="lessonAudio" preload="none"></audio>
+
+<script>
+(function() {
+  var AUDIO_BASE = '../../../audio/en/stat101/m1-l2/';
+  var TRACKS = [
+    's1-intro','s2-qualitative-quantitative','s3-nominal','s4-ordinal','s5-interval',
+    's6-ratio','s7-scales-summary','s8-discrete-continuous','s9-structured-unstructured',
+    's10-collection-methods','s11-choosing-methods','s12-summary'
+  ];
+
+  var audioEl = document.getElementById('lessonAudio');
+  var panel = document.getElementById('audioPanel');
+  var toggleBtn = document.getElementById('audioToggle');
+  var playBtn = document.getElementById('playBtn');
+  var playShape = document.getElementById('playShape');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var closeBtn = document.getElementById('closeAudio');
+  var trackInfo = document.getElementById('trackInfo');
+  var audioIcon = document.getElementById('audioIcon');
+
+  var current = 0;
+  var panelOpen = false;
+
+  function loadTrack(i) {
+    current = i;
+    audioEl.src = AUDIO_BASE + TRACKS[i] + '.mp3';
+    trackInfo.textContent = (i + 1) + ' / ' + TRACKS.length;
+  }
+
+  function setPauseIcon() {
+    playShape.setAttribute('points', '6 4 10 4 10 20 6 20');
+    var r2 = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    r2.setAttribute('points', '14 4 18 4 18 20 14 20');
+    r2.setAttribute('fill', 'var(--ink)');
+    r2.id = 'playShape2';
+    playShape.parentNode.appendChild(r2);
+  }
+
+  function setPlayIconShape() {
+    playShape.setAttribute('points', '5 3 19 12 5 21 5 3');
+    var r2 = document.getElementById('playShape2');
+    if (r2) r2.remove();
+  }
+
+  function setPlaying(playing) {
+    if (playing) { setPauseIcon(); } else { setPlayIconShape(); }
+  }
+
+  toggleBtn.addEventListener('click', function() {
+    if (!panelOpen) {
+      panel.style.display = 'flex';
+      panelOpen = true;
+      toggleBtn.style.background = 'var(--amber)';
+      audioIcon.setAttribute('stroke', 'var(--ink)');
+      loadTrack(0);
+      audioEl.play();
+      setPlaying(true);
+    } else {
+      if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+      else { audioEl.pause(); setPlaying(false); }
+    }
+  });
+
+  playBtn.addEventListener('click', function() {
+    if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+    else { audioEl.pause(); setPlaying(false); }
+  });
+
+  prevBtn.addEventListener('click', function() {
+    if (current > 0) { loadTrack(current - 1); audioEl.play(); setPlaying(true); }
+  });
+
+  nextBtn.addEventListener('click', function() {
+    if (current < TRACKS.length - 1) { loadTrack(current + 1); audioEl.play(); setPlaying(true); }
+  });
+
+  closeBtn.addEventListener('click', function() {
+    audioEl.pause();
+    audioEl.removeAttribute('src');
+    panel.style.display = 'none';
+    panelOpen = false;
+    toggleBtn.style.background = 'var(--ink)';
+    audioIcon.setAttribute('stroke', '#e8a838');
+    setPlaying(false);
+    current = 0;
+  });
+
+  audioEl.addEventListener('ended', function() {
+    if (current < TRACKS.length - 1) {
+      loadTrack(current + 1);
+      audioEl.play();
+    } else {
+      setPlaying(false);
+    }
+  });
+})();
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="../../../logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>Open-source curriculum for wireless communications and digital signal processing fundamentals.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Courses</div>
+      <a href="../../wrl101/index.html">Wireless 101</a>
+      <a href="../../dsp101/index.html">DSP 101</a>
+      <a href="../../stat101/index.html">STAT 101</a>
+      <a href="../../../coming-soon.html">Labs</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="../../../coming-soon.html">Documentation</a>
+      <a href="../../../coming-soon.html">Community</a>
+      <a href="../../../coming-soon.html">Blog</a>
+      <a href="../../../coming-soon.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="../../../coming-soon.html">GitHub</a>
+      <a href="../../../coming-soon.html">Discord</a>
+      <a href="../../../coming-soon.html">Twitter / X</a>
+      <a href="../../../coming-soon.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Wireless 101. Open-source educational project.</div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── KaTeX Equations ──
+function renderEquations() {
+  if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
+
+  var eqs = [
+    ['eq-proportion', '\\hat{p}_k = \\frac{n_k}{N}'],
+    ['eq-ratio', '\\frac{x_a}{x_b} \\text{ is meaningful} \\iff \\text{true zero exists}'],
+    ['eq-correlation', 'r_{xy} = \\frac{\\sum_{i=1}^{n}(x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^{n}(x_i - \\bar{x})^2 \\cdot \\sum_{i=1}^{n}(y_i - \\bar{y})^2}}']
+  ];
+
+  eqs.forEach(function(pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) katex.render(pair[1], el, { displayMode: true, throwOnError: false });
+  });
+}
+renderEquations();
+</script>
+<script data-goatcounter="https://wireless-101.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

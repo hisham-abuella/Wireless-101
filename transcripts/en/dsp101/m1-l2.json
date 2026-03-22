@@ -1,0 +1,69 @@
+{
+  "course": "DSP-101",
+  "module": 1,
+  "lesson": 2,
+  "title": "Analog vs Digital Signals",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to DSP 101. In this lesson, we're tackling one of the most fundamental concepts in all of signal processing: the difference between analog and digital signals. The physical world speaks in smooth, continuous signals. Computers speak in discrete numbers. Understanding how these two worlds connect is absolutely essential to everything we'll study in this course."
+    },
+    {
+      "id": "s2-analog",
+      "title": "What is an Analog Signal?",
+      "transcript": "Let's start with analog. An analog signal is continuous in both time and amplitude. It can take any value at any instant, with infinite precision between any two points. Think of a mercury thermometer rising smoothly, or the groove on a vinyl record tracing the exact shape of a sound wave. Analog signals are a perfect representation of the physical world — but that perfection comes with a cost, as we'll see."
+    },
+    {
+      "id": "s3-digital",
+      "title": "What is a Digital Signal?",
+      "transcript": "A digital signal is the opposite. It's discrete in both time and amplitude. Values are measured only at specific moments — called samples — and each measurement is rounded to the nearest available level. A digital signal is just a sequence of numbers, nothing more, nothing less. It's an approximation of the original analog signal, but as we'll see, it's an incredibly useful one."
+    },
+    {
+      "id": "s4-differences",
+      "title": "Key Differences",
+      "transcript": "The two signal types differ in four fundamental ways. Resolution: analog has infinite resolution, while digital is limited by bit depth. Noise immunity: analog signals degrade every time they're copied or transmitted, while digital signals resist corruption. Storage: analog tapes wear out and decay, while digital copies are mathematically perfect. And processing: analog uses physical circuits, while digital uses flexible software algorithms."
+    },
+    {
+      "id": "s5-sampling",
+      "title": "Sampling",
+      "transcript": "To convert an analog signal to digital, the first step is sampling. We measure the signal's value at regular intervals. The number of samples per second is the sampling rate, measured in Hertz. The Nyquist-Shannon theorem tells us the critical rule: the sampling rate must be at least twice the highest frequency in the signal. Sample too slowly, and you lose information forever — a phenomenon called aliasing."
+    },
+    {
+      "id": "s6-quantization",
+      "title": "Quantization",
+      "transcript": "After sampling, each value is rounded to the nearest discrete level — this is quantization. The number of available levels depends on the bit depth. With b bits, you get two to the power of b levels. An 8-bit system has 256 levels. A 16-bit system has over 65,000 levels. The difference between the true value and the quantized value is called quantization error — and more bits means less error."
+    },
+    {
+      "id": "s7-examples",
+      "title": "Analog vs Digital in Action",
+      "transcript": "The analog-to-digital transition has reshaped entire industries. Vinyl records gave way to CDs with 44,100 samples per second at 16 bits. Film cameras were replaced by digital sensors with millions of pixels. AM and FM radio evolved into digital audio broadcasting. And VHS tapes disappeared in favor of streaming video. In every case, the digital version traded some analog warmth for massive gains in convenience, durability, and processing power."
+    },
+    {
+      "id": "s8-why-digital",
+      "title": "Why Digital Won",
+      "transcript": "The world moved to digital for four overwhelming reasons. First, perfect copies: you can duplicate a digital file a billion times with zero quality loss. Second, error correction: digital systems can detect and fix transmission errors automatically. Third, compression: algorithms like MP3, JPEG, and H.264 can shrink data by factors of ten or more. And fourth, flexibility: software can process digital signals in unlimited ways, far beyond what any analog circuit could achieve."
+    },
+    {
+      "id": "s9-analog-advantages",
+      "title": "Analog Still Matters",
+      "transcript": "But analog isn't dead. In fact, it's irreplaceable in certain domains. Every sensor in the world captures data as an analog signal first. Audio amplifiers often use analog circuits for their natural warmth. RF antennas receive electromagnetic waves in pure analog form. The truth is, every digital system begins and ends with an analog interface. The microphone is analog. The speaker is analog. Digital processing lives in between."
+    },
+    {
+      "id": "s10-adc-pipeline",
+      "title": "The ADC Pipeline",
+      "transcript": "Here's the complete signal chain inside every modern device. First, a microphone or sensor converts physical energy into an analog electrical signal. Then an analog-to-digital converter, or ADC, samples and quantizes it into digital numbers. Next, a digital signal processor applies filters, compression, or any transformation imaginable. Finally, a digital-to-analog converter, or DAC, turns the numbers back into an analog signal that a speaker or display can render. This loop — analog to digital to analog — is the backbone of all modern technology."
+    },
+    {
+      "id": "s11-visualize",
+      "title": "Visualize the Difference",
+      "transcript": "Watch the animation on screen. The smooth amber curve is the original analog signal — continuous and infinite in detail. The stepped teal line is its digital approximation, sampled and quantized. Notice how more samples would bring the digital version closer to the original. This is the fundamental trade-off: more samples and more bits give you better quality, but require more storage and processing power."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. Analog signals are continuous in time and amplitude — they're the language of the physical world. Digital signals are discrete — sequences of numbers that computers can store and process. Sampling captures moments in time; quantization maps values to discrete levels. Digital won the battle for most applications, but analog remains essential at the physical boundaries of every system. In the next lesson, we'll explore why we process signals digitally and what makes DSP so powerful. See you there."
+    }
+  ]
+}

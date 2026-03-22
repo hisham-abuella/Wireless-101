@@ -1,0 +1,69 @@
+{
+  "course": "ML-101",
+  "module": 1,
+  "lesson": 2,
+  "title": "Types of Machine Learning",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to ML 101. In the previous lesson, we explored what machine learning is and how it flips the traditional programming paradigm. Today, we're going deeper. We'll examine the three major types of machine learning — supervised, unsupervised, and reinforcement learning — and understand when to use each one."
+    },
+    {
+      "id": "s2-three-paradigms",
+      "title": "The Three Paradigms",
+      "transcript": "Machine learning is not a single technique. It's a family of approaches, each suited to different kinds of problems. Supervised learning works with labeled data. Unsupervised learning discovers hidden patterns without labels. And reinforcement learning teaches agents through trial and error. Understanding which paradigm fits your problem is the first decision every ML practitioner must make."
+    },
+    {
+      "id": "s3-supervised",
+      "title": "Supervised Learning",
+      "transcript": "Supervised learning is the most common type. You provide the model with input-output pairs — labeled examples — and it learns to map new inputs to correct outputs. There are two main flavors. Classification assigns inputs to categories: is this email spam or not? Is this tumor benign or malignant? Regression predicts continuous values: what will the temperature be tomorrow? How much will this house sell for?"
+    },
+    {
+      "id": "s4-supervised-algorithms",
+      "title": "Supervised Algorithms",
+      "transcript": "The supervised learning toolbox is rich and varied. Linear regression fits a straight line through data points to predict continuous values. Decision trees split data using a series of yes-or-no questions, creating a flowchart-like structure. Support vector machines find the optimal boundary between classes. And neural networks stack layers of artificial neurons to learn incredibly complex patterns. Each algorithm has strengths and weaknesses — there's no single best choice."
+    },
+    {
+      "id": "s5-cost-function",
+      "title": "The Cost Function",
+      "transcript": "At the heart of supervised learning is the cost function — a mathematical measure of how wrong the model is. For regression, the most common choice is mean squared error: you compute the average of the squared differences between predictions and actual values. During training, the model adjusts its parameters to minimize this cost. The lower the cost, the better the model fits the data."
+    },
+    {
+      "id": "s6-unsupervised",
+      "title": "Unsupervised Learning",
+      "transcript": "Unsupervised learning works without labels. You give the algorithm raw data and ask it to find structure on its own. There are three main tasks. Clustering groups similar data points together — think customer segmentation or document categorization. Dimensionality reduction compresses high-dimensional data into fewer dimensions while preserving key patterns. And anomaly detection identifies data points that don't fit the normal pattern."
+    },
+    {
+      "id": "s7-kmeans",
+      "title": "K-Means Clustering",
+      "transcript": "K-means is the most intuitive clustering algorithm. You choose the number of clusters k, then the algorithm iterates: assign each data point to its nearest cluster center, then recompute the centers as the average of all assigned points. Repeat until convergence. The objective is to minimize the total distance between each point and its cluster center. Simple, fast, and surprisingly effective for many real-world problems."
+    },
+    {
+      "id": "s8-reinforcement",
+      "title": "Reinforcement Learning",
+      "transcript": "Reinforcement learning is fundamentally different. An agent interacts with an environment, taking actions and receiving rewards or penalties. Over time, it learns a policy — a strategy that maximizes cumulative reward. There are no labeled examples, no correct answers provided upfront. The agent must explore, experiment, and learn from consequences. This is how AlphaGo mastered the game of Go and how robots learn to walk from scratch."
+    },
+    {
+      "id": "s9-rl-equation",
+      "title": "The Reward Signal",
+      "transcript": "The reinforcement learning process is driven by the reward signal. At each time step, the agent observes the current state, chooses an action, receives a reward, and transitions to a new state. The goal is to maximize the expected cumulative reward over time, often discounted so that immediate rewards are valued more than distant ones. This simple framework can produce remarkably intelligent behavior."
+    },
+    {
+      "id": "s10-comparison",
+      "title": "Comparing the Three Types",
+      "transcript": "Let's compare. Supervised learning needs labeled data and predicts specific outputs — it's the workhorse of industry. Unsupervised learning needs no labels and discovers hidden structure — it's the explorer. Reinforcement learning learns through interaction and optimizes long-term rewards — it's the strategist. Many real-world systems combine multiple types. A recommendation engine might use supervised learning for predictions, unsupervised learning for user clustering, and reinforcement learning for optimizing the recommendation sequence."
+    },
+    {
+      "id": "s11-choosing",
+      "title": "Choosing the Right Type",
+      "transcript": "So how do you choose? Start with your data and your goal. If you have labeled examples and want to predict outcomes, use supervised learning. If you have unlabeled data and want to discover patterns, use unsupervised learning. If you have an environment where an agent can take actions and receive feedback, use reinforcement learning. And remember: the best practitioners don't just know one type — they understand all three and know when each one shines."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. Supervised learning trains on labeled data to make predictions — classification for categories, regression for continuous values. Unsupervised learning finds hidden patterns without labels — clustering, dimensionality reduction, and anomaly detection. Reinforcement learning teaches agents through trial, error, and reward signals. Each paradigm solves different problems, and the best ML systems often combine multiple approaches. In the next lesson, we'll build our first machine learning model from scratch. See you there."
+    }
+  ]
+}
