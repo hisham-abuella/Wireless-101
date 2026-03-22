@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الإشارات التناظرية مقابل الرقمية | DSP-101 | Wireless 101</title>
+<link rel="stylesheet" href="../../../../theme.css">
+<link rel="stylesheet" href="../../../../theme-rtl.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+/* ── Lesson Hero ── */
+.lesson-hero {
+  padding: 6.5rem 2rem 2.5rem;
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.lesson-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: rgba(232, 168, 56, 0.06);
+  border-radius: 50%;
+}
+
+.lesson-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.lesson-hero .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero .breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lesson-hero .breadcrumb a:hover { color: #fff; }
+
+.lesson-hero-content {
+  max-width: 720px;
+}
+
+.lesson-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.lesson-type-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.lesson-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.lesson-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.lesson-hero-meta-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+/* ── Article Content ── */
+.lesson-article {
+  padding: 4rem 2rem 3rem;
+  background: var(--cream);
+}
+
+.lesson-article-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lesson-article h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.lesson-article h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-article p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.lesson-article strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── Callout Box ── */
+.callout-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.callout-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callout-box-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.callout-box p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+.callout-box p:last-child {
+  margin-bottom: 0;
+}
+
+.callout-box .callout-highlight {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--amber-pale);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  display: block;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Timeline ── */
+.timeline {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 2rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.timeline-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.timeline-track {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2.5px solid var(--amber);
+  z-index: 1;
+}
+
+.timeline-item.highlight::before {
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 0 4px var(--amber-pale);
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.timeline-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Key Takeaways ── */
+.takeaways {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 2rem 2.25rem;
+  margin: 3rem 0 0;
+  color: #fff;
+}
+
+.takeaways-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.takeaways-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.takeaways ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.takeaways li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-on-dark);
+}
+
+.takeaways li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+/* ── Lesson Nav ── */
+.lesson-nav {
+  padding: 0 2rem;
+  background: var(--cream);
+}
+
+.lesson-nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lesson-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.lesson-nav-prev {
+  color: var(--ink);
+  border: 1.5px solid var(--border-light);
+  justify-self: start;
+}
+
+.lesson-nav-prev:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.1);
+}
+
+.lesson-nav-prev svg,
+.lesson-nav-next svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+}
+
+.lesson-nav-prev svg { stroke: var(--ink); }
+
+.lesson-nav-overview {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.lesson-nav-overview:hover { color: var(--ink); }
+
+.lesson-nav-next {
+  color: var(--cream);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  justify-self: end;
+}
+
+.lesson-nav-next svg { stroke: var(--cream); }
+
+.lesson-nav-next:hover {
+  background: var(--ink-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.15);
+}
+
+.lesson-nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.lesson-nav-title {
+  display: block;
+  line-height: 1.3;
+}
+
+/* ── Teaser paragraph ── */
+.teaser {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--border-light);
+}
+
+.teaser p {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ── Lang switch ── */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Comparison Table ── */
+.comparison-table {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 2rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+  overflow-x: auto;
+}
+
+.comparison-table-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comparison-table-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.comparison-table th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  text-align: right;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.comparison-table td {
+  padding: 0.65rem 1rem;
+  color: var(--text);
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .lesson-hero { padding: 5.5rem 1.5rem 2rem; }
+  .lesson-article { padding: 3rem 1.5rem 2rem; }
+
+  .lesson-nav-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .lesson-nav-overview {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .lesson-nav-prev { grid-row: 2; justify-self: start; }
+  .lesson-nav-next { grid-row: 2; justify-self: end; }
+}
+
+@media (max-width: 480px) {
+  .lesson-hero h1 { font-size: 1.5rem; }
+  .lesson-hero-meta { gap: 0.75rem; }
+}
+
+/* ── Equation Block ── */
+.equation-block {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--paper) 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--amber);
+  border-radius: 3px 0 0 3px;
+}
+
+.equation-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.equation-block-label svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.equation-block .katex-display {
+  margin: 0;
+}
+
+.equation-block .katex {
+  font-size: 1.2em;
+  color: var(--text);
+}
+
+.equation-block-caption {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.equation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+@media (max-width: 600px) {
+  .equation-pair {
+    grid-template-columns: 1fr;
+  }
+  .equation-block .katex {
+    font-size: 1em;
+  }
+}
+
+.equation-pair .equation-block {
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="../../../../index.html" class="nav-logo">
+    <img src="../../../../logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="../../../../courses/dsp101/lessons/m1-l2.html">EN</a>
+        <a href="m1-l2.html" class="active">&#1593;&#1585;&#1576;&#1610;</a>
+      </div>
+    </li>
+    <li><a href="../../../index.html">الرئيسية</a></li>
+    <li><a href="../../../index.html#courses">الدورات</a></li>
+    <li><a href="../index.html" class="nav-cta" lang="en">DSP 101</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Lesson Hero -->
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">الرئيسية</a>
+      <span>/</span>
+      <a href="../../../index.html#courses">الدورات</a>
+      <span>/</span>
+      <a href="../index.html" lang="en">DSP-101</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">الوحدة ١</span>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.8)">الدرس ٢</span>
+    </div>
+
+    <div class="lesson-hero-content fade-up">
+      <div class="lesson-type-badge">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        قراءة
+      </div>
+      <a href="m1-l2-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        وضع القصص
+      </a>
+      <h1>الإشارات التناظرية مقابل الرقمية</h1>
+      <div class="lesson-hero-meta">
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          ~١٢ دقيقة قراءة
+        </span>
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          الدرس ٢ في الوحدة ١
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article Content -->
+<article class="lesson-article">
+  <div class="lesson-article-inner">
+
+    <!-- Introduction -->
+    <h2 class="fade-up">عالمان من الإشارات</h2>
+
+    <p class="fade-up">في الدرس السابق، تعلمنا أن الإشارات هي كميات تتغير مع الزمن وتحمل معلومات. الآن نواجه سؤالًا جوهريًا: <strong>كيف نمثّل هذه الإشارات؟</strong> الإجابة تنقسم إلى نهجين مختلفين &mdash; تناظري ورقمي &mdash; وفهم الفرق بينهما أساسي لكل ما سيأتي في معالجة الإشارات.</p>
+
+    <p class="fade-up">العالم الفيزيائي تناظري بطبيعته. الموجات الصوتية والضوء والحرارة والإشعاع الكهرومغناطيسي كلها تتغير <strong>باستمرار</strong> &mdash; بسلاسة وبدون فجوات. لكن الحواسيب والهواتف الذكية والأجهزة الرقمية التي نستخدمها يوميًا تعمل بطريقة مختلفة جذريًا: تعمل بـ<strong>أرقام منفصلة</strong>. قصة التكنولوجيا الحديثة هي، في كثير من النواحي، قصة كيف تعلمنا الربط بين هذين العالمين.</p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        الفكرة الأساسية
+      </div>
+      <p><strong>الإشارات التناظرية</strong> مستمرة في الزمن والسعة &mdash; يمكنها أن تأخذ أي قيمة في أي لحظة. <strong>الإشارات الرقمية</strong> منفصلة في الزمن والسعة &mdash; توجد فقط عند لحظات محددة ولا يمكنها أن تأخذ إلا مجموعة محدودة من القيم.</p>
+      <span class="callout-highlight">تناظرية = مستمرة في كل مكان &nbsp;|&nbsp; رقمية = خطوات منفصلة في الزمن والقيمة</span>
+    </div>
+
+    <!-- Section: Analog Signals -->
+    <h2 class="fade-up">الإشارات التناظرية: العالم المستمر</h2>
+
+    <p class="fade-up"><strong>الإشارة التناظرية</strong> معرّفة عند كل نقطة زمنية، وسعتها يمكن أن تأخذ أي قيمة ضمن نطاق مستمر. فكّر في صوت الكمان: الوتر المهتز يخلق موجات ضغط سلسة ومتواصلة في الهواء. عند كل لحظة &mdash; ليس فقط عند لحظات محددة، بل حرفيًا عند كل نقطة زمنية متناهية الصغر &mdash; يكون لضغط الهواء قيمة دقيقة.</p>
+
+    <p class="fade-up">الإشارات التناظرية هي اللغة الأصلية للعالم الفيزيائي. <strong>درجة الحرارة</strong> لا تقفز من ٢٠.٠°م إلى ٢٠.١°م &mdash; بل تمر بسلاسة عبر كل قيمة بينهما. <strong>الجهد الكهربائي</strong> في الدارة يتغير باستمرار. <strong>شدة الضوء</strong> تتغير تدريجيًا مع حركة الشمس في السماء. كلها كميات تناظرية.</p>
+
+    <p class="fade-up">تاريخيًا، كانت أولى تقنيات الاتصالات كلها تناظرية. التلغراف (ثلاثينيات القرن التاسع عشر)، والهاتف (١٨٧٦)، وراديو <span lang="en">AM</span> (١٩٠٦)، والتلفزيون التناظري (عشرينيات القرن العشرين) كلها كانت تبث وتستقبل إشارات مستمرة. تسجيلات الفينيل تخزن الموسيقى كأخدود مستمر يعكس شكل الموجة الصوتية الأصلية. التناظري جميل في دقته تجاه الطبيعة &mdash; لكنه يحمل قيودًا كبيرة.</p>
+
+    <!-- Section: Digital Signals -->
+    <h2 class="fade-up">الإشارات الرقمية: العالم المنفصل</h2>
+
+    <p class="fade-up"><strong>الإشارة الرقمية</strong> هي تسلسل من القيم المنفصلة، معرّفة فقط عند نقاط زمنية محددة ومقيّدة بمجموعة محدودة من مستويات السعة. بدلًا من المنحنى السلس المستمر للإشارة التناظرية، الإشارة الرقمية هي سلسلة من الأرقام &mdash; درج بدلًا من منحدر.</p>
+
+    <p class="fade-up">الإشارات الرقمية هي لغة الحواسيب. كل معلومة رقمية &mdash; نص أو صور أو صوت أو فيديو &mdash; تُمثَّل في النهاية كتسلسل من <strong>الأرقام الثنائية (البتات)</strong>: آحاد وأصفار. إشارة الصوت الرقمية في القرص المضغوط (<span lang="en">CD</span>)، على سبيل المثال، تتكون من ٤٤,١٠٠ رقم في الثانية، كل منها يُمثَّل بـ١٦ بت. هذه الأرقام تقرّب الموجة التناظرية الأصلية بدقة كافية لدرجة أن أذنيك لا تستطيعان تمييز الفرق.</p>
+
+    <p class="fade-up">الثورة الرقمية لم تحدث لأن الإشارات الرقمية "أفضل" بطبيعتها من التناظرية. حدثت لأن الإشارات الرقمية يمكن <strong>معالجتها وتخزينها ونسخها وإرسالها</strong> بموثوقية ومرونة لا تستطيع الإشارات التناظرية مضاهاتها.</p>
+
+    <!-- Section: Key Differences -->
+    <h2 class="fade-up">الفروقات الرئيسية</h2>
+
+    <div class="comparison-table fade-up">
+      <div class="comparison-table-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+        مقارنة التناظري مقابل الرقمي
+      </div>
+      <table>
+        <tr>
+          <th>الخاصية</th>
+          <th>تناظري</th>
+          <th>رقمي</th>
+        </tr>
+        <tr>
+          <td><strong>الزمن</strong></td>
+          <td>مستمر</td>
+          <td>منفصل (معيّن)</td>
+        </tr>
+        <tr>
+          <td><strong>السعة</strong></td>
+          <td>دقة لا نهائية</td>
+          <td>مستويات محدودة (مكمّمة)</td>
+        </tr>
+        <tr>
+          <td><strong>الضوضاء</strong></td>
+          <td>تتراكم مع النسخ</td>
+          <td>يمكن إعادة توليدها بشكل مثالي</td>
+        </tr>
+        <tr>
+          <td><strong>التخزين</strong></td>
+          <td>الوسيط المادي يتدهور</td>
+          <td>نسخ مثالية بدون تدهور</td>
+        </tr>
+        <tr>
+          <td><strong>المعالجة</strong></td>
+          <td>دارات عتادية (ثابتة)</td>
+          <td>خوارزميات برمجية (مرنة)</td>
+        </tr>
+        <tr>
+          <td><strong>عرض النطاق</strong></td>
+          <td>كفاءة للإشارات البسيطة</td>
+          <td>تتطلب عرض نطاق أكبر (لكنها قابلة للضغط)</td>
+        </tr>
+      </table>
+    </div>
+
+    <p class="fade-up"><strong>مناعة الضوضاء</strong> ربما تكون أهم ميزة للإشارات الرقمية. عندما تنسخ إشارة تناظرية &mdash; مثل نسخ شريط كاسيت &mdash; تُضاف ضوضاء في كل خطوة، وتتدهور الجودة مع كل جيل. الإشارات الرقمية، بالمقابل، يمكن نسخها بشكل مثالي: البت إما ٠ أو ١، وكميات صغيرة من الضوضاء لا تغير التفسير. لهذا السبب صورة <span lang="en">JPEG</span> تبدو متطابقة سواء كانت الأصلية أو النسخة المليونية.</p>
+
+    <p class="fade-up"><strong>المرونة</strong> ميزة حاسمة أخرى. المرشح التناظري هو دارة مادية &mdash; تغيير سلوكه يعني إعادة تصميم العتاد. المرشح الرقمي هو برمجية &mdash; يمكنك تغييره بتحديث بضعة أسطر من الشفرة. هذه القابلية للبرمجة هي ما يجعل الأجهزة الحديثة متعددة الاستخدامات: نفس عتاد الهاتف الذكي يمكنه تشغيل آلاف خوارزميات معالجة الإشارات المختلفة.</p>
+
+    <!-- Section: From Analog to Digital -->
+    <h2 class="fade-up">من التناظري إلى الرقمي: الاعتيان والتكميم</h2>
+
+    <p class="fade-up">بما أن العالم الفيزيائي تناظري لكن الحواسيب رقمية، نحتاج طريقة للتحويل بين الاثنين. هذا <strong>التحويل من تناظري إلى رقمي (<span lang="en">ADC</span>)</strong> يتضمن خطوتين أساسيتين: <strong>الاعتيان</strong> و<strong>التكميم</strong>.</p>
+
+    <p class="fade-up"><strong>الاعتيان</strong> هو عملية قياس سعة الإشارة التناظرية على فترات زمنية منتظمة. بدلًا من معرفة الإشارة عند كل لحظة، نلتقط "لقطات" بمعدل ثابت. عدد اللقطات في الثانية يسمى <strong>معدل الاعتيان</strong> (أو تردد الاعتيان)، ويُقاس بالهرتز.</p>
+
+    <p class="fade-up">لكن ما مدى السرعة التي يجب أن نعتيّن بها؟ لهذا السؤال إجابة دقيقة، تقدمها <strong>نظرية اعتيان نايكويست-شانون</strong>:</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+        نظرية اعتيان نايكويست-شانون
+      </div>
+      <div id="eq-nyquist"></div>
+      <div class="equation-block-caption">لإعادة بناء إشارة محدودة النطاق بشكل مثالي، يجب أن يكون تردد الاعتيان f_s على الأقل ضعف أقصى تردد f_max في الإشارة. يُسمى الحد الأدنى 2f_max معدل نايكويست.</div>
+    </div>
+
+    <p class="fade-up">إذا اعتيّنت ببطء شديد (أقل من معدل نايكويست)، تحصل على <strong>تداخل الترددات</strong> (<span lang="en">aliasing</span>) &mdash; الإشارة المعاد بناؤها ستحتوي ترددات زائفة لم تكن في الأصلية. لهذا يستخدم صوت القرص المضغوط معدل اعتيان ٤٤,١٠٠ هرتز: السمع البشري يصل حده الأقصى عند حوالي ٢٠,٠٠٠ هرتز، لذا ٤٤,١٠٠ &gt; ٢ &times; ٢٠,٠٠٠، مما يحقق النظرية مع هامش بسيط.</p>
+
+    <p class="fade-up"><strong>التكميم</strong> هو الخطوة الثانية: تعيين كل عينة من السعة المستمرة إلى أقرب قيمة في مجموعة محدودة من المستويات. مع <em>B</em> بت لكل عينة، نحصل على 2<sup>B</sup> مستوى ممكن:</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        مستويات التكميم
+      </div>
+      <div id="eq-quantization"></div>
+      <div class="equation-block-caption">B هو عدد البتات لكل عينة. المزيد من البتات يعني دقة أدق وضوضاء تكميم أقل. صوت القرص المضغوط يستخدم B = 16، مما يعطي ٦٥,٥٣٦ مستوى.</div>
+    </div>
+
+    <p class="fade-up">التكميم يُدخل حتمًا خطأ صغيرًا &mdash; <strong>ضوضاء التكميم</strong> &mdash; لأننا نقرّب قيمًا مستمرة إلى مستويات منفصلة. كلما زاد عدد البتات، صغر هذا الخطأ. كل بت إضافي يضاعف تقريبًا عدد المستويات ويضيف حوالي ٦ ديسيبل من نسبة الإشارة إلى الضوضاء.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+        نسبة الإشارة إلى ضوضاء التكميم
+      </div>
+      <div id="eq-snr"></div>
+      <div class="equation-block-caption">نسبة الإشارة إلى الضوضاء (SNR) الناتجة عن التكميم، مقاسة بالديسيبل. كل بت إضافي يضيف تقريبًا ٦.٠٢ ديسيبل من المدى الديناميكي.</div>
+    </div>
+
+    <!-- Section: Real-World Examples -->
+    <h2 class="fade-up">أمثلة من العالم الحقيقي</h2>
+
+    <p class="fade-up">التحول من التناظري إلى الرقمي أعاد تشكيل صناعات بأكملها. إليك بعض الأمثلة الأكثر وضوحًا:</p>
+
+    <p class="fade-up"><strong>الفينيل مقابل القرص المضغوط</strong> &mdash; تسجيل الفينيل يخزن الصوت كأخدود مستمر محفور في البلاستيك. القرص المضغوط يخزن نفس الصوت كـ٤٤,١٠٠ عينة رقمية في الثانية، كل منها بدقة ١٦ بت. الفينيل هو نسخة تناظرية مثالية (نظريًا)، لكنه يتدهور مع كل تشغيل. القرص المضغوط هو تقريب مكمّم، لكنه يبدو متطابقًا في التشغيل الأول والعشرة آلاف.</p>
+
+    <p class="fade-up"><strong>الراديو التناظري مقابل الرقمي</strong> &mdash; راديو <span lang="en">AM</span> و<span lang="en">FM</span> يبثان الصوت كموجات كهرومغناطيسية مستمرة. الراديو الرقمي (<span lang="en">DAB</span>، <span lang="en">HD Radio</span>) يبث تدفقات رقمية مضغوطة. الراديو التناظري يتدهور تدريجيًا مع المسافة (المزيد من التشويش)، بينما الراديو الرقمي إما يعمل بشكل مثالي أو ينقطع تمامًا &mdash; لا يوجد تدهور تدريجي.</p>
+
+    <p class="fade-up"><strong>الفيلم مقابل الكاميرا الرقمية</strong> &mdash; فيلم التصوير يلتقط الضوء على مستحلب كيميائي مستمر بدقة لا نهائية فعليًا. مستشعر الكاميرا الرقمية يلتقط الضوء في شبكة من البكسلات المنفصلة. الفيلم له جمالية تناظرية رائعة، لكن الكاميرات الرقمية توفر مراجعة فورية وتحرير سهل وتكلفة صفرية تقريبًا لكل صورة.</p>
+
+    <p class="fade-up"><strong>الهاتف التناظري مقابل الرقمي</strong> &mdash; خطوط الهاتف التقليدية كانت تنقل صوتك كإشارة كهربائية متغيرة باستمرار. أنظمة الهاتف الحديثة (<span lang="en">VoIP</span>، الخلوي) تحوّل صوتك إلى عينات رقمية وتضغطها وتنقل الحزم عبر الشبكات وتعيد بناء الصوت في الطرف الآخر. النهج الرقمي يتيح مكالمات الفيديو والتشفير والتوجيه العالمي &mdash; لا شيء من ذلك عملي مع التناظري.</p>
+
+    <!-- Section: Why Digital Won -->
+    <h2 class="fade-up">لماذا انتقل العالم إلى الرقمي</h2>
+
+    <p class="fade-up">الثورة الرقمية لم تكن مدفوعة بميزة واحدة &mdash; بل بتراكم العديد منها. <strong>النسخ المثالي</strong> يعني عدم وجود خسارة بين الأجيال. <strong>تصحيح الأخطاء</strong> يمكنه كشف وإصلاح أخطاء الإرسال تلقائيًا. خوارزميات <strong>الضغط</strong> (<span lang="en">MP3</span>، <span lang="en">JPEG</span>، <span lang="en">H.264</span>) تقلل متطلبات التخزين وعرض النطاق بشكل كبير. <strong>التشفير</strong> يحمي الخصوصية والأمان. <strong>مرونة البرمجيات</strong> تعني أن نفس العتاد يمكن إعادة برمجته لمهام جديدة.</p>
+
+    <p class="fade-up">ربما الأهم من ذلك، أن الإشارات الرقمية تتطور مع <strong>قانون مور</strong>. مع صغر حجم الترانزستورات وانخفاض تكلفتها، تصبح المعالجة الرقمية أكثر قوة. الدارات التناظرية لا تستفيد من هذا التطور بنفس الطريقة &mdash; المكثف يبقى مكثفًا، بغض النظر عن مدى صغر الترانزستورات حوله.</p>
+
+    <p class="fade-up">مع ذلك، التناظري لم يختفِ. كل نظام رقمي لا يزال يحتاج مكونات تناظرية عند حدوده &mdash; الميكروفونات ومكبرات الصوت والهوائيات والمستشعرات والشاشات كلها تعمل في المجال التناظري. النهج الحديث هو <strong>هجين</strong>: تناظري عند الحواف، ورقمي في المنتصف.</p>
+
+    <!-- Section: Trade-offs -->
+    <h2 class="fade-up">المزايا والمقايضات</h2>
+
+    <p class="fade-up"><strong>مزايا التناظري:</strong> دقة لا نهائية (لا خطأ تكميم)، لا حاجة لتحويل <span lang="en">ADC/DAC</span>، زمن استجابة منخفض طبيعيًا، وتدهور تدريجي في البيئات المشوشة (الإشارة تصبح أكثر ضوضاء لكنها لا تختفي فجأة).</p>
+
+    <p class="fade-up"><strong>مزايا الرقمي:</strong> قابلية نسخ مثالية، مناعة ضد الضوضاء، سهولة التخزين والإرسال، معالجة قابلة للبرمجة، تصحيح الأخطاء، التشفير، والضغط. الأنظمة الرقمية تتحسن مع تطور الحوسبة ويمكن تحديثها بالبرمجيات.</p>
+
+    <p class="fade-up"><strong>مقايضات الرقمي:</strong> الاعتيان يفرض قيودًا على عرض النطاق (لا يمكنك التقاط ترددات أعلى من f<sub>s</sub>/2). التكميم يُدخل ضوضاء. تحويل <span lang="en">ADC/DAC</span> يضيف زمن استجابة وتكلفة. والأنظمة الرقمية تتطلب عرض نطاق أكبر بكثير للإرسال الخام من مكافئاتها التناظرية &mdash; رغم أن الضغط عادة يعوض أكثر من ذلك.</p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        الخلاصة
+      </div>
+      <p>لا التناظري ولا الرقمي "أفضل" بشكل عام. العالم الفيزيائي تناظري، لكن المعالجة الرقمية تقدم مرونة وموثوقية لا مثيل لهما. الأنظمة الحديثة تستخدم كليهما: <strong>واجهات تناظرية عند الحواف، ومعالجة رقمية في الجوهر</strong>.</p>
+    </div>
+
+    <div class="teaser fade-up">
+      <p>في الدرس التالي، سنتعمق أكثر في الاعتيان &mdash; نستكشف نظرية نايكويست بالتفصيل، ونفهم ما يحدث عند انتهاكها (تداخل الترددات)، ونتعلم كيف نعيد بناء الإشارات التناظرية من العينات الرقمية بشكل صحيح.</p>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="takeaways fade-up">
+      <div class="takeaways-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        النقاط الرئيسية
+      </div>
+      <ul>
+        <li>الإشارات التناظرية مستمرة في الزمن والسعة؛ الإشارات الرقمية منفصلة في كليهما &mdash; تُعتيَّن على فترات ثابتة وتُكمَّم إلى مستويات محدودة.</li>
+        <li>نظرية نايكويست-شانون تنص على أن الإشارة يجب أن تُعتيَّن بمعدل لا يقل عن ضعف أعلى تردد فيها لتكون قابلة لإعادة البناء بشكل مثالي.</li>
+        <li>التكميم يعيّن السعات المستمرة إلى مستويات منفصلة، مُدخلًا ضوضاء التكميم. المزيد من البتات لكل عينة يعني دقة أعلى (كل بت يضيف ~٦ ديسيبل من <span lang="en">SNR</span>).</li>
+        <li>الإشارات الرقمية تقدم مناعة ضد الضوضاء ونسخًا مثاليًا وضغطًا وتشفيرًا ومرونة برمجية &mdash; وهذا سبب انتقال العالم إلى الرقمي.</li>
+        <li>الأنظمة الحديثة هجينة: تناظرية عند الواجهات الفيزيائية (الميكروفونات، مكبرات الصوت، الهوائيات) ورقمية للمعالجة والتخزين والإرسال.</li>
+      </ul>
+    </div>
+
+  </div>
+</article>
+
+<!-- Lesson Navigation -->
+<div class="lesson-nav">
+  <div class="lesson-nav-inner fade-up">
+    <a href="m1-l1-slides.html" class="lesson-nav-btn lesson-nav-prev">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      <span>
+        <span class="lesson-nav-label">الدرس السابق</span>
+        <span class="lesson-nav-title">الإشارات من حولنا</span>
+      </span>
+    </a>
+
+    <a href="../index.html" class="lesson-nav-overview">نظرة عامة على الوحدة</a>
+
+    <a href="../../../../ar/coming-soon.html" class="lesson-nav-btn lesson-nav-next">
+      <span>
+        <span class="lesson-nav-label">الدرس التالي</span>
+        <span class="lesson-nav-title">قريبًا</span>
+      </span>
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Audio Player -->
+<div id="audioPlayer" style="position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;align-items:center;gap:0.5rem;">
+  <div id="audioPanel" style="display:none;background:var(--ink);border-radius:16px;padding:0.5rem 0.75rem;box-shadow:0 4px 20px rgba(15,27,45,0.35);align-items:center;gap:0.5rem;">
+    <button id="prevBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="السابق">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M19 20L9 12l10-8v16z"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
+    </button>
+    <button id="playBtn" style="width:36px;height:36px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="تشغيل/إيقاف">
+      <svg id="playSvg" width="16" height="16" viewBox="0 0 24 24" fill="var(--ink)" stroke="none"><polygon id="playShape" points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <button id="nextBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="التالي">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M5 4l10 8-10 8V4z"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
+    </button>
+    <div style="color:var(--cream);font-family:var(--font-mono);font-size:0.65rem;min-width:60px;text-align:center;">
+      <span id="trackInfo">1 / 12</span>
+    </div>
+    <button id="closeAudio" style="width:28px;height:28px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="إغلاق">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <button id="audioToggle" style="width:52px;height:52px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,27,45,0.25);transition:all 0.3s;" title="استمع للسرد الصوتي">
+    <svg id="audioIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 010 7.07"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14"/>
+    </svg>
+  </button>
+</div>
+<audio id="lessonAudio" preload="none"></audio>
+
+<script>
+(function() {
+  var AUDIO_BASE = '../../../../audio/ar/dsp101/m1-l2/';
+  var TRACKS = [
+    's1-intro','s2-analog-signals','s3-digital-signals','s4-key-differences',
+    's5-sampling','s6-nyquist','s7-quantization','s8-vinyl-vs-cd',
+    's9-real-world','s10-why-digital','s11-tradeoffs','s12-summary'
+  ];
+
+  var audioEl = document.getElementById('lessonAudio');
+  var panel = document.getElementById('audioPanel');
+  var toggleBtn = document.getElementById('audioToggle');
+  var playBtn = document.getElementById('playBtn');
+  var playShape = document.getElementById('playShape');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var closeBtn = document.getElementById('closeAudio');
+  var trackInfo = document.getElementById('trackInfo');
+  var audioIcon = document.getElementById('audioIcon');
+
+  var current = 0;
+  var panelOpen = false;
+
+  function loadTrack(i) {
+    current = i;
+    audioEl.src = AUDIO_BASE + TRACKS[i] + '.mp3';
+    trackInfo.textContent = (i + 1) + ' / ' + TRACKS.length;
+  }
+
+  function setPauseIcon() {
+    playShape.setAttribute('points', '6 4 10 4 10 20 6 20');
+    var r2 = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    r2.setAttribute('points', '14 4 18 4 18 20 14 20');
+    r2.setAttribute('fill', 'var(--ink)');
+    r2.id = 'playShape2';
+    playShape.parentNode.appendChild(r2);
+  }
+
+  function setPlayIconShape() {
+    playShape.setAttribute('points', '5 3 19 12 5 21 5 3');
+    var r2 = document.getElementById('playShape2');
+    if (r2) r2.remove();
+  }
+
+  function setPlaying(playing) {
+    if (playing) { setPauseIcon(); } else { setPlayIconShape(); }
+  }
+
+  toggleBtn.addEventListener('click', function() {
+    if (!panelOpen) {
+      panel.style.display = 'flex';
+      panelOpen = true;
+      toggleBtn.style.background = 'var(--amber)';
+      audioIcon.setAttribute('stroke', 'var(--ink)');
+      loadTrack(0);
+      audioEl.play();
+      setPlaying(true);
+    } else {
+      if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+      else { audioEl.pause(); setPlaying(false); }
+    }
+  });
+
+  playBtn.addEventListener('click', function() {
+    if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+    else { audioEl.pause(); setPlaying(false); }
+  });
+
+  prevBtn.addEventListener('click', function() {
+    if (current > 0) { loadTrack(current - 1); audioEl.play(); setPlaying(true); }
+  });
+
+  nextBtn.addEventListener('click', function() {
+    if (current < TRACKS.length - 1) { loadTrack(current + 1); audioEl.play(); setPlaying(true); }
+  });
+
+  closeBtn.addEventListener('click', function() {
+    audioEl.pause();
+    audioEl.removeAttribute('src');
+    panel.style.display = 'none';
+    panelOpen = false;
+    toggleBtn.style.background = 'var(--ink)';
+    audioIcon.setAttribute('stroke', '#e8a838');
+    setPlaying(false);
+    current = 0;
+  });
+
+  audioEl.addEventListener('ended', function() {
+    if (current < TRACKS.length - 1) {
+      loadTrack(current + 1);
+      audioEl.play();
+    } else {
+      setPlaying(false);
+    }
+  });
+})();
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="../../../../logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>منهج مفتوح المصدر لأساسيات الاتصالات اللاسلكية ومعالجة الإشارات الرقمية.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الدورات</div>
+      <a href="../../wrl101/index.html">Wireless 101</a>
+      <a href="../../dsp101/index.html">DSP 101</a>
+      <a href="../../../coming-soon.html">التجارب</a>
+      <a href="../../../coming-soon.html">المشاريع</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الموارد</div>
+      <a href="../../../coming-soon.html">التوثيق</a>
+      <a href="../../../coming-soon.html">المجتمع</a>
+      <a href="../../../coming-soon.html">المدونة</a>
+      <a href="../../../coming-soon.html">الأسئلة الشائعة</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">تواصل</div>
+      <a href="../../../coming-soon.html">GitHub</a>
+      <a href="../../../coming-soon.html">Discord</a>
+      <a href="../../../coming-soon.html">Twitter / X</a>
+      <a href="../../../coming-soon.html">اتصل بنا</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; ٢٠٢٦ Wireless 101. مشروع تعليمي مفتوح المصدر.</div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── KaTeX Equations ──
+function renderEquations() {
+  if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
+
+  var eqs = [
+    ['eq-nyquist', 'f_s \\geq 2 f_{\\max}'],
+    ['eq-quantization', 'L = 2^B'],
+    ['eq-snr', '\\text{SNR}_{\\text{dB}} \\approx 6.02\\,B + 1.76 \\;\\text{dB}']
+  ];
+
+  eqs.forEach(function(pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) katex.render(pair[1], el, { displayMode: true, throwOnError: false });
+  });
+}
+renderEquations();
+</script>
+<script data-goatcounter="https://wireless-101.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

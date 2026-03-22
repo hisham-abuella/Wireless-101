@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أنواع البيانات | STAT-101 | Wireless 101</title>
+<link rel="stylesheet" href="../../../../theme.css">
+<link rel="stylesheet" href="../../../../theme-rtl.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+/* ── Lesson Hero ── */
+.lesson-hero {
+  padding: 6.5rem 2rem 2.5rem;
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.lesson-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: rgba(232, 168, 56, 0.06);
+  border-radius: 50%;
+}
+
+.lesson-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.lesson-hero .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero .breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lesson-hero .breadcrumb a:hover { color: #fff; }
+
+.lesson-hero-content {
+  max-width: 720px;
+}
+
+.lesson-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.lesson-type-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.lesson-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.lesson-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.lesson-hero-meta-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+/* ── Article Content ── */
+.lesson-article {
+  padding: 4rem 2rem 3rem;
+  background: var(--cream);
+}
+
+.lesson-article-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lesson-article h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.lesson-article h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-article p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.lesson-article strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── Callout Box ── */
+.callout-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.callout-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callout-box-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.callout-box p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+.callout-box p:last-child {
+  margin-bottom: 0;
+}
+
+.callout-box .callout-highlight {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--amber-pale);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  display: block;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Data type table ── */
+.data-type-table {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-md);
+  padding: 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+  overflow-x: auto;
+}
+
+.data-type-table-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.data-type-table-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.data-type-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+}
+
+.data-type-table th {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.data-type-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.data-type-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-type-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ── Key Takeaways ── */
+.takeaways {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 2rem 2.25rem;
+  margin: 3rem 0 0;
+  color: #fff;
+}
+
+.takeaways-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.takeaways-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.takeaways ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.takeaways li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-on-dark);
+}
+
+.takeaways li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+/* ── Lesson Nav ── */
+.lesson-nav {
+  padding: 0 2rem;
+  background: var(--cream);
+}
+
+.lesson-nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lesson-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.lesson-nav-prev {
+  color: var(--cream);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  justify-self: start;
+}
+
+.lesson-nav-prev:hover {
+  background: var(--ink-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.15);
+}
+
+.lesson-nav-prev svg,
+.lesson-nav-next svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+}
+
+.lesson-nav-prev svg { stroke: var(--cream); }
+
+.lesson-nav-overview {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.lesson-nav-overview:hover { color: var(--ink); }
+
+.lesson-nav-next {
+  color: var(--text-tertiary);
+  border: 1.5px solid var(--border-light);
+  cursor: default;
+  opacity: 0.5;
+  justify-self: end;
+}
+
+.lesson-nav-next svg { stroke: var(--text-tertiary); }
+
+.lesson-nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.lesson-nav-title {
+  display: block;
+  line-height: 1.3;
+}
+
+/* ── Teaser paragraph ── */
+.teaser {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--border-light);
+}
+
+.teaser p {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ── Lang switch ── */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .lesson-hero { padding: 5.5rem 1.5rem 2rem; }
+  .lesson-article { padding: 3rem 1.5rem 2rem; }
+
+  .lesson-nav-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .lesson-nav-overview {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .lesson-nav-prev { grid-row: 2; justify-self: start; }
+  .lesson-nav-next { grid-row: 2; justify-self: end; }
+}
+
+@media (max-width: 480px) {
+  .lesson-hero h1 { font-size: 1.5rem; }
+  .lesson-hero-meta { gap: 0.75rem; }
+}
+
+/* ── Equation Block ── */
+.equation-block {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--paper) 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--amber);
+  border-radius: 3px 0 0 3px;
+}
+
+.equation-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.equation-block-label svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.equation-block .katex-display {
+  margin: 0;
+}
+
+.equation-block .katex {
+  font-size: 1.2em;
+  color: var(--text);
+}
+
+.equation-block-caption {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.equation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+@media (max-width: 600px) {
+  .equation-pair {
+    grid-template-columns: 1fr;
+  }
+  .equation-block .katex {
+    font-size: 1em;
+  }
+}
+
+.equation-pair .equation-block {
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="../../../../index.html" class="nav-logo">
+    <img src="../../../../logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="../../../../courses/stat101/lessons/m1-l2.html">EN</a>
+        <a href="m1-l2.html" class="active">&#1593;&#1585;&#1576;&#1610;</a>
+      </div>
+    </li>
+    <li><a href="../../../index.html">الرئيسية</a></li>
+    <li><a href="../../../index.html#courses">الدورات</a></li>
+    <li><a href="../index.html" class="nav-cta" lang="en">STAT 101</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Lesson Hero -->
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">الرئيسية</a>
+      <span>/</span>
+      <a href="../../../index.html#courses">الدورات</a>
+      <span>/</span>
+      <a href="../index.html" lang="en">STAT-101</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">الوحدة ١</span>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.8)">الدرس ٢</span>
+    </div>
+
+    <div class="lesson-hero-content fade-up">
+      <div class="lesson-type-badge">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        قراءة
+      </div>
+      <a href="m1-l2-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        وضع القصص
+      </a>
+      <h1>أنواع البيانات</h1>
+      <div class="lesson-hero-meta">
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          ~١٢ دقيقة قراءة
+        </span>
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          الدرس ٢ من ٤ في الوحدة ١
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article Content -->
+<article class="lesson-article">
+  <div class="lesson-article-inner">
+
+    <!-- Section 1 -->
+    <h2 class="fade-up">لماذا تهم أنواع البيانات</h2>
+
+    <p class="fade-up">ليست كل البيانات متساوية. نوع البيانات الذي تجمعه يحدد الأساليب الإحصائية التي يمكنك استخدامها، والرسوم البيانية المناسبة، والاستنتاجات التي يمكنك استخلاصها. اختيار الأسلوب الخاطئ لنوع بياناتك هو أحد أكثر الأخطاء شيوعًا في الإحصاء &mdash; وقد يؤدي إلى نتائج غير صحيحة تمامًا.</p>
+
+    <p class="fade-up">تشكل أنواع البيانات تسلسلًا هرميًا، من أبسط الفئات إلى أغنى القياسات. فهم هذا التسلسل هو <strong>الخطوة الأولى الأساسية</strong> في أي تحليل إحصائي. قبل أن تحسب رقمًا واحدًا أو ترسم مخططًا واحدًا، يجب أن تسأل: <em>ما نوع البيانات التي أعمل بها؟</em></p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        القاعدة الذهبية
+      </div>
+      <p>نوع البيانات يحدد التحليل. لا يمكنك حساب متوسط ذي معنى لفصائل الدم. ولا يمكنك ترتيب درجات الحرارة المئوية كنسب. كل أداة إحصائية لها افتراضات حول نوع البيانات &mdash; انتهاكها ينتج نتائج بلا معنى.</p>
+      <span class="callout-highlight">نوع البيانات &larr; العمليات الصالحة &larr; التحليل الصحيح</span>
+    </div>
+
+    <!-- Section 2 -->
+    <h2 class="fade-up">النوعية مقابل الكمية</h2>
+
+    <p class="fade-up">أوسع تقسيم في البيانات هو بين البيانات <strong>النوعية</strong> (الفئوية) والبيانات <strong>الكمية</strong> (العددية). البيانات النوعية تصف صفات أو فئات &mdash; أشياء مثل الألوان والأسماء والتصنيفات. البيانات الكمية تمثل كميات &mdash; أشياء يمكنك عدها أو قياسها بالأرقام.</p>
+
+    <p class="fade-up">البيانات النوعية تجيب عن <em>أي نوع؟</em> أو <em>أي فئة؟</em> البيانات الكمية تجيب عن <em>كم؟</em> أو <em>كم عدد؟</em> هذا التمييز جوهري لأن مجموعة أدوات التحليل الإحصائي بأكملها تتفرع بناءً عليه. تلخص البيانات الفئوية بالتكرارات والنسب؛ وتلخص البيانات العددية بالمتوسطات والانحرافات المعيارية.</p>
+
+    <!-- Section 3 -->
+    <h2 class="fade-up">البيانات الاسمية</h2>
+
+    <p class="fade-up"><strong>البيانات الاسمية</strong> هي أبسط أنواع البيانات. تتكون من فئات <strong>بدون ترتيب متأصل</strong>. كلمة &laquo;اسمية&raquo; مشتقة من الكلمة اللاتينية <em>nomen</em> بمعنى &laquo;اسم&raquo; &mdash; وهذا بالضبط ما تفعله البيانات الاسمية: تسمي الأشياء أو تصنفها.</p>
+
+    <p class="fade-up">تشمل الأمثلة فصائل الدم (A، B، AB، O)، وألوان العيون (بني، أزرق، أخضر)، والجنس، والجنسية، والحالة الاجتماعية. يمكنك عد العناصر في كل فئة وحساب النسب، لكن لا يمكنك ترتيب هذه الفئات أو حساب متوسط ذي معنى. القول بأن &laquo;متوسط فصيلة الدم هو B+&raquo; لا معنى له.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+        نسبة البيانات الاسمية
+      </div>
+      <div id="eq-proportion"></div>
+      <div class="equation-block-caption">نسبة المشاهدات في الفئة k &mdash; الملخص العددي الوحيد ذو المعنى للبيانات الاسمية</div>
+    </div>
+
+    <!-- Section 4 -->
+    <h2 class="fade-up">البيانات الترتيبية</h2>
+
+    <p class="fade-up"><strong>البيانات الترتيبية</strong> لها فئات ذات <strong>ترتيب طبيعي ذي معنى</strong>، لكن المسافات بين الفئات ليست بالضرورة متساوية. فكر في تقييمات رضا العملاء: &laquo;غير راضٍ جدًا&raquo;، &laquo;غير راضٍ&raquo;، &laquo;محايد&raquo;، &laquo;راضٍ&raquo;، &laquo;راضٍ جدًا&raquo;. هناك ترتيب واضح، لكن الفجوة بين &laquo;محايد&raquo; و&laquo;راضٍ&raquo; قد لا تساوي الفجوة بين &laquo;راضٍ&raquo; و&laquo;راضٍ جدًا&raquo;.</p>
+
+    <p class="fade-up">أمثلة أخرى تشمل المستويات التعليمية (ثانوية، بكالوريوس، ماجستير، دكتوراه)، والرتب العسكرية، ومقاييس الألم (١&ndash;١٠)، والوضع الاقتصادي الاجتماعي (منخفض، متوسط، مرتفع). يمكنك القول أن فئة ما &laquo;أعلى&raquo; أو &laquo;أفضل&raquo; من أخرى، لكن <strong>لا يمكنك تحديد بكم</strong>. الوسيط والمئينات مناسبان؛ أما المتوسطات فمحل جدل.</p>
+
+    <!-- Section 5 -->
+    <h2 class="fade-up">البيانات الفترية</h2>
+
+    <p class="fade-up"><strong>البيانات الفترية</strong> لها تباعد متساوٍ بين القيم، لكن <strong>بدون نقطة صفر حقيقية</strong>. المثال الكلاسيكي هو درجة الحرارة بالدرجة المئوية أو الفهرنهايت. الفرق بين ٢٠ و٣٠ درجة مئوية هو نفسه بين ٣٠ و٤٠ درجة مئوية &mdash; كلاهما فجوة ١٠ درجات. لكن ٠ درجة مئوية لا تعني &laquo;لا حرارة&raquo;. إنها نقطة مرجعية اعتباطية (نقطة تجمد الماء).</p>
+
+    <p class="fade-up">بما أنه لا يوجد صفر حقيقي، فإن <strong>النسب لا معنى لها</strong> في البيانات الفترية. لا يمكنك القول أن ٤٠ درجة مئوية هي &laquo;ضعف حرارة&raquo; ٢٠ درجة مئوية. أمثلة أخرى تشمل التواريخ التقويمية (السنة صفر اعتباطية)، ودرجات معدل الذكاء، ودرجات الاختبارات المعيارية. يمكنك حساب المتوسطات والانحرافات المعيارية، لكن الضرب والقسمة على القيم يفتقران إلى التفسير.</p>
+
+    <!-- Section 6 -->
+    <h2 class="fade-up">البيانات النسبية</h2>
+
+    <p class="fade-up"><strong>البيانات النسبية</strong> هي أغنى مقياس قياس. لها فترات متساوية <em>و</em> <strong>نقطة صفر حقيقية</strong> تمثل الغياب التام للكمية. تشمل الأمثلة الوزن (٠ كجم يعني لا وزن)، والطول، والمسافة، والدخل، والعمر، والمدة الزمنية.</p>
+
+    <p class="fade-up">مع البيانات النسبية، جميع العمليات الرياضية صالحة. يمكنك القول أن من يكسب ٨٠,٠٠٠ دولار يكسب ضعف من يكسب ٤٠,٠٠٠ دولار &mdash; هذه النسبة ذات معنى لأن ٠ دولار تعني حقًا &laquo;لا دخل&raquo;. درجة الحرارة بالكلفن (حيث ٠ كلفن هو الصفر المطلق) هي بيانات نسبية، رغم أن المئوية والفهرنهايت ليستا كذلك.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        خاصية النسبة
+      </div>
+      <div id="eq-ratio"></div>
+      <div class="equation-block-caption">النسب ذات معنى فقط عند وجود صفر حقيقي &mdash; وهذا ما يميز البيانات النسبية عن الفترية</div>
+    </div>
+
+    <div class="data-type-table fade-up">
+      <div class="data-type-table-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+        ملخص مقاييس القياس
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>المقياس</th>
+            <th>ترتيب</th>
+            <th>تباعد متساوٍ</th>
+            <th>صفر حقيقي</th>
+            <th>مثال</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>اسمي</td>
+            <td>لا</td>
+            <td>لا</td>
+            <td>لا</td>
+            <td>فصيلة الدم، لون العين</td>
+          </tr>
+          <tr>
+            <td>ترتيبي</td>
+            <td>نعم</td>
+            <td>لا</td>
+            <td>لا</td>
+            <td>تقييم الرضا</td>
+          </tr>
+          <tr>
+            <td>فتري</td>
+            <td>نعم</td>
+            <td>نعم</td>
+            <td>لا</td>
+            <td>الحرارة (&deg;م)</td>
+          </tr>
+          <tr>
+            <td>نسبي</td>
+            <td>نعم</td>
+            <td>نعم</td>
+            <td>نعم</td>
+            <td>الوزن، الدخل</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 7 -->
+    <h2 class="fade-up">المنفصلة مقابل المتصلة</h2>
+
+    <p class="fade-up">ضمن البيانات الكمية، هناك تمييز مهم آخر: <strong>المنفصلة</strong> مقابل <strong>المتصلة</strong>. البيانات المنفصلة لا يمكن أن تأخذ إلا قيمًا محددة قابلة للعد &mdash; عدد الطلاب في الفصل (يمكن أن يكون ٢٥ أو ٢٦، لكن ليس ٢٥.٧)، عدد العناصر المعيبة في دفعة، أو عدد زيارات الموقع.</p>
+
+    <p class="fade-up">البيانات المتصلة يمكن أن تأخذ أي قيمة ضمن نطاق، بما في ذلك الكسور والأرقام العشرية. الطول والوزن والوقت ودرجة الحرارة كلها بيانات متصلة &mdash; يمكن أن يكون طول شخص ١٧٠.٣ سم، أو يستغرق تفاعل ٣.٨٤٧ ثانية. هذا التمييز مهم لأن البيانات المنفصلة والمتصلة تتطلب توزيعات احتمالية مختلفة وتقنيات عرض مرئي مختلفة.</p>
+
+    <!-- Section 8 -->
+    <h2 class="fade-up">المهيكلة مقابل غير المهيكلة</h2>
+
+    <p class="fade-up">في مشهد البيانات الحديث، نميز أيضًا بين البيانات <strong>المهيكلة</strong> و<strong>غير المهيكلة</strong>. البيانات المهيكلة تنتظم بدقة في جداول ذات صفوف وأعمدة &mdash; جداول البيانات وقواعد البيانات وملفات <span lang="en">CSV</span>. كل عمود له نوع بيانات محدد، وكل صف يتبع نفس التنسيق.</p>
+
+    <p class="fade-up"><strong>البيانات غير المهيكلة</strong> ليس لها تنسيق محدد مسبقًا. تشمل المستندات النصية والصور والتسجيلات الصوتية والفيديو ومنشورات وسائل التواصل الاجتماعي وتدفقات أجهزة الاستشعار. تشير التقديرات إلى أن ٨٠&ndash;٩٠٪ من بيانات العالم غير مهيكلة. يتطلب معالجتها تقنيات متخصصة مثل معالجة اللغة الطبيعية والرؤية الحاسوبية قبل أن يمكن تطبيق الأساليب الإحصائية التقليدية.</p>
+
+    <!-- Section 9 -->
+    <h2 class="fade-up">طرق جمع البيانات</h2>
+
+    <p class="fade-up">كيفية جمع البيانات لا تقل أهمية عن نوعها. الطرق الثلاث الرئيسية هي <strong>الاستطلاعات</strong> و<strong>التجارب</strong> و<strong>الدراسات الرصدية</strong>.</p>
+
+    <p class="fade-up"><strong>الاستطلاعات</strong> تجمع بيانات ذاتية التقرير من خلال استبيانات أو مقابلات. هي فعالة لجمع كميات كبيرة من البيانات لكنها عرضة لتحيز الاستجابة &mdash; قد لا يجيب الناس بصدق أو قد يفسرون الأسئلة بشكل مختلف.</p>
+
+    <p class="fade-up"><strong>التجارب</strong> هي المعيار الذهبي لإثبات العلاقة السببية. يتحكم الباحث بشكل فعال في متغير واحد (المعالجة) ويقيس تأثيره على متغير آخر، مع ضبط كل شيء آخر. التجارب المعشاة المضبوطة في الطب هي المثال الكلاسيكي.</p>
+
+    <p class="fade-up"><strong>الدراسات الرصدية</strong> تجمع البيانات دون تدخل. يراقب الباحث ويسجل ما يحدث طبيعيًا. يمكنها الكشف عن ارتباطات وعلاقات لكنها <strong>لا تستطيع إثبات السببية</strong> &mdash; وهذا أحد أهم المبادئ في الإحصاء.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        الارتباط مقابل السببية
+      </div>
+      <div id="eq-correlation"></div>
+      <div class="equation-block-caption">الارتباط يقيس العلاقة الخطية بين متغيرين &mdash; لكن الارتباط لا يعني السببية</div>
+    </div>
+
+    <!-- Section 10 -->
+    <h2 class="fade-up">اختيار الأسلوب المناسب</h2>
+
+    <p class="fade-up">نوع البيانات الذي لديك يحدد مباشرة الأساليب الإحصائية المناسبة. للبيانات الاسمية، استخدم جداول التكرار والمخططات الشريطية واختبارات كاي تربيع. للبيانات الترتيبية، استخدم الوسيط والمئينات والاختبارات اللامعلمية مثل اختبار مان-ويتني. للبيانات الفترية والنسبية، لديك الترسانة الكاملة: المتوسطات والانحرافات المعيارية واختبارات <span lang="en">t</span> وتحليل التباين والانحدار والارتباط.</p>
+
+    <p class="fade-up">عدم التطابق بين أنواع البيانات والأساليب يؤدي إلى نتائج بلا معنى. حساب متوسط الرموز البريدية، أو إجراء اختبار <span lang="en">t</span> على تقييمات الرضا، أو معاملة الأعداد المنفصلة كقياسات متصلة &mdash; هذه كلها أخطاء تنبع من عدم فهم نوع بياناتك. <strong>صنّف بياناتك أولاً، ثم اختر أدواتك.</strong></p>
+
+    <div class="teaser fade-up">
+      <p>في الدرس التالي، سنستكشف كيفية تصور البيانات بفعالية &mdash; اختيار الرسوم البيانية والمخططات المناسبة لأنواع البيانات المختلفة، وتعلم اكتشاف الأنماط والقيم الشاذة والتوزيعات من نظرة واحدة.</p>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="takeaways fade-up">
+      <div class="takeaways-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        النقاط الرئيسية
+      </div>
+      <ul>
+        <li>تنقسم البيانات إلى فئتين عريضتين: نوعية (فئوية) وكمية (عددية) &mdash; كل منهما يتطلب مناهج تحليلية مختلفة.</li>
+        <li>مقاييس القياس الأربعة &mdash; الاسمي والترتيبي والفتري والنسبي &mdash; تشكل تسلسلًا هرميًا متزايد الغنى الرياضي.</li>
+        <li>البيانات المنفصلة تأخذ قيمًا قابلة للعد؛ البيانات المتصلة يمكن أن تأخذ أي قيمة في نطاق &mdash; وهذا يؤثر على التوزيعات والاختبارات المستخدمة.</li>
+        <li>طريقة جمع البيانات (استطلاع، تجربة، دراسة رصدية) تحدد الاستنتاجات التي يمكنك استخلاصها &mdash; التجارب وحدها يمكنها إثبات السببية.</li>
+        <li>حدد نوع بياناتك دائمًا قبل اختيار الأسلوب الإحصائي &mdash; عدم التطابق ينتج نتائج غير صحيحة.</li>
+      </ul>
+    </div>
+
+  </div>
+</article>
+
+<!-- Lesson Navigation -->
+<div class="lesson-nav">
+  <div class="lesson-nav-inner fade-up">
+    <a href="m1-l1-slides.html" class="lesson-nav-btn lesson-nav-prev">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      <span>
+        <span class="lesson-nav-label">الدرس السابق</span>
+        <span class="lesson-nav-title">ما هو علم الإحصاء؟</span>
+      </span>
+    </a>
+
+    <a href="../index.html" class="lesson-nav-overview">نظرة عامة على الوحدة</a>
+
+    <span class="lesson-nav-btn lesson-nav-next">
+      <span>
+        <span class="lesson-nav-label">الدرس التالي</span>
+        <span class="lesson-nav-title">قريبًا</span>
+      </span>
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </span>
+  </div>
+</div>
+
+<!-- Audio Player -->
+<div id="audioPlayer" style="position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;align-items:center;gap:0.5rem;">
+  <div id="audioPanel" style="display:none;background:var(--ink);border-radius:16px;padding:0.5rem 0.75rem;box-shadow:0 4px 20px rgba(15,27,45,0.35);align-items:center;gap:0.5rem;">
+    <button id="prevBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="السابق">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M19 20L9 12l10-8v16z"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
+    </button>
+    <button id="playBtn" style="width:36px;height:36px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="تشغيل/إيقاف">
+      <svg id="playSvg" width="16" height="16" viewBox="0 0 24 24" fill="var(--ink)" stroke="none"><polygon id="playShape" points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <button id="nextBtn" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(232,168,56,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;" title="التالي">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2"><path d="M5 4l10 8-10 8V4z"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
+    </button>
+    <div style="color:var(--cream);font-family:var(--font-mono);font-size:0.65rem;min-width:60px;text-align:center;">
+      <span id="trackInfo">1 / 12</span>
+    </div>
+    <button id="closeAudio" style="width:28px;height:28px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="إغلاق">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <button id="audioToggle" style="width:52px;height:52px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,27,45,0.25);transition:all 0.3s;" title="استمع للسرد الصوتي">
+    <svg id="audioIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8a838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 010 7.07"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14"/>
+    </svg>
+  </button>
+</div>
+<audio id="lessonAudio" preload="none"></audio>
+
+<script>
+(function() {
+  var AUDIO_BASE = '../../../../audio/ar/stat101/m1-l2/';
+  var TRACKS = [
+    's1-intro','s2-qualitative-quantitative','s3-nominal','s4-ordinal','s5-interval',
+    's6-ratio','s7-scales-summary','s8-discrete-continuous','s9-structured-unstructured',
+    's10-collection-methods','s11-choosing-methods','s12-summary'
+  ];
+
+  var audioEl = document.getElementById('lessonAudio');
+  var panel = document.getElementById('audioPanel');
+  var toggleBtn = document.getElementById('audioToggle');
+  var playBtn = document.getElementById('playBtn');
+  var playShape = document.getElementById('playShape');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var closeBtn = document.getElementById('closeAudio');
+  var trackInfo = document.getElementById('trackInfo');
+  var audioIcon = document.getElementById('audioIcon');
+
+  var current = 0;
+  var panelOpen = false;
+
+  function loadTrack(i) {
+    current = i;
+    audioEl.src = AUDIO_BASE + TRACKS[i] + '.mp3';
+    trackInfo.textContent = (i + 1) + ' / ' + TRACKS.length;
+  }
+
+  function setPauseIcon() {
+    playShape.setAttribute('points', '6 4 10 4 10 20 6 20');
+    var r2 = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    r2.setAttribute('points', '14 4 18 4 18 20 14 20');
+    r2.setAttribute('fill', 'var(--ink)');
+    r2.id = 'playShape2';
+    playShape.parentNode.appendChild(r2);
+  }
+
+  function setPlayIconShape() {
+    playShape.setAttribute('points', '5 3 19 12 5 21 5 3');
+    var r2 = document.getElementById('playShape2');
+    if (r2) r2.remove();
+  }
+
+  function setPlaying(playing) {
+    if (playing) { setPauseIcon(); } else { setPlayIconShape(); }
+  }
+
+  toggleBtn.addEventListener('click', function() {
+    if (!panelOpen) {
+      panel.style.display = 'flex';
+      panelOpen = true;
+      toggleBtn.style.background = 'var(--amber)';
+      audioIcon.setAttribute('stroke', 'var(--ink)');
+      loadTrack(0);
+      audioEl.play();
+      setPlaying(true);
+    } else {
+      if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+      else { audioEl.pause(); setPlaying(false); }
+    }
+  });
+
+  playBtn.addEventListener('click', function() {
+    if (audioEl.paused) { audioEl.play(); setPlaying(true); }
+    else { audioEl.pause(); setPlaying(false); }
+  });
+
+  prevBtn.addEventListener('click', function() {
+    if (current > 0) { loadTrack(current - 1); audioEl.play(); setPlaying(true); }
+  });
+
+  nextBtn.addEventListener('click', function() {
+    if (current < TRACKS.length - 1) { loadTrack(current + 1); audioEl.play(); setPlaying(true); }
+  });
+
+  closeBtn.addEventListener('click', function() {
+    audioEl.pause();
+    audioEl.removeAttribute('src');
+    panel.style.display = 'none';
+    panelOpen = false;
+    toggleBtn.style.background = 'var(--ink)';
+    audioIcon.setAttribute('stroke', '#e8a838');
+    setPlaying(false);
+    current = 0;
+  });
+
+  audioEl.addEventListener('ended', function() {
+    if (current < TRACKS.length - 1) {
+      loadTrack(current + 1);
+      audioEl.play();
+    } else {
+      setPlaying(false);
+    }
+  });
+})();
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="../../../../logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>منهج مفتوح المصدر لأساسيات الاتصالات اللاسلكية ومعالجة الإشارات الرقمية.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الدورات</div>
+      <a href="../../wrl101/index.html">Wireless 101</a>
+      <a href="../../dsp101/index.html">DSP 101</a>
+      <a href="../../stat101/index.html">STAT 101</a>
+      <a href="../../../coming-soon.html">التجارب</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الموارد</div>
+      <a href="../../../coming-soon.html">التوثيق</a>
+      <a href="../../../coming-soon.html">المجتمع</a>
+      <a href="../../../coming-soon.html">المدونة</a>
+      <a href="../../../coming-soon.html">الأسئلة الشائعة</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">تواصل</div>
+      <a href="../../../coming-soon.html">GitHub</a>
+      <a href="../../../coming-soon.html">Discord</a>
+      <a href="../../../coming-soon.html">Twitter / X</a>
+      <a href="../../../coming-soon.html">اتصل بنا</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; ٢٠٢٦ Wireless 101. مشروع تعليمي مفتوح المصدر.</div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── KaTeX Equations ──
+function renderEquations() {
+  if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
+
+  var eqs = [
+    ['eq-proportion', '\\hat{p}_k = \\frac{n_k}{N}'],
+    ['eq-ratio', '\\frac{x_a}{x_b} \\text{ is meaningful} \\iff \\text{true zero exists}'],
+    ['eq-correlation', 'r_{xy} = \\frac{\\sum_{i=1}^{n}(x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^{n}(x_i - \\bar{x})^2 \\cdot \\sum_{i=1}^{n}(y_i - \\bar{y})^2}}']
+  ];
+
+  eqs.forEach(function(pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) katex.render(pair[1], el, { displayMode: true, throwOnError: false });
+  });
+}
+renderEquations();
+</script>
+<script data-goatcounter="https://wireless-101.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

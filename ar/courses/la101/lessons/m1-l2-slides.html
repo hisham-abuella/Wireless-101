@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>الأعداد والمتجهات والمصفوفات — قصص | LA 101</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #080d14;
+  --ink-mid: #0f1923;
+  --ink-light: #172435;
+  --amber: #d4a24a;
+  --amber-glow: #e8b44e;
+  --cream: #f0ece4;
+  --cream-dim: #d8d3c9;
+  --paper: #e8e3d9;
+  --teal: #3a7d7e;
+  --rose: #c4616a;
+  --display: 'Noto Sans Arabic', 'Instrument Serif', Georgia, serif;
+  --body: 'Noto Sans Arabic', 'DM Sans', system-ui, sans-serif;
+  --mono: 'Space Mono', 'Courier New', monospace;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #050709;
+}
+
+body {
+  font-family: var(--body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══ STORY SHELL ══ */
+.story {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  .story {
+    max-width: min(480px, 90vw);
+    height: min(92vh, 860px);
+    border-radius: 24px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 40px 100px -20px rgba(0,0,0,0.8);
+  }
+}
+
+@media (min-width: 1000px) {
+  .story {
+    max-width: 500px;
+    height: min(90vh, 900px);
+  }
+}
+
+/* ══ PROGRESS ══ */
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 3px;
+  padding: 14px 16px 0;
+  z-index: 20;
+  direction: ltr;
+}
+
+.progress-seg {
+  flex: 1;
+  height: 2.5px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-seg.done .progress-fill { width: 100%; }
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--amber);
+  border-radius: 4px;
+}
+
+/* ══ SLIDE ══ */
+.s {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 1.75rem 1.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  overflow: hidden;
+}
+
+.s.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 400px) {
+  .s { padding: 4.5rem 2.25rem 2rem; }
+}
+
+@media (min-width: 600px) {
+  .s { padding: 4.5rem 2.75rem 2.5rem; }
+}
+
+/* ── Variants ── */
+.s--ink {
+  background: radial-gradient(ellipse at 30% 20%, #111d2e 0%, var(--ink) 70%);
+  color: var(--cream);
+}
+
+.s--cream {
+  background: radial-gradient(ellipse at 70% 80%, var(--paper) 0%, var(--cream) 70%);
+  color: var(--ink);
+}
+
+.s--amber {
+  background: linear-gradient(145deg, #c99536 0%, #b5832e 50%, #a07428 100%);
+  color: var(--ink);
+}
+
+.s--deep {
+  background: linear-gradient(160deg, #0a1628 0%, #0e1f38 40%, #132a4a 100%);
+  color: var(--cream);
+}
+
+.s--teal {
+  background: linear-gradient(150deg, #0c2626 0%, #143636 40%, #1a4545 100%);
+  color: var(--cream);
+}
+
+/* ── Grain overlay ── */
+.s::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+  mix-blend-mode: overlay;
+}
+
+/* ── Glow orbs ── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(60px);
+  opacity: 0.12;
+}
+
+.orb-1 {
+  width: 300px; height: 300px;
+  top: -100px; left: -80px;
+  background: var(--amber);
+}
+
+.orb-2 {
+  width: 200px; height: 200px;
+  bottom: -60px; right: -60px;
+  background: var(--teal);
+}
+
+.s--cream .orb { opacity: 0.06; }
+.s--amber .orb-1 { background: rgba(255,255,255,0.3); opacity: 0.15; }
+.s--amber .orb-2 { background: var(--ink); opacity: 0.06; }
+
+/* ── Top bar ── */
+.s-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
+
+.s-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.s-brand-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.s--amber .s-brand-dot { background: var(--ink); }
+.s--cream .s-brand-dot { background: var(--amber); }
+
+.s-brand-name {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.s-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  opacity: 0.35;
+  letter-spacing: 0.08em;
+  direction: ltr;
+}
+
+/* ── Content ── */
+.s-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.s-year {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 0.6rem;
+}
+
+.s-title {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.s-title i {
+  font-style: italic;
+  color: var(--amber-glow);
+}
+
+.s--amber .s-title i { color: var(--ink); }
+.s--cream .s-title i { color: var(--amber); }
+.s--teal .s-title i { color: #5ec4c0; }
+
+.s-text {
+  font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+  line-height: 1.7;
+  opacity: 0.75;
+  max-width: 400px;
+}
+
+.s-text strong {
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* ── Card / callout ── */
+.s-card {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.04);
+}
+
+.s--cream .s-card {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.s--amber .s-card {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.s-card-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 0.5rem;
+}
+
+.s-card-value {
+  font-family: var(--mono);
+  font-size: clamp(0.82rem, 2vw, 0.95rem);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* ── Stat pair ── */
+.s-stats {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.s-stat {
+  flex: 1;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.s--cream .s-stat {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.s--amber .s-stat {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.s-stat-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 0.3rem;
+}
+
+.s-stat-val {
+  font-family: var(--display);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  font-weight: 400;
+}
+
+/* ── List ── */
+.s-list {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.s-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  padding: 0.4rem 0;
+  font-size: clamp(0.8rem, 2.1vw, 0.92rem);
+  line-height: 1.55;
+  opacity: 0.8;
+}
+
+.s-list li::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  transform: translateY(-1px);
+}
+
+.s--amber .s-list li::before { background: var(--ink); }
+.s--teal .s-list li::before { background: #5ec4c0; }
+
+.s-list strong {
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* ── Bottom ── */
+.s-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.s-pg {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  opacity: 0.3;
+  letter-spacing: 0.08em;
+  direction: ltr;
+}
+
+/* ══ NAV ARROWS ══ */
+.nav-arrows {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 20;
+}
+
+.nav-arrow {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-arrow:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  transform: scale(1.08);
+}
+
+.nav-arrow:active { transform: scale(0.95); }
+
+.nav-arrow.disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.nav-arrow svg {
+  width: 18px; height: 18px;
+  stroke: rgba(255,255,255,0.7);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ══ TOP CONTROLS ══ */
+.ctrl {
+  position: absolute;
+  top: 26px;
+  left: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctrl-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.ctrl-btn:hover { background: rgba(255,255,255,0.14); }
+
+.ctrl-btn svg {
+  width: 14px; height: 14px;
+  stroke: rgba(255,255,255,0.6);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Audio vis ── */
+.eq {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 12px;
+}
+
+.eq span {
+  width: 2.5px;
+  background: var(--amber);
+  border-radius: 2px;
+  height: 3px;
+  transition: height 0.15s;
+}
+
+.eq.on span:nth-child(1) { animation: e1 0.55s ease-in-out infinite; }
+.eq.on span:nth-child(2) { animation: e2 0.45s ease-in-out infinite 0.08s; }
+.eq.on span:nth-child(3) { animation: e3 0.6s ease-in-out infinite 0.16s; }
+.eq.on span:nth-child(4) { animation: e4 0.5s ease-in-out infinite 0.04s; }
+
+@keyframes e1 { 0%,100% { height: 3px; } 50% { height: 12px; } }
+@keyframes e2 { 0%,100% { height: 5px; } 50% { height: 9px; } }
+@keyframes e3 { 0%,100% { height: 2px; } 50% { height: 11px; } }
+@keyframes e4 { 0%,100% { height: 4px; } 50% { height: 7px; } }
+
+/* ── Muted icon ── */
+.ctrl-btn .muted-icon { display: none; }
+.ctrl-btn.is-muted .muted-icon { display: block; }
+.ctrl-btn.is-muted .eq { display: none; }
+
+/* ══ ENTRANCE ANIM ══ */
+.s.on .s-year { animation: fadeUp 0.4s ease both 0.05s; }
+.s.on .s-text { animation: fadeUp 0.45s ease both 0.2s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══ TRANSITION FLASH ══ */
+.story::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  opacity: 0;
+  z-index: 15;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.story.flash::before {
+  opacity: 0.06;
+}
+
+/* ══ INTERACTIVE ELEMENTS ══ */
+
+/* LaTeX equation block */
+.s-equation {
+  margin-top: 1.25rem;
+  padding: 1.25rem 1rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
+  overflow-x: auto;
+  direction: ltr;
+}
+
+.s--cream .s-equation {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.s-equation .katex { font-size: 1.3em; }
+
+.s-eq-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin-bottom: 0.6rem;
+  direction: rtl;
+}
+
+/* Pulse dot */
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ══ EXTRA ANIMATIONS ══ */
+
+/* Orb drift */
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(15px, -20px) scale(1.05); }
+  50% { transform: translate(-10px, -35px) scale(0.97); }
+  75% { transform: translate(20px, -10px) scale(1.03); }
+}
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, 15px) scale(1.06); }
+  66% { transform: translate(15px, 25px) scale(0.95); }
+}
+
+.s.on .orb-1 { animation: orbDrift1 8s ease-in-out infinite; }
+.s.on .orb-2 { animation: orbDrift2 10s ease-in-out infinite; }
+
+/* Staggered list items */
+.s.on .s-list li { animation: fadeSlideIn 0.4s ease both; }
+.s.on .s-list li:nth-child(1) { animation-delay: 0.25s; }
+.s.on .s-list li:nth-child(2) { animation-delay: 0.35s; }
+.s.on .s-list li:nth-child(3) { animation-delay: 0.45s; }
+.s.on .s-list li:nth-child(4) { animation-delay: 0.55s; }
+.s.on .s-list li:nth-child(5) { animation-delay: 0.65s; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 0.8; transform: translateX(0); }
+}
+
+/* Stat cards pop-in */
+.s.on .s-stat { animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+.s.on .s-stat:nth-child(1) { animation-delay: 0.3s; }
+.s.on .s-stat:nth-child(2) { animation-delay: 0.42s; }
+.s.on .s-stat:nth-child(3) { animation-delay: 0.54s; }
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Equation reveal */
+.s.on .s-equation { animation: eqReveal 0.6s ease both 0.3s; }
+
+@keyframes eqReveal {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); clip-path: inset(100% 0 0 0); }
+  to { opacity: 1; transform: translateY(0) scale(1); clip-path: inset(0 0 0 0); }
+}
+
+/* Shimmer on strong text */
+.s.on .s-text strong {
+  animation: shimmer 0.6s ease both 0.5s;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; text-shadow: 0 0 8px rgba(212,162,74,0.3); }
+  100% { opacity: 1; text-shadow: none; }
+}
+
+/* Title scale entrance */
+.s.on .s-title {
+  animation: titleReveal 0.6s cubic-bezier(0.22,1,0.36,1) both 0.1s;
+}
+
+@keyframes titleReveal {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Card slide-up */
+.s.on .s-card { animation: cardSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) both 0.3s; }
+
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Brand bar fade */
+.s.on .s-top { animation: fadeIn 0.4s ease both 0.02s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Page number slide */
+.s.on .s-foot { animation: fadeUp 0.3s ease both 0.15s; }
+</style>
+</head>
+<body>
+
+<div class="story" id="story">
+
+  <div class="progress" id="prog"></div>
+
+  <div class="ctrl">
+    <a href="m1-l2.html" class="ctrl-btn" title="اقرأ المقال" style="text-decoration:none">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+    </a>
+    <button class="ctrl-btn" id="audioBtn" title="تشغيل/إيقاف الصوت (M)">
+      <div class="eq" id="eq"><span></span><span></span><span></span><span></span></div>
+      <svg class="muted-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="rgba(255,255,255,0.5)" stroke="none"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    </button>
+  </div>
+
+  <div class="nav-arrows">
+    <button class="nav-arrow" id="navR" aria-label="الشريحة التالية">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="nav-arrow disabled" id="navL" aria-label="الشريحة السابقة">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </div>
+
+  <!-- S1: مقدمة -->
+  <div class="s s--ink" data-audio="s1-intro">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">مقدمة</div>
+      <h2 class="s-title">الأعداد والمتجهات <i>والمصفوفات</i></h2>
+      <p class="s-text">الكائنات الأساسية الثلاثة في الجبر الخطي. كل معادلة وكل تحويل وكل خوارزمية في هذا الموضوع مبنية من <strong>الأعداد القياسية والمتجهات والمصفوفات</strong>. دعونا نتعرف عليها واحدة تلو الأخرى.</p>
+    </div>
+    <div class="s-foot"><div class="s-pg">01 / 12</div></div>
+  </div>
+
+  <!-- S2: الأعداد القياسية -->
+  <div class="s s--cream" data-audio="s2-scalars">
+    <div class="orb orb-1"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">اللبنة الأولى</div>
+      <h2 class="s-title">الأعداد <i>القياسية</i></h2>
+      <p class="s-text">العدد القياسي هو مجرد <strong>رقم واحد</strong>. له مقدار فقط &mdash; لا اتجاه. درجة الحرارة والكتلة والسرعة: كلها أعداد قياسية. الاسم مشتق من "تحجيم" لأن الأعداد القياسية <strong>تُحجّم</strong> الكائنات الأخرى صعودًا أو هبوطًا.</p>
+      <div class="s-stats">
+        <div class="s-stat">
+          <div class="s-stat-label">لها</div>
+          <div class="s-stat-val">مقدار</div>
+        </div>
+        <div class="s-stat">
+          <div class="s-stat-label">بدون</div>
+          <div class="s-stat-val">اتجاه</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">02 / 12</div></div>
+  </div>
+
+  <!-- S3: المتجهات -->
+  <div class="s s--deep" data-audio="s3-vectors">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">اللبنة الثانية</div>
+      <h2 class="s-title"><i>المتجهات</i></h2>
+      <p class="s-text">قائمة مرتبة من الأرقام &mdash; مركبات تصف <strong>الاتجاه والمقدار</strong>. في بُعدين، المتجه له عنصران. في ثلاثة أبعاد، ثلاثة. في تعلم الآلة، يمكن أن تحتوي المتجهات على ملايين العناصر.</p>
+      <div class="s-equation">
+        <div class="s-eq-label">ترميز المتجه</div>
+        <div id="eq-s-vector"></div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">03 / 12</div></div>
+  </div>
+
+  <!-- S4: عمليات المتجهات -->
+  <div class="s s--amber" data-audio="s4-vector-operations">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">العمليات</div>
+      <h2 class="s-title">عمليات <i>المتجهات</i></h2>
+      <p class="s-text">عمليتان أساسيتان تُعرّفان جبر المتجهات: <strong>الجمع</strong> (مركبة بمركبة) و<strong>الضرب القياسي</strong> (تمديد أو تقليص بعدد).</p>
+      <div class="s-card">
+        <div class="s-card-label">الفكرة الرئيسية</div>
+        <div class="s-card-value">هاتان العمليتان هما أساس كل الجبر الخطي. كل متجه في الفضاء يمكن بناؤه منهما.</div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">04 / 12</div></div>
+  </div>
+
+  <!-- S5: المصفوفات -->
+  <div class="s s--ink" data-audio="s5-matrices">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">اللبنة الثالثة</div>
+      <h2 class="s-title"><i>المصفوفات</i></h2>
+      <p class="s-text">مصفوفة مستطيلة من الأرقام بها <strong>m صف</strong> و<strong>n عمود</strong>. أكثر بكثير من مجرد جدول &mdash; المصفوفات تمثّل التحويلات وأنظمة المعادلات ومجموعات البيانات.</p>
+      <div class="s-equation">
+        <div class="s-eq-label">مصفوفة m &times; n</div>
+        <div id="eq-s-matrix"></div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">05 / 12</div></div>
+  </div>
+
+  <!-- S6: عناصر المصفوفة -->
+  <div class="s s--cream" data-audio="s6-matrix-elements">
+    <div class="orb orb-1"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">الترميز</div>
+      <h2 class="s-title">عناصر <i>المصفوفة</i></h2>
+      <p class="s-text">نحدد كل عنصر بـ<strong>صفه وعموده</strong>. العنصر a_ij يقع في الصف i والعمود j. الأبعاد تُكتب دائمًا كـ<strong>صفوف &times; أعمدة</strong>.</p>
+      <div class="s-stats">
+        <div class="s-stat">
+          <div class="s-stat-label">العنصر</div>
+          <div class="s-stat-val" style="font-family:var(--mono);font-size:0.95rem">a<sub>ij</sub></div>
+        </div>
+        <div class="s-stat">
+          <div class="s-stat-label">الأبعاد</div>
+          <div class="s-stat-val" style="font-family:var(--mono);font-size:0.95rem">m &times; n</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">06 / 12</div></div>
+  </div>
+
+  <!-- S7: مصفوفة الوحدة -->
+  <div class="s s--teal" data-audio="s7-identity-matrix">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">مصفوفة خاصة</div>
+      <h2 class="s-title">مصفوفة <i>الوحدة</i></h2>
+      <p class="s-text">واحدات على القطر، أصفار في كل مكان آخر. الضرب بمصفوفة الوحدة لا يغيّر <strong>شيئًا</strong> &mdash; مثل ضرب عدد في واحد.</p>
+      <div class="s-equation">
+        <div class="s-eq-label">مصفوفة الوحدة</div>
+        <div id="eq-s-identity"></div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">07 / 12</div></div>
+  </div>
+
+  <!-- S8: مصفوفات خاصة -->
+  <div class="s s--ink" data-audio="s8-special-matrices">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">معرض</div>
+      <h2 class="s-title">مصفوفات <i>خاصة</i></h2>
+      <p class="s-text">عدة أنواع من المصفوفات تظهر باستمرار في العلوم والهندسة.</p>
+      <ul class="s-list">
+        <li><strong>المصفوفة الصفرية</strong> &mdash; جميع العناصر أصفار</li>
+        <li><strong>القُطرية</strong> &mdash; عناصر غير صفرية فقط على القطر الرئيسي</li>
+        <li><strong>المتماثلة</strong> &mdash; تساوي منقولتها</li>
+        <li><strong>مصفوفة الوحدة</strong> &mdash; تحويل "لا تفعل شيئًا"</li>
+      </ul>
+    </div>
+    <div class="s-foot"><div class="s-pg">08 / 12</div></div>
+  </div>
+
+  <!-- S9: عمليات المصفوفات -->
+  <div class="s s--amber" data-audio="s9-matrix-operations">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">العمليات</div>
+      <h2 class="s-title">عمليات <i>المصفوفات</i></h2>
+      <p class="s-text">يمكن <strong>جمع</strong> المصفوفات عنصرًا بعنصر (يجب تطابق الأبعاد) و<strong>ضربها قياسيًا</strong> بثابت. تعكس هذه العمليات ما رأيناه للمتجهات.</p>
+      <div class="s-card">
+        <div class="s-card-label">القاعدة</div>
+        <div class="s-card-value">جمع المصفوفات: (A+B)_ij = A_ij + B_ij. الضرب القياسي: (cA)_ij = c &middot; A_ij.</div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">09 / 12</div></div>
+  </div>
+
+  <!-- S10: المنقولة -->
+  <div class="s s--deep" data-audio="s10-transpose">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">عملية أساسية</div>
+      <h2 class="s-title"><i>المنقولة</i></h2>
+      <p class="s-text">اقلب المصفوفة عبر قطرها &mdash; <strong>الصفوف تصبح أعمدة</strong>، والأعمدة تصبح صفوفًا. إذا كانت A بأبعاد m&times;n، فإن A^T بأبعاد n&times;m.</p>
+      <div class="s-equation">
+        <div class="s-eq-label">مثال على المنقولة</div>
+        <div id="eq-s-transpose"></div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">10 / 12</div></div>
+  </div>
+
+  <!-- S11: لماذا هذا مهم -->
+  <div class="s s--teal" data-audio="s11-why-it-matters">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">M01 &middot; L02</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">التأثير</div>
+      <h2 class="s-title">لماذا هذا <i>مهم</i></h2>
+      <p class="s-text">الأعداد القياسية والمتجهات والمصفوفات هي <strong>لغة الهندسة</strong>. كل موضوع متقدم مبني منها.</p>
+      <ul class="s-list">
+        <li><strong>الإشارات</strong> هي متجهات</li>
+        <li><strong>مجموعات البيانات</strong> هي مصفوفات</li>
+        <li><strong>القوى</strong> هي متجهات</li>
+        <li><strong>التحويلات</strong> هي مصفوفات</li>
+        <li><strong>الأوزان</strong> في الشبكات العصبية هي أعداد قياسية في مصفوفات</li>
+      </ul>
+    </div>
+    <div class="s-foot"><div class="s-pg">11 / 12</div></div>
+  </div>
+
+  <!-- S12: الخلاصة -->
+  <div class="s s--ink" data-audio="s12-summary">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="s-top">
+      <div class="s-brand"><div class="s-brand-dot"></div><div class="s-brand-name">LA 101</div></div>
+      <div class="s-tag">الخلاصة</div>
+    </div>
+    <div class="s-body">
+      <div class="s-year">ملخص</div>
+      <h2 class="s-title">ماذا <i>تعلمت</i></h2>
+      <p class="s-text">الأعداد القياسية هي أرقام مفردة. المتجهات هي قوائم مرتبة لها اتجاه ومقدار. المصفوفات هي مصفوفات مستطيلة تُرمّز التحويلات والبيانات. معًا، تشكّل <strong>أبجدية الجبر الخطي</strong>.</p>
+      <div class="s-card" style="margin-top:1.5rem;text-align:center">
+        <div class="s-card-label">الدرس التالي</div>
+        <div class="s-card-value" style="font-family:var(--display);font-size:1.1rem">فضاءات المتجهات &larr;</div>
+      </div>
+    </div>
+    <div class="s-foot"><div class="s-pg">12 / 12</div></div>
+  </div>
+
+</div>
+
+<audio id="audio" preload="none"></audio>
+
+<script>
+(function() {
+  var BASE = '../../../../audio/ar/la101/m1-l2/';
+  var slides = document.querySelectorAll('.s');
+  var prog = document.getElementById('prog');
+  var audio = document.getElementById('audio');
+  var audioBtn = document.getElementById('audioBtn');
+  var eq = document.getElementById('eq');
+  var story = document.getElementById('story');
+  var cur = 0;
+  var muted = false;
+
+  // Build progress
+  for (var i = 0; i < slides.length; i++) {
+    var seg = document.createElement('div');
+    seg.className = 'progress-seg';
+    var fill = document.createElement('div');
+    fill.className = 'progress-fill';
+    seg.appendChild(fill);
+    prog.appendChild(seg);
+  }
+
+  var navL = document.getElementById('navL');
+  var navR = document.getElementById('navR');
+
+  function updateArrows() {
+    navL.classList.toggle('disabled', cur === 0);
+    navR.classList.toggle('disabled', cur === slides.length - 1);
+  }
+
+  function go(n) {
+    if (n < 0 || n >= slides.length) return;
+
+    // Flash
+    story.classList.add('flash');
+    setTimeout(function() { story.classList.remove('flash'); }, 200);
+
+    cur = n;
+    updateArrows();
+
+    slides.forEach(function(s, i) { s.classList.toggle('on', i === cur); });
+
+    // Progress
+    var segs = prog.children;
+    for (var i = 0; i < segs.length; i++) {
+      segs[i].classList.remove('done');
+      var f = segs[i].querySelector('.progress-fill');
+      f.style.transition = 'none';
+      f.style.width = '0';
+      if (i < cur) {
+        segs[i].classList.add('done');
+        f.style.width = '100%';
+      }
+    }
+
+    // Current progress
+    var cf = segs[cur].querySelector('.progress-fill');
+    cf.style.transition = 'none';
+    cf.style.width = '0';
+    cf.offsetWidth; // reflow
+
+    if (!muted) {
+      var tid = slides[cur].getAttribute('data-audio');
+      audio.src = BASE + tid + '.mp3';
+      audio.play().then(function() {
+        eq.classList.add('on');
+        cf.style.transition = 'width ' + audio.duration + 's linear';
+        cf.style.width = '100%';
+      }).catch(function() {
+        eq.classList.remove('on');
+        cf.style.transition = 'width 8s linear';
+        cf.style.width = '100%';
+      });
+    } else {
+      cf.style.transition = 'width 8s linear';
+      cf.style.width = '100%';
+    }
+  }
+
+  audio.addEventListener('ended', function() {
+    eq.classList.remove('on');
+    if (cur < slides.length - 1) setTimeout(function() { go(cur + 1); }, 400);
+  });
+
+  audio.addEventListener('error', function() { eq.classList.remove('on'); });
+
+  navL.addEventListener('click', function(e) { e.stopPropagation(); go(cur - 1); });
+  navR.addEventListener('click', function(e) { e.stopPropagation(); go(cur + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(cur - 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur + 1); }
+    if (e.key === 'm' || e.key === 'M') {
+      muted = !muted;
+      audioBtn.classList.toggle('is-muted', muted);
+      if (muted) { audio.pause(); eq.classList.remove('on'); }
+      else go(cur);
+    }
+  });
+
+  audioBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    muted = !muted;
+    audioBtn.classList.toggle('is-muted', muted);
+    if (muted) { audio.pause(); eq.classList.remove('on'); }
+    else go(cur);
+  });
+
+  go(0);
+
+  // ── KaTeX equations ──
+  function renderEqs() {
+    if (typeof katex === 'undefined') { setTimeout(renderEqs, 200); return; }
+    var eqV = document.getElementById('eq-s-vector');
+    if (eqV) katex.render('\\vec{v} = \\begin{bmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{bmatrix}', eqV, { displayMode: true, throwOnError: false });
+    var eqM = document.getElementById('eq-s-matrix');
+    if (eqM) katex.render('A = \\begin{bmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\\\ a_{31} & a_{32} \\end{bmatrix}', eqM, { displayMode: true, throwOnError: false });
+    var eqI = document.getElementById('eq-s-identity');
+    if (eqI) katex.render('I = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}', eqI, { displayMode: true, throwOnError: false });
+    var eqT = document.getElementById('eq-s-transpose');
+    if (eqT) katex.render('A^T_{ij} = A_{ji}', eqT, { displayMode: true, throwOnError: false });
+  }
+  renderEqs();
+})();
+</script>
+
+<script data-goatcounter="https://wireless-101.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
