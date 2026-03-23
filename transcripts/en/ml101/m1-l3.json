@@ -1,0 +1,69 @@
+{
+  "course": "ML-101",
+  "module": 1,
+  "lesson": 3,
+  "title": "Your First ML Model: Concept",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to ML 101. You now know what machine learning is and the three main types. In this lesson, we'll build your first mental model of how machine learning actually works — from data to predictions. No code yet, just the core concepts you need before writing your first line of ML."
+    },
+    {
+      "id": "s2-what-is-model",
+      "title": "What is a Model?",
+      "transcript": "A model is simply a function that takes inputs and produces outputs. In traditional programming, a human writes the rules. In machine learning, the model learns the rules from data. Think of it as a black box: you feed in features — like square footage and number of bedrooms — and it outputs a prediction — like house price. The magic is in how the model figures out the right mapping."
+    },
+    {
+      "id": "s3-features-labels",
+      "title": "Features & Labels",
+      "transcript": "Every ML problem has two key ingredients. Features, often called X, are the input variables — the information the model uses to make predictions. Labels, often called y, are the answers we want the model to predict. In a spam detector, the features might be word frequencies and sender information; the label is spam or not spam. The quality of your features often matters more than the choice of algorithm."
+    },
+    {
+      "id": "s4-training-data",
+      "title": "Training Data",
+      "transcript": "A model learns from training data — a collection of examples where we already know both the features and the labels. The more examples, and the more representative they are, the better the model learns. Think of it like studying for an exam: more practice problems, covering more topics, leads to better performance on the real test. Bad or biased training data leads to a bad or biased model."
+    },
+    {
+      "id": "s5-learning-loop",
+      "title": "The Learning Loop",
+      "transcript": "Learning happens in a loop with three steps. First, the model makes a prediction using its current parameters. Second, it compares the prediction to the actual answer and measures how wrong it was. Third, it adjusts its parameters to reduce the error. This cycle repeats thousands or millions of times, and with each iteration, the model gets slightly better. This is the fundamental mechanism behind all supervised learning."
+    },
+    {
+      "id": "s6-loss-functions",
+      "title": "Loss Functions",
+      "transcript": "How do we measure 'how wrong' a prediction is? That's the job of the loss function. For regression problems, the most common loss is Mean Squared Error — you take the difference between predicted and actual values, square it, and average across all examples. For classification, we use cross-entropy loss. The loss function is the model's report card — it tells the learning algorithm exactly what to optimize."
+    },
+    {
+      "id": "s7-gradient-descent",
+      "title": "Gradient Descent",
+      "transcript": "Gradient descent is how the model adjusts its parameters. Imagine standing on a hilly landscape in fog — you can't see the bottom, but you can feel the slope under your feet. You take a step downhill. Then another. And another. Eventually you reach a valley. That's gradient descent: compute the slope of the loss with respect to each parameter, then take a small step in the direction that reduces the loss. The size of each step is called the learning rate."
+    },
+    {
+      "id": "s8-linear-regression",
+      "title": "Linear Regression",
+      "transcript": "The simplest ML model is linear regression: y equals w times x plus b. Here, w is the weight — how much the input influences the output — and b is the bias — a constant offset. Despite its simplicity, linear regression is surprisingly powerful and widely used. It's also the perfect model to understand because every concept — features, loss, gradient descent — applies in exactly the same way to much more complex models."
+    },
+    {
+      "id": "s9-overfitting",
+      "title": "Overfitting vs Underfitting",
+      "transcript": "A model that memorizes the training data but fails on new examples is overfitting — it's learned the noise, not the signal. A model that's too simple to capture the patterns is underfitting. The sweet spot is generalization: learning the true underlying pattern without memorizing specific examples. This is the central challenge of machine learning, and we'll spend much of this course learning techniques to achieve it."
+    },
+    {
+      "id": "s10-train-test-split",
+      "title": "Train/Test Split",
+      "transcript": "How do we detect overfitting? By holding out some data that the model never sees during training — the test set. We train on the training set and evaluate on the test set. If the model performs well on training data but poorly on test data, it's overfitting. A typical split is 80 percent for training and 20 percent for testing. This simple technique is the foundation of all model evaluation in machine learning."
+    },
+    {
+      "id": "s11-full-workflow",
+      "title": "The Full ML Workflow",
+      "transcript": "Putting it all together, the complete ML workflow has five steps. First, collect and prepare your data. Second, split it into training and test sets. Third, choose a model and train it using the training set. Fourth, evaluate performance on the test set. Fifth, if the results aren't good enough, adjust your approach — try different features, a different model, or more data — and repeat. Machine learning is inherently iterative."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. A model is a function that learns input-output mappings from data. Features are the inputs, labels are the outputs. The learning loop — predict, measure error, adjust — is powered by loss functions and gradient descent. Linear regression shows these concepts in their simplest form. Overfitting and underfitting are the central tension, managed by train-test splits. In the next lesson, we'll get hands-on and train our first real model. See you there."
+    }
+  ]
+}

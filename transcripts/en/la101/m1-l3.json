@@ -1,0 +1,69 @@
+{
+  "course": "LA-101",
+  "module": 1,
+  "lesson": 3,
+  "title": "Geometric Interpretation",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to Linear Algebra 101. In this lesson, we're going to see linear algebra come alive through geometry. So far, we've treated vectors and matrices as lists and grids of numbers. But they have a beautiful geometric meaning. Vectors are arrows in space. Matrices are transformations that stretch, rotate, and reflect. Understanding this geometric perspective is what separates memorizing formulas from truly grasping the subject. By the end of this lesson, you'll see every equation as a picture."
+    },
+    {
+      "id": "s2-vectors-as-arrows",
+      "title": "Vectors as Arrows",
+      "transcript": "Let's begin with the most fundamental geometric idea: a vector is an arrow. It has a starting point and an ending point. The arrow's length represents its magnitude, and the direction it points represents, well, its direction. A two-dimensional vector like three, two means: go three units to the right and two units up. The arrow starts at the origin and ends at the point three, two. This arrow interpretation is not just a visualization trick. It is the geometric reality that vectors describe. Every operation we perform on vectors has a corresponding geometric meaning."
+    },
+    {
+      "id": "s3-coordinate-systems",
+      "title": "Coordinate Systems",
+      "transcript": "To describe vectors precisely, we need a coordinate system. In two dimensions, we draw two perpendicular axes: the x-axis running horizontally and the y-axis running vertically. Their intersection is the origin. Every point in the plane can be reached by a unique combination of horizontal and vertical displacements. In three dimensions, we add a z-axis for depth. The components of a vector are simply the coordinates of its tip when the tail sits at the origin. This connection between algebra and geometry is what makes linear algebra so powerful: numbers become pictures, and pictures become numbers."
+    },
+    {
+      "id": "s4-vector-addition",
+      "title": "Vector Addition",
+      "transcript": "When you add two vectors, the geometry is beautiful. Place the tail of the second vector at the tip of the first. The sum is the arrow from the start of the first to the tip of the second. This is the tip-to-tail rule. There's an equivalent picture: the parallelogram rule. Place both vectors at the same starting point, and complete the parallelogram. The diagonal is the sum. Both rules give the same result, and they show that vector addition is commutative: a plus b equals b plus a, because the parallelogram is symmetric."
+    },
+    {
+      "id": "s5-scalar-multiplication",
+      "title": "Scalar Multiplication",
+      "transcript": "Multiplying a vector by a scalar changes its length without changing its direction. Multiply by two, and the arrow doubles in length. Multiply by one half, and it shrinks to half its size. Multiply by negative one, and the arrow flips to point in the opposite direction. Its length stays the same, but it reverses. More generally, multiplying by a negative scalar both reverses direction and scales the length. The key insight: scalar multiplication slides the vector along its own line, stretching, shrinking, or flipping it."
+    },
+    {
+      "id": "s6-magnitude",
+      "title": "Magnitude and Length",
+      "transcript": "The magnitude of a vector, also called its length or norm, measures how long the arrow is. For a two-dimensional vector with components x and y, the magnitude is the square root of x squared plus y squared. This is just the Pythagorean theorem. The vector's components form the legs of a right triangle, and the magnitude is the hypotenuse. In three dimensions, you add z squared under the radical. In n dimensions, you sum the squares of all components and take the square root. This formula, called the Euclidean norm, works in any number of dimensions."
+    },
+    {
+      "id": "s7-unit-vectors",
+      "title": "Unit Vectors",
+      "transcript": "A unit vector is a vector with magnitude exactly one. It represents pure direction with no magnitude information. To create a unit vector from any nonzero vector, divide the vector by its own magnitude. This process is called normalization. The result points in the same direction as the original but has length one. Unit vectors are essential in physics and engineering. The standard basis vectors, i-hat and j-hat in two dimensions, are unit vectors pointing along the x and y axes. They form the reference directions for the entire coordinate system."
+    },
+    {
+      "id": "s8-dot-product",
+      "title": "Dot Product Geometry",
+      "transcript": "The dot product of two vectors has a beautiful geometric meaning. Algebraically, you multiply corresponding components and add them up. But geometrically, the dot product equals the product of the two magnitudes times the cosine of the angle between them. This formula reveals everything. When two vectors are perpendicular, the angle between them is ninety degrees, cosine of ninety is zero, so the dot product is zero. When they point in the same direction, the angle is zero, cosine is one, and the dot product equals the product of their lengths. The dot product also gives us the projection of one vector onto another, measuring how much one vector points in the direction of the other."
+    },
+    {
+      "id": "s9-cross-product",
+      "title": "Cross Product Geometry",
+      "transcript": "The cross product is exclusive to three dimensions. Given two vectors a and b, their cross product produces a third vector that is perpendicular to both. The direction follows the right-hand rule: curl your fingers from a toward b, and your thumb points in the direction of a cross b. The magnitude of the cross product equals the area of the parallelogram formed by the two vectors. This is computed as the product of the two magnitudes times the sine of the angle between them. When two vectors are parallel, the sine of zero is zero, so the cross product is the zero vector. The cross product appears everywhere in physics: torque, angular momentum, and the magnetic force are all cross products."
+    },
+    {
+      "id": "s10-linear-combinations",
+      "title": "Linear Combinations and Span",
+      "transcript": "A linear combination takes a set of vectors, multiplies each by a scalar, and adds the results. For example, two times vector v plus three times vector w is a linear combination of v and w. The span of a set of vectors is the collection of all possible linear combinations. If you have two non-parallel vectors in two dimensions, their span is the entire plane. You can reach any point by choosing the right scalars. If the vectors are parallel, their span is just a line. The span tells you the reachable space, and this concept is at the heart of understanding dimension, basis, and rank."
+    },
+    {
+      "id": "s11-transformations",
+      "title": "Visualizing Transformations",
+      "transcript": "Here is where geometry and matrices unite. A matrix represents a linear transformation: a function that maps vectors to vectors while preserving addition and scalar multiplication. Geometrically, linear transformations include rotations, reflections, scaling, and shearing. A rotation matrix spins every vector by a fixed angle. A scaling matrix stretches or compresses along each axis. A reflection matrix flips space across a line or plane. The columns of a matrix tell you where the basis vectors land after the transformation. This single insight lets you visualize any matrix as a geometric operation."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. Vectors are arrows with direction and magnitude. Addition follows the parallelogram rule, and scalar multiplication stretches or shrinks along the arrow's line. The magnitude is the Pythagorean length, and unit vectors capture pure direction. The dot product measures alignment and projection. The cross product produces a perpendicular vector whose magnitude equals the area of the parallelogram. Linear combinations and span describe the reachable space. And matrices are geometric transformations that rotate, scale, reflect, and shear. This geometric lens is how mathematicians and engineers actually think about linear algebra. In the next lesson, we'll explore vector spaces and linear independence. See you there."
+    }
+  ]
+}

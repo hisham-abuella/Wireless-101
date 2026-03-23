@@ -1,0 +1,69 @@
+{
+  "course": "STAT-101",
+  "module": 1,
+  "lesson": 3,
+  "title": "Population vs. Sample",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to Statistics 101. In the last lesson, we explored the different types of data. Today, we tackle one of the most fundamental concepts in all of statistics: the distinction between a population and a sample. This idea is at the heart of statistical inference — the process of drawing conclusions about a large group based on a smaller one. Understanding this distinction is essential for everything that follows in this course."
+    },
+    {
+      "id": "s2-population",
+      "title": "Population",
+      "transcript": "A population is the entire group of individuals or observations that you're interested in studying. It's the complete set. If you want to know the average height of all adults in a country, the population is every single adult in that country. If you're studying defect rates in a factory, the population is every item ever produced. Populations can be finite, like all students enrolled in a university, or conceptually infinite, like all possible coin flips. The key idea is that the population includes everything — no exceptions."
+    },
+    {
+      "id": "s3-sample",
+      "title": "Sample",
+      "transcript": "A sample is a subset of the population — a smaller group selected from the whole. Instead of measuring every adult's height in a country, you measure a few thousand. Instead of testing every product off the assembly line, you test a batch. The sample is what you actually observe and collect data from. The quality of your statistical conclusions depends entirely on how well your sample represents the population. A good sample is like a miniature portrait of the whole group."
+    },
+    {
+      "id": "s4-why-sample",
+      "title": "Why We Sample",
+      "transcript": "If studying the entire population would give us perfect answers, why bother with samples? Three practical reasons. First, cost — surveying millions of people is enormously expensive. Second, time — collecting data from an entire population can take years. Third, impossibility — some populations are infinite or inaccessible. You can't test every lightbulb a factory will ever produce. And sometimes measurement is destructive — crash-testing every car would leave none to sell. Sampling makes statistics practical."
+    },
+    {
+      "id": "s5-random-sampling",
+      "title": "Random Sampling",
+      "transcript": "The gold standard is simple random sampling, where every member of the population has an equal chance of being selected. Imagine putting every person's name in a hat and drawing blindly. Random sampling minimizes bias and ensures that the sample is likely to reflect the population's characteristics. It's the foundation of probability-based inference. Without randomness, your sample might systematically over-represent certain groups and under-represent others, leading to skewed conclusions."
+    },
+    {
+      "id": "s6-sampling-methods",
+      "title": "Sampling Methods",
+      "transcript": "Beyond simple random sampling, there are several other approaches. Stratified sampling divides the population into subgroups, or strata, and randomly samples from each — ensuring every subgroup is represented. Cluster sampling divides the population into clusters, randomly selects some clusters, and studies everyone within them — useful when the population is geographically spread out. Systematic sampling selects every k-th individual from a list. Each method has trade-offs between cost, precision, and practicality."
+    },
+    {
+      "id": "s7-sampling-bias",
+      "title": "Sampling Bias",
+      "transcript": "Sampling bias occurs when your sample does not accurately represent the population. This can happen in many ways. Convenience sampling — surveying only people who are easy to reach — tends to miss hard-to-contact groups. Voluntary response bias occurs when only people with strong opinions respond, like online product reviews. Survivorship bias means you only see the successes, not the failures. The most famous example is the 1936 Literary Digest poll that predicted Landon over Roosevelt — their sample was drawn from phone books and car registrations, missing millions of lower-income voters."
+    },
+    {
+      "id": "s8-sample-size",
+      "title": "Sample Size",
+      "transcript": "How large should your sample be? Larger samples give more precise estimates and smaller margins of error, but they cost more. The margin of error shrinks with the square root of the sample size — so quadrupling your sample only cuts the error in half. For many surveys, a well-chosen sample of about 1,000 people can estimate a population proportion with a margin of error around 3 percentage points. The key insight is that sample size matters far more than the fraction of the population you sample."
+    },
+    {
+      "id": "s9-parameter-statistic",
+      "title": "Parameter vs Statistic",
+      "transcript": "Here's a crucial vocabulary distinction. A parameter is a number that describes the population — the population mean mu, the population standard deviation sigma. A statistic is a number calculated from a sample — the sample mean x-bar, the sample standard deviation s. Parameters are fixed but usually unknown. Statistics are calculated and vary from sample to sample. The entire enterprise of inferential statistics is about using statistics to estimate parameters — using what we can measure to learn about what we cannot."
+    },
+    {
+      "id": "s10-standard-error",
+      "title": "Standard Error",
+      "transcript": "When you take different samples from the same population, you'll get slightly different sample means each time. The standard error measures this variability — it tells you how much sample means tend to fluctuate around the true population mean. The formula is sigma divided by the square root of n, where sigma is the population standard deviation and n is the sample size. As n increases, the standard error decreases, meaning larger samples give more stable estimates. This is one of the most important formulas in statistics."
+    },
+    {
+      "id": "s11-big-picture",
+      "title": "The Big Picture",
+      "transcript": "Here's the big picture. We study samples because we can't study entire populations. But samples are only useful if they represent the population well. Good sampling methods — especially random sampling — help ensure representativeness. We use statistics calculated from samples to estimate unknown population parameters. And the standard error tells us how confident we can be in those estimates. This framework — from population to sample and back again through inference — is the backbone of all statistical reasoning."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. A population is the entire group of interest; a sample is the subset we actually study. We sample because studying entire populations is often too costly, too slow, or simply impossible. Random sampling gives every member an equal chance of selection and is the foundation of unbiased inference. Stratified, cluster, and systematic sampling offer practical alternatives. Sampling bias distorts results when samples don't represent the population. Parameters describe populations; statistics describe samples. And the standard error quantifies how much sample estimates vary. In the next lesson, we'll dive into data visualization. See you there."
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analog vs Digital Signals | DSP-101 | Wireless 101</title>
+<title>Population vs. Sample | STAT-101 | Wireless 101</title>
 <link rel="stylesheet" href="../../../theme.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -216,91 +216,71 @@
   text-align: center;
 }
 
-/* ── Timeline ── */
-.timeline {
+/* ── Data type table ── */
+.data-type-table {
   background: var(--white);
   border: 1px solid var(--border-light);
   border-radius: var(--r-md);
-  padding: 2rem 1.75rem;
+  padding: 1.75rem;
   margin: 2rem 0;
   box-shadow: var(--shadow-xs);
+  overflow-x: auto;
 }
 
-.timeline-label {
+.data-type-table-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--amber);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.timeline-label svg {
+.data-type-table-label svg {
   width: 14px;
   height: 14px;
   stroke: var(--amber);
   fill: none;
 }
 
-.timeline-track {
-  position: relative;
-  padding-left: 2rem;
+.data-type-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
 }
 
-.timeline-track::before {
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: 4px;
-  bottom: 4px;
-  width: 2px;
-  background: var(--border);
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: 1.5rem;
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -2rem;
-  top: 6px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--cream);
-  border: 2.5px solid var(--amber);
-  z-index: 1;
-}
-
-.timeline-item.highlight::before {
-  background: var(--amber);
-  border-color: var(--amber);
-  box-shadow: 0 0 0 4px var(--amber-pale);
-}
-
-.timeline-year {
+.data-type-table th {
+  text-align: left;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.data-type-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.data-type-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-type-table td:first-child {
   font-weight: 600;
   color: var(--ink);
-  margin-bottom: 0.2rem;
-}
-
-.timeline-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
+  white-space: nowrap;
 }
 
 /* ── Key Takeaways ── */
@@ -389,15 +369,16 @@
 }
 
 .lesson-nav-prev {
-  color: var(--ink);
-  border: 1.5px solid var(--border-light);
+  color: var(--cream);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
   justify-self: start;
 }
 
 .lesson-nav-prev:hover {
-  border-color: var(--ink);
+  background: var(--ink-light);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.1);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.15);
 }
 
 .lesson-nav-prev svg,
@@ -407,7 +388,7 @@
   fill: none;
 }
 
-.lesson-nav-prev svg { stroke: var(--ink); }
+.lesson-nav-prev svg { stroke: var(--cream); }
 
 .lesson-nav-overview {
   color: var(--text-secondary);
@@ -423,19 +404,14 @@
 .lesson-nav-overview:hover { color: var(--ink); }
 
 .lesson-nav-next {
-  color: var(--cream);
-  background: var(--ink);
-  border: 1.5px solid var(--ink);
+  color: var(--text-tertiary);
+  border: 1.5px solid var(--border-light);
+  cursor: default;
+  opacity: 0.5;
   justify-self: end;
 }
 
-.lesson-nav-next svg { stroke: var(--cream); }
-
-.lesson-nav-next:hover {
-  background: var(--ink-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.15);
-}
+.lesson-nav-next svg { stroke: var(--text-tertiary); }
 
 .lesson-nav-label {
   font-family: var(--font-mono);
@@ -474,66 +450,6 @@
 .lang-switch a:hover { color: var(--ink); }
 .lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
 .lang-switch a::after { display: none !important; }
-
-/* ── Comparison Table ── */
-.comparison-table {
-  background: var(--white);
-  border: 1px solid var(--border-light);
-  border-radius: var(--r-md);
-  padding: 2rem 1.75rem;
-  margin: 2rem 0;
-  box-shadow: var(--shadow-xs);
-  overflow-x: auto;
-}
-
-.comparison-table-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--amber);
-  margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.comparison-table-label svg {
-  width: 14px;
-  height: 14px;
-  stroke: var(--amber);
-  fill: none;
-}
-
-.comparison-table table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-}
-
-.comparison-table th {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-  text-align: left;
-  padding: 0.75rem 1rem;
-  border-bottom: 2px solid var(--border);
-}
-
-.comparison-table td {
-  padding: 0.65rem 1rem;
-  color: var(--text);
-  line-height: 1.5;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.comparison-table tr:last-child td {
-  border-bottom: none;
-}
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
@@ -655,13 +571,13 @@
   <ul class="nav-links" id="navLinks">
     <li>
       <div class="lang-switch">
-        <a href="m1-l2.html" class="active">EN</a>
-        <a href="../../../ar/courses/dsp101/lessons/m1-l2.html">&#1593;&#1585;&#1576;&#1610;</a>
+        <a href="m1-l3.html" class="active">EN</a>
+        <a href="../../../ar/courses/stat101/lessons/m1-l3.html">&#1593;&#1585;&#1576;&#1610;</a>
       </div>
     </li>
     <li><a href="../../../index.html">Home</a></li>
     <li><a href="../../../index.html#courses">Courses</a></li>
-    <li><a href="../index.html" class="nav-cta">DSP 101</a></li>
+    <li><a href="../index.html" class="nav-cta">STAT 101</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -676,11 +592,11 @@
       <span>/</span>
       <a href="../../../index.html#courses">Courses</a>
       <span>/</span>
-      <a href="../index.html">DSP-101</a>
+      <a href="../index.html">STAT-101</a>
       <span>/</span>
       <span style="color:rgba(255,255,255,0.6)">Module 1</span>
       <span>/</span>
-      <span style="color:rgba(255,255,255,0.8)">Lesson 2</span>
+      <span style="color:rgba(255,255,255,0.8)">Lesson 3</span>
     </div>
 
     <div class="lesson-hero-content fade-up">
@@ -688,11 +604,11 @@
         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
         Reading
       </div>
-      <a href="m1-l2-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      <a href="m1-l3-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
         Stories Mode
       </a>
-      <h1>Analog vs Digital Signals</h1>
+      <h1>Population vs. Sample</h1>
       <div class="lesson-hero-meta">
         <span class="lesson-hero-meta-item">
           <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -700,7 +616,7 @@
         </span>
         <span class="lesson-hero-meta-item">
           <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          Lesson 2 of Module 1
+          Lesson 3 of 4 in Module 1
         </span>
       </div>
     </div>
@@ -711,174 +627,186 @@
 <article class="lesson-article">
   <div class="lesson-article-inner">
 
-    <!-- Introduction -->
-    <h2 class="fade-up">Two Worlds of Signals</h2>
+    <!-- Section 1 -->
+    <h2 class="fade-up">The Fundamental Distinction</h2>
 
-    <p class="fade-up">In the previous lesson, we learned that signals are quantities that change over time and carry information. Now we face a fundamental question: <strong>how do we represent these signals?</strong> The answer splits into two distinct approaches &mdash; analog and digital &mdash; and understanding the difference between them is essential to everything that follows in signal processing.</p>
+    <p class="fade-up">At the heart of statistics lies a simple but powerful idea: we rarely study everything. Instead, we study a part and use it to learn about the whole. This is the distinction between a <strong>population</strong> and a <strong>sample</strong> &mdash; and it is the foundation of all statistical inference.</p>
 
-    <p class="fade-up">The physical world is inherently analog. Sound waves, light, temperature, and electromagnetic radiation all vary <strong>continuously</strong> &mdash; smoothly and without gaps. But the computers, smartphones, and digital devices we use every day operate in a fundamentally different way: they work with <strong>discrete numbers</strong>. The story of modern technology is, in many ways, the story of how we learned to bridge these two worlds.</p>
+    <p class="fade-up">Understanding this distinction matters because every statistical formula, every confidence interval, and every hypothesis test is built on the relationship between what we can observe (the sample) and what we want to know about (the population). Get this wrong, and every conclusion that follows is compromised.</p>
 
     <div class="callout-box fade-up">
       <div class="callout-box-label">
         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-        Core Idea
+        The Core Idea
       </div>
-      <p><strong>Analog signals</strong> are continuous in both time and amplitude &mdash; they can take any value at any instant. <strong>Digital signals</strong> are discrete in both time and amplitude &mdash; they exist only at specific moments and can only take a finite set of values.</p>
-      <span class="callout-highlight">Analog = continuous everywhere &nbsp;|&nbsp; Digital = discrete steps in time and value</span>
+      <p>A <strong>population</strong> is the entire group you want to study. A <strong>sample</strong> is the subset you actually observe. Statistics uses samples to make inferences about populations &mdash; this is the central enterprise of the field.</p>
+      <span class="callout-highlight">Population (unknown) &larr; Inference &larr; Sample (observed)</span>
     </div>
 
-    <!-- Section: Analog Signals -->
-    <h2 class="fade-up">Analog Signals: The Continuous World</h2>
+    <!-- Section 2 -->
+    <h2 class="fade-up">What Is a Population?</h2>
 
-    <p class="fade-up">An <strong>analog signal</strong> is defined at every point in time, and its amplitude can take any value within a continuous range. Think of the sound of a violin: the vibrating string creates smooth, unbroken pressure waves in the air. At every instant &mdash; not just at specific moments, but truly every infinitesimal point in time &mdash; the air pressure has a precise value.</p>
+    <p class="fade-up">A <strong>population</strong> is the complete set of all individuals, objects, or observations that you are interested in. If you want to know the average income of all adults in a country, the population is every single adult in that country &mdash; not just the ones you can easily reach.</p>
 
-    <p class="fade-up">Analog signals are the native language of the physical world. <strong>Temperature</strong> doesn't jump from 20.0&deg;C to 20.1&deg;C &mdash; it passes smoothly through every value in between. <strong>Voltage</strong> in an electrical circuit varies continuously. <strong>Light intensity</strong> changes gradually as the sun moves across the sky. These are all analog quantities.</p>
-
-    <p class="fade-up">Historically, the first communication technologies were all analog. The telegraph (1830s), telephone (1876), AM radio (1906), and analog television (1920s) all transmitted and received continuous signals. Vinyl records store music as a continuous groove whose shape mirrors the original sound wave. Analog is beautiful in its fidelity to nature &mdash; but it has significant limitations.</p>
-
-    <!-- Section: Digital Signals -->
-    <h2 class="fade-up">Digital Signals: The Discrete World</h2>
-
-    <p class="fade-up">A <strong>digital signal</strong> is a sequence of discrete values, defined only at specific points in time and restricted to a finite set of amplitude levels. Instead of the smooth, continuous curve of an analog signal, a digital signal is a series of numbers &mdash; a staircase rather than a ramp.</p>
-
-    <p class="fade-up">Digital signals are the language of computers. Every piece of digital information &mdash; text, images, audio, video &mdash; is ultimately represented as a sequence of <strong>binary digits (bits)</strong>: ones and zeros. A digital audio signal on a CD, for example, consists of 44,100 numbers per second, each represented by 16 bits. These numbers approximate the original analog waveform closely enough that your ears can't tell the difference.</p>
-
-    <p class="fade-up">The digital revolution didn't happen because digital signals are inherently "better" than analog. It happened because digital signals can be <strong>processed, stored, copied, and transmitted</strong> with a reliability and flexibility that analog signals simply cannot match.</p>
-
-    <!-- Section: Key Differences -->
-    <h2 class="fade-up">Key Differences</h2>
-
-    <div class="comparison-table fade-up">
-      <div class="comparison-table-label">
-        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
-        Analog vs Digital Comparison
-      </div>
-      <table>
-        <tr>
-          <th>Property</th>
-          <th>Analog</th>
-          <th>Digital</th>
-        </tr>
-        <tr>
-          <td><strong>Time</strong></td>
-          <td>Continuous</td>
-          <td>Discrete (sampled)</td>
-        </tr>
-        <tr>
-          <td><strong>Amplitude</strong></td>
-          <td>Infinite resolution</td>
-          <td>Finite levels (quantized)</td>
-        </tr>
-        <tr>
-          <td><strong>Noise</strong></td>
-          <td>Accumulates with copying</td>
-          <td>Can be perfectly regenerated</td>
-        </tr>
-        <tr>
-          <td><strong>Storage</strong></td>
-          <td>Physical medium degrades</td>
-          <td>Perfect copies, no degradation</td>
-        </tr>
-        <tr>
-          <td><strong>Processing</strong></td>
-          <td>Hardware circuits (fixed)</td>
-          <td>Software algorithms (flexible)</td>
-        </tr>
-        <tr>
-          <td><strong>Bandwidth</strong></td>
-          <td>Efficient for simple signals</td>
-          <td>Requires more bandwidth (but compressible)</td>
-        </tr>
-      </table>
-    </div>
-
-    <p class="fade-up"><strong>Noise immunity</strong> is perhaps the most important advantage of digital signals. When you copy an analog signal &mdash; say, dubbing a cassette tape &mdash; noise is added at every step, and quality degrades with each generation. Digital signals, by contrast, can be copied perfectly: a bit is either 0 or 1, and small amounts of noise don't change the interpretation. This is why a JPEG image looks identical whether it's the original or the millionth copy.</p>
-
-    <p class="fade-up"><strong>Flexibility</strong> is another decisive advantage. An analog filter is a physical circuit &mdash; changing its behavior means redesigning the hardware. A digital filter is software &mdash; you can change it by updating a few lines of code. This programmability is what makes modern devices so versatile: the same smartphone hardware can run thousands of different signal processing algorithms.</p>
-
-    <!-- Section: From Analog to Digital -->
-    <h2 class="fade-up">From Analog to Digital: Sampling &amp; Quantization</h2>
-
-    <p class="fade-up">Since the physical world is analog but computers are digital, we need a way to convert between the two. This <strong>analog-to-digital conversion (ADC)</strong> involves two key steps: <strong>sampling</strong> and <strong>quantization</strong>.</p>
-
-    <p class="fade-up"><strong>Sampling</strong> is the process of measuring the analog signal's amplitude at regular time intervals. Instead of knowing the signal at every instant, we capture "snapshots" at a fixed rate. The number of snapshots per second is called the <strong>sampling rate</strong> (or sampling frequency), measured in Hertz.</p>
-
-    <p class="fade-up">But how fast do we need to sample? This question has a precise answer, given by the <strong>Nyquist-Shannon Sampling Theorem</strong>:</p>
+    <p class="fade-up">Populations can be finite (all 50,000 students at a university) or conceptually infinite (all possible rolls of a die, all future patients who might receive a treatment). The key is that the population is defined by your research question. It includes <strong>everything</strong> that fits your criteria &mdash; no exceptions.</p>
 
     <div class="equation-block fade-up">
       <div class="equation-block-label">
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
-        Nyquist-Shannon Sampling Theorem
+        Population Mean
       </div>
-      <div id="eq-nyquist"></div>
-      <div class="equation-block-caption">To perfectly reconstruct a band-limited signal, the sampling frequency f_s must be at least twice the maximum frequency f_max in the signal. The minimum rate 2f_max is called the Nyquist rate.</div>
+      <div id="eq-pop-mean"></div>
+      <div class="equation-block-caption">The population mean &mu; is the average of all N values in the entire population &mdash; usually unknown in practice</div>
     </div>
 
-    <p class="fade-up">If you sample too slowly (below the Nyquist rate), you get <strong>aliasing</strong> &mdash; the reconstructed signal will contain false frequencies that weren't in the original. This is why CD audio uses a 44,100 Hz sampling rate: human hearing tops out around 20,000 Hz, so 44,100 &gt; 2 &times; 20,000, satisfying the theorem with a small margin.</p>
+    <!-- Section 3 -->
+    <h2 class="fade-up">What Is a Sample?</h2>
 
-    <p class="fade-up"><strong>Quantization</strong> is the second step: mapping each sample's continuous amplitude to the nearest value in a finite set of levels. With <em>B</em> bits per sample, we get 2<sup>B</sup> possible levels:</p>
+    <p class="fade-up">A <strong>sample</strong> is a subset of the population &mdash; the group you actually collect data from. Instead of measuring every adult's income in a country, you survey a few thousand. Instead of testing every product off the assembly line, you inspect a batch. The sample is your window into the population.</p>
+
+    <p class="fade-up">The quality of your conclusions depends entirely on how well the sample represents the population. A well-chosen sample acts like a miniature version of the whole group, capturing its key characteristics in proportion. A poorly chosen sample can paint a completely misleading picture.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+        Sample Mean
+      </div>
+      <div id="eq-sample-mean"></div>
+      <div class="equation-block-caption">The sample mean x&#772; is calculated from the n observations in our sample &mdash; it estimates the population mean &mu;</div>
+    </div>
+
+    <!-- Section 4 -->
+    <h2 class="fade-up">Why We Sample</h2>
+
+    <p class="fade-up">If studying the entire population would give us perfect answers, why settle for a sample? Three practical reasons make sampling not just useful, but essential.</p>
+
+    <p class="fade-up"><strong>Cost.</strong> Surveying every person in a country, testing every product in a warehouse, or measuring every cell in a patient would be prohibitively expensive. Sampling lets us get reliable answers at a fraction of the cost.</p>
+
+    <p class="fade-up"><strong>Time.</strong> A national census takes years to plan, execute, and analyze. By the time results are published, the population may have changed significantly. Samples provide timely information.</p>
+
+    <p class="fade-up"><strong>Impossibility.</strong> Some populations are infinite or inaccessible. You cannot test every lightbulb a factory will ever produce. Some measurements are destructive &mdash; crash-testing every car would leave none to sell. In these cases, sampling is the <strong>only</strong> option.</p>
+
+    <!-- Section 5 -->
+    <h2 class="fade-up">Random Sampling</h2>
+
+    <p class="fade-up">The gold standard is <strong>simple random sampling</strong>, where every member of the population has an equal probability of being selected. Imagine writing every person's name on a slip of paper, putting them all in a giant bowl, and drawing blindly. Each person has the same chance of being picked.</p>
+
+    <p class="fade-up">Random sampling is powerful because it minimizes systematic bias. On average, random samples will reflect the population's characteristics &mdash; its proportions, its variation, its patterns. This is what allows us to make probabilistic statements about the population based on what we see in the sample. Without randomness, the mathematical foundation of inference collapses.</p>
+
+    <!-- Section 6 -->
+    <h2 class="fade-up">Other Sampling Methods</h2>
+
+    <p class="fade-up">Simple random sampling is not always practical. Several alternatives offer trade-offs between cost, precision, and feasibility.</p>
+
+    <p class="fade-up"><strong>Stratified sampling</strong> divides the population into subgroups (strata) based on a shared characteristic &mdash; age, region, income level &mdash; and then randomly samples from each stratum. This ensures every subgroup is represented and often produces more precise estimates than simple random sampling.</p>
+
+    <p class="fade-up"><strong>Cluster sampling</strong> divides the population into clusters (often geographic), randomly selects some clusters, and studies every individual within the chosen clusters. This is cost-effective when populations are spread across large areas.</p>
+
+    <p class="fade-up"><strong>Systematic sampling</strong> selects every <em>k</em>-th individual from a list (e.g., every 10th name on a roster). It is simple to implement but can introduce bias if there is a hidden pattern in the list.</p>
+
+    <div class="data-type-table fade-up">
+      <div class="data-type-table-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+        Sampling Methods Comparison
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>How It Works</th>
+            <th>Best For</th>
+            <th>Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Simple Random</td>
+            <td>Every member has equal chance</td>
+            <td>General-purpose, gold standard</td>
+            <td>Can be costly for large populations</td>
+          </tr>
+          <tr>
+            <td>Stratified</td>
+            <td>Sample from each subgroup</td>
+            <td>Diverse populations with known subgroups</td>
+            <td>Requires knowledge of strata</td>
+          </tr>
+          <tr>
+            <td>Cluster</td>
+            <td>Sample entire clusters</td>
+            <td>Geographically dispersed populations</td>
+            <td>Less precise if clusters differ</td>
+          </tr>
+          <tr>
+            <td>Systematic</td>
+            <td>Every k-th individual</td>
+            <td>Ordered lists, quick implementation</td>
+            <td>Bias if list has periodic patterns</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 7 -->
+    <h2 class="fade-up">Sampling Bias</h2>
+
+    <p class="fade-up"><strong>Sampling bias</strong> occurs when your sample systematically differs from the population, making your conclusions unreliable. It is one of the most common and dangerous pitfalls in statistics.</p>
+
+    <p class="fade-up"><strong>Convenience sampling</strong> &mdash; surveying only people who are easy to reach &mdash; tends to over-represent accessible groups and miss others entirely. <strong>Voluntary response bias</strong> occurs when only people with strong opinions choose to participate, as with online reviews. <strong>Survivorship bias</strong> means you only observe the successes, not the failures that dropped out along the way.</p>
+
+    <p class="fade-up">The most famous example is the 1936 <em>Literary Digest</em> poll that predicted Alf Landon would defeat Franklin Roosevelt in a landslide. Their sample of 2.4 million people was drawn from telephone directories and car registrations &mdash; sources that systematically excluded lower-income voters who overwhelmingly supported Roosevelt. Despite its enormous size, the biased sample produced a spectacularly wrong prediction.</p>
+
+    <!-- Section 8 -->
+    <h2 class="fade-up">Sample Size</h2>
+
+    <p class="fade-up">How large should your sample be? Larger samples produce more precise estimates with smaller margins of error &mdash; but they cost more. The relationship is not linear: the margin of error shrinks with the <strong>square root</strong> of the sample size. Quadrupling your sample size only cuts the margin of error in half.</p>
+
+    <p class="fade-up">For many practical purposes, a well-designed random sample of about 1,000 people can estimate a population proportion with a margin of error around &plusmn;3 percentage points &mdash; regardless of whether the population is 100,000 or 100 million. <strong>Sample quality matters far more than the fraction of the population you sample.</strong></p>
+
+    <!-- Section 9 -->
+    <h2 class="fade-up">Parameter vs Statistic</h2>
+
+    <p class="fade-up">This vocabulary distinction is critical. A <strong>parameter</strong> is a number that describes the population &mdash; the population mean &mu;, the population standard deviation &sigma;, the population proportion <em>p</em>. Parameters are fixed but usually <strong>unknown</strong>, because we rarely have access to the entire population.</p>
+
+    <p class="fade-up">A <strong>statistic</strong> is a number calculated from a sample &mdash; the sample mean x&#772;, the sample standard deviation <em>s</em>, the sample proportion p&#770;. Statistics are known (we computed them) but they <strong>vary</strong> from sample to sample. The entire enterprise of inferential statistics is about using statistics to estimate parameters &mdash; using what we can measure to learn about what we cannot.</p>
+
+    <div class="equation-pair fade-up">
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          Parameter (Population)
+        </div>
+        <div id="eq-parameter"></div>
+        <div class="equation-block-caption">Population mean &mu; and standard deviation &sigma; &mdash; fixed but unknown</div>
+      </div>
+      <div class="equation-block">
+        <div class="equation-block-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          Statistic (Sample)
+        </div>
+        <div id="eq-statistic"></div>
+        <div class="equation-block-caption">Sample mean x&#772; and standard deviation s &mdash; calculated and variable</div>
+      </div>
+    </div>
+
+    <!-- Section 10 -->
+    <h2 class="fade-up">The Standard Error</h2>
+
+    <p class="fade-up">If you take many different random samples from the same population, each sample will produce a slightly different sample mean. The <strong>standard error</strong> measures how much these sample means tend to vary &mdash; it quantifies the precision of the sample mean as an estimate of the population mean.</p>
 
     <div class="equation-block fade-up">
       <div class="equation-block-label">
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        Quantization Levels
+        Standard Error of the Mean
       </div>
-      <div id="eq-quantization"></div>
-      <div class="equation-block-caption">B is the number of bits per sample. More bits means finer resolution and less quantization noise. CD audio uses B = 16, giving 65,536 levels.</div>
+      <div id="eq-se"></div>
+      <div class="equation-block-caption">The standard error decreases as sample size n increases &mdash; larger samples give more precise estimates</div>
     </div>
 
-    <p class="fade-up">Quantization inevitably introduces a small error &mdash; <strong>quantization noise</strong> &mdash; because we're rounding continuous values to discrete levels. The more bits we use, the smaller this error becomes. Each additional bit roughly doubles the number of levels and adds about 6 dB of signal-to-noise ratio.</p>
-
-    <div class="equation-block fade-up">
-      <div class="equation-block-label">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
-        Quantization SNR
-      </div>
-      <div id="eq-snr"></div>
-      <div class="equation-block-caption">The signal-to-noise ratio (SNR) due to quantization, measured in decibels. Each additional bit adds approximately 6.02 dB of dynamic range.</div>
-    </div>
-
-    <!-- Section: Real-World Examples -->
-    <h2 class="fade-up">Real-World Examples</h2>
-
-    <p class="fade-up">The analog-to-digital transition reshaped entire industries. Here are some of the most striking examples:</p>
-
-    <p class="fade-up"><strong>Vinyl vs CD</strong> &mdash; A vinyl record stores sound as a continuous groove cut into plastic. A CD stores the same sound as 44,100 digital samples per second, each with 16-bit resolution. The vinyl is a perfect analog copy (in theory), but it degrades with every play. The CD is a quantized approximation, but it sounds identical on the first play and the ten-thousandth.</p>
-
-    <p class="fade-up"><strong>Analog vs Digital Radio</strong> &mdash; AM and FM radio transmit audio as continuous electromagnetic waves. Digital radio (DAB, HD Radio) transmits compressed digital streams. Analog radio degrades gracefully with distance (more static), while digital radio either works perfectly or cuts out entirely &mdash; there's no gradual degradation.</p>
-
-    <p class="fade-up"><strong>Film vs Digital Camera</strong> &mdash; Photographic film captures light on a continuous chemical emulsion with effectively infinite resolution. A digital camera sensor captures light in a grid of discrete pixels. Film has a beautiful analog quality, but digital cameras offer instant review, easy editing, and virtually zero cost per shot.</p>
-
-    <p class="fade-up"><strong>Analog vs Digital Telephony</strong> &mdash; Traditional landlines carried your voice as a continuously varying electrical signal. Modern phone systems (VoIP, cellular) convert your voice to digital samples, compress them, transmit packets over networks, and reconstruct the audio at the other end. The digital approach enables video calls, encryption, and global routing &mdash; none of which are practical with analog.</p>
-
-    <!-- Section: Why Digital Won -->
-    <h2 class="fade-up">Why the World Moved to Digital</h2>
-
-    <p class="fade-up">The digital revolution wasn't driven by a single advantage &mdash; it was the accumulation of many. <strong>Perfect copying</strong> means no generational loss. <strong>Error correction</strong> codes can detect and fix transmission errors automatically. <strong>Compression</strong> algorithms (MP3, JPEG, H.264) reduce storage and bandwidth requirements dramatically. <strong>Encryption</strong> protects privacy and security. <strong>Software flexibility</strong> means the same hardware can be reprogrammed for new tasks.</p>
-
-    <p class="fade-up">Perhaps most importantly, digital signals scale with <strong>Moore's Law</strong>. As transistors get smaller and cheaper, digital processing becomes more powerful. Analog circuits don't benefit from this scaling in the same way &mdash; a capacitor is still a capacitor, regardless of how small you make the transistors around it.</p>
-
-    <p class="fade-up">That said, analog hasn't disappeared. Every digital system still needs analog components at its boundaries &mdash; microphones, speakers, antennas, sensors, and displays all operate in the analog domain. The modern approach is <strong>hybrid</strong>: analog at the edges, digital in the middle.</p>
-
-    <!-- Section: Trade-offs -->
-    <h2 class="fade-up">Advantages and Trade-offs</h2>
-
-    <p class="fade-up"><strong>Analog advantages:</strong> infinite resolution (no quantization error), no need for ADC/DAC conversion, naturally low latency, and graceful degradation in noisy environments (the signal gets noisier but doesn't disappear abruptly).</p>
-
-    <p class="fade-up"><strong>Digital advantages:</strong> perfect reproducibility, noise immunity, easy storage and transmission, programmable processing, error correction, encryption, and compression. Digital systems improve with computing advances and can be updated with software.</p>
-
-    <p class="fade-up"><strong>Digital trade-offs:</strong> Sampling introduces bandwidth limitations (you can't capture frequencies above f<sub>s</sub>/2). Quantization introduces noise. ADC/DAC conversion adds latency and cost. And digital systems require significantly more bandwidth for raw transmission than their analog equivalents &mdash; though compression usually more than compensates.</p>
-
-    <div class="callout-box fade-up">
-      <div class="callout-box-label">
-        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-        The Bottom Line
-      </div>
-      <p>Neither analog nor digital is universally "better." The physical world is analog, but digital processing offers unmatched flexibility and reliability. Modern systems use both: <strong>analog interfaces at the edges, digital processing in the core</strong>.</p>
-    </div>
+    <p class="fade-up">Notice the square root in the denominator. Doubling the sample size does not double the precision &mdash; it improves it by a factor of &radic;2 &asymp; 1.41. This diminishing returns principle explains why extremely large samples are rarely worth the extra cost.</p>
 
     <div class="teaser fade-up">
-      <p>In the next lesson, we'll dive deeper into sampling &mdash; exploring the Nyquist theorem in detail, understanding what happens when it's violated (aliasing), and learning how to properly reconstruct analog signals from digital samples.</p>
+      <p>In the next lesson, we will explore how to visualize data effectively &mdash; choosing the right charts and graphs for different data types, and learning to spot patterns, outliers, and distributions at a glance.</p>
     </div>
 
     <!-- Key Takeaways -->
@@ -888,11 +816,12 @@
         Key Takeaways
       </div>
       <ul>
-        <li>Analog signals are continuous in both time and amplitude; digital signals are discrete in both &mdash; sampled at fixed intervals and quantized to finite levels.</li>
-        <li>The Nyquist-Shannon theorem states that a signal must be sampled at least twice its highest frequency to be perfectly reconstructable.</li>
-        <li>Quantization maps continuous amplitudes to discrete levels, introducing quantization noise. More bits per sample means higher fidelity (each bit adds ~6 dB of SNR).</li>
-        <li>Digital signals offer noise immunity, perfect copying, compression, encryption, and software flexibility &mdash; which is why the world moved to digital.</li>
-        <li>Modern systems are hybrid: analog at the physical interfaces (microphones, speakers, antennas) and digital for processing, storage, and transmission.</li>
+        <li>A population is the complete group of interest; a sample is the subset we actually observe and study.</li>
+        <li>We sample because studying entire populations is often too costly, too slow, or simply impossible.</li>
+        <li>Random sampling ensures every member has an equal chance of selection and is the foundation of unbiased statistical inference.</li>
+        <li>Sampling bias &mdash; from convenience, voluntary response, or survivorship &mdash; can make even large samples worthless.</li>
+        <li>Parameters (&mu;, &sigma;) describe populations and are usually unknown; statistics (x&#772;, s) describe samples and are used to estimate parameters.</li>
+        <li>The standard error (&sigma;/&radic;n) quantifies how much sample means vary &mdash; larger samples give more precise estimates.</li>
       </ul>
     </div>
 
@@ -902,23 +831,23 @@
 <!-- Lesson Navigation -->
 <div class="lesson-nav">
   <div class="lesson-nav-inner fade-up">
-    <a href="m1-l1-slides.html" class="lesson-nav-btn lesson-nav-prev">
+    <a href="m1-l2-slides.html" class="lesson-nav-btn lesson-nav-prev">
       <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
       <span>
         <span class="lesson-nav-label">Previous</span>
-        <span class="lesson-nav-title">Signals All Around Us</span>
+        <span class="lesson-nav-title">Types of Data</span>
       </span>
     </a>
 
     <a href="../index.html" class="lesson-nav-overview">Module Overview</a>
 
-    <a href="m1-l3-slides.html" class="lesson-nav-btn lesson-nav-next">
+    <span class="lesson-nav-btn lesson-nav-next">
       <span>
         <span class="lesson-nav-label">Next Lesson</span>
-        <span class="lesson-nav-title">Why Process Signals Digitally?</span>
+        <span class="lesson-nav-title">Coming Soon</span>
       </span>
       <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-    </a>
+    </span>
   </div>
 </div>
 
@@ -953,11 +882,11 @@
 
 <script>
 (function() {
-  var AUDIO_BASE = '../../../audio/en/dsp101/m1-l2/';
+  var AUDIO_BASE = '../../../audio/en/stat101/m1-l3/';
   var TRACKS = [
-    's1-intro','s2-analog-signals','s3-digital-signals','s4-key-differences',
-    's5-sampling','s6-nyquist','s7-quantization','s8-vinyl-vs-cd',
-    's9-real-world','s10-why-digital','s11-tradeoffs','s12-summary'
+    's1-intro','s2-population','s3-sample','s4-why-sample','s5-random-sampling',
+    's6-sampling-methods','s7-sampling-bias','s8-sample-size','s9-parameter-statistic',
+    's10-standard-error','s11-big-picture','s12-summary'
   ];
 
   var audioEl = document.getElementById('lessonAudio');
@@ -1060,8 +989,8 @@
       <div class="footer-col-title">Courses</div>
       <a href="../../wrl101/index.html">Wireless 101</a>
       <a href="../../dsp101/index.html">DSP 101</a>
+      <a href="../../stat101/index.html">STAT 101</a>
       <a href="../../../coming-soon.html">Labs</a>
-      <a href="../../../coming-soon.html">Projects</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Resources</div>
@@ -1106,9 +1035,11 @@ function renderEquations() {
   if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
 
   var eqs = [
-    ['eq-nyquist', 'f_s \\geq 2 f_{\\max}'],
-    ['eq-quantization', 'L = 2^B'],
-    ['eq-snr', '\\text{SNR}_{\\text{dB}} \\approx 6.02\\,B + 1.76 \\;\\text{dB}']
+    ['eq-pop-mean', '\\mu = \\frac{1}{N}\\sum_{i=1}^{N} x_i'],
+    ['eq-sample-mean', '\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i'],
+    ['eq-parameter', '\\mu, \\quad \\sigma'],
+    ['eq-statistic', '\\bar{x}, \\quad s'],
+    ['eq-se', '\\text{SE}_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}']
   ];
 
   eqs.forEach(function(pair) {

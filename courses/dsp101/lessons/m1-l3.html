@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Process Signals Digitally? | DSP-101 | Wireless 101</title>
+<link rel="stylesheet" href="../../../theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+/* ── Lesson Hero ── */
+.lesson-hero {
+  padding: 6.5rem 2rem 2.5rem;
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+
+.lesson-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: rgba(232, 168, 56, 0.06);
+  border-radius: 50%;
+}
+
+.lesson-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.lesson-hero .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero .breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lesson-hero .breadcrumb a:hover { color: #fff; }
+
+.lesson-hero-content {
+  max-width: 720px;
+}
+
+.lesson-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.lesson-type-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.lesson-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.lesson-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lesson-hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.lesson-hero-meta-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+/* ── Article Content ── */
+.lesson-article {
+  padding: 4rem 2rem 3rem;
+  background: var(--cream);
+}
+
+.lesson-article-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lesson-article h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.lesson-article h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-article p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.lesson-article strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── Callout Box ── */
+.callout-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.callout-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callout-box-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.callout-box p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+.callout-box p:last-child {
+  margin-bottom: 0;
+}
+
+.callout-box .callout-highlight {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--amber-pale);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  display: block;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Key Takeaways ── */
+.takeaways {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 2rem 2.25rem;
+  margin: 3rem 0 0;
+  color: #fff;
+}
+
+.takeaways-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.takeaways-label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--amber);
+  fill: none;
+}
+
+.takeaways ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.takeaways li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-on-dark);
+}
+
+.takeaways li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+/* ── Lesson Nav ── */
+.lesson-nav {
+  padding: 0 2rem;
+  background: var(--cream);
+}
+
+.lesson-nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lesson-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.lesson-nav-prev {
+  color: var(--ink);
+  border: 1.5px solid var(--border-light);
+  justify-self: start;
+}
+
+.lesson-nav-prev:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.1);
+}
+
+.lesson-nav-prev svg,
+.lesson-nav-next svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+}
+
+.lesson-nav-prev svg { stroke: var(--ink); }
+
+.lesson-nav-overview {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.lesson-nav-overview:hover { color: var(--ink); }
+
+.lesson-nav-next {
+  color: var(--cream);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  justify-self: end;
+}
+
+.lesson-nav-next svg { stroke: var(--cream); }
+
+.lesson-nav-next:hover {
+  background: var(--ink-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 27, 45, 0.15);
+}
+
+.lesson-nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.lesson-nav-title {
+  display: block;
+  line-height: 1.3;
+}
+
+/* ── Teaser paragraph ── */
+.teaser {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--border-light);
+}
+
+.teaser p {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ── Lang switch ── */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; }
+.lang-switch a { font-size: 0.8rem; font-weight: 600; color: var(--text-tertiary); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 6px; transition: all 0.2s; }
+.lang-switch a:hover { color: var(--ink); }
+.lang-switch a.active { background: var(--amber-pale); color: var(--amber); }
+.lang-switch a::after { display: none !important; }
+
+/* ── Equation Block ── */
+.equation-block {
+  margin: 1.75rem 0;
+  padding: 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--paper) 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--amber);
+  border-radius: 3px 0 0 3px;
+}
+
+.equation-block-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.equation-block-label svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.equation-block .katex-display {
+  margin: 0;
+}
+
+.equation-block .katex {
+  font-size: 1.2em;
+  color: var(--text);
+}
+
+.equation-block-caption {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .lesson-hero { padding: 5.5rem 1.5rem 2rem; }
+  .lesson-article { padding: 3rem 1.5rem 2rem; }
+
+  .lesson-nav-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .lesson-nav-overview {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .lesson-nav-prev { grid-row: 2; justify-self: start; }
+  .lesson-nav-next { grid-row: 2; justify-self: end; }
+}
+
+@media (max-width: 480px) {
+  .lesson-hero h1 { font-size: 1.5rem; }
+  .lesson-hero-meta { gap: 0.75rem; }
+}
+
+@media (max-width: 600px) {
+  .equation-block .katex {
+    font-size: 1em;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="../../../index.html" class="nav-logo">
+    <img src="../../../logo.png" alt="Wireless 101">
+    Wireless 101
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <div class="lang-switch">
+        <a href="m1-l3.html" class="active">EN</a>
+        <a href="../../../ar/courses/dsp101/lessons/m1-l3.html">&#1593;&#1585;&#1576;&#1610;</a>
+      </div>
+    </li>
+    <li><a href="../../../index.html">Home</a></li>
+    <li><a href="../../../index.html#courses">Courses</a></li>
+    <li><a href="../index.html" class="nav-cta">DSP 101</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Lesson Hero -->
+<section class="lesson-hero">
+  <div class="lesson-hero-inner">
+    <div class="breadcrumb">
+      <a href="../../../index.html">Home</a>
+      <span>/</span>
+      <a href="../../../index.html#courses">Courses</a>
+      <span>/</span>
+      <a href="../index.html">DSP-101</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">Module 1</span>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.8)">Lesson 3</span>
+    </div>
+
+    <div class="lesson-hero-content fade-up">
+      <div class="lesson-type-badge">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        Reading
+      </div>
+      <a href="m1-l3-slides.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--amber);color:var(--ink);padding:0.4rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;margin-bottom:0.75rem;font-family:var(--font-body);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        Stories Mode
+      </a>
+      <h1>Why Process Signals Digitally?</h1>
+      <div class="lesson-hero-meta">
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          ~10 min read
+        </span>
+        <span class="lesson-hero-meta-item">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Lesson 3 of Module 1
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article Content -->
+<article class="lesson-article">
+  <div class="lesson-article-inner">
+
+    <h2 class="fade-up">The Case for Digital</h2>
+
+    <p class="fade-up">In the previous lessons, we explored what signals are and how they split into analog and digital forms. We saw the mechanics of sampling and quantization &mdash; how continuous signals become sequences of numbers. But <strong>why bother?</strong> Why go through the trouble of converting a perfectly good analog signal into digital form?</p>
+
+    <p class="fade-up">The answer is that digital signal processing (DSP) offers a set of advantages so compelling that it has become the dominant approach in virtually every field of engineering. From your smartphone to medical imaging scanners, from radar systems to music production &mdash; <strong>digital processing is the engine that makes modern technology work</strong>.</p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        Core Idea
+      </div>
+      <p>Digital signal processing trades the elegance of continuous math for the <strong>precision, flexibility, and scalability</strong> of computation. Once a signal is digital, you can process it with software &mdash; and software is infinitely adaptable.</p>
+      <span class="callout-highlight">Analog = fixed hardware &nbsp;|&nbsp; Digital = programmable software</span>
+    </div>
+
+    <h2 class="fade-up">Precision &amp; Reproducibility</h2>
+
+    <p class="fade-up">The most fundamental advantage of digital processing is <strong>perfect reproducibility</strong>. When you run a digital algorithm on the same data, you get exactly the same result every time &mdash; regardless of temperature, humidity, component aging, or any other environmental factor. A number doesn't drift or degrade.</p>
+
+    <p class="fade-up">In contrast, analog circuits suffer from <strong>component tolerances</strong>. Two resistors labeled "10 k&Omega;" might actually be 9.8 k&Omega; and 10.3 k&Omega;. Capacitors change value with temperature. Transistor characteristics shift as they age. An analog filter designed on paper performs slightly differently in every physical implementation &mdash; and its behavior changes over time. Digital filters have none of these problems.</p>
+
+    <h2 class="fade-up">Flexibility &amp; Programmability</h2>
+
+    <p class="fade-up">An analog filter is a physical circuit. To change its cutoff frequency, you need to <strong>swap physical components</strong> &mdash; resistors, capacitors, inductors. To change the filter type (low-pass to band-pass, for example), you might need an entirely new circuit board.</p>
+
+    <p class="fade-up">A digital filter is software. You change its behavior by <strong>modifying a few numbers in code</strong>. The same DSP chip can implement a low-pass filter, a noise canceller, an echo remover, and a speech recognizer &mdash; all by running different programs. This programmability is why a single smartphone can do so many things: the hardware stays the same, but the software adapts to each task.</p>
+
+    <h2 class="fade-up">Noise Immunity</h2>
+
+    <p class="fade-up">Every time an analog signal passes through a processing stage, <strong>noise accumulates</strong>. Amplifiers add thermal noise. Long cables pick up electromagnetic interference. After multiple stages of processing, the signal quality degrades noticeably &mdash; and this degradation is irreversible.</p>
+
+    <p class="fade-up">Digital signals are fundamentally different. A bit is either 0 or 1, and small amounts of noise don't change the interpretation. Even when errors occur during transmission, <strong>error detection and correction codes</strong> can identify and fix them automatically. This is why digital communication links maintain quality over distances that would render an analog signal unintelligible.</p>
+
+    <h2 class="fade-up">Storage &amp; Compression</h2>
+
+    <p class="fade-up">Digital data can be stored <strong>indefinitely without degradation</strong>. An analog tape recording loses quality with every playback; a digital file is identical on the millionth read. Digital storage is also vastly more efficient: a single hard drive holds the equivalent of thousands of analog tape reels.</p>
+
+    <p class="fade-up">Even more powerful is <strong>compression</strong>. Because digital data is just numbers, mathematical algorithms can find and exploit patterns to reduce storage requirements dramatically. MP3 shrinks audio by 10&times;. JPEG compresses images by 20&times;. H.264 makes streaming video possible. None of this is achievable with analog signals.</p>
+
+    <h2 class="fade-up">Processing Power</h2>
+
+    <p class="fade-up">Digital processing enables operations that are effectively <strong>impossible in the analog domain</strong>. The Fast Fourier Transform (FFT) converts a signal from time domain to frequency domain in milliseconds. Adaptive filters automatically tune themselves to changing environments. Machine learning algorithms can classify, predict, and generate signals with superhuman accuracy.</p>
+
+    <p class="fade-up">These algorithms require the <strong>mathematical precision</strong> that only digital computation provides. An analog circuit can approximate a Fourier transform, but it cannot compute one exactly. Digital computation can &mdash; and it gets faster and cheaper every year.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+        Processing Gain (SNR Improvement)
+      </div>
+      <div id="eq-processing-gain"></div>
+      <div class="equation-block-caption">Digital averaging of N samples improves the signal-to-noise ratio by a factor of &radic;N. More computation directly translates to better signal quality.</div>
+    </div>
+
+    <h2 class="fade-up">Cost &amp; Scalability</h2>
+
+    <p class="fade-up"><strong>Moore's Law</strong> has been the secret weapon of digital processing. Every few years, transistors get smaller, processors get faster, and DSP chips get cheaper. A computation that required a room-sized mainframe in 1970 now runs on a chip that costs a fraction of a dollar.</p>
+
+    <p class="fade-up">Analog circuits don't benefit from this scaling in the same way. A capacitor is still a capacitor; a resistor is still a resistor. Their costs and sizes improve slowly, if at all. The result is a widening gap: digital solutions become <strong>exponentially more powerful and affordable</strong>, while analog solutions improve incrementally.</p>
+
+    <h2 class="fade-up">Trade-offs &amp; Limitations</h2>
+
+    <p class="fade-up">Digital processing is not without costs. <strong>Latency</strong> is inherent in the analog-to-digital conversion process and in the computation itself. For real-time applications like live audio monitoring, this latency must be carefully managed. <strong>Power consumption</strong> is another concern, especially in battery-powered devices. And <strong>quantization</strong> means we always lose some information compared to the original analog signal &mdash; though with modern bit depths (16, 24, or 32 bits), this loss is negligible for most applications.</p>
+
+    <div class="equation-block fade-up">
+      <div class="equation-block-label">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Quantization SNR
+      </div>
+      <div id="eq-snr"></div>
+      <div class="equation-block-caption">Each additional bit of resolution adds approximately 6.02 dB of dynamic range. 16-bit audio achieves ~98 dB SNR; 24-bit reaches ~146 dB.</div>
+    </div>
+
+    <h2 class="fade-up">The Hybrid Reality</h2>
+
+    <p class="fade-up">The physical world is and always will be analog. <strong>Microphones, speakers, antennas, and sensors</strong> are inherently analog devices. The modern approach is therefore hybrid: analog components at the boundaries convert physical quantities to electrical signals and back, while <strong>digital processors handle everything in between</strong>.</p>
+
+    <p class="fade-up">This hybrid architecture gives us the best of both worlds: the natural interface of analog at the physical edges, and the power, precision, and flexibility of digital processing at the core. It's the architecture of every smartphone, every medical scanner, every communications system, and virtually every piece of modern electronics.</p>
+
+    <div class="callout-box fade-up">
+      <div class="callout-box-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        The Bottom Line
+      </div>
+      <p>Digital signal processing won not because it's inherently "better" than analog, but because its advantages in <strong>precision, flexibility, noise immunity, and cost</strong> compound with every advance in computing hardware. The question is no longer "why go digital?" but "what can we do now that everything is digital?"</p>
+    </div>
+
+    <div class="teaser fade-up">
+      <p>In the next lesson, we'll survey the major real-world applications of DSP &mdash; from audio and telecommunications to medical imaging and radar &mdash; and see how these principles play out in practice.</p>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="takeaways fade-up">
+      <div class="takeaways-label">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        Key Takeaways
+      </div>
+      <ul>
+        <li>Digital processing provides perfect reproducibility &mdash; the same algorithm on the same data always yields the same result, unlike analog circuits that drift with temperature and aging.</li>
+        <li>Flexibility is digital's superpower: the same hardware runs completely different algorithms by changing software, eliminating the need for hardware redesigns.</li>
+        <li>Digital signals resist noise and can use error correction, while analog noise accumulates irreversibly through processing stages.</li>
+        <li>Compression, lossless storage, and advanced algorithms (FFT, adaptive filters, ML) are only possible in the digital domain.</li>
+        <li>Moore's Law makes digital processing cheaper and faster over time, while analog circuits improve incrementally. Modern systems use a hybrid approach: analog at the edges, digital at the core.</li>
+      </ul>
+    </div>
+
+  </div>
+</article>
+
+<!-- Lesson Navigation -->
+<div class="lesson-nav">
+  <div class="lesson-nav-inner fade-up">
+    <a href="m1-l2-slides.html" class="lesson-nav-btn lesson-nav-prev">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span>
+        <span class="lesson-nav-label">Previous</span>
+        <span class="lesson-nav-title">Analog vs Digital</span>
+      </span>
+    </a>
+
+    <a href="../index.html" class="lesson-nav-overview">Module Overview</a>
+
+    <a href="../../../coming-soon.html" class="lesson-nav-btn lesson-nav-next">
+      <span>
+        <span class="lesson-nav-label">Next Lesson</span>
+        <span class="lesson-nav-title">Coming Soon</span>
+      </span>
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name"><img src="../../../logo.png" alt="Wireless 101"> Wireless 101</div>
+      <p>Open-source curriculum for wireless communications and digital signal processing fundamentals.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Courses</div>
+      <a href="../../wrl101/index.html">Wireless 101</a>
+      <a href="../../dsp101/index.html">DSP 101</a>
+      <a href="../../../coming-soon.html">Labs</a>
+      <a href="../../../coming-soon.html">Projects</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="../../../coming-soon.html">Documentation</a>
+      <a href="../../../coming-soon.html">Community</a>
+      <a href="../../../coming-soon.html">Blog</a>
+      <a href="../../../coming-soon.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="../../../coming-soon.html">GitHub</a>
+      <a href="../../../coming-soon.html">Discord</a>
+      <a href="../../../coming-soon.html">Twitter / X</a>
+      <a href="../../../coming-soon.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Wireless 101. Open-source educational project.</div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── KaTeX Equations ──
+function renderEquations() {
+  if (typeof katex === 'undefined') { setTimeout(renderEquations, 200); return; }
+
+  var eqs = [
+    ['eq-processing-gain', '\\text{SNR}_{\\text{out}} = \\text{SNR}_{\\text{in}} + 10\\log_{10}(N)\;\\text{dB}'],
+    ['eq-snr', '\\text{SNR}_{\\text{dB}} \\approx 6.02\\,B + 1.76 \;\\text{dB}']
+  ];
+
+  eqs.forEach(function(pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) katex.render(pair[1], el, { displayMode: true, throwOnError: false });
+  });
+}
+renderEquations();
+</script>
+<script data-goatcounter="https://wireless-101.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

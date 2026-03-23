@@ -1,0 +1,69 @@
+{
+  "course": "DSP-101",
+  "module": 1,
+  "lesson": 3,
+  "title": "Why Process Signals Digitally?",
+  "language": "en",
+  "slides": [
+    {
+      "id": "s1-intro",
+      "title": "Introduction",
+      "transcript": "Welcome back to DSP 101. We've learned what signals are, and how they split into analog and digital forms. Now for the big question: why bother going digital at all? In this lesson, we'll explore the powerful reasons behind the digital revolution in signal processing — and why nearly every modern device relies on DSP."
+    },
+    {
+      "id": "s2-analog-problem",
+      "title": "The Analog Problem",
+      "transcript": "Analog signal processing has a fundamental problem: noise accumulates. Every time an analog signal passes through a circuit — an amplifier, a cable, a mixer — a little noise gets added. Over multiple stages, this noise builds up and can never be removed. Components also drift with temperature and age, meaning an analog system that works perfectly today might perform differently tomorrow."
+    },
+    {
+      "id": "s3-digital-precision",
+      "title": "Digital Precision",
+      "transcript": "Digital processing solves the noise problem entirely. A number is a number — it doesn't degrade when you copy it or pass it through processing stages. The output of a digital algorithm is exactly reproducible, every single time. Run the same filter on the same data today or ten years from now, on any hardware, and you get bit-for-bit identical results. This perfect reproducibility is something analog systems simply cannot achieve."
+    },
+    {
+      "id": "s4-flexibility",
+      "title": "Flexibility",
+      "transcript": "Perhaps the greatest advantage of digital processing is flexibility. An analog filter is a physical circuit — to change its behavior, you need to redesign the hardware, swap components, and resolder connections. A digital filter is software — you change it by updating a few numbers in code. The same DSP chip in your phone runs noise cancellation, echo removal, equalization, and speech recognition, all by running different algorithms. No hardware changes needed."
+    },
+    {
+      "id": "s5-noise-immunity",
+      "title": "Noise Immunity",
+      "transcript": "Digital signals are inherently resistant to noise. Because data is represented as ones and zeros, small amounts of noise don't change the interpretation. And if errors do occur during transmission, error detection and correction codes can find and fix them automatically. This is why you can download a file over a noisy internet connection and get a perfect copy. Analog transmission over the same channel would be noticeably degraded."
+    },
+    {
+      "id": "s6-storage-compression",
+      "title": "Storage & Compression",
+      "transcript": "Digital data can be stored indefinitely without degradation — unlike analog tapes that wear out and lose quality over time. Even more powerful is compression. Algorithms like MP3 can shrink audio files by a factor of ten with barely perceptible quality loss. JPEG does the same for images. H.264 for video. These compression techniques are only possible because the data is digital — you can't compress an analog signal mathematically."
+    },
+    {
+      "id": "s7-processing-power",
+      "title": "Processing Power",
+      "transcript": "Digital signal processing unlocks operations that are practically impossible in analog. The Fast Fourier Transform converts a signal from time domain to frequency domain in milliseconds. Adaptive filters automatically adjust to changing conditions. Machine learning algorithms can recognize speech, identify faces, and detect anomalies in sensor data. All of these require the mathematical precision and programmability that only digital processing provides."
+    },
+    {
+      "id": "s8-cost-scale",
+      "title": "Cost & Scale",
+      "transcript": "Moore's Law has been a game-changer for DSP. Every few years, processors get faster and cheaper. A DSP chip that cost thousands of dollars in 1990 is now a fraction of a cent on a smartphone. This scaling doesn't apply to analog circuits — a capacitor doesn't get cheaper because transistors shrink. The result is that digital solutions keep getting more powerful and more affordable, widening the gap with analog alternatives."
+    },
+    {
+      "id": "s9-real-world",
+      "title": "Real-World Applications",
+      "transcript": "DSP is everywhere. Your smartphone uses it for voice calls, noise cancellation, camera image processing, and GPS navigation. Medical devices like MRI scanners and ultrasound machines rely on sophisticated DSP algorithms to produce clear images. Radar and sonar systems process signals digitally to detect objects hundreds of miles away. Even your music streaming service uses DSP for audio enhancement and dynamic range compression."
+    },
+    {
+      "id": "s10-tradeoffs",
+      "title": "Trade-offs",
+      "transcript": "Digital processing isn't without its costs. Converting analog to digital introduces latency — the time it takes for the ADC to sample and the processor to compute. This matters in real-time applications like live audio. Digital systems also consume power, which is critical in battery-operated devices. And quantization means we always lose some information compared to the original analog signal, though with enough bits this loss becomes negligible."
+    },
+    {
+      "id": "s11-coexistence",
+      "title": "Analog-Digital Coexistence",
+      "transcript": "The real world is analog, and it always will be. Microphones, speakers, antennas, and sensors are inherently analog devices. The modern approach is hybrid: analog components at the boundaries convert physical quantities to electrical signals and back, while digital processors handle everything in between. This gives us the best of both worlds — the natural interface of analog and the power of digital processing."
+    },
+    {
+      "id": "s12-summary",
+      "title": "Summary",
+      "transcript": "Let's recap. Digital signal processing offers precision, flexibility, noise immunity, compression, and scalable cost advantages over analog approaches. The trade-offs — latency, power consumption, and quantization — are manageable and shrinking with technology advances. Modern systems are hybrid: analog at the edges, digital at the core. In the next lesson, we'll survey the major applications of DSP across different industries. See you there."
+    }
+  ]
+}
